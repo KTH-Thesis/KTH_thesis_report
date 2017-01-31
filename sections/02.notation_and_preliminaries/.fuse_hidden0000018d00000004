@@ -4,10 +4,9 @@ The set of positive integers is denoted as $\mathbb{N}$. The real $n$-coordinate
 space, with $n\in\mathbb{N}$, is denoted as $\mathbb{R}^n$;
 $\mathbb{R}^n_{\geq 0}$ and $\mathbb{R}^n_{> 0}$ are the sets of real
 $n$-vectors with all elements nonnegative and positive, respectively. Given a
-set $S$, we denote as $\lvert S\lvert$ its cardinality. The notation
-$\|\vect{x}\|$ is used for the Euclidean norm of a vector
-$\vect{x} \in \mathbb{R}^n$. Given a symmetric matrix
-$\mat{A} = A^T, \lambda_{\text{min}}(A) = \min \{|\lambda| : \lambda \in \sigma(A) \}$
+set $S$, we denote as $\lvert S\lvert$ its cardinality. The notation $\|x\|$
+is used for the Euclidean norm of a vector $x \in \mathbb{R}^n$. Given a
+symmetric matrix $A, \lambda_{\text{min}}(A) = \min \{|\lambda| : \lambda \in \sigma(A) \}$
 denotes the minimum eigenvalue of $A$, respectively, where $\sigma(A)$ is the
 set of all the eigenvalues of $A$ and $\text{rank}(A)$ is its rank;
 $A \otimes B$ denotes the Kronecker product of matrices $A, B \in \mathbb{R}^{m \times n}$,
@@ -20,7 +19,7 @@ is the $3$D sphere of radius $r \in \mathbb{R}_{\ge 0}$ and center
 $c\in\mathbb{R}^{3}$.
 The vector connecting the origins of coordinate frames $\{A\}$ and $\{B$\}
 expressed in frame $\{C\}$ coordinates in $3$D space is denoted as
-$p^{\scriptscriptstyle C}_{{\scriptscriptstyle B/A}}\in{\mathbb{R}}^{3}$.
+$p^{\scriptscriptstyle C}_\big{{\scriptscriptstyle B/A}\big}\in{\mathbb{R}}^{3}$.
 Given $a\in\mathbb{R}^3$, $S(a)$ is the skew-symmetric matrix
 defined according to $S(a)b = a\times b$. We further denote as
 $q_{\scriptscriptstyle B/A}\in\mathbb{T}^3$ the Euler angles representing
@@ -42,11 +41,11 @@ frame $\{0\}$, unless otherwise stated.
 An \textit{undirected graph} $\mathcal{G}$ is a pair
 $(\mathcal{V}, \mathcal{E})$, where $\mathcal{V}$ is a finite set of nodes,
 representing a team of agents, and
-$\mathcal{E} \subseteq \big\{ \{i,j\} : i,j \in \mathcal{V}, i \neq j \big\}$,
+$\mathcal{E} \subseteq \{ \{i,j\} : i,j \in \mathcal{V}, i \neq j\}$,
 with $M = |\mathcal{E}|$, is the set of edges that model the communication
 capability between neighboring agents. For each agent, its neighbors' set
 $\mathcal{N}_i$ is defined as
-$\mathcal{N}_i = \{i_1, \ldots, i_{N_i}\} = \big\{ j \in \mathcal{V} : \{i,j\} \in \mathcal{E}\big\}$,
+$\mathcal{N}_i = \{i_1, \ldots, i_{N_i}\} = \{ j \in \mathcal{V} : \{i,j\} \in \mathcal{E}\}$,
 where $i_1, \ldots, i_{N_i}$ is an enumeration of the neighbors of agent $i$
 and $N_i = |\mathcal N_i|$.
 

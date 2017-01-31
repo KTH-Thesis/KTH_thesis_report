@@ -6,6 +6,7 @@
 \usepackage[left=1.0in, right=1.0in, top=1.0in, bottom=1.0in]{geometry}
 
 \usepackage[toc,page]{appendix}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -21,32 +22,14 @@
 \usepackage{array}
 \usepackage{textcomp}
 \usepackage{bbm}
+%\usepackage{stmaryrd}
 \usepackage{fancyref}
 \usepackage{xcolor}
 \usepackage{rotating}
 \usepackage[noadjust]{cite} % basic fos bibliography [1]-[5]
-\usepackage{bm}
-\usepackage{mathtools}
-\usepackage{multirow}
-\usepackage{array}
-\usepackage{longtable}
-\usepackage{hhline}
-\usepackage[noadjust]{cite} % basic for bibliography [1]-[5]
-\usepackage{indentfirst}
-\usepackage{framed}
-\usepackage[hidelinks]{hyperref}
-\usepackage{tikz}
-\usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
 
-%\usepackage{algorithm}
-%\usepackage{algpseudocode}
-%\usepackage{algcompatible}
-%\usepackage{pifont}
-%\usepackage[]{algorithm2e}
-%\usepackage{stmaryrd}
+%\newtheorem{theorem}{Theorem}[section] % theorem
 %\usepackage{subcaption}
-
-
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section] %definition
 \newtheorem{remark}{Remark}[section] % remark
@@ -55,41 +38,45 @@
 \newtheorem{assumption}{Assumption}[section] % example
 \newtheorem{problem}{Problem}[section]
 
-%\newtheorem{theorem}{Theorem}[section] % theorem
 
+\usepackage{hhline}% http://ctan.org/pkg/hhline
 
+\usepackage{multirow}
+\usepackage{array}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash}m{#1}}
+
+\usepackage{longtable}
+
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
+
+\newcommand*{\mybox}[2]{%
+\noindent\colorbox{#1!30}{%
+\parbox{0.98\linewidth}{#2}}}%
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
-\newcommand*{\mybox}[2]
-{
-  \noindent\colorbox{#1!30}{
-  \parbox{0.98\linewidth}{#2}}
-}
+\usepackage[noadjust]{cite} % basic for bibliography [1]-[5]
+\usepackage{indentfirst}
+
+%\usepackage[]{algorithm2e}
+\usepackage{framed}
 
 \newcommand{\alex}[1]{{\color{red}  #1}}
-\newcommand{\mat}[1]{\bm{\mathit{#1}}}
-\newcommand{\vect}[1]{\bm{\mathbf{#1}}}
 
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage{algcompatible}
+%\usepackage{pifont}
 
+\usepackage{multirow}
+
+\usepackage[hidelinks]{hyperref}
 %\hypersetup{colorlinks=false, linkbordercolor={0 0 1}}
 
-
-
-
-
-
-
-
-
-
-
-
-\title{\textbf{Multi-Robot Control by
-Utilizing Distributed Model Predictive Controllers}}
+\title{\textbf{Multi-Robot Control by Utilizing Distributed Model Predictive Controllers}}
 %
 \author{KTH Royal Institute of Technology \\
   School of Electrical Engineering \\

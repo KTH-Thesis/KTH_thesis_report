@@ -1,58 +1,65 @@
 \subsection{System Model}
+
 Consider a set of $N$ rigid bodies, with $\mathcal{V} = \{ 1,2, \ldots, N\}$,
-$N  \geq 2$, operating in a workspace $W\subseteq \mathbb{R}^3$, with coordinate
-frames $\{i\}, i\in\mathcal{V}$, attached to their centers of mass. The
-workspace is assumed to be modeled as a bounded sphere $\mathcal{B}(0,r_w)$.
-We consider that each agent occupies a sphere $\mathcal{B}(p_i(t), r_i)$,
-where $p_i:\mathbb{R}_{\geq 0} \to \mathbb{R}^3$ is the position of the agent's
-center of mass and $r_i$ is the agent's radius. We also denote as
-$q_i:\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$, the Euler angles
-representing the agents' orientation with respect to an inertial frame $\{0\}$,
-with $q_i = [\phi_i,\theta_i,\psi_i]^\tau$.
+$N  \geq 2$, operating in a workspace $W\subseteq \mathbb{R}^3$.
+A coordinate frame $\{i\}, i\in\mathcal{V}$ is attached to each body's
+center of mass. The workspace is assumed to be modeled as a
+bounded sphere $\mathcal{B}(0,r_W)$ expressed in an inertial frame
+$\{\mathcal{O}\}$.
+
+We consider that each agent $i$ occupies the space of a sphere
+$\mathcal{B}(p_i(t), r_i)$, where $p_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3$
+is the position of the agent's center of mass expressed in $\{\mathcal{O}\}$,
+and $r_i$ is the radius of the agent's body.
+We denote as $q_i:\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
+the Euler angles representing the agents' orientation also with respect to
+$\{\mathcal{O}\}$, with $q_i = [\phi_i,\theta_i,\psi_i]^\tau$.
 By defining $x_i:\mathbb{R}_{\geq 0} \to \mathbb{M}, v_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^6$,
 with $x_i = [p^\tau_i,q^\tau_i]^\tau, v_i =[\dot{p}^\tau_i,\omega^\tau_i]^\tau$,
-we model each agent's motion with the $2$nd order dynamics:
+we model each agent's motion with the below $2$nd order dynamics:
 
-\begin{subequations}\label{eq:system}
+\begin{subequations}
 	\begin{align}
-	& \dot{x}_i(t) = J_i(x_i)v_i(t) , \label{eq:system_1} \\
-	& M_i(x_i) \dot{v}_i(t) + C_i(x_i,\dot{x}_i) v_i(t)+g_i(x_i) = u_i,  \label{eq:system_2}
+    \dot{x}_i(t) &= J_i(x_i)v_i(t), \label{eq:system_1} \\
+    u_i &= M_i(x_i) \dot{v}_i(t) + C_i(x_i,\dot{x}_i) v_i(t)+g_i(x_i), \label{eq:system_2}
 	\end{align}
+  \label{eq:system}
 \end{subequations}
-where $J_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is a Jacobian matrix that maps
-the Euler angle rates to $v_i$, given by
-\begin{align}
-J_i(x_i)
-&=
-\begin{bmatrix}
-I_3 & 0_{3 \times 3} \\
-0_{3 \times 3} & J_{ q }(x_i) \\
-\end{bmatrix} \notag, \\
-J_q(x_i)
-&=
-\begin{bmatrix}
-1 & \sin(\phi_i) \tan(\theta_i)  & \cos(\phi_i) \tan(\theta_i) \\
-0 & \cos(\phi_i) & -\sin(\phi_i) \\
-0  & \displaystyle \frac{\sin(\phi_i)}{\cos(\theta_i)} & \displaystyle \frac{\cos(\phi_i)}{\cos(\theta_i)}
-\end{bmatrix}, \notag
-\end{align}
 
-for which we make the following assumption:
+In equation (\ref{eq:system_1}), $J_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is
+a Jacobian matrix that maps the Euler angle rates to the orthogonal angular
+rates $v_i$:
+
+\begin{equation}
+  J_i(x_i) =
+  \begin{bmatrix}
+  I_3 & 0_{3 \times 3} \\
+  0_{3 \times 3} & J_{ q }(x_i) \\
+  \end{bmatrix} \notag, \text{ with }
+  J_q(x_i) =
+  \begin{bmatrix}
+  1 & \sin(\phi_i) \tan(\theta_i)  & \cos(\phi_i) \tan(\theta_i) \\
+  0 & \cos(\phi_i) & -\sin(\phi_i) \\
+  0  & \displaystyle \frac{\sin(\phi_i)}{\cos(\theta_i)} & \displaystyle \frac{\cos(\phi_i)}{\cos(\theta_i)}
+  \end{bmatrix} \notag
+\end{equation}
+
+In order for $J_i$ to be always well-defined (and hence invertible, since
+$\det(J_i) = \tfrac{1}{\cos\theta_i}$) we need to make the following assumption:
 
 \begin{assumption} \label{as:J}
 	The angle $\theta_i$ satisfies the inequality
-  $-\frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} ,\forall i\in\mathcal{V},t\in\mathbb{R}_{\geq 0}$.
+  $$-\frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} ,\forall i\in\mathcal{V},t\in\mathbb{R}_{\geq 0}$$.
 \end{assumption}
 
-The aforementioned assumption guarantees that $J_i$ is always well-defined and
-invertible, since $\det(J_i) = \tfrac{1}{\cos\theta_i}$.
-Furthermore, $M_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is the symmetric and
-positive definite inertia matrix,
+In equation (\ref{eq:system_2}), $M_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is
+the symmetric and positive definite inertia matrix,
 $C_i:\mathbb{M}\times\mathbb{R}^6 \to \mathbb{R}^{6\times6}$ is the Coriolis
 matrix and $g_i:\mathbb{M} \to \mathbb{R}^6$ is the gravity vector.
-We consider that the aforementioned vector fields are unknown and continuous.
+We consider that the aforementioned vector fields are unknown, continuous,
+and expressed in the respective coordinate frame of each agent.
 Finally, $u_i\in\mathbb{R}^6$ is the control input vector representing the $6$D
-generalized force acting on the agent. Let as also define the vectors
+generalized force acting on the agent. Let us also define the vectors
 $x = [x_1^\tau,\dots,x_N^\tau]^\tau : \mathbb{R}_{\geq 0} \to \mathbb{M}^N, v = [v_1^\tau, \dots$
 and $v_N^\tau]^\tau : \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
 
@@ -80,7 +87,7 @@ and $v_N^\tau]^\tau : \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
 
 	%draw agent i
 	\draw [color = blue, fill = blue!20] (-4.5,0) circle (2.5cm);
-	\node at (-5.7, 0.0) {$\{i\}$};
+  \node at (-5.7, 0.0) {$\{i\}$};
 	\draw[green,thick,dashed] (-4.5,0) circle (5.0cm);
 	\draw [color=black,thick,->,>=stealth'](-9, -5) to (-4.5, -0.1);
 	\node at (-7.7, -3.0) {$p_i$};
@@ -113,13 +120,13 @@ and $v_N^\tau]^\tau : \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
 	\node at (-0.40, -7.5) {$r_{o_z}$};
 	\end{tikzpicture}
 	\caption{Illustration of two agents $i, j \in \mathcal{V}$ and an static
-  obstacle $o_z$ in the workspace; $\{0\}$ is the inertial frame, $\{i\}, \{j\}$
-are the frames attached to the agents' center of mass,
-$p_i, p_j, p_{o_z} \in \mathbb{R}^3$ are the positions of the center of mass
-of the agents $i,j$ and the obstacle $o_z$, respectively, with respect to
-$\{0\}$. $r_i, r_j, r_{o_z}$ are the radii of the agents $i,j$ and the obstacle
-$o_z$ respectively. $\bar{d}_i, \bar{d}_j$ with $\bar{d}_i > \bar{d}_j$ are
-the agents' sensing ranges.}
+    obstacle $o_z$ in the workspace; $\{\mathcal{O}\}$ is the inertial frame,
+    $\{i\}, \{j\}$ are the frames attached to the agents' center of mass,
+    $p_i, p_j, p_{o_z} \in \mathbb{R}^3$ are the positions of the center of mass
+    of the agents $i,j$ and the obstacle $o_z$, respectively, with respect to
+    $\{\mathcal{O}\}$. $r_i, r_j, r_{o_z}$ are the radii of the agents $i,j$ and
+    the obstacle $o_z$ respectively. $\bar{d}_i, \bar{d}_j$ with
+    $\bar{d}_i > \bar{d}_j$ are the agents' sensing ranges.}
 	\label{fig:agents_geometry}
 \end{figure}
 
@@ -177,14 +184,14 @@ neighboring agents are at a collision-free configuration, i.e.,
 Let us define the distance:
 
 \begin{equation*}
-D = \min\{d_o, d_{o,w}\},
+D = \min\{d_o, d_{o,W}\},
 \end{equation*}
 
 where:
 
 \begin{align*}
 d_o &= \min\{\| p_{o_z} - p_{o_{z'}}\| : z,z' \in \mathcal{Z} \}, \\
-d_{o,w} &= \min\{r_w - \left( r_{o_z} + \| p_{o_z} \| \right) : z \in \mathcal{Z}\},
+d_{o,W} &= \min\{r_W - \left( r_{o_z} + \| p_{o_z} \| \right) : z \in \mathcal{Z}\},
 \end{align*}
 
 are the distance between the two most closest obstacles and the distance between
@@ -246,7 +253,7 @@ formulated as follows:
 
 \begin{problem} \label{problem}
 	Given $N$ agents performing in workspace $W$ modeled as bounded sphere
-  $\mathcal{B}(0,r_w)$, with spherical obstacles
+  $\mathcal{B}(0,r_W)$, with spherical obstacles
   $\mathcal{B}(p_{o_z}, r_{o_z}), z \in \mathcal{Z}$, governed by the dynamics
   \eqref{eq:system}, under the Assumptions 1-3, under the geometric feasibility
   constraint \eqref{eq:geometric_constraint} and given the desired inter-agent
