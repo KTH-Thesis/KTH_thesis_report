@@ -1,0 +1,64 @@
+\subsection{Problem Statement}
+Due to the fact that the agents are not dimensionless and their communication
+capabilities are limited, the control protocol, except from achieving desired
+position formation $p_{ij, \text{des}}$ and desired formation angles
+$q_{ij, \text{des}}$ for all neighboring agents
+$i \in \mathcal{V}, j \in \mathcal{N}_i(0)$, it should also guarantee for
+all $t\in\mathbb{R}_{\geq 0}$ that (i) all the agents avoid collision with
+every other agent and (iii) all the initial edges are maintained, i.e.,
+connectivity maintenance. Therefore, all the neighboring agents of agent $i$
+must remain within distance less than $\bar{d}_{i}$, for all $i \in \mathcal{V}$
+and all the agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
+greater than $\underline{d}_{ij,a}$. We also make the following assumption that
+are required on the initial graph topology
+
+\begin{assumption}
+	The communication graph $\mathcal{G}$ is connected at time $t = 0$ and the
+  agents are in collision-free configuration, i.e.,
+  both \eqref{eq:initially_connected} and \eqref{eq:initially_coll_free} hold.
+\end{assumption}
+
+Formally, the control problem under the aforementioned constraints is
+formulated as follows:
+
+\begin{problem} \label{problem}
+	Given $N$ agents performing in workspace $W$ modeled as bounded sphere
+  $\mathcal{B}(0,r_W)$, with spherical obstacles
+  $\mathcal{B}(p_{o_z}, r_{o_z}), z \in \mathcal{Z}$, governed by the dynamics
+  \eqref{eq:system}, under the Assumptions 1-3, under the geometric feasibility
+  constraint \eqref{eq:geometric_constraint} and given the desired inter-agent
+  distances and angles $p_{ij, \text{des}}, q_{ij, \text{des}}$, with
+  $\underline{d}_{ij, a} < p_{ij, \text{des}} < \bar{d}_{i}$, $\forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)$,
+  design decentralized control laws $u_i \in\mathbb{R}^6,i\in\mathcal{V}$
+  such that:
+
+	\begin{itemize}
+		\item $\forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)$,
+      the following hold:
+
+		$\ 1)$ $\lim\limits_{t \to \infty} \left[ p_{i}(t)-p_{j}(t) - p_{ij, \text{des}} \right] = 0_{3\times1}$,
+
+		$\ 2)$ $\lim\limits_{t \to \infty} \left[q_{i}(t) - q_{j}(t) - q_{ij, \text{des}}\right] = 0_{3\times1}$.
+
+		\item \noindent $\forall i,j \in \mathcal{V}, i \neq j$ the following holds:
+
+		$\ 3)$ $\|p_i(t)-p_j(t)\| > \underline{d}_{ij, a}, \forall \ t \in \mathbb{R}_{\geq 0}$.
+		\item $\forall \ i \in \mathcal{V}, z \in \mathcal{Z}$ the following holds:
+
+		$\ 4)$ $\mathcal{B}(p_i(t), r_i) \cap \mathcal{B}(p_{o_z}(t), r_{o_z}) = \emptyset, \forall \ t \in \mathbb{R}_{\geq 0}$.
+
+		\item $\forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)$ the following holds:
+
+		$\ 5)$ $\|p_i(t)-p_j(t)\| < \bar{d}_{i}, \forall \ t \in \mathbb{R}_{\geq 0}$.
+	\end{itemize}
+
+\end{problem}
+
+\noindent The aforementioned specifications imply the following:
+\begin{itemize}
+	\item $1$ stands for formation control;
+	\item $2$ stands for orientation alignment;
+	\item $3$ stands for inter-agent collision avoidance;
+	\item $4$ stands for collision avoidance between the agents and the obstacles;
+	\item $5$ stands for connectivity maintenance of the initial graph;
+\end{itemize}

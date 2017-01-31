@@ -1,0 +1,215 @@
+\subsection{System Model}
+
+Consider a set of $N$ rigid bodies, with $\mathcal{V} = \{ 1,2, \ldots, N\}$,
+$N  \geq 2$, operating in a workspace $W\subseteq \mathbb{R}^3$.
+A coordinate frame $\{i\}, i\in\mathcal{V}$ is attached to each body's
+center of mass. The workspace is assumed to be modeled as a
+bounded sphere $\mathcal{B}(\vect{0},r_W)$ expressed in an inertial frame
+$\{\mathcal{O}\}$.
+
+We consider that over time $t$ each agent $i$ occupies the space of a sphere
+$\mathcal{B}(\vect{p}_i(t), r_i)$, where $\vect{p}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3$
+is the position of the agent's center of mass, and $r_i < r_W$ is the radius of the
+agent's body. We denote by $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
+the Euler angles representing the agents' orientation,
+with $\vect{q}_i = [\phi_i,\theta_i,\psi_i]^{\top}$.
+We define $\vect{x}_i = [\vect{p}^{\top},\vect{q}^{\top}_i]^{\top},
+\vect{v}_i =[\dot{\vect{p}}^{\top}_i, \vect{\omega}^{\top}_i]^{\top}$,
+$\vect{x}_i:\mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{T}^3 =
+\mathbb{M}, \vect{v}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{R}^3
+= \mathbb{R}^6$, and model the motion of agent $i$ under second order dynamics:
+
+\begin{subequations}
+	\begin{align}
+    \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t), \label{eq:system_1} \\
+    \vect{u}_i &= \mat{M}_i(\vect{x}_i) \dot{\vect{v}}_i(t) + \mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)+\vect{g}_i(\vect{x}_i), \label{eq:system_2}
+	\end{align}
+  \label{eq:system}
+\end{subequations}
+
+In equation (\ref{eq:system_1}), $\mat{J}_i:\mathbb{T}^3 \to \mathbb{R}^{6\times6}$ is
+a Jacobian matrix that maps the Euler angle rates to the orthogonal angular
+rates $\vect{v}_i$:
+
+\begin{equation}
+  \mat{J}_i(\vect{x}_i) =
+  \begin{bmatrix}
+    \mat{I}_3 & \mat{0}_{3 \times 3} \\
+    \mat{0}_{3 \times 3} & \mat{J}_{ q }(\vect{x}_i) \\
+  \end{bmatrix} \notag, \text{ with }
+  \mat{J}_q(\vect{x}_i) =
+  \begin{bmatrix}
+    1 & 0 & -\sin\theta_i \\
+    0 & \cos\phi_i & \cos\theta_i \sin\phi_i \\
+    0 & - \sin\phi_i & \cos\phi_i \cos\theta_i
+  \end{bmatrix} \notag
+\end{equation}
+
+In order for $\mat{J}_i$ to be always well-defined (and hence invertible, since
+$\det(\mat{J}_i) = \cos\theta_i$) we need to make the following assumption:
+
+\note{?? EVENTUALLY NEEDED? CHECK}
+\begin{assumption} \label{as:J}
+	The angle $\theta_i$ satisfies the inequality
+  $$-\frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} ,\forall i\in\mathcal{V},t\in\mathbb{R}_{\geq 0}$$.
+\end{assumption}
+
+In equation (\ref{eq:system_2}), $\mat{M}_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is
+the symmetric and positive definite \textit{inertia matrix},
+$\mat{C}_i:\mathbb{M}\times\mathbb{R}^6 \to \mathbb{R}^{6\times6}$ is the
+\textit{Coriolis matrix} and $\vect{g}_i:\mathbb{M} \to \mathbb{R}^6$ is the
+\textit{gravity vector}. The aforementioned vector fields are unknown, continuous,
+and expressed in the respective coordinate frame of each agent.
+Finally, $\vect{u}_i\in\mathbb{R}^6$ is the control input vector representing the $6$D
+generalized \textit{actuation force} acting on the agent.
+
+%Let us also define the vectors
+%$\vect{X} = [\vect{x}_1^\top, \dots, x_N^\top]^\top :
+%\mathbb{R}_{\geq 0} \to \mathbb{M}^N, \vect{V} = [\vect{v}_1^\top, \dots
+%\vect{v}_N^\top]^\top: \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
+
+\begin{remark}
+	According to \cite{Siciliano2009}, the matrices
+  $\dot{\mat{M}}_i - 2\mat{C}_i, i \in \mathcal{V}$ are skew-symmetric.
+  From \cite{horn_jonshon}, we have that a quadratic form of a skew-symmetric
+  matrix is always equal to $\mat{0}$. Hence, for the matrices
+  $\dot{\mat{M}}_i - 2 \mat{C}_i$ it holds that:
+
+	\begin{equation} \label{eq:skew_symm}
+	  \vect{y}^\top \left[\dot{\mat{M}}_i - 2 \mat{C}_i\right]\vect{y} = 0,
+      \forall \vect{y} \in \mathbb{R}^n, i \in \mathcal{V}.
+	\end{equation}
+
+\end{remark}
+
+\begin{figure}[ht!]
+	\centering
+    \input{figures/03.problem_formulation/two_agents_one_obstacle.tex}
+    \caption{Illustration of two agents $i, j \in \mathcal{V}$ and an static
+      obstacle $o_z$ in the workspace; $\{\mathcal{O}\}$ is the inertial frame,
+      $\{i\}, \{j\}$ are the frames attached to the agents' center of mass,
+      $\vect{p}_i, \vect{p}_j, \vect{p}_{o_z} \in \mathbb{R}^3$ are the
+      positions of the center of mass of the agents $i,j$ and the
+      obstacle $o_z$ respectively, expressed in frame
+      $\{\mathcal{O}\}$. $r_i, r_j, r_{o_z}$ are the radii of the agents $i,j$
+      and the obstacle $o_z$ respectively. $d_i, d_j$ with
+      $d_i > d_j$ are the agents' sensing ranges.
+      In this figure, agents $i$ and $j$ are not neighbours, since
+      $\vect{p}_j \notin \mathcal{B}(\vect{p}_i(t), d_i)$.}
+	\label{fig:two_agents_one_obstacle}
+\end{figure}
+
+\begin{assumption} (Measurements Assumption)
+  Each agent $i$ has access to the measurements
+  $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
+  pertaining to himself, and a (upper-bounded) sensing range of $d_i$ such that
+  $$d_i > \max\{r_i + r_j : \forall i,j \in \mathcal{V}, i \neq j\}$$
+\end{assumption}
+
+Therefore, by defining the neighboring set
+$\mathcal{N}_i(t) = \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$,
+agent $i$ also knows at each time instant $t$ all
+$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t)$
+and, since it knows its own $\vect{p}_i(t), \vect{q}_i(t)$, it can compute all
+$\vect{p}_{j}(t), \vect{q}_{j}(t), \forall j\in \mathcal{N}_i(t),t\in\mathbb{R}_{\geq 0}$.
+
+In the workspace there are $|Z|$ \textit{static obstacles}, modeled as
+spheres with centers at positions
+$\vect{p}_{o_z}$ with radii $r_{o_z}\in \mathbb{R}^3, z \in \mathcal{Z} = \{1,\dots,|Z| \}$.
+Thus, the obstacles are modeled by the spheres
+$\mathcal{B}(\vect{p}_{o_z}, r_{o_z}), z \in \{1,\dots,|Z|\}$. The geometry in
+workspace $W$ of two agents $i$ and $j$ as well as an obstacle $z$ is depicted
+in Fig. \ref{fig:two_agents_one_obstacle}.
+
+Let us also define the distance between agents $i,j$ as
+$d_{ij,a}: \mathbb{R}^6 \to \mathbb{R}_{\geq 0}$, and that between agent $i$
+and obstacle $z$ as $d_{iz,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
+
+\begin{subequations}
+	\begin{align}
+    d_{ij,a}(t) &= \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
+    d_{iz,o}(t) &= \| \vect{p}_i(t) - \vect{p}_z(t) \|
+	\end{align}
+\end{subequations}
+
+$\forall i, j \in \mathcal{V}, i \neq j, z \in \mathcal{Z}$, as well as
+constants $\underline{d}_{ij, a} = r_{i} + r_{j},
+\underline{d}_{iz, o} = r_{i} + r_{o_z}$. The latter stand for the minimum
+distance between two agents, and between an agent and an obstacle. These arise
+spatially as physical limitations and will be utilized as collision-avoidance
+constraints.
+
+The topology of the multi-agent network is modeled through the graph
+$\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
+$\mathcal{E}=\big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} : i \neq j, j\in\mathcal{N}_i(0) \text{ and } i\in\mathcal{N}_j(0)\big\}$.
+The latter implies that at $t=0$ the graph is undirected, i.e.,
+
+\begin{equation} \label{eq:initially_connected}
+  d_{ij,a}(0) < d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)
+\end{equation}
+
+We also consider that $\mathcal{G}$ is static in the sense that no edges are
+added to the graph. We do not exclude, however, edge removal through
+connectivity loss between initially neighboring agents, which we guarantee
+to avoid, as presented in the sequel. It is also assumed that at $t=0$ the
+neighboring agents are in a \textit{collision-free configuration}, i.e.,
+
+\begin{equation}
+  \underline{d}_{ij, a} < d_{ij,a}(0), \forall i,j \in \mathcal{V}, i \neq j
+\label{eq:initially_coll_free}
+\end{equation}
+
+To capitulate, we assume that at time $t=0$
+
+$$\underline{d}_{ij,a} < d_{ij,a}(0) < d_i$$
+
+for agent $i$ and all of his adjacent agents $j$ at time $t=0$. Let us now
+define the distance:
+
+\begin{equation*}
+  D = \min\{d_o, d_{o,W}\}
+\end{equation*}
+
+where:
+
+\begin{align*}
+d_o &= \min\{\| p_{o_z} - p_{o_{z'}}\| : z,z' \in \mathcal{Z} \}, \\
+d_{o,W} &= \min\{r_W - \left( r_{o_z} + \| p_{o_z} \| \right) : z \in \mathcal{Z}\},
+\end{align*}
+
+are the distance between the two most closest obstacles and the distance between
+the closest obstacle to the boundary with the boundary of the workspace,
+respectively. We define the \emph{diameter of formation} $\Delta$, as the
+maximum distance between any two agents, when the formation is achieved, i.e.:
+
+\begin{align*}
+  &\hspace{-2mm} \Delta =  \max\Big\{d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
+  &\hspace{-2mm} \| \vect{p}_k - \vect{p}_\ell \| = \vect{p}_{k \ell,\text{des}},
+  \|\vect{q}_k - \vect{q}_\ell\| = \vect{q}_{k \ell,\text{des}},
+  k \in \mathcal{V},
+  \ell \in \mathcal{N}_k(0)\Big\}
+\end{align*}
+
+\begin{assumption}(Problem Feasibility Assumption)
+	In order for the problem to be feasible, we make the following natural
+  geometric assumptions:
+
+	\begin{itemize}
+		\item All the agents should be able to pass between any two obstacles
+      and between all obstacles and the boundary of the workspace, and
+      simultaneously, without any of them colliding to each other or with the
+      obstacles or the boundary of the workspace.
+      Thus, it is required $D >  \sum_{i \in \mathcal{V}}^{} 2r_i$.
+		\item When the multi-agent system reach the desired formation, it should be
+      able to pass between two of the obstacles and between an obstacle and the
+      boundary of the workspace. Thus, it is required $D > \Delta$.
+	\end{itemize}
+
+	These geometrical assumptions can be summarized in the following
+  inequality:
+
+	\begin{equation} \label{eq:geometric_constraint}
+    D > \max\left\{\Delta, \sum_{i \in \mathcal{V}}^{} 2r_i \right\}
+	\end{equation}
+
+\end{assumption}
