@@ -158,29 +158,29 @@ neighboring agents are in a \textit{collision-free configuration}, i.e.,
   \underline{d}_{ij, a} < d_{ij,a}(0), \forall i,j \in \mathcal{V}, i \neq j
 \label{eq:initially_coll_free}
 \end{equation}
-
 To capitulate, we assume that at time $t=0$
-
 $$\underline{d}_{ij,a} < d_{ij,a}(0) < d_i$$
+for agent $i$ and all of his adjacent agents $j$ at time $t=0$.
 
-for agent $i$ and all of his adjacent agents $j$ at time $t=0$. Let us now
-define the distance:
+We will now introduce the assumption we make on the feasibility of the
+problem. But first, let us denote by $d_o$
+
+\begin{align*}
+  d_o &= \min\{\| \vect{p}_{o_z} - \vect{p}_{o_{z'}}\| : z,z' \in \mathcal{Z}, z \neq z' \},
+\end{align*}
+the distance between the two least distant obstacles in the workspace,
+by $d_{o,W}$
+
+\begin{align*}
+  d_{o,W} &= \min\{r_W - \left( r_{o_z} + \| \vect{p}_{o_z} \| \right) : z \in \mathcal{Z}\},
+\end{align*}
+the distance between the least distant obstacle from the boundary of the
+workspace and the boundary itself, by $D$
 
 \begin{equation*}
   D = \min\{d_o, d_{o,W}\}
 \end{equation*}
-
-where:
-
-\begin{align*}
-d_o &= \min\{\| p_{o_z} - p_{o_{z'}}\| : z,z' \in \mathcal{Z} \}, \\
-d_{o,W} &= \min\{r_W - \left( r_{o_z} + \| p_{o_z} \| \right) : z \in \mathcal{Z}\},
-\end{align*}
-
-are the distance between the two most closest obstacles and the distance between
-the closest obstacle to the boundary with the boundary of the workspace,
-respectively. We define the \emph{diameter of formation} $\Delta$, as the
-maximum distance between any two agents, when the formation is achieved, i.e.:
+the least of these two distances, and by $\Delta$
 
 \begin{align*}
   &\hspace{-2mm} \Delta =  \max\Big\{d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
@@ -189,6 +189,8 @@ maximum distance between any two agents, when the formation is achieved, i.e.:
   k \in \mathcal{V},
   \ell \in \mathcal{N}_k(0)\Big\}
 \end{align*}
+the \emph{diameter of formation} $\Delta$, which is the
+distance between the two most distant agents when formation is achieved.
 
 \begin{assumption}(Problem Feasibility Assumption)
 	In order for the problem to be feasible, we make the following natural
