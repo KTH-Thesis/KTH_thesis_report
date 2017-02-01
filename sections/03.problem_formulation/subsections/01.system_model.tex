@@ -10,8 +10,9 @@ $\{\mathcal{O}\}$.
 We consider that over time $t$ each agent $i$ occupies the space of a sphere
 $\mathcal{B}(\vect{p}_i(t), r_i)$, where $\vect{p}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3$
 is the position of the agent's center of mass, and $r_i < r_W$ is the radius of the
-agent's body. We denote by $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
-the Euler angles representing the agents' orientation,
+agent's body. We denote $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
+the Euler angles representing the agents' orientation with respect to the
+inertial frame $\{\mathcal{O}\}$,
 with $\vect{q}_i \overset{\Delta}{=} [\phi_i,\theta_i,\psi_i]^{\top}$.
 We define $\vect{x}_i \overset{\Delta}{=} [\vect{p}^{\top},\vect{q}^{\top}_i]^{\top},
 \vect{v}_i \overset{\Delta}{=} [\dot{\vect{p}}^{\top}_i, \vect{\omega}^{\top}_i]^{\top}$,
@@ -111,9 +112,9 @@ assumption:
 \begin{assumption} (Measurements and Access to Information Assumption)
   \begin{enumerate}
 
-    \item Agent $i$ has access to the measurements
+    \item Agent $i$ has access to measurements
       $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
-      that is, vectors $\vect{x}, \vect{v}$, pertaining to himself,
+      that is, vectors $\vect{x}_i, \vect{v}_i$ pertaining to himself,
 
     \item Agent $i$ has a (upper-bounded) sensing range $d_i$ such that
       $$d_i > \max\{r_i + r_j : \forall i,j \in \mathcal{V}, i \neq j\}$$
@@ -121,22 +122,29 @@ assumption:
     \item the inertia $\mat{M}$ and Coriolis $\mat{C}$ vector fields are
       bounded and unknown
 
-    \item the gravity vector is bounded and known.
+    \item the gravity vectors $\vect{g}$ are bounded and known
 
   \end{enumerate}
 \end{assumption}
 \end{gray_box}
 
-Therefore, by defining the neighboring set
+The consequence of points 1 and 2 is that, by defining the neighboring set of
+agent $i$ as
 $\mathcal{N}_i(t) \overset{\Delta}{=} \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$,
 agent $i$ also knows at each time instant $t$ all
-$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t)$
-and, since it knows its own $\vect{p}_i(t), \vect{q}_i(t)$, it can compute all
-$\vect{p}_{j}(t), \vect{q}_{j}(t), \forall j\in \mathcal{N}_i(t),t\in\mathbb{R}_{\geq 0}$.
+$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t),
+\dot{\vect{p}}_{j \triangleright i}(t), \vect{\omega}_{j \triangleright i}(t)$.
+Therefore, agent $i$ assumes access to all
+$\vect{p}_{j}(t)$, $\vect{q}_{j}(t)$, $\dot{\vect{p}}_j(t)$,
+$\vect{\omega}_j(t)$, $\forall j\in \mathcal{N}_i(t),t\in\mathbb{R}_{\geq 0}$,
+by virtue of being able to calculate them using knowledge of its own
+$\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
+
+
 
 In the workspace there are $|Z|$ \textit{static obstacles}, modeled as
-spheres with centers at positions
-$\vect{p}_{o_z}$ with radii $r_{o_z}\in \mathbb{R}^3, z \in \mathcal{Z} = \{1,\dots,|Z| \}$.
+spheres with centers at positions $\vect{p}_{o_z}$ with radii
+$r_{o_z}\in \mathbb{R}^3, z \in \mathcal{Z} = \{1,\dots,|Z| \}$.
 Thus, the obstacles are modeled by the spheres
 $\mathcal{B}(\vect{p}_{o_z}, r_{o_z}), z \in \{1,\dots,|Z|\}$. The geometry in
 workspace $W$ of two agents $i$ and $j$ as well as an obstacle $z$ is depicted
@@ -160,14 +168,16 @@ distance between two agents, and between an agent and an obstacle. These arise
 spatially as physical limitations and will be utilized as collision-avoidance
 constraints.
 
-The topology of the multi-agent network is modeled through the graph
+The \textit{topology} of the multi-agent network is modeled through the graph
 $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
 $\mathcal{E}=\big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} : i \neq j, j\in\mathcal{N}_i(0) \text{ and } i\in\mathcal{N}_j(0)\big\}$.
 The latter implies that at $t=0$ the graph is undirected, i.e.,
 
-\begin{equation} \label{eq:initially_connected}
-  d_{ij,a}(0) < d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)
-\end{equation}
+\begin{align}
+  d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i(0) \\
+  d_{ji,a}(0) &< d_j, \forall j \in \mathcal{V}, i \in \mathcal{N}_j(0)
+\label{eq:initially_connected}
+\end{align}
 
 We also consider that $\mathcal{G}$ is static in the sense that no edges are
 added to the graph. We do not exclude, however, edge removal through
@@ -213,6 +223,7 @@ the least of these two distances, and by $\Delta$
 the \emph{diameter of formation} $\Delta$, which is the
 distance between the two most distant agents when formation is achieved.
 
+\begin{gray_box}
 \begin{assumption}(Problem Feasibility Assumption)
 	In order for the problem to be feasible, we make the following natural
   geometric assumptions:
@@ -236,3 +247,4 @@ distance between the two most distant agents when formation is achieved.
 	\end{equation}
 
 \end{assumption}
+\end{gray_box}
