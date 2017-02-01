@@ -1,55 +1,19 @@
 \subsection{Problem Statement}
-
 Due to the fact that the agents are not dimensionless and their communication
 capabilities are limited, the control protocol, except from achieving desired
 position formation $\vect{p}_{ij, \text{des}}$ and desired formation angles
 $\vect{q}_{ij, \text{des}}$ for all neighboring agents
-$i \in \mathcal{V}, j \in \mathcal{N}_i(0)$, it should also guarantee for
-all $t\in\mathbb{R}_{\geq 0}$ that (i) all the agents avoid collision with
-every other agent, (ii) all the agents avoid collision between all the
-obstacles; (iii) all the agents avoid collision between the workspace boundary,
-(iv) all the initial edges are maintained, i.e., connectivity is maintained;
-(v) the singularity of the Jacobian matrices $J_i$ is avoided. Therefore,
-all the neighboring agents of agent $i$ must remain within distance less than
-$d_i$, for all $i \in \mathcal{V}$
-and all the agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
-greater than $\underline{d}_{ij,a}$. We also make the following assumption that
-is required on the initial graph topology:
-
-\begin{assumption}
-	The communication graph $\mathcal{G}$ is connected at time $t = 0$ and the
-  agents are in collision- and singularity-free configuration, i.e.,
-  \eqref{eq:initially_connected} and \eqref{eq:initially_coll_free} hold,
-  and $\theta_i(0) \neq \pm \frac{\pi}{2}, \forall i \in \mathbb{V}$.
-\end{assumption}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$i \in \mathcal{V}, j \in \mathcal{N}_i(0)$, should also guarantee for
+all $t\in\mathbb{R}_{\geq 0}$ that
+(i) all agents avoid collision with each other;
+(ii) all agents avoid collision with all obstacles;
+(iii) all agents avoid collision with the workspace boundary;
+(iv) all initial edges are maintained, i.e., connectivity is maintained;
+(v) singularity of the Jacobian matrices $J_i$ is avoided.
+Therefore, all neighboring agents of agent $i$ must remain within a distance
+less than $d_i$, for all $i \in \mathcal{V}$,
+and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
+greater than $\underline{d}_{ij,a}$ with one another.
 Formally, the control problem under the aforementioned constraints is
 formulated as follows:
 
