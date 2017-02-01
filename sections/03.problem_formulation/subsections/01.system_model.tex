@@ -49,10 +49,13 @@ In order for $\mat{J}_i$ to be always well-defined (and hence invertible, since
 $\det(\mat{J}_i) = \cos\theta_i$) we need to make the following assumption:
 
 \note{?? EVENTUALLY NEEDED? CHECK}
-\begin{assumption} \label{as:J}
+\begin{full_box}
+\begin{assumption}
 	The angle $\theta_i$ satisfies the inequality
   $$-\frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} ,\forall i\in\mathcal{V},t\in\mathbb{R}_{\geq 0}$$.
+\label{as:J}
 \end{assumption}
+\end{full_box}
 
 \begin{figure}[ht!]
 	\centering
@@ -85,7 +88,7 @@ the $6$D generalized \textit{actuation force} acting on the agent.
 %\vect{v}_N^\top]^\top: \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
 
 
-\begin{graybox}
+\begin{gray_box}
   \begin{remark}
     According to \cite{Siciliano2009}, the matrices
     $\dot{\mat{M}}_i - 2\mat{C}_i, i \in \mathcal{V}$ are skew-symmetric.
@@ -98,21 +101,31 @@ the $6$D generalized \textit{actuation force} acting on the agent.
         \forall \vect{y} \in \mathbb{R}^n, i \in \mathcal{V}.
     \end{equation}
   \end{remark}
-\end{graybox}
+\end{gray_box}
 
 However, access to measurements or knowledge of these matrices and vectors
 was not considered up until now. At this point we declare the following
 assumption:
 
-\begin{assumption} (Measurements Assumption)
-  Each agent $i$ has access to the measurements
-  $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
-  that is, vectors $\vect{x}, \vect{v}$, pertaining to himself,
-  and a (upper-bounded) sensing range of $d_i$ such that
-  $$d_i > \max\{r_i + r_j : \forall i,j \in \mathcal{V}, i \neq j\}$$
-  and that that the inertia and Coriolis vector fields are bounded and
-  unknown and the gravity vector is bounded and known.
+\begin{full_box}
+\begin{assumption} (Measurements and Access to Information Assumption)
+  \begin{enumerate}
+
+    \item Agent $i$ has access to the measurements
+      $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
+      that is, vectors $\vect{x}, \vect{v}$, pertaining to himself,
+
+    \item Agent $i$ has a (upper-bounded) sensing range $d_i$ such that
+      $$d_i > \max\{r_i + r_j : \forall i,j \in \mathcal{V}, i \neq j\}$$
+
+    \item the inertia $\mat{M}$ and Coriolis $\mat{C}$ vector fields are
+      bounded and unknown
+
+    \item the gravity vector is bounded and known.
+
+  \end{enumerate}
 \end{assumption}
+\end{full_box}
 
 Therefore, by defining the neighboring set
 $\mathcal{N}_i(t) = \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$,

@@ -36,8 +36,14 @@
 \usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
 
 \usepackage{environ}
-\NewEnviron{graybox}{%
+\NewEnviron{gray_box}{%
   \begin{tcolorbox}[colback=black!30, colframe=white!80!]
+    \BODY
+  \end{tcolorbox}
+}
+
+\NewEnviron{full_box}{%
+  \begin{tcolorbox}[colback=white!10, colframe=black!80!]
     \BODY
   \end{tcolorbox}
 }
@@ -73,12 +79,6 @@
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
-
-\newcommand*{\mybox}[2]
-{
-  \noindent\colorbox{#1!30}{
-  \parbox{0.98\linewidth}{#2}}
-}
 
 \newcommand{\note}[1]{{\color{red}  #1}}
 \newcommand{\mat}[1]{\bm{\mathit{#1}}}
