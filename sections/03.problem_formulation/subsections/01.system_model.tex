@@ -54,34 +54,6 @@ $\det(\mat{J}_i) = \cos\theta_i$) we need to make the following assumption:
   $$-\frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} ,\forall i\in\mathcal{V},t\in\mathbb{R}_{\geq 0}$$.
 \end{assumption}
 
-In equation (\ref{eq:system_2}), $\mat{M}_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is
-the symmetric and positive definite \textit{inertia matrix},
-$\mat{C}_i:\mathbb{M}\times\mathbb{R}^6 \to \mathbb{R}^{6\times6}$ is the
-\textit{Coriolis matrix} and $\vect{g}_i:\mathbb{M} \to \mathbb{R}^6$ is the
-\textit{gravity vector}. The aforementioned vector fields are unknown, continuous,
-and expressed in the respective coordinate frame of each agent.
-Finally, $\vect{u}_i\in\mathbb{R}^6$ is the control input vector representing the $6$D
-generalized \textit{actuation force} acting on the agent.
-
-%Let us also define the vectors
-%$\vect{X} = [\vect{x}_1^\top, \dots, x_N^\top]^\top :
-%\mathbb{R}_{\geq 0} \to \mathbb{M}^N, \vect{V} = [\vect{v}_1^\top, \dots
-%\vect{v}_N^\top]^\top: \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
-
-\begin{remark}
-	According to \cite{Siciliano2009}, the matrices
-  $\dot{\mat{M}}_i - 2\mat{C}_i, i \in \mathcal{V}$ are skew-symmetric.
-  From \cite{horn_jonshon}, we have that a quadratic form of a skew-symmetric
-  matrix is always equal to $\mat{0}$. Hence, for the matrices
-  $\dot{\mat{M}}_i - 2 \mat{C}_i$ it holds that:
-
-	\begin{equation} \label{eq:skew_symm}
-	  \vect{y}^\top \left[\dot{\mat{M}}_i - 2 \mat{C}_i\right]\vect{y} = 0,
-      \forall \vect{y} \in \mathbb{R}^n, i \in \mathcal{V}.
-	\end{equation}
-
-\end{remark}
-
 \begin{figure}[ht!]
 	\centering
     \input{figures/03.problem_formulation/two_agents_one_obstacle.tex}
@@ -99,11 +71,47 @@ generalized \textit{actuation force} acting on the agent.
 	\label{fig:two_agents_one_obstacle}
 \end{figure}
 
+In equation (\ref{eq:system_2}), $\mat{M}_i:\mathbb{M} \to \mathbb{R}^{6\times6}$ is
+the symmetric and positive definite \textit{inertia matrix},
+$\mat{C}_i:\mathbb{M}\times\mathbb{R}^6 \to \mathbb{R}^{6\times6}$ is the
+\textit{Coriolis matrix} and $\vect{g}_i:\mathbb{M} \to \mathbb{R}^6$ is the
+\textit{gravity vector}.
+Finally, $\vect{u}_i\in\mathbb{R}^6$ is the control input vector representing
+the $6$D generalized \textit{actuation force} acting on the agent.
+
+%Let us also define the vectors
+%$\vect{X} = [\vect{x}_1^\top, \dots, x_N^\top]^\top :
+%\mathbb{R}_{\geq 0} \to \mathbb{M}^N, \vect{V} = [\vect{v}_1^\top, \dots
+%\vect{v}_N^\top]^\top: \mathbb{R}_{\geq 0} \to \mathbb{R}^{6N}$.
+
+
+\begin{graybox}
+  \begin{remark}
+    According to \cite{Siciliano2009}, the matrices
+    $\dot{\mat{M}}_i - 2\mat{C}_i, i \in \mathcal{V}$ are skew-symmetric.
+    From \cite{horn_jonshon}, we have that a quadratic form of a skew-symmetric
+    matrix is always equal to $\mat{0}$. Hence, for the matrices
+    $\dot{\mat{M}}_i - 2 \mat{C}_i$ it holds that:
+
+    \begin{equation} \label{eq:skew_symm}
+      \vect{y}^\top \left[\dot{\mat{M}}_i - 2 \mat{C}_i\right]\vect{y} = 0,
+        \forall \vect{y} \in \mathbb{R}^n, i \in \mathcal{V}.
+    \end{equation}
+  \end{remark}
+\end{graybox}
+
+However, access to measurements or knowledge of these matrices and vectors
+was not considered up until now. At this point we declare the following
+assumption:
+
 \begin{assumption} (Measurements Assumption)
   Each agent $i$ has access to the measurements
   $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
-  pertaining to himself, and a (upper-bounded) sensing range of $d_i$ such that
+  that is, vectors $\vect{x}, \vect{v}$, pertaining to himself,
+  and a (upper-bounded) sensing range of $d_i$ such that
   $$d_i > \max\{r_i + r_j : \forall i,j \in \mathcal{V}, i \neq j\}$$
+  and that that the inertia and Coriolis vector fields are bounded and
+  unknown and the gravity vector is bounded and known.
 \end{assumption}
 
 Therefore, by defining the neighboring set

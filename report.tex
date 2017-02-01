@@ -1,8 +1,5 @@
 \documentclass[a4paper,12pt,oneside]{article}
-% \documentclass[a4paper,12pt]{report}
 
-% Computer Modern Roman is the default for latex
-% Design Margins
 \usepackage[left=1.0in, right=1.0in, top=1.0in, bottom=1.0in]{geometry}
 
 \usepackage[toc,page]{appendix}
@@ -31,12 +28,25 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{hhline}
-\usepackage[noadjust]{cite} % basic for bibliography [1]-[5]
 \usepackage{indentfirst}
 \usepackage{framed}
 \usepackage[hidelinks]{hyperref}
+\usepackage{tcolorbox}
 \usepackage{tikz}
 \usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
+
+\usepackage{environ}
+\NewEnviron{graybox}{%
+  \begin{tcolorbox}[colback=black!30, colframe=white!80!]
+    \BODY
+  \end{tcolorbox}
+}
+
+
+
+%\usepackage{fontspec}
+%\setmainfont{cmr12}
+
 
 %\usepackage{algorithm}
 %\usepackage{algpseudocode}
@@ -73,6 +83,8 @@
 \newcommand{\note}[1]{{\color{red}  #1}}
 \newcommand{\mat}[1]{\bm{\mathit{#1}}}
 \newcommand{\vect}[1]{\bm{\mathbf{#1}}}
+
+
 
 
 %\hypersetup{colorlinks=false, linkbordercolor={0 0 1}}
