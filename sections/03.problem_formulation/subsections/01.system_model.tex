@@ -220,7 +220,26 @@ conditions of the problem, are summarized in assumption
 \end{gg_box}
 
 
+As for $t \geq 0$, agent $i$ is in a collision-and-singularity-free
+configuration, and is connected to the neighbours it had at time $t = 0$,
+when
+$$\sum_{j \in \mathcal{N}_i(0)} \| \vect{x}_i(t) - \vect{x}_j(t) - \vect{x}_{ij,des}\| < \mu_i,
+\forall i \in \mathcal{V}$$
+where $\mu_i$ is an arbitrarily small positive constant. Intuitively, this
+means that when the agents reach very close to their desired formation, they
+will be sufficiently away from collisions, connectivity losses and singular
+configurations. In particular, this concerns collisions between an agent and
+an obstacle or the workspace boundary (inter-agent collisions and connectivity
+losses are avoided by choosing feasible formation displacements $p_{ij,des}$),
+and singular configurations. In other words, the multi-agent formation should be
+performed sufficiently away from obstacles and the workspace boundary.
 
+The desired steady-state displacements
+$\vect{x}_{ij,des}$ $=$ $[\vect{p}_{ij,des}^{\top}, \vect{q}_{ij,des}^{\top}]^{\top}$
+are themselves \textit{feasible} if $\forall i \in \mathcal{V}$,
+$j \in \mathcal{N}_i(0)$,
+$$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_j - \vect{x}_{ij,des} \| = 0 \}
+\ne \vect{0}$$
 
 
 At this point, let us define $d_o$

@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control}{4}{subsection.2.3}
 \contentsline {section}{\numberline {3}Problem Formulation}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}System Model}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Problem Statement}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.2}Problem Statement}{9}{subsection.3.2}
 \contentsline {section}{\numberline {4}Problem Solution}{10}{section.4}
 \contentsline {subsection}{\numberline {4.1}Distributed MPC}{10}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Feasibility Analysis}{10}{subsection.4.2}
