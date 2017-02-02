@@ -41,7 +41,7 @@
 
 \usepackage{environ}
 \NewEnviron{gg_box}{%
-  \begin{tcolorbox}[colback=black!5, colframe=white!80!]
+  \begin{tcolorbox}[colback=black!10, colframe=white!80!]
     \BODY
   \end{tcolorbox}
 }
@@ -54,6 +54,12 @@
 
 \NewEnviron{gw_box}{%
   \begin{tcolorbox}[colback=white!10, colframe=black!10!]
+    \BODY
+  \end{tcolorbox}
+}
+
+\NewEnviron{bg_box}{%
+  \begin{tcolorbox}[colback=black!10, colframe=black!80!]
     \BODY
   \end{tcolorbox}
 }

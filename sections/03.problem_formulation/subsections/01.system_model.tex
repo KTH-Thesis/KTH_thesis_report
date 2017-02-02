@@ -126,6 +126,7 @@ assumption:
     \item the gravity vectors $\vect{g}$ are bounded and known
 
   \end{enumerate}
+  \label{ass:measurements_access}
 \end{assumption}
 \end{gg_box}
 
@@ -145,13 +146,13 @@ $\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
 
 In the workspace there are $|Z|$ \textit{static obstacles}, modeled as
 spheres with centers at positions $\vect{p}_{o_z}$ with radii
-$r_{o_z}\in \mathbb{R}^3, z \in \mathcal{Z} = \{1,\dots,|Z| \}$.
+$r_{o_z}\in \mathbb{R}^3, z \in Z = \{1,\dots,|Z| \}$.
 Thus, the obstacles are modeled by the spheres
 $\mathcal{B}(\vect{p}_{o_z}, r_{o_z}), z \in \{1,\dots,|Z|\}$. The geometry in
 workspace $W$ of two agents $i$ and $j$ as well as an obstacle $z$ is depicted
 in Fig. \ref{fig:two_agents_one_obstacle}.
 
-Let us also define the distance between agents $i,j$ as
+Let us also define the distance between any two agents $i,j$ as
 $d_{ij,a}: \mathbb{R}^6 \to \mathbb{R}_{\geq 0}$, and that between agent $i$
 and obstacle $z$ as $d_{iz,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 
@@ -162,12 +163,12 @@ and obstacle $z$ as $d_{iz,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 	\end{align}
 \end{subequations}
 
-$\forall i, j \in \mathcal{V}, i \neq j, z \in \mathcal{Z}$, as well as
+$\forall i, j \in \mathcal{V}, i \neq j, z \in Z$, as well as
 constants $\underline{d}_{ij, a} \overset{\Delta}{=} r_{i} + r_{j},
-\underline{d}_{iz, o} \overset{\Delta}{=} r_{i} + r_{o_z}$. The latter stand for the minimum
-distance between two agents, and between an agent and an obstacle. These arise
-spatially as physical limitations and will be utilized as collision-avoidance
-constraints.
+\underline{d}_{iz, o} \overset{\Delta}{=} r_{i} + r_{o_z}$. The latter stand for
+the minimum distance between two agents, and the minimum distance between an
+agent and an obstacle. These arise spatially as physical limitations and will
+be utilized as collision-avoidance constraints.
 
 The \textit{topology} of the multi-agent network is modeled through the graph
 $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
@@ -191,10 +192,10 @@ i.e.
 \label{eq:initially_coll_free}
 \end{equation}
 
-Furthermore, it is assumed that the Jacobian $\mat{J}_i$ is well-defined
-$\forall i \in \mathcal{V}$. These four assumptions, which concern the initial
-conditions of the problem, are summarized in assumption
-\ref{ass:initial_conditions_assumption}:
+Furthermore, it is assumed that, initially, the Jacobians $\mat{J}_i$ are
+well-defined $\forall i \in \mathcal{V}$. These four assumptions, which concern
+the initial conditions of the problem, are summarized in assumption
+\ref{ass:initial_conditions}:
 
 \begin{gg_box}
 \begin{assumption}(Initial Conditions Assumption)\\
@@ -215,7 +216,7 @@ conditions of the problem, are summarized in assumption
 
   \end{enumerate}
   $\forall i \in \mathbb{V}$ and all of $i$'s adjacent agents $j$.
-  \label{ass:initial_conditions_assumption}
+  \label{ass:initial_conditions}
 \end{assumption}
 \end{gg_box}
 
@@ -239,17 +240,17 @@ $\vect{x}_{ij,des}$ $=$ $[\vect{p}_{ij,des}^{\top}, \vect{q}_{ij,des}^{\top}]^{\
 are themselves \textit{feasible} if $\forall i \in \mathcal{V}$,
 $j \in \mathcal{N}_i(0)$,
 $$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_j - \vect{x}_{ij,des} \| = 0 \}
-\ne \vect{0}$$
+\ne \varnothing$$
 
 
 At this point, let us define $d_o$
 \begin{align*}
-  d_o &\overset{\Delta}{=} \min\{\| \vect{p}_{o_z} - \vect{p}_{o_{z'}}\| : z,z' \in \mathcal{Z}, z \neq z' \},
+  d_o &\overset{\Delta}{=} \min\{\| \vect{p}_{o_z} - \vect{p}_{o_{z'}}\| : z,z' \in Z, z \neq z' \},
 \end{align*}
 as the distance between the two least distant obstacles in the workspace,
 $d_{o,W}$
 \begin{align*}
-  d_{o,W} &\overset{\Delta}{=} \min\{r_W - \left( r_{o_z} + \| \vect{p}_{o_z} \| \right) : z \in \mathcal{Z}\},
+  d_{o,W} &\overset{\Delta}{=} \min\{r_W - \left( r_{o_z} + \| \vect{p}_{o_z} \| \right) : z \in Z\},
 \end{align*}
 as the distance between the least distant obstacle from the boundary of the
 workspace and the boundary itself, $D$
@@ -293,5 +294,6 @@ that this thesis addresses:
   \label{eq:geometric_constraint}
 	\end{equation}
 
+\label{ass:after_formation_geometry}
 \end{assumption}
 \end{gg_box}
