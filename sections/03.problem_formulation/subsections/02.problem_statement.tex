@@ -54,16 +54,16 @@ formulated as follows:
       $$\|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a},
       \forall j \in \mathcal{V} \backslash \{i\}$$
 
-    \item Inter-agent connectivity loss is avoided
-      $$\|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i,
-      \forall j \in \mathcal{N}_i(0)$$
-
     \item Agent-with-obstacle collision is avoided
       $$\|\vect{p}_i(t) - \vect{p}_{o_z}(t)\| > \underline{d}_{iz,o},
       \forall z \in \mathcal{Z}$$
 
     \item Agent-with-workspace-boundary collision is avoided
       $$\|\vect{p}_i(t)\| + r_i < r_W$$
+
+    \item Inter-agent connectivity loss is avoided
+      $$\|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i,
+      \forall j \in \mathcal{N}_i(0)$$
 
     \item All maps $\mat{J}_i$ are well defined
       $$\theta_i(t) \ne \pm \frac{\pi}{2}$$
