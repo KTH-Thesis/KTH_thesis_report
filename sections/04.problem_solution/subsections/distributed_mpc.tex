@@ -1,0 +1,182 @@
+\subsubsection{Model}
+
+The state evolution of agent $i$ is modeled by a non-linear continuous-time
+differential equation of the form
+
+\begin{align}
+  \dot{\vect{x}}_i(t) &= f_i \big(\vect{x}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system}\\
+  \vect{x}_i(0) &= \vect{x}_0 \\
+  \vect{x}_i (t) &\in \mathcal{X}_i \subset \mathbb{R}^n \\
+  \vect{u}_i (t) &\in \mathcal{U}_i \subset \mathbb{R}^m
+\end{align}
+where state $\vect{x}_i$ is directly measurable. Equation
+\ref{eq:non_perturbed_system} does not consider model-plant mismatches or
+disturbances. However, a more accurate approximation of the agent's dynamics
+is given by
+
+\begin{align}
+  \dot{\vect{x}}_i(t) &= f_i \big(\vect{x}_i (t), \vect{u}_i (t) \big) + \vect{w}_i (t) \label{eq:perturbed_system}
+\end{align}
+where the additive disturbance $\vect{w}_i$ is assumed
+to belong to a compact set $\vect{w}_i(t) \in \mathcal{W}$ and is bounded by
+$\|\vect{w}_i(t)\| \leq \overline{\vect{w}}_i,\forall t \in \mathbb{R}_{\geq 0}$.
+It will be made clearer later on that the existence of this disturbance arises
+due to the fact that the input $\vect{u}_i$ is a portion of the optimal solution
+to an optimization problem where the \textit{predicted} states of the
+neighbouring agents of agent $i$ are taken into account in the cost function,
+as opposed to their \textit{true} states.
+
+\begin{gg_box}
+\begin{assumption} (Functions $f_i$ are Lipschitz continuous)
+
+  The functions $f_i(x,u), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$
+  are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
+
+  \begin{align}
+    \| f_i(\vect{x}_1, \vect{u}) - f_i(\vect{x}_2, \vect{u})\| \leq L_{f_i} \|\vect{x}_1 - \vect{x}_2 \|
+  \end{align}
+
+  \label{ass:f_i_Lipschitz}
+\end{assumption}
+\end{gg_box}
+
+
+\subsubsection{Cost function}
+
+\begin{align}
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k), \vect{x}_{\mathcal{Z}}\big) =
+    &J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) + \\
+    &J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) + \\
+    &J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{Z}}\big)
+\end{align}
+
+where
+
+\begin{align}
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) &=
+    \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{x}}_i (\tau), \overline{\vect{u}}_i (\tau)\big) d \tau +
+    V_i \big(\overline{\vect{x}}_i (t_k + T_p)\big) \\
+  J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
+    \sum_{j \in \mathcal{N}_i} \int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{x}}_i (\tau), \overline{\vect{x}}_j (\tau)\big) d \tau \\
+  J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{Z}}\big) &=
+    -\sum_{z \in \mathcal{Z}} \int_{t_k}^{t_k + T_p} l_{iz} (\overline{\vect{x}}_i (\tau), \vect{x}_z (\tau)\big) d \tau
+\end{align}
+
+and
+
+\begin{align}
+  h_i(\vect{x}_i, \vect{u}_i) &= \| \vect{x}_i - \vect{x}_{i,des}\|_{Q_i} + \| \vect{u}_i\|_{R_i} \\
+  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| \vect{x}_i - \vect{x}_j + \vect{x}_{ij,des} \|_{G_{ij}} \\
+  l_{iz}(\vect{x}_i, \vect{x}_z) &= \| \vect{x}_i - \vect{x}_z \|_{L_{iz}} \\
+\end{align}
+
+
+\begin{gg_box}
+\begin{assumption} (Functions $h_i$ are Lipschitz continuous)
+
+  The functions $h_i(x,u), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$ are
+  Lipschitz continuous with Lipschitz constants $L_{h_i}$:
+
+  \begin{align}
+    \| h_i(\vect{x}_1, \vect{u}) - h_i(\vect{x}_2, \vect{u})\| \leq L_{h_i} \|\vect{x}_1 - \vect{x}_2 \|
+  \end{align}
+
+  \label{ass:h_i_Lipschitz}
+\end{assumption}
+\end{gg_box}
+
+
+\begin{bw_box}
+\begin{lemma}
+  In the presence of additive disturbances, the difference between the state
+  measurement at time $t_k + \tau$, $\vect{x}(t_k + \tau)$ and the predicted
+  state at that time, $\overline{\vect{x}}(t_k + \tau;\ u(\cdot), \vect{x}(t_k))$,
+  under a control law $\vect{u}(t_k + \tau;\ \vect{x}(t_k))$, where
+  $0 \leq \tau \leq T_p$, having the same initial condition $x(t_k)$, is
+  bounded \ref{}:
+
+  \begin{align}
+    \|\vect{x}(t_k + \tau) - \overline{\vect{x}}\big(t_k + \tau;\ u(\cdot), \vect{x}(t_k)\big)\|
+    \leq \frac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} \tau} - 1)
+  \end{align}
+
+  \label{lemma:gamma_tau}
+\end{lemma}
+\end{bw_box}
+
+For convenience we let the right-hand side
+$\dfrac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} t} - 1) = \gamma(t)$.
+
+
+\subsubsection{Optimization problem}
+
+\begin{align}
+  \text{min}_{\overline{\vect{u}}_i (\cdot)}\ &
+    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k), \vect{x}_{\mathcal{Z}}\big) \\
+  \text{subject to:} & \\
+  & \dot{\overline{\vect{x}}}_i(t) = f_i (\overline{\vect{x}}_i (t), \overline{\vect{u}}_i (t)) \\
+  & \overline{\vect{x}}_i (t_k) = \vect{x}_i (t_k) \\
+  & \overline{\vect{u}}_i \in \mathcal{U}_i \\
+  & \overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k}, t \in [t_k, t_k + T_p] \\
+  & \overline{\vect{x}}_i (t_k + T_p) \in \mathcal{X}_{f_i} \\
+  & J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) \leq J_i^{\text{ sup}}(t)
+\end{align}
+where the constraint on $\overline{\vect{x}}_i (t)$ is narrowed to
+$\overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k} \subseteq \mathcal{X}_i$
+so as to ensure that there is a robust positively invariant set for the
+closed-loop system where a solution to the FHOCP exists \ref{}. Specifically,
+$\mathcal{X}_i^{t - t_k} = \mathcal{X}_i \sim \mathcal{B}_i^{t-t_k}$, where
+
+\begin{align}
+  \mathcal{B}_i^{t-t_k} =
+  \Big\{\vect{x}_i \in \mathbb{R}^n : \|\vect{x}_i\| \leq \gamma_i (t-t_k) = \frac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} (t-t_k)} - 1) \Big\}
+\end{align}
+and the operator $\sim$ denotes the Pontryagin difference.
+
+The constraint $J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) \leq J_i^{\text{ sup}}(t_k)$
+is imposed for ensuring the stability for each agent; it will be defined later
+on in the text.
+
+\begin{gg_box}
+\begin{assumption}
+
+  There exists a local stabilizing controller
+  $\vect{\kappa}_i(\vect{x}) \in \mathcal{U}_i$ such that
+
+  \begin{align}
+    \dfrac{\partial V_i}{\partial \vect{x}} f_i \Big(\vect{x}(\tau), \vect{\kappa}_i\big(\vect{x}(\tau)\big)\Big) +
+      h_i\Big(\vect{x}(\tau), \vect{\kappa}_i \big(\vect{x}(\tau)\big)\Big) \leq 0, \forall \vect{x} \in \Phi_i
+  \end{align}
+
+  where $\Phi_i = \{\vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \leq \alpha_i \}$, and
+  $\Phi_i \subseteq \mathcal{X}_i^{T_p} = \{x \in \mathbb{R}^n : \vect{\kappa}_i(\vect{x}) \in \mathcal{U}_i\}$
+
+  \label{ass:local_controller_k}
+\end{assumption}
+\end{gg_box}
+
+
+\begin{gg_box}
+\begin{assumption}
+
+  The terminal costs $V_i(\vect{x})$ are Lipschitz continuous in $\vect{x} \in \Phi_i$
+  with Lipschitz constants $L_{V_i}$:
+
+  \begin{align}
+    \| V_i(\vect{x}_1) - V_i(\vect{x}_2)\| \leq L_{V_i} \|\vect{x}_1 - \vect{x}_2 \|
+  \end{align}
+
+  \label{ass:V_i_Lipschitz}
+\end{assumption}
+\end{gg_box}
+
+
+\begin{gg_box}
+\begin{assumption}
+
+  The terminal set $\mathcal{X}_{f_i} = \{ \vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \in \alpha_{V_i}\}$
+  is such that for all $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
+
+  \label{ass:x_f_i}
+\end{assumption}
+\end{gg_box}

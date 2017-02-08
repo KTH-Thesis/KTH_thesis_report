@@ -47,7 +47,7 @@
 }
 
 \NewEnviron{bw_box}{%
-  \begin{tcolorbox}[colback=white!10, colframe=black!80!]
+  \begin{tcolorbox}[colback=white!10, colframe=black!80!, arc=0pt,outer arc=0pt]
     \BODY
   \end{tcolorbox}
 }
@@ -59,7 +59,7 @@
 }
 
 \NewEnviron{bg_box}{%
-  \begin{tcolorbox}[colback=black!10, colframe=black!80!]
+  \begin{tcolorbox}[colback=black!10, colframe=black!80!, arc=0pt,outer arc=0pt]
     \BODY
   \end{tcolorbox}
 }
@@ -86,6 +86,7 @@
 \newtheorem{example}{Example}[section] % example
 \newtheorem{assumption}{Assumption}[section] % example
 \newtheorem{problem}{Problem}[section]
+\newtheorem{lemma}{Lemma}[section]
 
 %\newtheorem{theorem}{Theorem}[section] % theorem
 
