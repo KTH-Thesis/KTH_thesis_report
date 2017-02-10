@@ -29,7 +29,7 @@ as opposed to their \textit{true} states.
 \begin{gg_box}
 \begin{assumption} (Functions $f_i$ are Lipschitz continuous)
 
-  The functions $f_i(x,u), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$
+  The functions $f_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, \vect{x} \in \mathcal{X}_i$
   are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
 
   \begin{align}
@@ -65,17 +65,17 @@ where
 and
 
 \begin{align}
-  h_i(\vect{x}_i, \vect{u}_i) &= \| \vect{x}_i - \vect{x}_{i,des}\|_{Q_i} + \| \vect{u}_i\|_{R_i} \\
-  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| \vect{x}_i - \vect{x}_j + \vect{x}_{ij,des} \|_{G_{ij}} \\
-  l_{iz}(\vect{x}_i, \vect{x}_z) &= \| \vect{x}_i - \vect{x}_z \|_{L_{iz}} \\
+  h_i(\vect{x}_i, \vect{u}_i) &= \| \vect{x}_i - \vect{x}_{i,des}\|_{Q_i}^2 + \| \vect{u}_i\|_{R_i}^2 \\
+  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| \vect{x}_i - \vect{x}_j + \vect{x}_{ij,des} \|_{G_{ij}}^2 \\
+  l_{iz}(\vect{x}_i, \vect{x}_z) &= \| \vect{x}_i - \vect{x}_z \|_{L_{iz}}^2 \\
 \end{align}
 
 
 \begin{gg_box}
 \begin{assumption} (Functions $h_i$ are Lipschitz continuous)
 
-  The functions $h_i(x,u), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$ are
-  Lipschitz continuous with Lipschitz constants $L_{h_i}$:
+  The functions $h_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, \vect{x} \in \mathcal{X}_i$
+  are Lipschitz continuous with Lipschitz constants $L_{h_i}$:
 
   \begin{align}
     \| h_i(\vect{x}_1, \vect{u}) - h_i(\vect{x}_2, \vect{u})\| \leq L_{h_i} \|\vect{x}_1 - \vect{x}_2 \|
@@ -90,13 +90,13 @@ and
 \begin{lemma}
   In the presence of additive disturbances, the difference between the state
   measurement at time $t_k + \tau$, $\vect{x}(t_k + \tau)$ and the predicted
-  state at that time, $\overline{\vect{x}}(t_k + \tau;\ u(\cdot), \vect{x}(t_k))$,
+  state at that time, $\overline{\vect{x}}(t_k + \tau;\ \vect{u}(\cdot), \vect{x}(t_k))$,
   under a control law $\vect{u}(t_k + \tau;\ \vect{x}(t_k))$, where
   $0 \leq \tau \leq T_p$, having the same initial condition $x(t_k)$, is
   bounded \ref{}:
 
   \begin{align}
-    \|\vect{x}(t_k + \tau) - \overline{\vect{x}}\big(t_k + \tau;\ u(\cdot), \vect{x}(t_k)\big)\|
+    \|\vect{x}(t_k + \tau) - \overline{\vect{x}}\big(t_k + \tau;\ \vect{u}(\cdot), \vect{x}(t_k)\big)\|
     \leq \frac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} \tau} - 1)
   \end{align}
 
@@ -123,8 +123,25 @@ $\dfrac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} t} - 1) = \gamma(t)$.
 \end{align}
 where the constraint on $\overline{\vect{x}}_i (t)$ is narrowed to
 $\overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k} \subseteq \mathcal{X}_i$
-so as to ensure that there is a robust positively invariant set for the
-closed-loop system where a solution to the FHOCP exists \ref{}. Specifically,
+so as to ensure that there exists a robust positively invariant set for the
+closed-loop system where a solution to the FHOCP exists \ref{}.
+
+\begin{bw_box}
+  \begin{definition} (Positively invariant set)
+
+    Assume a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
+    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$
+    where $\vect{x}_0$ is the initial condition for $\vect{x}$. Furthermore,
+    let $S = \{\vect{x} \in \mathbb{R}^n : g(\vect{x}) = 0\}$, where $g$ is
+    a valued function. The set $S$ is said to be \textit{positively invariant}
+    if the following holds:
+    $$\vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S, \forall t \geq t_0$$
+    In words this means that once a trajectory of the system enters the set $S$
+    it will never exit it.
+  \end{definition}
+\end{bw_box}
+
+Specifically,
 $\mathcal{X}_i^{t - t_k} = \mathcal{X}_i \sim \mathcal{B}_i^{t-t_k}$, where
 
 \begin{align}
@@ -175,7 +192,8 @@ on in the text.
 \begin{assumption}
 
   The terminal set $\mathcal{X}_{f_i} = \{ \vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \in \alpha_{V_i}\}$
-  is such that for all $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
+  is a positively invariant set such that for all
+  $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
 
   \label{ass:x_f_i}
 \end{assumption}
