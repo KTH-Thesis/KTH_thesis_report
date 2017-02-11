@@ -1,21 +1,24 @@
 \subsection{Problem Statement}
 Due to the fact that the agents are not dimensionless and their communication
 capabilities are limited, the control protocol should for all neighboring
-agents $i \in \mathcal{V}, j \in \mathcal{N}_i(0)$,
+agents $i \in \mathcal{V}, j \in \mathcal{N}_i(0)$ make sure that:
 
 \begin{enumerate}
-  \item achieving the desired position formation $\vect{p}_{ij, \text{des}}$, and
-  \item achieving the desired formation angles $\vect{q}_{ij, \text{des}}$
+  \item the desired position formation $\vect{p}_{ij, \text{des}}$ is achieved
+    in finite time
+  \item the desired formation angles $\vect{q}_{ij, \text{des}}$ are achieved
+    in finite time
+  \item connectivity between initially connected agents (neighbours) is
+    maintained at all times, i.e. all edges of $\mathcal{G}(t=0)$ are maintained
 \end{enumerate}
-
-it should also guarantee for all $t\in\mathbb{R}_{\geq 0}$ that
+Furthermore, for all agents $i \in \mathcal{V}$, obstacles $z \in \mathcal{Z}$
+and the workspace boundary $W$, it should guarantee for all
+$t\in\mathbb{R}_{\geq 0}$ that:
 
 \begin{enumerate}
   \item all agents avoid collision with each other
   \item all agents avoid collision with all obstacles
   \item all agents avoid collision with the workspace boundary
-  \item connectivity between initially connected agents is maintained,
-    i.e. all edges of $\mathcal{G}(t=0)$ are maintained
   \item singularity of the Jacobian matrices $\mat{J}_i$ is avoided
 \end{enumerate}
 
@@ -29,18 +32,21 @@ formulated as follows:
 
 \begin{bg_box}
 \begin{problem}
-	Consider $N$ agents that operate in workspace $W$ that is modeled as a bounded
-  sphere $\mathcal{B}(0,r_W)$, featuring $|Z|$ spherical obstacles, also modeled
-  as bounded spheres $\mathcal{B}(p_{o_z}, r_{o_z}), z \in Z$.
-  Each agent $i$ is governed by the dynamics \eqref{eq:system}, under
-  assumptions \ref{ass:measurements_access}, \ref{ass:initial_conditions},
+  Consider $N$ agents modeled as bounded spheres $\mathcal{B}(\vect{p}_i, r_i)$,
+  $i \in \mathcal{V}, |V| = N$ that operate in workspace $W$ that is also modeled
+  as a bounded sphere $\mathcal{B}(0,r_W)$, featuring $|Z|$ spherical obstacles,
+  also modeled as bounded spheres $\mathcal{B}(p_{o_z}, r_{o_z}), z \in \mathcal{Z}$.
+  Each agent $i$ is governed by the dynamics \eqref{eq:system}, under assumptions
+  \ref{ass:measurements_access}, \ref{ass:initial_conditions},
   \ref{ass:after_formation_geometry}. Given desired \textit{feasible}
   inter-agent displacements $\vect{p}_{ij,des}$, $\vect{q}_{ij,des}$,
   $\forall i \in \mathcal{V}, j \in \mathcal{N}_i(0)$ such that
-  $\underline{d}_{ij,a} < d_{ij,a} < d_i$, $\forall (i,j) \in
+
+  $$\underline{d}_{ij,a} < d_{ij,a} < d_i, \forall (i,j) \in
   \{(i,j) \in \mathcal{V} \times \mathcal{V}:
-  \|\vect{p}_i - \vect{p}_j - \vect{p}_{ij,des}\| = 0\}$,
-  design decentralized control laws $u_i \in \mathbb{R}^6$ such that
+  \|\vect{p}_i - \vect{p}_j - \vect{p}_{ij,des}\| = 0\}$$
+
+  design decentralized control laws $\vect{u}_i \in \mathbb{R}^6$ such that
   $\forall i \in \mathcal{V}$ and $t \in \mathbb{R}_{\geq 0}$ the following
   hold:
 
