@@ -11,25 +11,15 @@ differential equation of the form
 \end{align}
 where state $\vect{x}_i$ is directly measurable. Equation
 \ref{eq:non_perturbed_system} does not consider model-plant mismatches or
-disturbances. However, a more accurate approximation of the agent's dynamics
-is given by
-
-\begin{align}
-  \dot{\vect{x}}_i(t) &= f_i \big(\vect{x}_i (t), \vect{u}_i (t) \big) + \vect{w}_i (t) \label{eq:perturbed_system}
-\end{align}
-where the additive disturbance $\vect{w}_i$ is assumed
-to belong to a compact set $\vect{w}_i(t) \in \mathcal{W}$ and is bounded by
-$\|\vect{w}_i(t)\| \leq \overline{\vect{w}}_i,\forall t \in \mathbb{R}_{\geq 0}$.
-It will be made clearer later on that the existence of this disturbance arises
-due to the fact that the input $\vect{u}_i$ is a portion of the optimal solution
-to an optimization problem where the \textit{predicted} states of the
-neighbouring agents of agent $i$ are taken into account in the cost function,
-as opposed to their \textit{true} states.
+external disturbances. The applied input $\vect{u}_i$ is a portion of the
+optimal solution to an optimization problem where the \textit{predicted} states
+of the neighbouring agents of agent $i$ are taken into account in the cost
+function, as opposed to their \textit{true} states.
 
 \begin{gg_box}
 \begin{assumption} (Functions $f_i$ are Lipschitz continuous)
 
-  The functions $f_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, \vect{x} \in \mathcal{X}_i$
+  The functions $f_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$
   are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
 
   \begin{align}
@@ -44,69 +34,56 @@ as opposed to their \textit{true} states.
 \subsubsection{Cost function}
 
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k), \vect{x}_{\mathcal{Z}}\big) =
-    &J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) + \\
-    &J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) + \\
-    &J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{Z}}\big)
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
+    J_i^U \big(\overline{\vect{u}}_i (\cdot) \big) +
+    J_i^X \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big)
 \end{align}
 
 where
 
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) &=
-    \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{x}}_i (\tau), \overline{\vect{u}}_i (\tau)\big) d \tau +
-    V_i \big(\overline{\vect{x}}_i (t_k + T_p)\big) \\
-  J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
-    \sum_{j \in \mathcal{N}_i} \int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{x}}_i (\tau), \overline{\vect{x}}_j (\tau)\big) d \tau \\
-  J_i \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{Z}}\big) &=
-    -\sum_{z \in \mathcal{Z}} \int_{t_k}^{t_k + T_p} l_{iz} (\overline{\vect{x}}_i (\tau), \vect{x}_z (\tau)\big) d \tau
+  J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &=
+    \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
+  J_i^X \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
+    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{x}}_i (\tau), \overline{\vect{x}}_j (\tau)\big) d \tau +
+    V_{ij} \big(\overline{\vect{x}}_i (t_k + T_p), \overline{\vect{x}}_j (t_k + T_p)\big)\Bigg)
 \end{align}
 
 and
 
 \begin{align}
-  h_i(\vect{x}_i, \vect{u}_i) &= \| \vect{x}_i - \vect{x}_{i,des}\|_{Q_i}^2 + \| \vect{u}_i\|_{R_i}^2 \\
-  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| \vect{x}_i - \vect{x}_j + \vect{x}_{ij,des} \|_{G_{ij}}^2 \\
-  l_{iz}(\vect{x}_i, \vect{x}_z) &= \| \vect{x}_i - \vect{x}_z \|_{L_{iz}}^2 \\
+  h_i(\vect{u}_i) &=\| \vect{u}_i\|_{R_i}^2 \\
+  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| (\vect{x}_i - \vect{x}_j) - \vect{x}_{ji,des} \|_{G_{ij}}^2
 \end{align}
 
 
 \begin{gg_box}
 \begin{assumption} (Functions $h_i$ are Lipschitz continuous)
 
-  The functions $h_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, \vect{x} \in \mathcal{X}_i$
-  are Lipschitz continuous with Lipschitz constants $L_{h_i}$:
+  The functions $h_i(\vect{u}), \forall i \in \mathcal{V}, \vect{u} \in \mathcal{U}_i$ are
+  Lipschitz continuous with Lipschitz constants $L_{h_i}$:
 
   \begin{align}
-    \| h_i(\vect{x}_1, \vect{u}) - h_i(\vect{x}_2, \vect{u})\| \leq L_{h_i} \|\vect{x}_1 - \vect{x}_2 \|
+    \| h_i(\vect{u}_1) - h_i(\vect{u}_2)\| \leq L_{h_i} \|\vect{u}_1 - \vect{u}_2 \|
   \end{align}
 
   \label{ass:h_i_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
+\begin{gg_box}
+\begin{assumption} (Functions $g_{ij}$ are Lipschitz continuous)
 
-\begin{bw_box}
-\begin{lemma}
-  In the presence of additive disturbances, the difference between the state
-  measurement at time $t_k + \tau$, $\vect{x}(t_k + \tau)$ and the predicted
-  state at that time, $\overline{\vect{x}}(t_k + \tau;\ \vect{u}(\cdot), \vect{x}(t_k))$,
-  under a control law $\vect{u}(t_k + \tau;\ \vect{x}(t_k))$, where
-  $0 \leq \tau \leq T_p$, having the same initial condition $x(t_k)$, is
-  bounded \ref{}:
+  The functions $g_{ij}(\vect{x}_i, \vect{x}_j), \forall i \in \mathcal{V}, j \in \mathcal{N}_i$ are
+  Lipschitz continuous with Lipschitz constants $L_{g_i}$:
 
   \begin{align}
-    \|\vect{x}(t_k + \tau) - \overline{\vect{x}}\big(t_k + \tau;\ \vect{u}(\cdot), \vect{x}(t_k)\big)\|
-    \leq \frac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} \tau} - 1)
+    \| g_{ij}(\vect{x}_{i,1}, \vect{x}_j) - g_{ij}(\vect{x}_{i,2}, \vect{x}_j)\| \leq L_{g_i} \|\vect{x}_{i,1} - \vect{x}_{i,2} \|
   \end{align}
 
-  \label{lemma:gamma_tau}
-\end{lemma}
-\end{bw_box}
-
-For convenience we let the right-hand side
-$\dfrac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} t} - 1) = \gamma(t)$.
-
+  \label{ass:g_ij_Lipschitz}
+\end{assumption}
+\end{gg_box}
 
 \subsubsection{Optimization problem}
 
@@ -123,23 +100,9 @@ $\dfrac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} t} - 1) = \gamma(t)$.
 \end{align}
 where the constraint on $\overline{\vect{x}}_i (t)$ is narrowed to
 $\overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k} \subseteq \mathcal{X}_i$
-so as to ensure that there exists a robust positively invariant set for the
+so as to ensure that there is a robust positively invariant set for the
 closed-loop system where a solution to the FHOCP exists \ref{}.
 
-\begin{bw_box}
-  \begin{definition} (Positively invariant set)
-
-    Assume a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
-    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$
-    where $\vect{x}_0$ is the initial condition for $\vect{x}$. Furthermore,
-    let $S = \{\vect{x} \in \mathbb{R}^n : g(\vect{x}) = 0\}$, where $g$ is
-    a valued function. The set $S$ is said to be \textit{positively invariant}
-    if the following holds:
-    $$\vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S, \forall t \geq t_0$$
-    In words this means that once a trajectory of the system enters the set $S$
-    it will never exit it.
-  \end{definition}
-\end{bw_box}
 
 Specifically,
 $\mathcal{X}_i^{t - t_k} = \mathcal{X}_i \sim \mathcal{B}_i^{t-t_k}$, where
@@ -192,8 +155,7 @@ on in the text.
 \begin{assumption}
 
   The terminal set $\mathcal{X}_{f_i} = \{ \vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \in \alpha_{V_i}\}$
-  is a positively invariant set such that for all
-  $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
+  is such that for all $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
 
   \label{ass:x_f_i}
 \end{assumption}

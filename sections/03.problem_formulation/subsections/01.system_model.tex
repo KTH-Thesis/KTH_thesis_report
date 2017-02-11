@@ -13,12 +13,13 @@ is the position of the agent's center of mass, and $r_i < r_W$ is the radius of 
 agent's body. We denote $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
 the Euler angles representing the agents' orientation with respect to the
 inertial frame $\{\mathcal{O}\}$,
-with $\vect{q}_i \overset{\Delta}{=} [\phi_i,\theta_i,\psi_i]^{\top}$.
-We define $\vect{x}_i \overset{\Delta}{=} [\vect{p}^{\top},\vect{q}^{\top}_i]^{\top},
-\vect{v}_i \overset{\Delta}{=} [\dot{\vect{p}}^{\top}_i, \vect{\omega}^{\top}_i]^{\top}$,
-$\vect{x}_i:\mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{T}^3 =
-\mathbb{M}, \vect{v}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{R}^3
-= \mathbb{R}^6$, and model the motion of agent $i$ under second order dynamics:
+with $\vect{q}_i \triangleq [\phi_i,\theta_i,\psi_i]^{\top}$.
+We define
+$$\vect{x}_i \triangleq [\vect{p}^{\top}_i,\vect{q}^{\top}_i]^{\top},
+\vect{x}_i:\mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{T}^3 \equiv \mathbb{M}$$
+$$\vect{v}_i \triangleq [\dot{\vect{p}}^{\top}_i, \vect{\omega}^{\top}_i]^{\top},
+\vect{v}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{R}^3 \equiv \mathbb{R}^6$$
+and model the motion of agent $i$ under second order dynamics:
 
 \begin{subequations}
 	\begin{align}
@@ -70,8 +71,10 @@ remark:
       $\{\mathcal{O}\}$. $r_i, r_j, r_{o_z}$ are the radii of the agents $i,j$
       and the obstacle $o_z$ respectively. $d_i, d_j$ with
       $d_i > d_j$ are the agents' sensing ranges.
-      In this figure, agents $i$ and $j$ are not neighbours, since
-      $\vect{p}_j \notin \mathcal{B}(\vect{p}_i(t), d_i)$.}
+      In this figure, agents $i$ and $j$ are not neighbours, since the center
+      of mass of agent $j$ is not within the sensing range of agent $i$ and vice
+      versa: $\vect{p}_j \notin \mathcal{B}(\vect{p}_i(t), d_i)$ and
+      $\vect{p}_i \notin \mathcal{B}(\vect{p}_j(t), d_j)$.}
 	\label{fig:two_agents_one_obstacle}
 \end{figure}
 
@@ -130,16 +133,18 @@ assumption:
 \end{assumption}
 \end{gg_box}
 
-The consequence of points 1 and 2 is that, by defining the neighboring set of
-agent $i$ as
-$\mathcal{N}_i(t) \overset{\Delta}{=} \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$,
+The consequence of points 1 and 2 is that, by defining the set of
+agents $j$ that are within the sensing range of agent $i$ at time $t$ as
+$$\mathcal{R}_i(t) \triangleq \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$$
+or equivalently
+$$\mathcal{R}_i(t) \triangleq \{j\in\mathcal{V} : \| \vect{p}_i(t) - \vect{p}_j(t) \| \leq d_i\}$$
 agent $i$ also knows at each time instant $t$ all
-$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t),
-\dot{\vect{p}}_{j \triangleright i}(t), \vect{\omega}_{j \triangleright i}(t)$.
-Therefore, agent $i$ assumes access to all
-$\vect{p}_{j}(t)$, $\vect{q}_{j}(t)$, $\dot{\vect{p}}_j(t)$,
-$\vect{\omega}_j(t)$, $\forall j\in \mathcal{N}_i(t),t\in\mathbb{R}_{\geq 0}$,
-by virtue of being able to calculate them using knowledge of its own
+$$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t),
+\dot{\vect{p}}_{j \triangleright i}(t), \vect{\omega}_{j \triangleright i}(t)$$
+Therefore, agent $i$ assumes access to all measurements
+$$\vect{p}_{j}(t), \vect{q}_{j}(t), \dot{\vect{p}}_j(t),
+\vect{\omega}_j(t), \forall j\in \mathcal{R}_i(t),t\in\mathbb{R}_{\geq 0}$$
+of agent $j$ by virtue of being able to calculate them using knowledge of its own
 $\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
 
 
@@ -158,34 +163,55 @@ and obstacle $z$ as $d_{iz,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 
 \begin{subequations}
 	\begin{align}
-    d_{ij,a}(t) &\overset{\Delta}{=} \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
-    d_{iz,o}(t) &\overset{\Delta}{=} \| \vect{p}_i(t) - \vect{p}_z(t) \|
+    d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
+    d_{iz,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_z(t) \|
 	\end{align}
 \end{subequations}
 
 $\forall i, j \in \mathcal{V}, i \neq j, z \in Z$, as well as
-constants $\underline{d}_{ij, a} \overset{\Delta}{=} r_{i} + r_{j},
-\underline{d}_{iz, o} \overset{\Delta}{=} r_{i} + r_{o_z}$. The latter stand for
+constants $\underline{d}_{ij, a} \triangleq r_{i} + r_{j},
+\underline{d}_{iz, o} \triangleq r_{i} + r_{o_z}$. The latter stand for
 the minimum distance between two agents, and the minimum distance between an
 agent and an obstacle. These arise spatially as physical limitations and will
 be utilized as collision-avoidance constraints.
 
 The \textit{topology} of the multi-agent network is modeled through the graph
 $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
-$\mathcal{E}=\big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} : i \neq j, j\in\mathcal{N}_i(0) \text{ and } i\in\mathcal{N}_j(0)\big\}$.
-The latter implies that at $t=0$ the graph is undirected, i.e.,
 
+\begin{align}
+\mathcal{E}=\big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} :
+  i \neq j,
+  j\in\mathcal{N}_i(0) \subseteq \mathcal{R}_i(0) \text{ and }
+  i \in \mathcal{N}_j(0) \subseteq \mathcal{R}_j(0) \big\}
+  \label{eq:edges_set}
+\end{align}
+
+Agents $j \in \mathcal{N}_i(0)$ are defined as the \textit{neighbours} of
+agent $i$. They are the set of indices of agents $j \in \mathcal{V}$ which
+
+\begin{enumerate}
+  \item are within the sensing range of agent $i$ at time $t=0$, i.e.
+    $j \in \mathcal{R}_i(0)$, and
+  \item are intended to be kept within the sensing range of agent $i$ at all
+    times $t>0$
+\end{enumerate}
+
+Therefore, while the composition of the set $\mathcal{R}_i(t)$ evolves and
+varies through time in general, the set $\mathcal{N}_i(t)$ should remain
+constant through time. That means that we consider that the connected graph
+$\mathcal{G}$ is static, in the sense that no edges are added to it through
+time. We do not exclude, however, edge removal through connectivity loss between
+initially neighboring agents, which we guarantee to avoid, as presented in the
+sequel.
+
+Equation \ref{eq:edges_set} implies that the graph is undirected, i.e.,
 \begin{align}
   d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i(0) \label{eq:initially_connected_0} \\
   d_{ji,a}(0) &< d_j, \forall j \in \mathcal{V}, i \in \mathcal{N}_j(0) \label{eq:initially_connected_1}
 \end{align}
 
-We also consider that the connected graph $\mathcal{G}$ is static, in the sense
-that no edges are added to it through time. We do not exclude, however, edge
-removal through connectivity loss between initially neighboring agents, which we
-guarantee to avoid, as presented in the sequel. It is also assumed that at
-$t=0$ the neighboring agents are in a \textit{collision-free configuration},
-i.e.
+It is also assumed that at $t=0$ the neighboring agents are in a
+\textit{collision-free configuration}, i.e.
 
 \begin{equation}
   \underline{d}_{ij, a} < d_{ij,a}(0), \forall i,j \in \mathcal{V}, i \neq j
@@ -245,21 +271,21 @@ $$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_
 
 At this point, let us define $d_o$
 \begin{align*}
-  d_o &\overset{\Delta}{=} \min\{\| \vect{p}_{o_z} - \vect{p}_{o_{z'}}\| : z,z' \in Z, z \neq z' \},
+  d_o &\triangleq \min\{\| \vect{p}_{o_z} - \vect{p}_{o_{z'}}\| : z,z' \in Z, z \neq z' \},
 \end{align*}
 as the distance between the two least distant obstacles in the workspace,
 $d_{o,W}$
 \begin{align*}
-  d_{o,W} &\overset{\Delta}{=} \min\{r_W - \left( r_{o_z} + \| \vect{p}_{o_z} \| \right) : z \in Z\},
+  d_{o,W} & \triangleq \min\{r_W - \left( r_{o_z} + \| \vect{p}_{o_z} \| \right) : z \in Z\},
 \end{align*}
 as the distance between the least distant obstacle from the boundary of the
 workspace and the boundary itself, $D$
 \begin{equation*}
-  D \overset{\Delta}{=} \min\{d_o, d_{o,W}\}
+  D \triangleq \min\{d_o, d_{o,W}\}
 \end{equation*}
 as the least of these two distances, and $\Delta$
 \begin{align*}
-  &\hspace{-2mm} \Delta \overset{\Delta}{=}  \max\Big\{d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
+  &\hspace{-2mm} \Delta \triangleq  \max\Big\{d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
   &\hspace{-2mm} \| \vect{p}_k - \vect{p}_\ell \| = \vect{p}_{k \ell,\text{des}},
   \|\vect{q}_k - \vect{q}_\ell\| = \vect{q}_{k \ell,\text{des}},
   k \in \mathcal{V},
