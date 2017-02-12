@@ -11,7 +11,7 @@ agents $i \in \mathcal{V}, j \in \mathcal{N}_i(0)$ make sure that:
   \item connectivity between initially connected agents (neighbours) is
     maintained at all times, i.e. all edges of $\mathcal{G}(t=0)$ are maintained
 \end{enumerate}
-Furthermore, for all agents $i \in \mathcal{V}$, obstacles $z \in \mathcal{Z}$
+Furthermore, for all agents $i \in \mathcal{V}$, obstacles $k \in \mathcal{K}$
 and the workspace boundary $W$, it should guarantee for all
 $t\in\mathbb{R}_{\geq 0}$ that:
 
@@ -34,8 +34,8 @@ formulated as follows:
 \begin{problem}
   Consider $N$ agents modeled as bounded spheres $\mathcal{B}(\vect{p}_i, r_i)$,
   $i \in \mathcal{V}, |V| = N$ that operate in workspace $W$ that is also modeled
-  as a bounded sphere $\mathcal{B}(0,r_W)$, featuring $|Z|$ spherical obstacles,
-  also modeled as bounded spheres $\mathcal{B}(p_{o_z}, r_{o_z}), z \in \mathcal{Z}$.
+  as a bounded sphere $\mathcal{B}(0,r_W)$, featuring $|\mathcal{K}|$ spherical obstacles,
+  also modeled as bounded spheres $\mathcal{B}(p_k, r_k), k \in \mathcal{K}$.
   Each agent $i$ is governed by the dynamics \eqref{eq:system}, under assumptions
   \ref{ass:measurements_access}, \ref{ass:initial_conditions},
   \ref{ass:after_formation_geometry}. Given desired \textit{feasible}
@@ -61,8 +61,8 @@ formulated as follows:
       \forall j \in \mathcal{V} \backslash \{i\}$$
 
     \item Agent-with-obstacle collision is avoided
-      $$\|\vect{p}_i(t) - \vect{p}_{o_z}(t)\| > \underline{d}_{iz,o},
-      \forall z \in \mathcal{Z}$$
+      $$\|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o},
+      \forall k \in \mathcal{K}$$
 
     \item Agent-with-workspace-boundary collision is avoided
       $$\|\vect{p}_i(t)\| + r_i < r_W$$

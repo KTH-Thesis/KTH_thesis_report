@@ -1,68 +1,91 @@
 \subsubsection{Model}
 
 We begin by rewriting the system equations \eqref{eq:system_1},
-\eqref{eq:system_2} in state-space form:
-
+\eqref{eq:system_2} for a generic agent $i$ in state-space form:
 \begin{align}
-  \dot{\vect{z}}_i(t) =
-    \begin{bmatrix}
-      f_{i,1}(\vect{z}_i, \vect{u}_i) \\
-      f_{i,2}(\vect{z}_i, \vect{u}_i) \\
-    \end{bmatrix}, \text{ where }
-  \vect{z}_i(t) =
-    \begin{bmatrix}
-      \vect{x}_i(t) \\
-      \vect{v}_i(t) \\
-    \end{bmatrix}, \text{ and }
-\end{align}
-
-\begin{align}
-  f_{i,1}(\vect{z}_i, \vect{u}_i) &=
-  \dot{\vect{x}}_i(t) = \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t) \\
-  f_{i,2}(\vect{z}_i, \vect{u}_i) &=
-  \dot{\vect{v}}_i(t) = -\mat{M}_i^{-1}(\vect{x}_i)\mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)
+  \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t) \\
+  \dot{\vect{v}}_i(t) &= -\mat{M}_i^{-1}(\vect{x}_i)\mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)
     - \mat{M}_i^{-1}(\vect{x}_i)\vect{g}_i(\vect{x}_i)
     + \mat{M}_i^{-1}(\vect{x}_i)\vect{u}_i
 \label{eq:system}
 \end{align}
+Denoting $\vect{z}_i(t)$ by
+\begin{align}
+  \vect{z}_i(t) =
+    \begin{bmatrix}
+      \vect{x}_i(t) \\
+      \vect{v}_i(t) \\
+    \end{bmatrix}
+\end{align}
+and
+$\dot{\vect{x}}_i(t)$ and $\dot{\vect{v}}_i(t)$ by
+\begin{align}
+  \dot{\vect{x}}_i(t) &= f_{i,x}(\vect{z}_i, \vect{u}_i) \\
+  \dot{\vect{v}}_i(t) &= f_{i,v}(\vect{z}_i, \vect{u}_i)
+\end{align}
+we get the compact representation of the system's model
+\begin{align}
+  \dot{\vect{z}}_i(t) =
+    \begin{bmatrix}
+      f_{i,x}(\vect{z}_i, \vect{u}_i) \\
+      f_{i,v}(\vect{z}_i, \vect{u}_i) \\
+    \end{bmatrix} =
+ f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big)
+\end{align}
 
 The state evolution of agent $i$ is modeled by a system of non-linear
 continuous-time differential equations of the form
-
 \begin{align}
   \dot{\vect{z}}_i(t) &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system}\\
-  \vect{z}_i(0) &= \vect{z}_0 \\
-  \vect{z}_i (t) &\in \mathcal{Z}_i \subset \mathbb{R}^n \\
-  \vect{u}_i (t) &\in \mathcal{U}_i \subset \mathbb{R}^m
+  \vect{z}_i(0) &= \vect{z}_{i,0} \\
+  \vect{z}_i (t) &\in \mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
+  \vect{u}_i (t) &\in \mathcal{U}_i \subset \mathbb{R}^6
 \end{align}
-where state $\vect{z}_i$ is directly measurable. Equation
+where state $\vect{z}_i$ is directly measurable, and sets $\mathcal{Z}_i$,
+$\mathcal{U}_i$ are compact and contain the origin. Equation
 \ref{eq:non_perturbed_system} does not consider model-plant mismatches or
 external disturbances. The applied input $\vect{u}_i$ is a portion of the
-optimal solution to an optimization problem where the \textit{predicted} states
+optimal solution to an optimization problem where information on the states
 of the neighbouring agents of agent $i$ are taken into account in the cost
-function, as opposed to their \textit{true} states.
+function, under constraints pertaining to the set of its neighbours
+$\mathcal{N}_i$ and, in total, to the set of all agents within its sensing range
+$\mathcal{R}_i$.
 
-\begin{gg_box}
-\begin{assumption} (Functions $f_i$ are Lipschitz continuous)
+Specifically, at time $t$, agent $i$ has access to\footnote{Although
+    $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
+    the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
+    with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
+    within the sensing range of agent $i$.}
 
-  The functions $f_i(\vect{x}, \vect{u}), \forall i \in \mathcal{V}, x \in \mathcal{X}_i$
-  are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
+\begin{enumerate}
+  \item measurements of the states of
+    \begin{itemize}
+      \item all agents within its sensing range at time $t$
+      \item its neighbouring agents at time $t$
+      \end{itemize}
+    \item the last applied inputs to
+      \begin{itemize}
+        \item all agents within its sensing range
+        \item its neighbouring agents
+      \end{itemize}
+\end{enumerate}
 
-  \begin{align}
-    \| f_i(\vect{x}_1, \vect{u}) - f_i(\vect{x}_2, \vect{u})\| \leq L_{f_i} \|\vect{x}_1 - \vect{x}_2 \|
-  \end{align}
+We encapsulate these pieces of information in four stacked vectors:
 
-  \label{ass:f_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
+\begin{align}
+  \vect{z}_{\mathcal{R}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{R}_i(t) \\
+  \vect{z}_{\mathcal{N}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{N}_i(0) \\
+  \vect{u}_{\mathcal{R}_i}(t) &\triangleq col[\vect{u}_j(t-1)], \forall j \in \mathcal{R}_i(t) \\
+  \vect{u}_{\mathcal{N}_i}(t) &\triangleq col[\vect{u}_j(t-1)], \forall j \in \mathcal{N}_i(0)
+\end{align}
 
 
 \subsubsection{Cost function}
 
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &=
     J_i^U \big(\overline{\vect{u}}_i (\cdot) \big) +
-    J_i^X \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big)
+    J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big)
 \end{align}
 
 where
@@ -70,18 +93,35 @@ where
 \begin{align}
   J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &=
     \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
-  J_i^X \big(\vect{x}_i (t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) &=
-    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{x}}_i (\tau), \overline{\vect{x}}_j (\tau)\big) d \tau +
-    V_{ij} \big(\overline{\vect{x}}_i (t_k + T_p), \overline{\vect{x}}_j (t_k + T_p)\big)\Bigg)
+  J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &=
+    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
+    V_{ij} \big(\overline{\vect{z}}_i (t_k + T_p), \overline{\vect{z}}_j (t_k + T_p)\big)\Bigg)
 \end{align}
 
 and
 
 \begin{align}
   h_i(\vect{u}_i) &=\| \vect{u}_i\|_{R_i}^2 \\
-  g_{ij}(\vect{x}_i, \vect{x}_j) &= \| (\vect{x}_i - \vect{x}_j) - \vect{x}_{ji,des} \|_{G_{ij}}^2
+  g_{ij}(\vect{z}_i, \vect{z}_j) &= \| (\vect{z}_i - \vect{z}_j) - \vect{z}_{ji,des} \|_{G_{ij}}^2
 \end{align}
 
+Matrices $R_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
+definite, while matrices $G_{ij} \in \mathbb{R}^{12 \times 12}$ are symmetric
+and positive semi-definite.
+
+\begin{gg_box}
+\begin{assumption} (Functions $f_i$ are Lipschitz continuous)
+
+  The functions $f_i(\vect{z}, \vect{u}), \forall i \in \mathcal{V}, z \in \mathcal{Z}_i$
+  are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
+
+  \begin{align}
+    \| f_i(\vect{z}_1, \vect{u}) - f_i(\vect{z}_2, \vect{u})\| \leq L_{f_i} \|\vect{z}_1 - \vect{z}_2 \|
+  \end{align}
+
+  \label{ass:f_i_Lipschitz}
+\end{assumption}
+\end{gg_box}
 
 \begin{gg_box}
 \begin{assumption} (Functions $h_i$ are Lipschitz continuous)
@@ -115,33 +155,14 @@ and
 
 \begin{align}
   \text{min}_{\overline{\vect{u}}_i (\cdot)}\ &
-    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k), \vect{x}_{\mathcal{Z}}\big) \\
+    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) \\
   \text{subject to:} & \\
   & \dot{\overline{\vect{x}}}_i(t) = f_i (\overline{\vect{x}}_i (t), \overline{\vect{u}}_i (t)) \\
   & \overline{\vect{x}}_i (t_k) = \vect{x}_i (t_k) \\
+  & \overline{\vect{x}}_i (t) \in \mathcal{X}_i \\
   & \overline{\vect{u}}_i \in \mathcal{U}_i \\
-  & \overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k}, t \in [t_k, t_k + T_p] \\
   & \overline{\vect{x}}_i (t_k + T_p) \in \mathcal{X}_{f_i} \\
-  & J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) \leq J_i^{\text{ sup}}(t)
 \end{align}
-where the constraint on $\overline{\vect{x}}_i (t)$ is narrowed to
-$\overline{\vect{x}}_i (t) \in \mathcal{X}_i^{t - t_k} \subseteq \mathcal{X}_i$
-so as to ensure that there is a robust positively invariant set for the
-closed-loop system where a solution to the FHOCP exists \ref{}.
-
-
-Specifically,
-$\mathcal{X}_i^{t - t_k} = \mathcal{X}_i \sim \mathcal{B}_i^{t-t_k}$, where
-
-\begin{align}
-  \mathcal{B}_i^{t-t_k} =
-  \Big\{\vect{x}_i \in \mathbb{R}^n : \|\vect{x}_i\| \leq \gamma_i (t-t_k) = \frac{\overline{\vect{w}}_i}{L_{f_i}} (e^{L_{f_i} (t-t_k)} - 1) \Big\}
-\end{align}
-and the operator $\sim$ denotes the Pontryagin difference.
-
-The constraint $J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k)\big) \leq J_i^{\text{ sup}}(t_k)$
-is imposed for ensuring the stability for each agent; it will be defined later
-on in the text.
 
 \begin{gg_box}
 \begin{assumption}

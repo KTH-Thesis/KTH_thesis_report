@@ -63,7 +63,7 @@ remark:
 	\centering
     \input{figures/03.problem_formulation/two_agents_one_obstacle.tex}
     \caption{Illustration of two agents $i, j \in \mathcal{V}$ and an static
-      obstacle $k \in K$ in the workspace; $\{\mathcal{O}\}$ is the inertial
+      obstacle $k \in \mathcal{K}$ in the workspace; $\{\mathcal{O}\}$ is the inertial
       frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of
       mass, $\vect{p}_i, \vect{p}_j, \vect{p}_{k} \in \mathbb{R}^3$ are the
       positions of the center of mass of the agents $i,j$ and the
@@ -149,11 +149,11 @@ $\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
 
 
 
-In the workspace there are $|K|$ \textit{static obstacles}, modeled as
+In the workspace there are $|\mathcal{K}|$ \textit{static obstacles}, modeled as
 spheres with centers at positions $\vect{p}_{k}$ with radii
-$r_{k}\in \mathbb{R}^3, k \in K = \{1,\dots,|K| \}$.
+$r_{k}\in \mathbb{R}^3, k \in \mathcal{K} = \{1,\dots,|\mathcal{K}| \}$.
 Thus, the obstacles are modeled by the spheres
-$\mathcal{B}(\vect{p}_{k}, r_{k}), k \in \{1,\dots,|K|\}$. The geometry in
+$\mathcal{B}(\vect{p}_{k}, r_{k}), k \in \{1,\dots,|\mathcal{K}|\}$. The geometry in
 workspace $W$ of two agents $i$ and $j$ as well as an obstacle $k$ is depicted
 in Fig. \ref{fig:two_agents_one_obstacle}.
 
@@ -168,7 +168,7 @@ and obstacle $k$ as $d_{ik,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 	\end{align}
 \end{subequations}
 
-$\forall i, j \in \mathcal{V}, i \neq j, k \in K$, as well as
+$\forall i, j \in \mathcal{V}, i \neq j, k \in \mathcal{K}$, as well as
 constants $\underline{d}_{ij, a} \triangleq r_{i} + r_{j},
 \underline{d}_{ik, o} \triangleq r_{i} + r_{o_k}$. The latter stand for
 the minimum distance between two agents, and the minimum distance between an
@@ -269,12 +269,12 @@ $$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_
 \ne \varnothing$$
 At this point, let us define $d_o$
 \begin{align*}
-  d_o &\triangleq \min\{\| \vect{p}_{k} - \vect{p}_{k'}\| : k,k' \in K, k \neq k' \},
+  d_o &\triangleq \min\{\| \vect{p}_{k} - \vect{p}_{k'}\| : k,k' \in \mathcal{K}, k \neq k' \},
 \end{align*}
 as the distance between the two least distant obstacles in the workspace,
 $d_{o,W}$
 \begin{align*}
-  d_{o,W} & \triangleq \min\{r_W - \left( r_{k} + \| \vect{p}_{k} \| \right) : k \in K\},
+  d_{o,W} & \triangleq \min\{r_W - \left( r_{k} + \| \vect{p}_{k} \| \right) : k \in \mathcal{K}\},
 \end{align*}
 as the distance between the least distant obstacle from the boundary of the
 workspace and the boundary itself, $D$
