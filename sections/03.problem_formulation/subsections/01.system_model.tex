@@ -181,12 +181,12 @@ $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
 \begin{align}
 \mathcal{E} \triangleq \big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} :
   i \neq j,
-  j\in\mathcal{N}_i(0) \subseteq \mathcal{R}_i(0) \text{ and }
-  i \in \mathcal{N}_j(0) \subseteq \mathcal{R}_j(0) \big\}
+  j\in\mathcal{N}_i \subseteq \mathcal{R}_i(0) \text{ and }
+  i \in \mathcal{N}_j \subseteq \mathcal{R}_j(0) \big\}
   \label{eq:edges_set}
 \end{align}
 
-Agents $j \in \mathcal{N}_i(0)$ are defined as the \textit{neighbours} of
+Agents $j \in \mathcal{N}_i$ are defined as the \textit{neighbours} of
 agent $i$. They are the set of indices of agents $j \in \mathcal{V}$ which
 
 \begin{enumerate}
@@ -197,7 +197,7 @@ agent $i$. They are the set of indices of agents $j \in \mathcal{V}$ which
 \end{enumerate}
 
 Therefore, while the composition of the set $\mathcal{R}_i(t)$ evolves and
-varies through time in general, the set $\mathcal{N}_i(t)$ should remain
+varies through time in general, the set $\mathcal{N}_i$ should remain
 constant through time. That means that we consider that the connected graph
 $\mathcal{G}$ is static, in the sense that no edges are added to it through
 time. We do not exclude, however, edge removal through connectivity loss between
@@ -206,8 +206,8 @@ sequel.
 
 Definition \eqref{eq:edges_set} implies that the graph is undirected, i.e.,
 \begin{align}
-  d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i(0) \label{eq:initially_connected_0} \\
-  d_{ji,a}(0) &< d_j, \forall j \in \mathcal{V}, i \in \mathcal{N}_j(0) \label{eq:initially_connected_1}
+  d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i \label{eq:initially_connected_0} \\
+  d_{ji,a}(0) &< d_j, \forall j \in \mathcal{V}, i \in \mathcal{N}_j \label{eq:initially_connected_1}
 \end{align}
 
 It is also assumed that at $t=0$ the neighboring agents are in a
@@ -250,7 +250,7 @@ the initial conditions of the problem, are summarized in assumption
 As for $t \geq 0$, agent $i$ is in a collision-and-singularity-free
 configuration, and is connected to the neighbours it had at time $t = 0$,
 when
-$$\sum_{j \in \mathcal{N}_i(0)} \| \vect{x}_i(t) - \vect{x}_j(t) - \vect{x}_{ji,des}\| < \mu_i,
+$$\sum_{j \in \mathcal{N}_i} \| \vect{x}_i(t) - \vect{x}_j(t) - \vect{x}_{ji,des}\| < \mu_i,
 \forall i \in \mathcal{V}$$
 where $\mu_i$ is an arbitrarily small positive constant. Intuitively, this
 means that when the agents reach very close to their desired formation, they
@@ -264,7 +264,7 @@ performed sufficiently away from obstacles and the workspace boundary.
 The desired steady-state displacements
 $\vect{x}_{ij,des}$ $=$ $[\vect{p}_{ij,des}^{\top}, \vect{q}_{ij,des}^{\top}]^{\top}$
 are themselves \textit{feasible} if $\forall i \in \mathcal{V}$,
-$j \in \mathcal{N}_i(0)$,
+$j \in \mathcal{N}_i$,
 $$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_j - \vect{x}_{ij,des} \| = 0 \}
 \ne \varnothing$$
 At this point, let us define $d_o$
@@ -286,7 +286,7 @@ as the least of these two distances, and $\Delta$
   \hspace{-2mm} \Delta \triangleq \max\Big\{&d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
   &\hspace{-2mm} \| \vect{p}_k - \vect{p}_\ell \| = \vect{p}_{k \ell,\text{des}}, \\
   &\|\vect{q}_k - \vect{q}_\ell\| = \vect{q}_{k \ell,\text{des}}, \\
-  &k \in \mathcal{V}, \ell \in \mathcal{N}_k(0)\Big\}
+  &k \in \mathcal{V}, \ell \in \mathcal{N}_k\Big\}
 \end{align*}
 as the \emph{diameter of formation}. $\Delta$ is the distance between the two
 most distant agents when formation is achieved. Given these notions, we
