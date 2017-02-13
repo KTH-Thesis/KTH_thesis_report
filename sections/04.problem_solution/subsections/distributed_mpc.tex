@@ -70,98 +70,86 @@ Specifically, at time $t$, agent $i$ has access to\footnote{Although
       \end{itemize}
 \end{enumerate}
 
-We encapsulate these pieces of information in four stacked vectors:
+We assume that these pieces of information are (a) always available and
+accurate, and (b) exchanged without delay. We encapsulate these pieces of
+information in four stacked vectors:
 
 \begin{align}
   \vect{z}_{\mathcal{R}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{R}_i(t) \\
   \vect{z}_{\mathcal{N}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{N}_i \\
-  \vect{u}_{\mathcal{R}_i}(t) &\triangleq col[\vect{u}_j(t-1)], \forall j \in \mathcal{R}_i(t) \\
-  \vect{u}_{\mathcal{N}_i}(t) &\triangleq col[\vect{u}_j(t-1)], \forall j \in \mathcal{N}_i
+  \vect{u}_{\mathcal{R}_i}(t) &\triangleq col[\vect{u}_j(t)], \forall j \in \mathcal{R}_i(t) \\
+  \vect{u}_{\mathcal{N}_i}(t) &\triangleq col[\vect{u}_j(t)], \forall j \in \mathcal{N}_i
 \end{align}
 
 
 \subsubsection{Cost function}
 
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &=
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &\triangleq
     J_i^U \big(\overline{\vect{u}}_i (\cdot) \big) +
     J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big)
 \end{align}
 
 where
-
 \begin{align}
-  J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &=
+  J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &\triangleq
     \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
-  J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &=
-    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} (\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
+  J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) & \triangleq
+    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} \big(\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
     V_{ij} \big(\overline{\vect{z}}_i (t_k + T_p), \overline{\vect{z}}_j (t_k + T_p)\big)\Bigg)
 \end{align}
-
+\note{without the sum maybe? (just in col form)}
 and
 
 \begin{align}
-  h_i(\vect{u}_i) &=\| \vect{u}_i\|_{R_i}^2 \\
-  g_{ij}(\vect{z}_i, \vect{z}_j) &= \| (\vect{z}_i - \vect{z}_j) - \vect{z}_{ji,des} \|_{G_{ij}}^2
+  h_i \big(\vect{u}_i(t) \big)
+    &\triangleq \| \vect{u}_i(t)\|_{\mat{R}_i}^2 \\
+  g_{ij}\big(\vect{z}_i(t), \vect{z}_j(t)\big)
+    & \triangleq \| \vect{z}_i(t) - \vect{z}_j(t) - \vect{z}_{ji,des} \|_{\mat{G}_{ij}}^2 \\
+  V_{ij} \big(\vect{z}_i (t_k + T_p), \vect{z}_j (t_k + T_p)\big)
+    & \triangleq \| \vect{z}_i(t_k + T_p) - \vect{z}_j(t_k + T_p) - \vect{z}_{ji,des} \|_{\mat{P}_{ij}}^2
 \end{align}
 
-Matrices $R_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
-definite, while matrices $G_{ij} \in \mathbb{R}^{12 \times 12}$ are symmetric
-and positive semi-definite.
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
+definite, while matrices $\mat{G}_{ij}, \mat{P}_{ij} \in \mathbb{R}^{12 \times 12}$ are
+symmetric and positive semi-definite.
 
 \begin{gg_box}
 \begin{assumption} (Functions $f_i$ are Lipschitz continuous)
-
-  The functions $f_i(\vect{z}, \vect{u}), \forall i \in \mathcal{V}, z \in \mathcal{Z}_i$
-  are Lipschitz continuous with Lipschitz constants $L_{f_i}$:
-
-  \begin{align}
-    \| f_i(\vect{z}_1, \vect{u}) - f_i(\vect{z}_2, \vect{u})\| \leq L_{f_i} \|\vect{z}_1 - \vect{z}_2 \|
-  \end{align}
-
   \label{ass:f_i_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
 \begin{gg_box}
 \begin{assumption} (Functions $h_i$ are Lipschitz continuous)
-
-  The functions $h_i(\vect{u}), \forall i \in \mathcal{V}, \vect{u} \in \mathcal{U}_i$ are
-  Lipschitz continuous with Lipschitz constants $L_{h_i}$:
-
-  \begin{align}
-    \| h_i(\vect{u}_1) - h_i(\vect{u}_2)\| \leq L_{h_i} \|\vect{u}_1 - \vect{u}_2 \|
-  \end{align}
-
   \label{ass:h_i_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
 \begin{gg_box}
 \begin{assumption} (Functions $g_{ij}$ are Lipschitz continuous)
-
-  The functions $g_{ij}(\vect{x}_i, \vect{x}_j), \forall i \in \mathcal{V}, j \in \mathcal{N}_i$ are
-  Lipschitz continuous with Lipschitz constants $L_{g_i}$:
-
-  \begin{align}
-    \| g_{ij}(\vect{x}_{i,1}, \vect{x}_j) - g_{ij}(\vect{x}_{i,2}, \vect{x}_j)\| \leq L_{g_i} \|\vect{x}_{i,1} - \vect{x}_{i,2} \|
-  \end{align}
-
   \label{ass:g_ij_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
+
 \subsubsection{Optimization problem}
 
 \begin{align}
-  \text{min}_{\overline{\vect{u}}_i (\cdot)}\ &
-    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{x}_i(t_k), \vect{x}_{\mathcal{N}_i}(t_k)\big) \\
+  \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
+    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) \\
   \text{subject to:} & \\
-  & \dot{\overline{\vect{x}}}_i(t) = f_i (\overline{\vect{x}}_i (t), \overline{\vect{u}}_i (t)) \\
-  & \overline{\vect{x}}_i (t_k) = \vect{x}_i (t_k) \\
-  & \overline{\vect{x}}_i (t) \in \mathcal{X}_i \\
-  & \overline{\vect{u}}_i \in \mathcal{U}_i \\
-  & \overline{\vect{x}}_i (t_k + T_p) \in \mathcal{X}_{f_i} \\
+  & \dot{\overline{\vect{z}}}_i(t) = f_i (\overline{\vect{z}}_i (t), \overline{\vect{u}}_i (t)) \\
+  & \overline{\vect{z}}_i (t_k) = \vect{z}_i (t_k) \\
+  & \overline{\vect{z}}_j (t_k) = \vect{z}_j (t_k) \\
+  & \overline{\vect{u}}_i(t) \in \mathcal{U}_i,\ t \in [t_k, t_k + T_p)\\
+  & \overline{\vect{z}}_i (t) - \overline{\vect{z}}_j (t) - z_{ji, des} \in \mathcal{Z}_i,\ t \in [t_k, t_k + T_p]\\
+  & \overline{\vect{z}}_i (t_k + T_p) - \overline{\vect{z}}_j (t_k + T_p) - z_{ji,des} \in \mathcal{Z}_i^f \\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_k, t_k + T_p] \\
+  & \|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K}, t \in [t_k, t_k + T_p] \\
+  & \|\vect{p}_i(t)\| + r_i < r_W, t \in [t_k, t_k + T_p] \\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, t \in [t_k, t_k + T_p] \\
+  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_k, t_k + T_p]
 \end{align}
 
 \begin{gg_box}
