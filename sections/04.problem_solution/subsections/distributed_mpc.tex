@@ -85,18 +85,18 @@ information in four stacked vectors:
 \subsubsection{Cost function}
 
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) &\triangleq
+  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) &\triangleq
     J_i^U \big(\overline{\vect{u}}_i (\cdot) \big) +
-    J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big)
+    J_i^Z \big(\vect{z}_i (t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big)
 \end{align}
 
 where
 \begin{align}
   J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &\triangleq
-    \int_{t_k}^{t_k + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
-  J_i^Z \big(\vect{z}_i (t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) & \triangleq
-    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_k}^{t_k + T_p} g_{ij} \big(\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
-    V_{ij} \big(\overline{\vect{z}}_i (t_k + T_p), \overline{\vect{z}}_j (t_k + T_p)\big)\Bigg)
+    \int_{t_0}^{t_0 + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
+  J_i^Z \big(\vect{z}_i (t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) & \triangleq
+    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_0}^{t_0 + T_p} g_{ij} \big(\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
+    V_{ij} \big(\overline{\vect{z}}_i (t_0 + T_p), \overline{\vect{z}}_j (t_0 + T_p)\big)\Bigg)
 \end{align}
 \note{without the sum maybe? (just in col form)}
 and
@@ -106,13 +106,34 @@ and
     &\triangleq \| \vect{u}_i(t)\|_{\mat{R}_i}^2 \\
   g_{ij}\big(\vect{z}_i(t), \vect{z}_j(t)\big)
     & \triangleq \| \vect{z}_i(t) - \vect{z}_j(t) - \vect{z}_{ji,des} \|_{\mat{G}_{ij}}^2 \\
-  V_{ij} \big(\vect{z}_i (t_k + T_p), \vect{z}_j (t_k + T_p)\big)
-    & \triangleq \| \vect{z}_i(t_k + T_p) - \vect{z}_j(t_k + T_p) - \vect{z}_{ji,des} \|_{\mat{P}_{ij}}^2
-\end{align}
-
+  V_{ij} \big(\vect{z}_i (t_0 + T_p), \vect{z}_j (t_0 + T_p)\big)
+    & \triangleq \| \vect{z}_i(t_0 + T_p) - \vect{z}_j(t_0 + T_p) - \vect{z}_{ji,des} \|_{\mat{P}_{ij}}^2
+\end{align}\\
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
 definite, while matrices $\mat{G}_{ij}, \mat{P}_{ij} \in \mathbb{R}^{12 \times 12}$ are
 symmetric and positive semi-definite.
+
+
+
+\subsubsection{Optimization problem}
+
+\begin{align}
+  \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
+    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) \\
+  \text{subject to:} & \\
+  & \dot{\overline{\vect{z}}}_i(t) = f_i (\overline{\vect{z}}_i (t), \overline{\vect{u}}_i (t)) \\
+  & \overline{\vect{z}}_i (t_0) = \vect{z}_i (t_0) \\
+  & \overline{\vect{z}}_j (t_0) = \vect{z}_j (t_0) \\
+  & \overline{\vect{u}}_i(t) \in \mathcal{U}_i,\ t \in [t_0, t_0 + T_p)\\
+  & \overline{\vect{z}}_i (t) - \overline{\vect{z}}_j (t) - z_{ji, des} \in \mathcal{Z}_i,\ t \in [t_0, t_0 + T_p]\\
+  & \overline{\vect{z}}_i (t_0 + T_p) - \overline{\vect{z}}_j (t_0 + T_p) - z_{ji,des} \in \mathcal{Z}_i^f \\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_0, t_0 + T_p] \\
+  & \|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K}, t \in [t_0, t_0 + T_p] \\
+  & \|\vect{p}_i(t)\| + r_i < r_W, t \in [t_0, t_0 + T_p] \\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, t \in [t_0, t_0 + T_p] \\
+  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_0, t_0 + T_p]
+\end{align}
+
 
 \begin{gg_box}
 \begin{assumption} (Functions $f_i$ are Lipschitz continuous)
@@ -131,26 +152,6 @@ symmetric and positive semi-definite.
   \label{ass:g_ij_Lipschitz}
 \end{assumption}
 \end{gg_box}
-
-
-\subsubsection{Optimization problem}
-
-\begin{align}
-  \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
-    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_k), \vect{z}_{\mathcal{N}_i}(t_k)\big) \\
-  \text{subject to:} & \\
-  & \dot{\overline{\vect{z}}}_i(t) = f_i (\overline{\vect{z}}_i (t), \overline{\vect{u}}_i (t)) \\
-  & \overline{\vect{z}}_i (t_k) = \vect{z}_i (t_k) \\
-  & \overline{\vect{z}}_j (t_k) = \vect{z}_j (t_k) \\
-  & \overline{\vect{u}}_i(t) \in \mathcal{U}_i,\ t \in [t_k, t_k + T_p)\\
-  & \overline{\vect{z}}_i (t) - \overline{\vect{z}}_j (t) - z_{ji, des} \in \mathcal{Z}_i,\ t \in [t_k, t_k + T_p]\\
-  & \overline{\vect{z}}_i (t_k + T_p) - \overline{\vect{z}}_j (t_k + T_p) - z_{ji,des} \in \mathcal{Z}_i^f \\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_k, t_k + T_p] \\
-  & \|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K}, t \in [t_k, t_k + T_p] \\
-  & \|\vect{p}_i(t)\| + r_i < r_W, t \in [t_k, t_k + T_p] \\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, t \in [t_k, t_k + T_p] \\
-  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_k, t_k + T_p]
-\end{align}
 
 \begin{gg_box}
 \begin{assumption}
