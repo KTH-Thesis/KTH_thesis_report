@@ -154,32 +154,50 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
 
 \section{Introduction}
 
-  \input{sections/01.introduction/introduction.tex}
+  \input{parts/01.introduction.tex}
   \newpage
 
+%-------------------------------------------------------------------------------
+\part{The problem}
+\newpage
 
-\section{Notation and Preliminaries} \label{sec:notation_reliminaries}
+  \section{Notation and Preliminaries}
+    \label{sec:notation_reliminaries}
 
-  \input{sections/02.notation_and_preliminaries/notation_and_preliminaries.tex}
-  \newpage
-
-
-\section{Problem Formulation} \label{sec:prob_formulation}
-
-  \input{sections/03.problem_formulation/problem_formulation.tex}
-  \newpage
-
-
-\section{Problem Solution} \label{sec:solution}
-
-  \input{sections/04.problem_solution/problem_solution.tex}
-  \newpage
+    \input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
+    \input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
+    \input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
+    \newpage
 
 
-\section{Simulation Results}
+  \section{Problem Formulation}
+    \label{sec:prob_formulation}
 
-\section{Conclusions and Future Work}
+    \input{parts/01/sections/02.problem_formulation/01.system_model.tex}
+    \input{parts/01/sections/02.problem_formulation/02.problem_statement.tex}
+    \newpage
 
+%-------------------------------------------------------------------------------
+\part{Advocated Solutions}
+\newpage
+
+  \section{The model}
+    \label{sec:the_model}
+
+    \input{parts/02/sections/01.model/model.tex}
+    \newpage
+
+  \section{Position-based}
+    \label{sec:position_based_solution}
+
+    \input{parts/02/sections/02.position_based/01.position_based_formation.tex}
+    \newpage
+
+  \section{Displacement-based}
+    \label{sec:displacement_based_solution}
+
+    \input{parts/02/sections/03.displacement_based/01.displacement_based_formation.tex}
+    \newpage
 
 
 \bibliography{references}
