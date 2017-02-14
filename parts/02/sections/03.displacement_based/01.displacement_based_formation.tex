@@ -45,14 +45,14 @@ At a generic time $t_0$, agent $i$ solves the following optimization problem:
   & \overline{\vect{u}}_i(t) \in \mathcal{U}_i,\ j \in \mathcal{N}_i, t \in [t_0, t_0 + T_p)\\
   & \overline{\vect{z}}_i (t) - \overline{\vect{z}}_j (t) - z_{ji, des} \in \mathcal{Z}_i,\ t \in [t_0, t_0 + T_p]\\
   & \overline{\vect{z}}_i (t_0 + T_p) - \overline{\vect{z}}_j (t_0 + T_p) - z_{ji,des} \in \mathcal{Z}_i^f, j \in \mathcal{N}_i \\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_0, t_0 + T_p] \label{constraint:p_1}\\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_0, t_0 + T_p] \\
   & \|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K}, t \in [t_0, t_0 + T_p] \\
   & \|\vect{p}_i(t)\| + r_i < r_W, t \in [t_0, t_0 + T_p] \\
   & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, t \in [t_0, t_0 + T_p] \\
-  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_0, t_0 + T_p] \label{constraint:p_5}
+  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_0, t_0 + T_p]
 \end{align}
 
-Constraints \ref{constraint:p_1}-\ref{constraint:p_5} explicitly address the
+Constraints \ref{}-\ref{} explicitly address the
 requirements posed by the problem \eqref{problem}, while the rest exist to
 ensure that formation is achieved under constrained input signals.
 

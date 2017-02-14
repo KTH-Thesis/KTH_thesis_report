@@ -1,120 +1,98 @@
-\subsection{Cost function}
+Here we are interested in steering each agent $i \in \mathcal{V}$ into
+resting at a \textit{position} in 3D space, while conforming to the requirements
+of the problem; that is, all agents should avoid colliding with each other, all
+obstacles in the workspace, and the workspace boundary itself, while remaining
+in a non-singular configuration and sustaining the connectivity to their
+respective neighbours.
 
+
+\subsection{The error model}
+
+A desired configuration $\vect{z}_{i,des} \in \mathbb{R}^9 \times \mathbb{T}^3$
+is associated to each agent $i \in \mathcal{V}$, with the aim of agent $i$
+achieving it in steady-state:
+$\lim\limits_{t \to \infty} \|\vect{z}_i(t) - \vect{z}_{i,des}\| = 0$. The
+interior of this expression denotes the state error of agent $i$:
+
+$$\vect{e}_i(t) = \vect{z}_i(t) - \vect{z}_{i,des}, \vect{e}_i(t) :
+\mathbb{R}_{\geq 0} \to \mathbb{R}^9 \times \mathbb{T}^3$$
+
+The error dynamics are denoted by $g_i(\vect{e}_i, \vect{u}_i)$:
 \begin{align}
-  J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) &\triangleq
-    J_i^U \big(\overline{\vect{u}}_i (\cdot) \big) +
-    J_i^Z \big(\vect{z}_i (t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big)
+  \dot{\vect{e}}_i(t) = \dot{\vect{z}}_i(t) - \dot{\vect{z}}_{i,des} =
+  \dot{\vect{z}}_i(t) = f_i(\vect{z}_i(t), \vect{u}_i(t)) = g_i(\vect{e}_i(t), \vect{u}_i(t))
+  \label{eq:position_based_error_model}
 \end{align}
-
-where
-\begin{align}
-  J_i^U \big(\overline{\vect{u}}_i (\cdot)\big) &\triangleq
-    \int_{t_0}^{t_0 + T_p} h_i \big(\overline{\vect{u}}_i (\tau)\big) d \tau \\
-  J_i^Z \big(\vect{z}_i (t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) & \triangleq
-    \sum_{j \in \mathcal{N}_i} \Bigg(\int_{t_0}^{t_0 + T_p} g_{ij} \big(\overline{\vect{z}}_i (\tau), \overline{\vect{z}}_j (\tau)\big) d \tau +
-    V_{ij} \big(\overline{\vect{z}}_i (t_0 + T_p), \overline{\vect{z}}_j (t_0 + T_p)\big)\Bigg)
-\end{align}
-\note{without the sum maybe? (just in col form)}
-and
-
-\begin{align}
-  h_i \big(\vect{u}_i(t) \big)
-    &\triangleq \| \vect{u}_i(t)\|_{\mat{R}_i}^2 \\
-  g_{ij}\big(\vect{z}_i(t), \vect{z}_j(t)\big)
-    & \triangleq \| \vect{z}_i(t) - \vect{z}_j(t) - \vect{z}_{ji,des} \|_{\mat{G}_{ij}}^2 \\
-  V_{ij} \big(\vect{z}_i (t_0 + T_p), \vect{z}_j (t_0 + T_p)\big)
-    & \triangleq \| \vect{z}_i(t_0 + T_p) - \vect{z}_j(t_0 + T_p) - \vect{z}_{ji,des} \|_{\mat{P}_{ij}}^2
-\end{align}\\
-Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
-definite, while matrices $\mat{G}_{ij}, \mat{P}_{ij} \in \mathbb{R}^{12 \times 12}$ are
-symmetric and positive semi-definite.
+with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$
 
 
-
-\subsection{Optimization problem}
+\subsection{The optimization problem}
 
 At a generic time $t_0$, agent $i$ solves the following optimization problem:
 
 \begin{align}
   \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
-    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{z}_i(t_0), \vect{z}_{\mathcal{N}_i}(t_0)\big) \\
+    J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{e}_i(t_0)) \triangleq
+      \int_{t_0}^{t_0 + T_p} F_i \big(\overline{\vect{e}}_i(\tau), \overline{\vect{u}}_i (\tau)\big) d \tau +
+      V_i \big(\overline{\vect{e}}_i (t_0 + T_p)\big) \\
   \text{subject to:} & \\
-  & \dot{\overline{\vect{z}}}_i(t) = f_i (\overline{\vect{z}}_i (t), \overline{\vect{u}}_i (t)) \\
-  & \overline{\vect{z}}_i (t_0) = \vect{z}_i (t_0) \\
-  & \overline{\vect{z}}_j (t_0) = \vect{z}_j (t_0), j \in \mathcal{N}_i \\
-  & \overline{\vect{u}}_i(t) \in \mathcal{U}_i,\ j \in \mathcal{N}_i, t \in [t_0, t_0 + T_p)\\
-  & \overline{\vect{z}}_i (t) - \overline{\vect{z}}_j (t) - z_{ji, des} \in \mathcal{Z}_i,\ t \in [t_0, t_0 + T_p]\\
-  & \overline{\vect{z}}_i (t_0 + T_p) - \overline{\vect{z}}_j (t_0 + T_p) - z_{ji,des} \in \mathcal{Z}_i^f, j \in \mathcal{N}_i \\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), t \in [t_0, t_0 + T_p] \label{constraint:p_1}\\
-  & \|\vect{p}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K}, t \in [t_0, t_0 + T_p] \\
-  & \|\vect{p}_i(t)\| + r_i < r_W, t \in [t_0, t_0 + T_p] \\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, t \in [t_0, t_0 + T_p] \\
-  & \theta_i(t) \ne \pm \frac{\pi}{2}, t \in [t_0, t_0 + T_p] \label{constraint:p_5}
-\end{align}
-
+  & \dot{\overline{\vect{e}}}_i(t) = g_i (\overline{\vect{e}}_i (t), \overline{\vect{u}}_i (t)) \\
+  & \overline{\vect{e}}_i (t_0) = \vect{e}_i (t_0) \\
+  & \overline{\vect{u}}_i(t) \in \mathcal{U}_i, t \in [t_0, t_0 + T_p)\\
+  & \overline{\vect{e}}_i (t) \in \mathcal{E}_i,\ t \in [t_0, t_0 + T_p]\\
+  & \overline{\vect{e}}_i (t_0 + T_p) \in \mathcal{E}_i^f \\
+  \text{and } \forall t \in [t_0, t_0 + T_p]:& \nonumber \\
+  & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t) \label{constraint:p_1}\\
+  & \|\overline{\vect{p}}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K} \\
+  & \|\overline{\vect{p}}_i(t)\| + r_i < r_W \\
+  & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| < d_i, \forall j \in \mathcal{N}_i \\
+  & \overline{\theta}_i(t) \ne \pm \frac{\pi}{2} \label{constraint:p_5}
+\end{align}\\
 Constraints \ref{constraint:p_1}-\ref{constraint:p_5} explicitly address the
 requirements posed by the problem \eqref{problem}, while the rest exist to
-ensure that formation is achieved under constrained input signals.
+ensure that formation is achieved under constrained states and input signals.
+
+The functions
+$F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
+$V_i: \mathcal{E}_i^f \to \mathbb{R}_{\geq 0}$ are defined as
+\begin{align}
+  F_i (\vect{e}_i, \vect{u}_i)
+    &\triangleq \| \vect{e}_i\|_{\mat{Q}_i}^2 + \| \vect{u}_i\|_{\mat{R}_i}^2 \\
+  V_i (\vect{e}_i)
+    & \triangleq \| \vect{e}_i \|_{\mat{P}_i}^2
+\end{align}\\
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
+definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
+are symmetric and positive semi-definite.
+
+The set $\mathcal{E}_i$ is such that
+$$\mathcal{E}_i = \{\vect{e}_i \in \mathbb{R}^{12} : \vect{e}_i \in \mathcal{Z}_i \oplus (-z_{i,des} )\}$$
+
+The set $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is an admissible positively
+invariant set \note{?? define it} for system \eqref{eq:position_based_error_model}
+such that
+
+\begin{align}
+  \mathcal{E}_i^f = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \epsilon_0 \}
+\end{align}
+where $\epsilon_0$ is an arbitrarily small but fixed positive real scalar.
 
 
 \begin{gg_box}
-\begin{assumption} (Functions $f_i$ are Lipschitz continuous)
-  \label{ass:f_i_Lipschitz}
+\begin{assumption} (Functions $g_i$ are Lipschitz continuous)
+  \label{ass:g_i_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
 \begin{gg_box}
-\begin{assumption} (Functions $h_i$ are Lipschitz continuous)
-  \label{ass:h_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
-
-\begin{gg_box}
-\begin{assumption} (Functions $g_{ij}$ are Lipschitz continuous)
-  \label{ass:g_ij_Lipschitz}
-\end{assumption}
-\end{gg_box}
-
-\begin{gg_box}
-\begin{assumption}
-
-  There exists a local stabilizing controller
-  $\vect{\kappa}_i(\vect{x}) \in \mathcal{U}_i$ such that
-
-  \begin{align}
-    \dfrac{\partial V_i}{\partial \vect{x}} f_i \Big(\vect{x}(\tau), \vect{\kappa}_i\big(\vect{x}(\tau)\big)\Big) +
-      h_i\Big(\vect{x}(\tau), \vect{\kappa}_i \big(\vect{x}(\tau)\big)\Big) \leq 0, \forall \vect{x} \in \Phi_i
-  \end{align}
-
-  where $\Phi_i = \{\vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \leq \alpha_i \}$, and
-  $\Phi_i \subseteq \mathcal{X}_i^{T_p} = \{x \in \mathbb{R}^n : \vect{\kappa}_i(\vect{x}) \in \mathcal{U}_i\}$
-
-  \label{ass:local_controller_k}
+\begin{assumption} (Functions $F_i$ are Lipschitz continuous)
+  \label{ass:F_i_Lipschitz}
 \end{assumption}
 \end{gg_box}
 
 
 \begin{gg_box}
-\begin{assumption}
-
-  The terminal costs $V_i(\vect{x})$ are Lipschitz continuous in $\vect{x} \in \Phi_i$
-  with Lipschitz constants $L_{V_i}$:
-
-  \begin{align}
-    \| V_i(\vect{x}_1) - V_i(\vect{x}_2)\| \leq L_{V_i} \|\vect{x}_1 - \vect{x}_2 \|
-  \end{align}
-
+\begin{assumption} (Functions $V_i$ are Lipschitz continuous)
   \label{ass:V_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
-
-
-\begin{gg_box}
-\begin{assumption}
-
-  The terminal set $\mathcal{X}_{f_i} = \{ \vect{x} \in \mathbb{R}^n : V_i(\vect{x}) \in \alpha_{V_i}\}$
-  is such that for all $\vect{x} \in \Phi_i$, $f_i\big(\vect{x}, \vect{\kappa}_i(\vect{x})\big) \in \mathcal{X}_{f_i} \subseteq \Phi_i$.
-
-  \label{ass:x_f_i}
 \end{assumption}
 \end{gg_box}
