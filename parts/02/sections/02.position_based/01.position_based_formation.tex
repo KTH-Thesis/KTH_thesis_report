@@ -6,6 +6,7 @@ in a non-singular configuration and sustaining the connectivity to their
 respective neighbours.
 
 
+%-------------------------------------------------------------------------------
 \subsection{The error model}
 
 A desired configuration $\vect{z}_{i,des} \in \mathbb{R}^9 \times \mathbb{T}^3$
@@ -26,6 +27,7 @@ The error dynamics are denoted by $g_i(\vect{e}_i, \vect{u}_i)$:
 with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$
 
 
+%-------------------------------------------------------------------------------
 \subsection{The optimization problem}
 
 At a generic time $t_0$, agent $i$ solves the following optimization problem:
@@ -78,10 +80,11 @@ where $\epsilon_0$ is an arbitrarily small but fixed positive real scalar.\\
 
 The solution to the optimal control problem \eqref{position_based_cost} -
 \eqref{constraint:p_5} at time $t_0$ is an optimal control input
-$\vect{u}_i^{\ast}(t;\ \vect{e}_i(t_0))$, with $t \in [t_0, t_0 + T_p]$, which
-is applied to the open-loop system until the next sampling instant $t_0 + h$:
+$\vect{u}_i^{\star}(\cdot;\ \vect{e}_i(t_0))$ which
+is applied to the open-loop system until the next sampling instant $t_0 + h$,
+at which time a new optimal control problem is solved in the same manner:
 \begin{align}
-  \vect{u}_i\big(t;\ \vect{e}_i(t_0)\big) = \vect{u}_i^{\ast}\big(t_0;\ \vect{e}_i(t_0)\big) \label{eq:position_based_optimal_u} \\
+  \vect{u}_i\big(t;\ \vect{e}_i(t_0)\big) = \vect{u}_i^{\star}\big(t;\ \vect{e}_i(t_0)\big) \label{eq:position_based_optimal_u} \\
   t \in [t_0, t_0 + h) \nonumber \\
   0 < h < T_p \nonumber
 \end{align}
@@ -91,15 +94,18 @@ recalculated at each sampling instant based on the then-current state. The
 solution to equation \eqref{eq:position_based_error_model}, starting at time
 $t_0$, from an initial condition $\vect{e}_i(t_0)$, by application of the
 control input $\vect{u}_i : [t_0, t_1] \to \mathcal{U}_i$ is denoted by
-$$\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$$
-with $\tau \in [t_0, t_1]$.
+$$\vect{e}_i\big(t;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$$
+with $t \in [t_0, t_1]$.
 
 The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
 at time $t_0 + \tau$, based on the measurement of the state at time
 $t_0$, $\vect{e}_i(t_0)$, by application of the control input
-$\vect{u}_i\big(t;\ \vect{e}_i(t_0)\big)$, for the time period $t \in [t_0, t_0 + \tau]$
+$\vect{u}_i\big(t;\ \vect{e}_i(t_0)\big)$, for the time period $t \in [t_0, t_1]$
 is denoted by
-$$\overline{\vect{e}}_i\big(t_0 + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$$
+
+\begin{align}
+  \overline{\vect{e}}_i\big(t_0 + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \label{eq:position_based_predicted_error_0}
+\end{align}
 As is natural,
 $\vect{e}_i(t_0) = \overline{\vect{e}}_i\big(t_0;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$.\\
 
@@ -108,18 +114,22 @@ We can now give the definition of an \textit{admissible input}:
 \begin{bw_box}
 \begin{definition} (Admissible input)\\
 
-  A control input $\vect{u}_i : [0, T_p] \to \mathbb{R}^6$ for a state
+  A control input $\vect{u}_i : [t_0, t_0 + T_p] \to \mathbb{R}^6$ for a state
   $\vect{e}_i(t_0)$ is called \textit{admissible} if all the following hold:
 
   \begin{enumerate}
     \item $\vect{u}_i(\cdot)$ is piecewise continuous
-    \item $\vect{u}_i(\tau) \in \mathcal{U},\ \forall \tau \in [t_0, t_0 + T_p]$
+    \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_0, t_0 + T_p]$
     \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_0, t_0 + T_p]$
-    \item $\vect{e}_i\big(T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i^f$
+    \item $\vect{e}_i\big(t_0 + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i^f$
   \end{enumerate}
 
 \end{definition}
 \end{bw_box}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Feasibility and Convergence}
 
 Under these considerations, we can now state the theorem that relates to
 the guaranteeing of the stability of the compound system of agents
@@ -127,12 +137,14 @@ $i \in \mathcal{V}$, when each of them is assigned a desired
 position which result in feasible displacements:\\
 
 \begin{bw_box}
-\begin{theorem} (Convergence theorem)\\
+\begin{theorem}
 
   Suppose that
 
   \begin{enumerate}
-    \item the optimal control problem \eqref{position_based_cost} -
+    \item the terminal region $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is
+      closed with $0 \in \mathcal{E}_i^f$
+    \item a solution to the optimal control problem \eqref{position_based_cost} -
       \eqref{constraint:p_5} is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:after_formation_geometry} hold at time $t=0$
@@ -147,12 +159,73 @@ position which result in feasible displacements:\\
 
   \end{enumerate}
 
-  Then the closed loop system \eqref{eq:position_based_error_model} under the
+  then the closed loop system \eqref{eq:position_based_error_model} under the
   control input \eqref{eq:position_based_optimal_u} converges to the set
   $\mathcal{E}_i^f$ when $t \to \infty$.
 
 \end{theorem}
 \end{bw_box}
+
+\textbf{Proof}. The proof of the above theorem consists of two parts:
+in the first, recursive feasibility is established, that is, initial
+feasibility is shown to imply subsequent feasibility; in the second, and based
+on the first part, it is shown that the error $\vect{e}_i(t)$ converges to the
+terminal set $\mathcal{E}_i^f$.\\
+
+\textbf{Feasibility analysis} Consider a sampling instant $t_0$ for which a
+solution $\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big)$ to
+\eqref{position_based_cost} exists.
+%In between $t_0$ and $t_0 + h$,
+%where $h$ is the sampling time, the optimal control signal
+%$\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big)$ is applied to the open-loop
+%system.
+Suppose now a time instant $t_1$ such that\footnote{It is not strictly necessary
+that $t_1 = t_0 + h$ here, however it is necessary for the following that
+$t_1 - t_0 \leq h$} $t_0 < t_1 < t_0 + T_p$, and consider that the
+optimal control signal calculated at $t_0$ contains the following two portions:
+
+\begin{equation}
+  \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big) = \left\{ \\
+      \begin{array}{ll}
+        \vect{u}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_0)\big), & \tau_1 \in [t_0, t_1] \\
+        \vect{u}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_0)\big), & \tau_2 \in [t_1, t_0 + T_p]
+      \end{array}
+      \right.
+  \label{eq:optimal_input_portions}
+\end{equation}
+
+Both portions are admissible since the calculated optimal control input is
+admissible, and hence they both conform to the input constraints.
+As for the resulting predicted states, they satisfy the state constraints, and,
+crucially: $\overline{\vect{e}}_i\big(t_0 + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i^f$.
+Furthermore, according to assumption (3) of the theorem, there exists an
+admissible input $\vect{u}_i^f$ that renders $\mathcal{E}_i^f$ invariant over
+$[t_0 + T_p, t_0 + T_p + h]$.
+
+Given the above facts, we can construct an admissible input for time $t_1$
+by sewing together the second portion of \eqref{eq:optimal_input_portions}
+and the input $\vect{u}_i^f(\cdot)$:
+
+\begin{equation}
+  \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_1)\big) = \left\{ \\
+      \begin{array}{ll}
+        \vect{u}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_0)\big), & \tau_1 \in [t_1, t_0 + T_p] \\
+        %\vect{u}_i^f\Big(\overline{\vect{e}}_i\big(t_0 + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_0)\big)\Big), & \tau_2 \in (t_0 + T_p, t_1 + T_p]
+        \vect{u}_i^f(\tau_2 - t_0 - T_p), & \tau_2 \in (t_0 + T_p, t_1 + T_p]
+      \end{array}
+      \right.
+\end{equation}
+
+Applied at time $t_1$, $\tilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_1)\big)$
+is an admissible control input as a composition of admissible control inputs.
+
+This means that feasibility of a solution to the optimization problem at time
+$t_0$ implies feasibility at time $t_1 > t_0$, and, thus, since at time $t=0$
+a solution is feasible, a solution to the optimal control problem is feasible
+for all $t \geq 0$.
+
+
+\textbf{Stability analysis}
 
 
 
