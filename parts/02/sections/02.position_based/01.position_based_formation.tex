@@ -172,7 +172,8 @@ feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error $\vect{e}_i(t)$ converges to the
 terminal set $\mathcal{E}_i^f$.\\
 
-\textbf{Feasibility analysis} Consider a sampling instant $t_0$ for which a
+\textbf{Feasibility analysis}
+Consider a sampling instant $t_0$ for which a
 solution $\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big)$ to
 \eqref{position_based_cost} exists.
 %In between $t_0$ and $t_0 + h$,
@@ -209,9 +210,9 @@ and the input $\vect{u}_i^f(\cdot)$:
 \begin{equation}
   \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_1)\big) = \left\{ \\
       \begin{array}{ll}
-        \vect{u}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_0)\big), & \tau_1 \in [t_1, t_0 + T_p] \\
+        \vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_0)\big), & \tau \in [t_1, t_0 + T_p] \\
         %\vect{u}_i^f\Big(\overline{\vect{e}}_i\big(t_0 + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_0)\big)\Big), & \tau_2 \in (t_0 + T_p, t_1 + T_p]
-        \vect{u}_i^f(\tau_2 - t_0 - T_p), & \tau_2 \in (t_0 + T_p, t_1 + T_p]
+        \vect{u}_i^f(\tau - t_0 - T_p), & \tau \in (t_0 + T_p, t_1 + T_p]
       \end{array}
       \right.
 \end{equation}
@@ -221,11 +222,18 @@ is an admissible control input as a composition of admissible control inputs.
 
 This means that feasibility of a solution to the optimization problem at time
 $t_0$ implies feasibility at time $t_1 > t_0$, and, thus, since at time $t=0$
-a solution is feasible, a solution to the optimal control problem is feasible
-for all $t \geq 0$.
+a solution is assumed to be feasible, a solution to the optimal control problem
+is feasible for all $t \geq 0$.\\
 
+\textbf{Convergence analysis}
+The second part of the proof involves demonstrating the convergence of the
+state $\vect{e}_i$ to the terminal set $\mathcal{E}_i^f$. In order for this
+to be proved, it must be shown that a proper value function decreases along
+the solution trajectories starting at time $t_0$. We consider the
+\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t_0)\big)$ as a candidate
+Lyapunov function:
+$$J_i^{\star}\big(\vect{e}_i(t_0)\big) \triangleq J_i \Big(\vect{e}_i(t_0), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big)\Big)$$
 
-\textbf{Stability analysis}
 
 
 
