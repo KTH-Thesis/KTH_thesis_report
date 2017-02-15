@@ -34,8 +34,8 @@ At a generic time $t_0$, agent $i$ solves the following optimization problem:
   \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
     J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{e}_i(t_0)) \triangleq
       \int_{t_0}^{t_0 + T_p} F_i \big(\overline{\vect{e}}_i(\tau), \overline{\vect{u}}_i (\tau)\big) d \tau +
-      V_i \big(\overline{\vect{e}}_i (t_0 + T_p)\big) \\
-  \text{subject to:} & \\
+      V_i \big(\overline{\vect{e}}_i (t_0 + T_p)\big) \label{position_based_cost} \\
+  \text{subject to:} & \nonumber \\
   & \dot{\overline{\vect{e}}}_i(t) = g_i (\overline{\vect{e}}_i (t), \overline{\vect{u}}_i (t)) \\
   & \overline{\vect{e}}_i (t_0) = \vect{e}_i (t_0) \\
   & \overline{\vect{u}}_i(t) \in \mathcal{U}_i, t \in [t_0, t_0 + T_p)\\
@@ -71,11 +71,71 @@ $$\mathcal{E}_i = \{\vect{e}_i \in \mathbb{R}^{12} : \vect{e}_i \in \mathcal{Z}_
 The set $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is an admissible positively
 invariant set \note{?? define it} for system \eqref{eq:position_based_error_model}
 such that
-
 \begin{align}
   \mathcal{E}_i^f = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \epsilon_0 \}
 \end{align}
-where $\epsilon_0$ is an arbitrarily small but fixed positive real scalar.
+where $\epsilon_0$ is an arbitrarily small but fixed positive real scalar.\\
+
+The solution to the optimal control problem \eqref{position_based_cost} -
+\eqref{constraint:p_5} at time $t_0$ is an optimal control input
+$\vect{u}_i^{\ast}(t;\ \vect{e}_i(t_0))$, with $t \in [t_0, t_0 + T_p]$, which
+is applied to the open-loop system until the next sampling instant $t_0 + h$:
+\begin{align}
+  \vect{u}_i(t;\ \vect{e}_i(t_0)) = \vect{u}_i^{\ast}(t_0;\ \vect{e}_i(t_0)) \\
+  t \in [t_0, t_0 + h) \\
+  0 < h < T_p
+\end{align}
+
+The control input $\vect{u}_i(\cdot)$ is a feedback, since it is
+recalculated at each sampling instant based on the then-current state. The
+solution to equation \eqref{eq:position_based_error_model}, starting at time
+$t_0$, from an initial condition $\vect{e}_i(t_0)$, by application of the
+control input $\vect{u}_i : [t_0, t_1] \to \mathcal{U}_i$ is denoted by
+$$\vect{e}_i(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$$
+with $\tau \in [t_0, t_1]$.
+
+The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
+at time $t_0 + \tau$, based on the measurement of the state at time
+$t_0$, $\vect{e}_i(t_0)$, by application of the control input
+$\vect{u}_i(t;\ \vect{e}_i(t_0))$, for the time period $t \in [t_0, t_0 + \tau]$
+is denoted by
+$$\overline{\vect{e}}_i(t_0 + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$$
+As is natural,
+$\vect{e}_i(t_0) = \overline{\vect{e}}_i(t_0;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$.\\
+
+We can now give the definition of an \textit{admissible input}:
+
+\begin{bw_box}
+\begin{definition} (Admissible input)\\
+
+  A control input $\vect{u}_i : [0, T_p] \to \mathbb{R}^6$ for a state
+  $\vect{e}_i(t_0)$ is called \textit{admissible} if all the following hold:
+
+  \begin{enumerate}
+    \item $\vect{u}_i(\cdot)$ is piecewise continuous
+    \item $\vect{u}_i(\tau) \in \mathcal{U},\ \forall \tau \in [t_0, t_0 + T_p]$
+    \item $\vect{e}_i(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)) \in \mathcal{E}_i,\ \forall \tau \in [t_0, t_0 + T_p]$
+    \item $\vect{e}_i(T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)) \in \mathcal{E}_i^f$
+  \end{enumerate}
+
+\end{definition}
+\end{bw_box}
+
+
+\begin{bw_box}
+\begin{theorem} Suppose that
+
+  \begin{enumerate}
+    \item The optimal control problem \eqref{position_based_cost} -
+      \eqref{constraint:p_5} is feasible at time $t=0$, that is, assumptions
+      \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
+      \eqref{ass:after_formation_geometry} hold at time $t=0$
+    \item
+  \end{enumerate}
+
+\end{theorem}
+\end{bw_box}
+
 
 
 \begin{gg_box}
