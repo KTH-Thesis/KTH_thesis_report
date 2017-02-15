@@ -12,7 +12,7 @@ A desired configuration $\vect{z}_{i,des} \in \mathbb{R}^9 \times \mathbb{T}^3$
 is associated to each agent $i \in \mathcal{V}$, with the aim of agent $i$
 achieving it in steady-state:
 $\lim\limits_{t \to \infty} \|\vect{z}_i(t) - \vect{z}_{i,des}\| = 0$. The
-interior of this expression denotes the state error of agent $i$:
+interior of the norm of this expression denotes the state error of agent $i$:
 
 $$\vect{e}_i(t) = \vect{z}_i(t) - \vect{z}_{i,des}, \vect{e}_i(t) :
 \mathbb{R}_{\geq 0} \to \mathbb{R}^9 \times \mathbb{T}^3$$
@@ -20,7 +20,7 @@ $$\vect{e}_i(t) = \vect{z}_i(t) - \vect{z}_{i,des}, \vect{e}_i(t) :
 The error dynamics are denoted by $g_i(\vect{e}_i, \vect{u}_i)$:
 \begin{align}
   \dot{\vect{e}}_i(t) = \dot{\vect{z}}_i(t) - \dot{\vect{z}}_{i,des} =
-  \dot{\vect{z}}_i(t) = f_i(\vect{z}_i(t), \vect{u}_i(t)) = g_i(\vect{e}_i(t), \vect{u}_i(t))
+  \dot{\vect{z}}_i(t) = f_i\big(\vect{z}_i(t), \vect{u}_i(t)\big) = g_i(\vect{e}_i(t), \vect{u}_i(t)\big)
   \label{eq:position_based_error_model}
 \end{align}
 with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$
@@ -36,7 +36,7 @@ At a generic time $t_0$, agent $i$ solves the following optimization problem:
       \int_{t_0}^{t_0 + T_p} F_i \big(\overline{\vect{e}}_i(\tau), \overline{\vect{u}}_i (\tau)\big) d \tau +
       V_i \big(\overline{\vect{e}}_i (t_0 + T_p)\big) \label{position_based_cost} \\
   \text{subject to:} & \nonumber \\
-  & \dot{\overline{\vect{e}}}_i(t) = g_i (\overline{\vect{e}}_i (t), \overline{\vect{u}}_i (t)) \\
+  & \dot{\overline{\vect{e}}}_i(t) = g_i \big(\overline{\vect{e}}_i (t), \overline{\vect{u}}_i (t)\big) \\
   & \overline{\vect{e}}_i (t_0) = \vect{e}_i (t_0) \\
   & \overline{\vect{u}}_i(t) \in \mathcal{U}_i, t \in [t_0, t_0 + T_p)\\
   & \overline{\vect{e}}_i (t) \in \mathcal{E}_i,\ t \in [t_0, t_0 + T_p]\\
@@ -81,9 +81,9 @@ The solution to the optimal control problem \eqref{position_based_cost} -
 $\vect{u}_i^{\ast}(t;\ \vect{e}_i(t_0))$, with $t \in [t_0, t_0 + T_p]$, which
 is applied to the open-loop system until the next sampling instant $t_0 + h$:
 \begin{align}
-  \vect{u}_i(t;\ \vect{e}_i(t_0)) = \vect{u}_i^{\ast}(t_0;\ \vect{e}_i(t_0)) \\
-  t \in [t_0, t_0 + h) \\
-  0 < h < T_p
+  \vect{u}_i\big(t;\ \vect{e}_i(t_0)\big) = \vect{u}_i^{\ast}\big(t_0;\ \vect{e}_i(t_0)\big) \label{eq:position_based_optimal_u} \\
+  t \in [t_0, t_0 + h) \nonumber \\
+  0 < h < T_p \nonumber
 \end{align}
 
 The control input $\vect{u}_i(\cdot)$ is a feedback, since it is
@@ -91,17 +91,17 @@ recalculated at each sampling instant based on the then-current state. The
 solution to equation \eqref{eq:position_based_error_model}, starting at time
 $t_0$, from an initial condition $\vect{e}_i(t_0)$, by application of the
 control input $\vect{u}_i : [t_0, t_1] \to \mathcal{U}_i$ is denoted by
-$$\vect{e}_i(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$$
+$$\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$$
 with $\tau \in [t_0, t_1]$.
 
 The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
 at time $t_0 + \tau$, based on the measurement of the state at time
 $t_0$, $\vect{e}_i(t_0)$, by application of the control input
-$\vect{u}_i(t;\ \vect{e}_i(t_0))$, for the time period $t \in [t_0, t_0 + \tau]$
+$\vect{u}_i\big(t;\ \vect{e}_i(t_0)\big)$, for the time period $t \in [t_0, t_0 + \tau]$
 is denoted by
-$$\overline{\vect{e}}_i(t_0 + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$$
+$$\overline{\vect{e}}_i\big(t_0 + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$$
 As is natural,
-$\vect{e}_i(t_0) = \overline{\vect{e}}_i(t_0;\ \vect{u}_i(\cdot), \vect{e}_i(t_0))$.\\
+$\vect{e}_i(t_0) = \overline{\vect{e}}_i\big(t_0;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big)$.\\
 
 We can now give the definition of an \textit{admissible input}:
 
@@ -114,24 +114,42 @@ We can now give the definition of an \textit{admissible input}:
   \begin{enumerate}
     \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U},\ \forall \tau \in [t_0, t_0 + T_p]$
-    \item $\vect{e}_i(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)) \in \mathcal{E}_i,\ \forall \tau \in [t_0, t_0 + T_p]$
-    \item $\vect{e}_i(T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)) \in \mathcal{E}_i^f$
+    \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_0, t_0 + T_p]$
+    \item $\vect{e}_i\big(T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i^f$
   \end{enumerate}
 
 \end{definition}
 \end{bw_box}
 
+Under these considerations, we can now state the theorem that relates to
+the guaranteeing of the stability of the compound system of agents
+$i \in \mathcal{V}$, when each of them is assigned a desired
+position which result in feasible displacements:\\
 
 \begin{bw_box}
-\begin{theorem} Suppose that
+\begin{theorem} (Convergence theorem)\\
+
+  Suppose that
 
   \begin{enumerate}
-    \item The optimal control problem \eqref{position_based_cost} -
+    \item the optimal control problem \eqref{position_based_cost} -
       \eqref{constraint:p_5} is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:after_formation_geometry} hold at time $t=0$
-    \item
+    \item there exists an admissible control input
+      $\vect{u}_i^f : [0, h] \to \mathcal{U}_i$ such that for all
+      $\vect{e}_i \in \mathcal{E}_i^f$ and $\tau \in [0,h]$:
+
+      \begin{enumerate}
+        \item $\vect{e}_i(\tau) \in \mathcal{E}_i^f$
+        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i(\vect{e}_i(\tau), \vect{u}_i^f(\tau)) + F_i(\vect{e}_i(\tau), \vect{u}_i^f(\tau)) \leq 0$
+      \end{enumerate}
+
   \end{enumerate}
+
+  Then the closed loop system \eqref{eq:position_based_error_model} under the
+  control input \eqref{eq:position_based_optimal_u} converges to the set
+  $\mathcal{E}_i^f$ when $t \to \infty$.
 
 \end{theorem}
 \end{bw_box}
