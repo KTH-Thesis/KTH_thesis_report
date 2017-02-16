@@ -13,6 +13,6 @@
 \contentsline {subsection}{\numberline {5.1}The error model}{15}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}The optimization problem}{15}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}Feasibility and Convergence}{17}{subsection.5.3}
-\contentsline {section}{\numberline {6}Displacement-based formation}{19}{section.6}
-\contentsline {subsection}{\numberline {6.1}Cost function}{19}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Optimization problem}{19}{subsection.6.2}
+\contentsline {section}{\numberline {6}Displacement-based formation}{23}{section.6}
+\contentsline {subsection}{\numberline {6.1}Cost function}{23}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Optimization problem}{23}{subsection.6.2}
