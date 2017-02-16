@@ -70,9 +70,9 @@ are symmetric and positive semi-definite.
 The set $\mathcal{E}_i$ is such that
 $$\mathcal{E}_i = \{\vect{e}_i \in \mathbb{R}^{12} : \vect{e}_i \in \mathcal{Z}_i \oplus (-z_{i,des} )\}$$
 
-The set $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is an admissible positively
-invariant set \note{?? define it} for system \eqref{eq:position_based_error_model}
-such that
+The terminal set $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is an admissible
+positively invariant set \note{?? define it} for system
+\eqref{eq:position_based_error_model} such that
 \begin{align}
   \mathcal{E}_i^f = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \epsilon_0 \}
 \end{align}
@@ -134,7 +134,7 @@ We can now give the definition of an \textit{admissible input}:
 Under these considerations, we can now state the theorem that relates to
 the guaranteeing of the stability of the compound system of agents
 $i \in \mathcal{V}$, when each of them is assigned a desired
-position which result in feasible displacements:\\
+position which results in feasible displacements:\\
 
 \begin{bw_box}
 \begin{theorem}
@@ -200,8 +200,8 @@ admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
 crucially: $\overline{\vect{e}}_i\big(t_0 + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_0)\big) \in \mathcal{E}_i^f$.
 Furthermore, according to assumption (3) of the theorem, there exists an
-admissible input $\vect{u}_i^f$ that renders $\mathcal{E}_i^f$ invariant over
-$[t_0 + T_p, t_0 + T_p + h]$.
+admissible (and certainly not guaranteed optimal) input $\vect{u}_i^f$ that
+renders $\mathcal{E}_i^f$ invariant over $[t_0 + T_p, t_0 + T_p + h]$.
 
 Given the above facts, we can construct an admissible input for time $t_1$
 by sewing together the second portion of \eqref{eq:optimal_input_portions}
@@ -215,6 +215,7 @@ and the input $\vect{u}_i^f(\cdot)$:
         \vect{u}_i^f(\tau - t_0 - T_p), & \tau \in (t_0 + T_p, t_1 + T_p]
       \end{array}
       \right.
+\label{eq:optimal_input_t_plus_one}
 \end{equation}
 
 Applied at time $t_1$, $\tilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_1)\big)$
@@ -229,29 +230,27 @@ is feasible for all $t \geq 0$.\\
 The second part of the proof involves demonstrating the convergence of the
 state $\vect{e}_i$ to the terminal set $\mathcal{E}_i^f$. In order for this
 to be proved, it must be shown that a proper value function decreases along
-the solution trajectories starting at time $t_0$. We consider the
-\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t_0)\big)$ as a candidate
+the solution trajectories starting at some initial time $t_0$. We consider the
+\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
 Lyapunov function:
-$$J_i^{\star}\big(\vect{e}_i(t_0)\big) \triangleq J_i \Big(\vect{e}_i(t_0), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_0)\big)\Big)$$
+$$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
+and, in particular, our goal is to show that that this cost decreases over
+consecutive sampling instants $t_1 = t_0 + h$, i.e.
+$J_i^{\star}\big(\vect{e}_i(t_1)\big) - J_i^{\star}\big(\vect{e}_i(t_0)\big) \leq 0$.\\
 
-
-
-
-\begin{gg_box}
-\begin{assumption} (Functions $g_i$ are Lipschitz continuous)
-  \label{ass:g_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
-
-\begin{gg_box}
-\begin{assumption} (Functions $F_i$ are Lipschitz continuous)
-  \label{ass:F_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
-
-
-\begin{gg_box}
-\begin{assumption} (Functions $V_i$ are Lipschitz continuous)
-  \label{ass:V_i_Lipschitz}
-\end{assumption}
-\end{gg_box}
+In order not to wreak notational havoc, let us define the following terms:
+\begin{itemize}
+  \item $\vect{u}_{0,i}(\tau) \triangleq \vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_0)\big)$
+    as the \textit{optimal} input based on the measurement of state
+    $\vect{e}_i(t_0)$, applied at time $\tau \geq t_0$
+  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{0,i}(\tau), \vect{e}_i(t_0)\big)$
+    as the \textit{predicted} state at time $\tau \geq t_0$, that is,
+    the state that results from the application of the above input
+    $\vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_0)\big)$ at time $\tau$
+  \item $\vect{u}_{1,i}(\tau) \triangleq \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_1)\big)$
+    as the \textit{feasible} input applied at $\tau \geq t_1$ (see eq. \eqref{eq:optimal_input_t_plus_one} above)
+  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{1,i}(\tau), \vect{e}_i(t_1)\big)$
+    as the \textit{predicted} state at time $\tau \geq t_1$, that is,
+    the state that results from the application of the above input
+    $\tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_1)\big)$ at time $\tau$
+\end{itemize}
