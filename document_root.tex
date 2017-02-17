@@ -1,123 +1,11 @@
 \documentclass[a4paper,12pt,oneside]{article}
 
-\usepackage[left=1.0in, right=1.0in, top=1.0in, bottom=1.0in]{geometry}
-
-\usepackage[toc,page]{appendix}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{color}
-\usepackage{graphics}
-\usepackage{graphicx}
-\usepackage{epsfig}
-\usepackage{epstopdf}
-\epstopdfsetup{update}
-\usepackage{float}
-\usepackage{rotating}
-\usepackage{array}
-\usepackage{textcomp}
-\usepackage{bbm}
-\usepackage{fancyref}
-\usepackage{xcolor}
-\usepackage{rotating}
-\usepackage[noadjust]{cite} % basic fos bibliography [1]-[5]
-\usepackage{bm}
-\usepackage{mathtools}
-\usepackage{multirow}
-\usepackage{array}
-\usepackage{longtable}
-\usepackage{hhline}
-\usepackage{indentfirst}
-\usepackage{framed}
-\usepackage[hidelinks]{hyperref}
-\usepackage{tcolorbox}
-\usepackage{pgfplots}
-\usepackage{tikz}
-\usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
-
-\widowpenalty=1000
-\clubpenalty=1000
-
-\usepackage{environ}
-\NewEnviron{gg_box}{%
-  \begin{tcolorbox}[colback=black!10, colframe=white!80!]
-    \BODY
-  \end{tcolorbox}
-}
-
-\NewEnviron{bw_box}{%
-  \begin{tcolorbox}[colback=white!10, colframe=black!80!, arc=0pt,outer arc=0pt]
-    \BODY
-  \end{tcolorbox}
-}
-
-\NewEnviron{gw_box}{%
-  \begin{tcolorbox}[colback=white!10, colframe=black!10!]
-    \BODY
-  \end{tcolorbox}
-}
-
-\NewEnviron{bg_box}{%
-  \begin{tcolorbox}[colback=black!10, colframe=black!80!, arc=0pt,outer arc=0pt]
-    \BODY
-  \end{tcolorbox}
-}
+\usepackage{mystyle}
 
 
-
-%\usepackage{fontspec}
-%\setmainfont{cmr12}
-
-
-%\usepackage{algorithm}
-%\usepackage{algpseudocode}
-%\usepackage{algcompatible}
-%\usepackage{pifont}
-%\usepackage[]{algorithm2e}
-%\usepackage{stmaryrd}
-%\usepackage{subcaption}
-
-
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[section] %definition
-\newtheorem{remark}{Remark}[section] % remark
-\newtheorem{theorem}{Theorem}[section] % theorem
-\newtheorem{example}{Example}[section] % example
-\newtheorem{assumption}{Assumption}[section] % example
-\newtheorem{problem}{Problem}[section]
-\newtheorem{lemma}{Lemma}[section]
-
-%\newtheorem{theorem}{Theorem}[section] % theorem
-
-
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash}m{#1}}
-
-\makeatletter
-\def\BState{\State\hskip-\ALG@thistlm}
-\makeatother
-
-\newcommand{\note}[1]{{\color{red}  #1}}
-\newcommand{\mat}[1]{\bm{\mathit{#1}}}
-\newcommand{\vect}[1]{\bm{\mathbf{#1}}}
-
-% Concludes proof
-\renewcommand{\qedsymbol}{\hfill$\blacksquare$}
-%\hypersetup{colorlinks=false, linkbordercolor={0 0 1}}
-
-
-
-
-
-
-
-
-
-
-
-
-\title{\textbf{Multi-Robot Control by
-Utilizing Distributed Model Predictive Controllers}}
+\title{\textbf{a distributed nonlinear model predictive control scheme for
+cooperation of multi-robot systems guaranteeing collision avoidance and
+connectivity maintenance}}
 %
 \author{KTH Royal Institute of Technology \\
   School of Electrical Engineering \\
@@ -133,32 +21,32 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
 \maketitle
 
 \begin{abstract}
-	This paper addresses the problem of position- and orientation-based formation
-  control of a class of second-order nonlinear multi-agent systems in $3$D
-  space, under static and undirected communication topologies. More
-  specifically, we design a decentralized control protocol for each agent in
-  the sense that each agent uses only local information from its neighbors to
-  calculate its own control signal. Additionally, by introducing certain
+	This paper addresses the problem of cooperation within a multi-robot
+  system composed of second-order nonlinear multi-agent systems that operate
+  in $3$D space. Specifically, we propose a Distributed Nonlinear Model
+  Predictive Control scheme in which each agent solves a nonlinear optimization
+  problem using only local information from its neighbors to calculate its own
+  control signal. Additionally, by introducing certain
   inter-agent distance constraints, we guarantee collision avoidance both
   between among the agents and between the agents and possible obstacles of the
   workspace. Connectivity maintenance between agents that are initially
   connected is also achieved by the proposed controller scheme. Finally,
-  simulation results verify the  performance of the proposed controllers.
+  simulation results verify the  performance of the proposed control scheme.
 \end{abstract}
 
-\newpage
+\newevenside
 \tableofcontents
-\newpage
+\newevenside
 
 
 \section{Introduction}
 
   \input{parts/01.introduction.tex}
-  \newpage
+  \newevenside
 
 %-------------------------------------------------------------------------------
 \part{The problem}
-\newpage
+\newevenside
 
   \section{Notation and Preliminaries}
     \label{sec:notation_reliminaries}
@@ -166,7 +54,7 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
     \input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
     \input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
     \input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
-    \newpage
+    \newevenside
 
 
   \section{Problem Formulation}
@@ -174,30 +62,23 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
 
     \input{parts/01/sections/02.problem_formulation/01.system_model.tex}
     \input{parts/01/sections/02.problem_formulation/02.problem_statement.tex}
-    \newpage
+    \newevenside
 
 %-------------------------------------------------------------------------------
 \part{Advocated Solutions}
-\newpage
+    \newevenside
 
   \section{Formalizing the model}
     \label{sec:the_model}
 
     \input{parts/02/sections/01.model/model.tex}
-    \newpage
+    \newevenside
 
   \section{Position-based formation}
     \label{sec:position_based_solution}
 
     \input{parts/02/sections/02.position_based/01.position_based_formation.tex}
-    \newpage
-
-  \section{Displacement-based formation}
-    \label{sec:displacement_based_solution}
-
-    \input{parts/02/sections/03.displacement_based/01.displacement_based_formation.tex}
-    \newpage
-
+    \newevenside
 
 \bibliography{references}
 \bibliographystyle{ieeetr}

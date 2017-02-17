@@ -45,7 +45,7 @@ At a generic time $t_0$, agent $i$ solves the following optimization problem:
   & \overline{\vect{e}}_i (t_0 + T_p) \in \mathcal{E}_i^f \\
   \text{and } \forall t \in [t_0, t_0 + T_p]:& \nonumber \\
   & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t) \label{constraint:p_1}\\
-  & \|\overline{\vect{p}}_i(t) - \vect{p}_k(t)\| > \underline{d}_{ik,o}, \forall k \in \mathcal{K} \\
+  & \|\overline{\vect{p}}_i(t) - \vect{p}_{\ell}(t)\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L} \\
   & \|\overline{\vect{p}}_i(t)\| + r_i < r_W \\
   & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| < d_i, \forall j \in \mathcal{N}_i \\
   & \overline{\theta}_i(t) \ne \pm \frac{\pi}{2} \label{constraint:p_5}
@@ -91,6 +91,7 @@ optimal control problem to the terminal region $\mathcal{E}_i^f$:
   where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_i^f$,
   with Lipschitz constant $L_{V_i} = 2 \epsilon_0 \lambda_{max}(P_i)$\\
 
+  \begin{gg_box}
   \textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_i^f$, it holds that
   \begin{align}
     |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
@@ -112,6 +113,7 @@ optimal control problem to the terminal region $\mathcal{E}_i^f$:
     &= 2 \epsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
   \end{align}
   \qedsymbol
+  \end{gg_box}
 \label{lemma:V_Lipschitz_e_0}
 \end{lemma}
 \end{bw_box}

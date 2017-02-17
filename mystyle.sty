@@ -1,0 +1,113 @@
+\usepackage[left=1.0in, right=1.0in, top=1.0in, bottom=1.0in]{geometry}
+
+\usepackage[toc,page]{appendix}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\epstopdfsetup{update}
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{bbm}
+\usepackage{fancyref}
+\usepackage{xcolor}
+\usepackage{rotating}
+\usepackage[noadjust]{cite} % basic fos bibliography [1]-[5]
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\usepackage{framed}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
+
+\widowpenalty=1000
+\clubpenalty=1000
+
+\usepackage{environ}
+\NewEnviron{gg_box}{%
+  \begin{tcolorbox}[colback=black!10, colframe=white!80!]
+    \BODY
+  \end{tcolorbox}
+}
+
+\NewEnviron{bw_box}{%
+  \begin{tcolorbox}[colback=white!10, colframe=black!80!, arc=0pt,outer arc=0pt]
+    \BODY
+  \end{tcolorbox}
+}
+
+\NewEnviron{gw_box}{%
+  \begin{tcolorbox}[colback=white!10, colframe=black!10!]
+    \BODY
+  \end{tcolorbox}
+}
+
+\NewEnviron{bg_box}{%
+  \begin{tcolorbox}[colback=black!10, colframe=black!80!, arc=0pt,outer arc=0pt]
+    \BODY
+  \end{tcolorbox}
+}
+
+
+
+%\usepackage{fontspec}
+%\setmainfont{cmr12}
+
+
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage{algcompatible}
+%\usepackage{pifont}
+%\usepackage[]{algorithm2e}
+%\usepackage{stmaryrd}
+%\usepackage{subcaption}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section] %definition
+\newtheorem{remark}{Remark}[section] % remark
+\newtheorem{theorem}{Theorem}[section] % theorem
+\newtheorem{example}{Example}[section] % example
+\newtheorem{assumption}{Assumption}[section] % example
+\newtheorem{problem}{Problem}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+%\newtheorem{theorem}{Theorem}[section] % theorem
+
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash}m{#1}}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\newcommand{\note}[1]{{\color{red}  #1}}
+\newcommand{\mat}[1]{\bm{\mathit{#1}}}
+\newcommand{\vect}[1]{\bm{\mathbf{#1}}}
+
+% Concludes proof
+\renewcommand{\qedsymbol}{\hfill$\blacksquare$}
+%\hypersetup{colorlinks=false, linkbordercolor={0 0 1}}
+
+\newcommand{\newevenside}{
+	\ifthenelse{\isodd{\thepage}}{\newpage}{
+	\newpage
+        \phantom{placeholder} % doesn't appear on page
+	\thispagestyle{empty} % if want no header/footer
+	\newpage
+	}
+}

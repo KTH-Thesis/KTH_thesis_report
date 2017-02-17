@@ -4,7 +4,7 @@ Consider a set of $N$ rigid bodies, with $\mathcal{V} = \{ 1,2, \ldots, N\}$,
 $N  \geq 2$, operating in a workspace $W\subseteq \mathbb{R}^3$.
 A coordinate frame $\{i\}, i\in\mathcal{V}$ is attached to each body's
 center of mass. The workspace is assumed to be modeled as a
-bounded sphere $\mathcal{B}(\vect{0},r_W)$ expressed in an inertial frame
+bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$ expressed in an inertial frame
 $\{\mathcal{O}\}$.
 
 We consider that over time $t$ each agent $i$ occupies the space of a sphere
@@ -48,7 +48,7 @@ orthogonal angular velocities $\vect{v}_i$:
 \end{equation}
 
 The matrix $\mat{J}_i$ is singular when $det(\mat{J}_i)$ $=$ $\cos\theta_i = 0$
-$\Leftrightarrow$ $\theta_i$ $=$ $\pm \frac{\pi}{2}$. The controller
+$\Leftrightarrow$ $\theta_i$ $=$ $\pm \frac{\pi}{2}$. The control scheme
 proposed in this thesis guarantees that this is always avoided, and hence
 equation \eqref{eq:system_1} is well defined. This gives rise to the following
 remark:
@@ -63,13 +63,13 @@ remark:
 	\centering
     \input{figures/03.problem_formulation/two_agents_one_obstacle.tex}
     \caption{Illustration of two agents $i, j \in \mathcal{V}$ and an static
-      obstacle $k \in \mathcal{K}$ in the workspace; $\{\mathcal{O}\}$ is the inertial
+      obstacle $\ell \in \mathcal{L}$ in the workspace; $\{\mathcal{O}\}$ is the inertial
       frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of
-      mass, $\vect{p}_i, \vect{p}_j, \vect{p}_{k} \in \mathbb{R}^3$ are the
+      mass, $\vect{p}_i, \vect{p}_j, \vect{p}_{\ell} \in \mathbb{R}^3$ are the
       positions of the center of mass of the agents $i,j$ and the
-      obstacle $k$ respectively, expressed in frame
-      $\{\mathcal{O}\}$. $r_i, r_j, r_{k}$ are the radii of the agents $i,j$
-      and the obstacle $k$ respectively. $d_i, d_j$ with
+      obstacle $\ell$ respectively, expressed in frame
+      $\{\mathcal{O}\}$. $r_i, r_j, r_{\ell}$ are the radii of the agents $i,j$
+      and the obstacle $\ell$ respectively. $d_i, d_j$ with
       $d_i > d_j$ are the agents' sensing ranges.
       In this figure, agents $i$ and $j$ are not neighbours, since the center
       of mass of agent $j$ is not within the sensing range of agent $i$ and vice
@@ -149,42 +149,31 @@ $\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
 
 
 
-In the workspace there are $|\mathcal{K}|$ \textit{static obstacles}, modeled as
-spheres with centers at positions $\vect{p}_{k}$ with radii
-$r_{k}\in \mathbb{R}^3, k \in \mathcal{K} = \{1,\dots,|\mathcal{K}| \}$.
+In the workspace there are $|\mathcal{L}|$ \textit{static obstacles}, modeled as
+spheres with centers at positions $\vect{p}_{\ell}$ with radii
+$r_{\ell}\in \mathbb{R}^3, \ell \in \mathcal{L} = \{1,\dots,|\mathcal{\ell}| \}$.
 Thus, the obstacles are modeled by the spheres
-$\mathcal{B}(\vect{p}_{k}, r_{k}), k \in \{1,\dots,|\mathcal{K}|\}$. The geometry in
-workspace $W$ of two agents $i$ and $j$ as well as an obstacle $k$ is depicted
+$\mathcal{B}(\vect{p}_{\ell}, r_{\ell}), \ell \in \{1,\dots,|\mathcal{\ell}|\}$. The geometry in
+workspace $W$ of two agents $i$ and $j$ as well as an obstacle $\ell$ is depicted
 in Fig. \ref{fig:two_agents_one_obstacle}.
 
 Let us also define the distance between any two agents $i,j$ as
 $d_{ij,a}: \mathbb{R}^6 \to \mathbb{R}_{\geq 0}$, and that between agent $i$
-and obstacle $k$ as $d_{ik,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
+and obstacle $\ell$ as $d_{i\ell,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 
 \begin{subequations}
 	\begin{align}
     d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
-    d_{ik,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_k(t) \|
+    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \|
 	\end{align}
 \end{subequations}
 
-$\forall i, j \in \mathcal{V}, i \neq j, k \in \mathcal{K}$, as well as
+$\forall i, j \in \mathcal{V}, i \neq j, \ell \in \mathcal{L}$, as well as
 constants $\underline{d}_{ij, a} \triangleq r_{i} + r_{j},
-\underline{d}_{ik, o} \triangleq r_{i} + r_{o_k}$. The latter stand for
+\underline{d}_{i\ell, o} \triangleq r_{i} + r_{o_\ell}$. The latter stand for
 the minimum distance between two agents, and the minimum distance between an
 agent and an obstacle. These arise spatially as physical limitations and will
 be utilized as collision-avoidance constraints.
-
-The \textit{topology} of the multi-agent network is modeled through the graph
-$\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}=\{1,\dots,N\}$ and
-
-\begin{align}
-\mathcal{E} \triangleq \big\{\{i,j\}\in\mathcal{V}\times\mathcal{V} :
-  i \neq j,
-  j\in\mathcal{N}_i \subseteq \mathcal{R}_i(0) \text{ and }
-  i \in \mathcal{N}_j \subseteq \mathcal{R}_j(0) \big\}
-  \label{eq:edges_set}
-\end{align}
 
 Agents $j \in \mathcal{N}_i$ are defined as the \textit{neighbours} of
 agent $i$. They are the set of indices of agents $j \in \mathcal{V}$ which
@@ -198,11 +187,7 @@ agent $i$. They are the set of indices of agents $j \in \mathcal{V}$ which
 
 Therefore, while the composition of the set $\mathcal{R}_i(t)$ evolves and
 varies through time in general, the set $\mathcal{N}_i$ should remain
-constant through time. That means that we consider that the connected graph
-$\mathcal{G}$ is static, in the sense that no edges are added to it through
-time. We do not exclude, however, edge removal through connectivity loss between
-initially neighboring agents, which we guarantee to avoid, as presented in the
-sequel.
+constant through time.
 
 Definition \eqref{eq:edges_set} implies that the graph is undirected, i.e.,
 \begin{align}
@@ -269,12 +254,12 @@ $$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_
 \ne \varnothing$$
 At this point, let us define $d_o$
 \begin{align*}
-  d_o &\triangleq \min\{\| \vect{p}_{k} - \vect{p}_{k'}\| : k,k' \in \mathcal{K}, k \neq k' \},
+  d_o &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| : \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
 \end{align*}
 as the distance between the two least distant obstacles in the workspace,
 $d_{o,W}$
 \begin{align*}
-  d_{o,W} & \triangleq \min\{r_W - \left( r_{k} + \| \vect{p}_{k} \| \right) : k \in \mathcal{K}\},
+  d_{o,W} & \triangleq \min\{r_W - \left( r_{\ell} + \| \vect{p}_{\ell} \| \right) : \ell \in \mathcal{K}\},
 \end{align*}
 as the distance between the least distant obstacle from the boundary of the
 workspace and the boundary itself, $D$
