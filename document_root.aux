@@ -36,33 +36,37 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of two agents $i, j \in \mathcal  {V}$ and an static obstacle $\ell \in \mathcal  {L}$ in the workspace; $\{\mathcal  {O}\}$ is the inertial frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of mass, $\bm  {\mathbf  {p}}_i, \bm  {\mathbf  {p}}_j, \bm  {\mathbf  {p}}_{\ell } \in \mathbb  {R}^3$ are the positions of the center of mass of the agents $i,j$ and the obstacle $\ell $ respectively, expressed in frame $\{\mathcal  {O}\}$. $r_i, r_j, r_{\ell }$ are the radii of the agents $i,j$ and the obstacle $\ell $ respectively. $d_i, d_j$ with $d_i > d_j$ are the agents' sensing ranges. In this figure, agents $i$ and $j$ are not neighbours, since the center of mass of agent $j$ is not within the sensing range of agent $i$ and vice versa: $\bm  {\mathbf  {p}}_j \notin  \mathcal  {B}(\bm  {\mathbf  {p}}_i(t), d_i)$ and $\bm  {\mathbf  {p}}_i \notin  \mathcal  {B}(\bm  {\mathbf  {p}}_j(t), d_j)$.}}{13}{figure.1}}
 \newlabel{fig:two_agents_one_obstacle}{{1}{13}{Illustration of two agents $i, j \in \mathcal {V}$ and an static obstacle $\ell \in \mathcal {L}$ in the workspace; $\{\mathcal {O}\}$ is the inertial frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of mass, $\vect {p}_i, \vect {p}_j, \vect {p}_{\ell } \in \mathbb {R}^3$ are the positions of the center of mass of the agents $i,j$ and the obstacle $\ell $ respectively, expressed in frame $\{\mathcal {O}\}$. $r_i, r_j, r_{\ell }$ are the radii of the agents $i,j$ and the obstacle $\ell $ respectively. $d_i, d_j$ with $d_i > d_j$ are the agents' sensing ranges. In this figure, agents $i$ and $j$ are not neighbours, since the center of mass of agent $j$ is not within the sensing range of agent $i$ and vice versa: $\vect {p}_j \notin \mathcal {B}(\vect {p}_i(t), d_i)$ and $\vect {p}_i \notin \mathcal {B}(\vect {p}_j(t), d_j)$}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}}
-\newlabel{eq:initially_connected_0}{{5a}{14}{Initial Conditions}{equation.3.5a}{}}
-\newlabel{eq:initially_connected_1}{{5b}{14}{Initial Conditions}{equation.3.5b}{}}
-\newlabel{eq:initially_coll_free}{{8}{14}{Initial Conditions}{equation.3.8}{}}
-\newlabel{ass:initial_conditions}{{3.2}{14}{}{Item.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Problem Statement}{15}{subsection.3.3}}
-\newlabel{problem}{{3.1}{16}{}{Item.23}{}}
-\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Advocated Solutions}{17}{part.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Formalizing the model}{19}{section.4}}
-\newlabel{sec:the_model}{{4}{19}{Formalizing the model}{section.4}{}}
-\newlabel{eq:system}{{12}{19}{Formalizing the model}{equation.4.12}{}}
-\newlabel{eq:non_perturbed_system}{{17}{19}{Formalizing the model}{equation.4.17}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Position-based formation}{21}{section.5}}
-\newlabel{sec:position_based_solution}{{5}{21}{Position-based formation}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The error model}{21}{subsection.5.1}}
-\newlabel{eq:position_based_error_model}{{25}{21}{The error model}{equation.5.25}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The optimization problem}{21}{subsection.5.2}}
-\newlabel{position_based_cost}{{26}{21}{The optimization problem}{equation.5.26}{}}
-\newlabel{constraint:p_1}{{32}{21}{The optimization problem}{equation.5.32}{}}
-\newlabel{constraint:p_5}{{36}{21}{The optimization problem}{equation.5.36}{}}
-\newlabel{lemma:V_Lipschitz_e_0}{{5.1}{23}{}{equation.5.47}{}}
-\newlabel{eq:position_based_optimal_u}{{48}{23}{The optimization problem}{equation.5.48}{}}
-\newlabel{eq:position_based_predicted_error_0}{{49}{23}{The optimization problem}{equation.5.49}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Feasibility and Convergence}{24}{subsection.5.3}}
-\newlabel{eq:optimal_input_portions}{{50}{25}{Feasibility and Convergence}{equation.5.50}{}}
-\newlabel{eq:optimal_input_t_plus_one}{{51}{25}{Feasibility and Convergence}{equation.5.51}{}}
-\newlabel{eq:convergence_4_integrals}{{58}{26}{Feasibility and Convergence}{equation.5.58}{}}
-\newlabel{eq:convergence_2_integrals}{{63}{27}{Feasibility and Convergence}{equation.5.63}{}}
+\newlabel{eq:initially_coll_free}{{5c}{14}{Initial Conditions}{equation.3.5c}{}}
+\newlabel{eq:initially_connected_0}{{6a}{14}{Initial Conditions}{equation.3.6a}{}}
+\newlabel{eq:initially_connected_1}{{6b}{14}{Initial Conditions}{equation.3.6b}{}}
+\newlabel{ass:initial_conditions}{{3.2}{15}{}{Item.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}}
+\newlabel{def:intra_environmental_arrangement}{{3.3}{15}{}{definition.3.3}{}}
+\newlabel{eq:geometric_constraint}{{8}{16}{}{equation.3.8}{}}
+\newlabel{ass:intra_environmental_arrangement}{{3.3}{16}{}{equation.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Problem Statement}{16}{subsection.3.4}}
+\newlabel{problem}{{3.1}{17}{}{Item.23}{}}
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Advocated Solutions}{19}{part.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Formalizing the model}{21}{section.4}}
+\newlabel{sec:the_model}{{4}{21}{Formalizing the model}{section.4}{}}
+\newlabel{eq:system}{{10}{21}{Formalizing the model}{equation.4.10}{}}
+\newlabel{eq:non_perturbed_system}{{15}{21}{Formalizing the model}{equation.4.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Position-based formation}{23}{section.5}}
+\newlabel{sec:position_based_solution}{{5}{23}{Position-based formation}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The error model}{23}{subsection.5.1}}
+\newlabel{eq:position_based_error_model}{{23}{23}{The error model}{equation.5.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The optimization problem}{23}{subsection.5.2}}
+\newlabel{position_based_cost}{{24}{23}{The optimization problem}{equation.5.24}{}}
+\newlabel{constraint:p_1}{{30}{23}{The optimization problem}{equation.5.30}{}}
+\newlabel{constraint:p_5}{{34}{23}{The optimization problem}{equation.5.34}{}}
+\newlabel{lemma:V_Lipschitz_e_0}{{5.1}{25}{}{equation.5.45}{}}
+\newlabel{eq:position_based_optimal_u}{{46}{25}{The optimization problem}{equation.5.46}{}}
+\newlabel{eq:position_based_predicted_error_0}{{47}{25}{The optimization problem}{equation.5.47}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Feasibility and Convergence}{26}{subsection.5.3}}
+\newlabel{eq:optimal_input_portions}{{48}{27}{Feasibility and Convergence}{equation.5.48}{}}
+\newlabel{eq:optimal_input_t_plus_one}{{49}{27}{Feasibility and Convergence}{equation.5.49}{}}
+\newlabel{eq:convergence_4_integrals}{{56}{28}{Feasibility and Convergence}{equation.5.56}{}}
+\newlabel{eq:convergence_2_integrals}{{61}{29}{Feasibility and Convergence}{equation.5.61}{}}
 \bibdata{references}
 \bibcite{Murray:1994:MIR:561828}{1}
 \bibstyle{ieeetr}

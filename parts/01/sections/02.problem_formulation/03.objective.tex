@@ -1,0 +1,64 @@
+%-------------------------------------------------------------------------------
+\subsection{Objective}
+
+Given the aforementioned structure of the system, the objective to be
+pursued is the \textit{stabilization of all agents} $i \in \mathcal{V}$ starting
+from an initial configuration abiding by assumption
+\eqref{ass:initial_conditions} to a desired configuration
+$\vect{x}_{i,des}, \vect{v}_{i,des}$, while
+satisfying all communication constraints, i.e. sustaining connectivity between
+neighbouring agents, and avoiding collisions between agents, obstacles, and the
+workspace boundary. The desired steady-state configuration of agents
+$i \in \mathcal{V}$ is \textit{feasible} only if it is a
+collision-free configuration. Formally then, the objective of each agent $i$ is
+$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$ and
+$\lim\limits_{t \to \infty} \|\vect{v}_i(t) - \vect{v}_{i,des}\| = 0$.
+
+Before formally stating the problem to be solved, we must address an issue
+that addresses the feasibility of its solution and relates to the avoidance of
+collision from an intra-environmental perspective. Namely, we demand that a
+solution be feasible if and only if the agent with the largest radius is able to
+pass through (a) the two least distant obstacles, and (b) through the space
+demarcated by the obstacle closest to the boundary of the workspace and the
+boundary of the workspace itself. To this end, we formalize the above
+definitions in Definition \eqref{def:intra_environmental_arrangement}:
+
+\begin{bw_box}
+\begin{definition} (\textit{Intra-environmental Arrangement})
+
+  Let us define $\underline{d}_{\ell'\ell}$
+  \begin{align*}
+    \underline{d}_{\ell'\ell} &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| + r_{\ell} + r_{\ell'} :
+      \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
+  \end{align*}
+  as the distance between the two least distant obstacles in the workspace,
+  $\underline{d}_{\ell,W}$
+  \begin{align*}
+    \underline{d}_{\ell,W} & \triangleq \min\{r_W - (\|\vect{p}_W - \vect{p}_{\ell}\| + r_{\ell}) : \ell \in \mathcal{L}\},
+  \end{align*}
+  as the distance between the least distant obstacle from the boundary of the
+  workspace and the boundary itself, and $D$
+  \begin{equation*}
+    D \triangleq \min\{\underline{d}_{\ell'\ell}, \underline{d}_{\ell,W}\}
+  \end{equation*}
+  as the least of these two distances.
+\label{def:intra_environmental_arrangement}
+\end{definition}
+\end{bw_box}
+Given these notions, we can state an assumption on the feasibility of a
+solution to the problem that this work addresses:
+
+\begin{gg_box}
+  \begin{assumption}(\textit{Intra-environmental Arrangement of Obstacles})
+
+    All obstacles $\ell \in \mathcal{L}$ are situated inside the workspace $W$
+    in such a way that
+
+  \begin{equation}
+    D > 2 r_i,\ i \in \mathcal{V} : r_i = max\{r_j\}\ \forall j \in \mathcal{V}
+  \label{eq:geometric_constraint}
+  \end{equation}
+  where $D$ is defined in Definition \eqref{def:intra_environmental_arrangement}.
+\label{ass:intra_environmental_arrangement}
+\end{assumption}
+\end{gg_box}
