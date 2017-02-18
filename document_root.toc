@@ -6,7 +6,8 @@
 \contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control for continuous-time systems}{9}{subsection.2.3}
 \contentsline {section}{\numberline {3}Problem Formulation}{11}{section.3}
 \contentsline {subsection}{\numberline {3.1}System Model}{11}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Problem Statement}{14}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Problem Statement}{15}{subsection.3.3}
 \contentsline {part}{II\hspace {1em}Advocated Solutions}{17}{part.2}
 \contentsline {section}{\numberline {4}Formalizing the model}{19}{section.4}
 \contentsline {section}{\numberline {5}Position-based formation}{21}{section.5}
