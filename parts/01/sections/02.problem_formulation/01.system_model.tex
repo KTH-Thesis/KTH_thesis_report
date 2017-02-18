@@ -1,3 +1,4 @@
+%-------------------------------------------------------------------------------
 \subsection{System Model}
 
 Consider a set of $N$ rigid bodies, with $\mathcal{V} = \{ 1,2, \ldots, N\}$,
@@ -84,7 +85,7 @@ the $6$D generalized \textit{actuation force} acting on the agent.
 
     \begin{equation}
       \vect{y}^\top \left[\dot{\mat{M}}_i - 2 \mat{C}_i\right]\vect{y} = 0,
-        \forall \vect{y} \in \mathbb{R}^n, i \in \mathcal{V}.
+        \forall \vect{y} \in \mathbb{R}^6, i \in \mathcal{V}.
     \label{eq:skew_symm}
     \end{equation}
   \end{remark}
@@ -183,6 +184,8 @@ minimum distance between an \textit{agent} and an \textit{obstacle}
 respectively. They arise spatially as physical limitations and will be utilized
 as collision-avoidance constraints.\\
 
+\begin{bw_box}
+\begin{definition}
 Agents $j \in \mathcal{N}_i$ are defined as the \textit{neighbours} of
 agent $i$. The set $\mathcal{N}_i$ is a priori defined, and composed of the
 indices of agents $j \in \mathcal{V}$ which
@@ -192,6 +195,8 @@ indices of agents $j \in \mathcal{V}$ which
   \item are \textit{intended} to be kept within the sensing range of agent $i$ at all
     times $t \in \mathbb{R}_{> 0}$
 \end{enumerate}
+\end{definition}
+\end{bw_box}
 
 Therefore, while the composition of the set $\mathcal{R}_i(t)$ evolves and
 varies through time in general, the set $\mathcal{N}_i$ \textit{should} remain
@@ -253,82 +258,70 @@ the initial conditions of the problem, are summarized in assumption
       $$ -\frac{\pi}{2} < \theta_i(0) < \frac{\pi}{2},\ \forall i \in \mathcal{V}$$
 
   \end{enumerate}
-  $\forall i \in \mathcal{V}$ and all agents $j$ within the sensing range of $i$.
   \label{ass:initial_conditions}
 \end{assumption}
 \end{gg_box}
 
 
-As for $t \geq 0$, agent $i$ is in a collision-and-singularity-free
-configuration, and is connected to the neighbours it had at time $t = 0$,
-when
-$$\sum_{j \in \mathcal{N}_i} \| \vect{x}_i(t) - \vect{x}_j(t) - \vect{x}_{ji,des}\| < \mu_i,
-\forall i \in \mathcal{V}$$
-where $\mu_i$ is an arbitrarily small positive constant. Intuitively, this
-means that when the agents reach very close to their desired formation, they
-will be sufficiently away from collisions, connectivity losses and singular
-configurations. In particular, this concerns collisions between an agent and
-an obstacle or the workspace boundary (inter-agent collisions and connectivity
-losses are avoided by choosing feasible formation displacements $p_{ij,des}$),
-and singular configurations. In other words, the multi-agent formation should be
-performed sufficiently away from obstacles and the workspace boundary.
+%-------------------------------------------------------------------------------
+%\subsection{Objectives}
 
-The desired steady-state displacements
-$\vect{x}_{ij,des}$ $=$ $[\vect{p}_{ij,des}^{\top}, \vect{q}_{ij,des}^{\top}]^{\top}$
-are themselves \textit{feasible} if $\forall i \in \mathcal{V}$,
-$j \in \mathcal{N}_i$,
-$$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_j - \vect{x}_{ij,des} \| = 0 \}
-\ne \varnothing$$
-At this point, let us define $d_o$
-\begin{align*}
-  d_o &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| : \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
-\end{align*}
-as the distance between the two least distant obstacles in the workspace,
-$d_{o,W}$
-\begin{align*}
-  d_{o,W} & \triangleq \min\{r_W - \left( r_{\ell} + \| \vect{p}_{\ell} \| \right) : \ell \in \mathcal{K}\},
-\end{align*}
-as the distance between the least distant obstacle from the boundary of the
-workspace and the boundary itself, $D$
-\begin{equation*}
-  D \triangleq \min\{d_o, d_{o,W}\}
-\end{equation*}
-as the least of these two distances, and $\Delta$
-\begin{align*}
-  \hspace{-2mm} \Delta \triangleq \max\Big\{&d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
-  &\hspace{-2mm} \| \vect{p}_k - \vect{p}_\ell \| = \vect{p}_{k \ell,\text{des}}, \\
-  &\|\vect{q}_k - \vect{q}_\ell\| = \vect{q}_{k \ell,\text{des}}, \\
-  &k \in \mathcal{V}, \ell \in \mathcal{N}_k\Big\}
-\end{align*}
-as the \emph{diameter of formation}. $\Delta$ is the distance between the two
-most distant agents when formation is achieved. Given these notions, we
-can state an assumption on the feasibility of a solution to the problem
-that this thesis addresses:
+%The desired steady-state configuration for all agents
+%$\vect{x}_{ij,des}$ $=$ $[\vect{p}_{ij,des}^{\top}, \vect{q}_{ij,des}^{\top}]^{\top}$
+%are themselves \textit{feasible} if $\forall i \in \mathcal{V}$,
+%$j \in \mathcal{N}_i$,
+%$$\bigcap \{(\vect{x}_i, \vect{x}_j) \in W^{N_i + 1} : \| \vect{x}_i - \vect{x}_j - \vect{x}_{ij,des} \| = 0 \}
+%\ne \varnothing$$
+%At this point, let us define $d_o$
+%\begin{align*}
+  %d_o &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| : \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
+%\end{align*}
+%as the distance between the two least distant obstacles in the workspace,
+%$d_{o,W}$
+%\begin{align*}
+  %d_{o,W} & \triangleq \min\{r_W - \left( r_{\ell} + \| \vect{p}_{\ell} \| \right) : \ell \in \mathcal{K}\},
+%\end{align*}
+%as the distance between the least distant obstacle from the boundary of the
+%workspace and the boundary itself, $D$
+%\begin{equation*}
+  %D \triangleq \min\{d_o, d_{o,W}\}
+%\end{equation*}
+%as the least of these two distances, and $\Delta$
+%\begin{align*}
+  %\hspace{-2mm} \Delta \triangleq \max\Big\{&d_{ij, a}+r_i+r_j: i, j \in \mathcal{V}, i \neq j, \notag \\
+  %&\hspace{-2mm} \| \vect{p}_k - \vect{p}_\ell \| = \vect{p}_{k \ell,\text{des}}, \\
+  %&\|\vect{q}_k - \vect{q}_\ell\| = \vect{q}_{k \ell,\text{des}}, \\
+  %&k \in \mathcal{V}, \ell \in \mathcal{N}_k\Big\}
+%\end{align*}
+%as the \emph{diameter of formation}. $\Delta$ is the distance between the two
+%most distant agents when formation is achieved. Given these notions, we
+%can state an assumption on the feasibility of a solution to the problem
+%that this thesis addresses:
 
-\begin{gg_box}
-\begin{assumption}(After-formation Geometric Assumption)
+%\begin{gg_box}
+%\begin{assumption}(After-formation Geometric Assumption)
 
-	\begin{itemize}
-		\item When the multi-agent system reaches the desired formation, it should
-      be able to pass between two of the obstacles and between an
-      obstacle and the boundary of the workspace.
-      Thus, it is required that $D > \Delta$.
-		\item As a consequence, at the very least, all agents should be able to
-      pass between any two obstacles and between all obstacles and the
-      boundary of the workspace, without, simultaneously, any of them
-      colliding with each other or with the obstacles or the boundary of the
-      workspace.
-      Thus, it is required that $D >  \sum_{i \in \mathcal{V}}^{} 2r_i$.
-	\end{itemize}
+	%\begin{itemize}
+		%\item When the multi-agent system reaches the desired formation, it should
+      %be able to pass between two of the obstacles and between an
+      %obstacle and the boundary of the workspace.
+      %Thus, it is required that $D > \Delta$.
+		%\item As a consequence, at the very least, all agents should be able to
+      %pass between any two obstacles and between all obstacles and the
+      %boundary of the workspace, without, simultaneously, any of them
+      %colliding with each other or with the obstacles or the boundary of the
+      %workspace.
+      %Thus, it is required that $D >  \sum_{i \in \mathcal{V}}^{} 2r_i$.
+	%\end{itemize}
 
-	These geometric assumptions can be summarized in the following
-  inequality:
+	%These geometric assumptions can be summarized in the following
+  %inequality:
 
-	\begin{equation}
-    D > \max\left\{\Delta, \sum_{i \in \mathcal{V}}^{} 2r_i \right\}
-  \label{eq:geometric_constraint}
-	\end{equation}
+	%\begin{equation}
+    %D > \max\left\{\Delta, \sum_{i \in \mathcal{V}}^{} 2r_i \right\}
+  %\label{eq:geometric_constraint}
+	%\end{equation}
 
-\label{ass:after_formation_geometry}
-\end{assumption}
-\end{gg_box}
+%\label{ass:after_formation_geometry}
+%\end{assumption}
+%\end{gg_box}

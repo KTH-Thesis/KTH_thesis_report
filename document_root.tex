@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt,oneside]{article}
+\documentclass[a4paper,12pt,twoside]{article}
 
 \usepackage{mystyle}
 
@@ -34,19 +34,19 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
   simulation results verify the  performance of the proposed control scheme.
 \end{abstract}
 
-\newevenside
+\cleardoublepage
 \tableofcontents
-\newevenside
+\cleardoublepage
 
 
 \section{Introduction}
 
   \input{parts/01.introduction.tex}
-  \newevenside
+  \cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{The problem}
-\newevenside
+\cleardoublepage
 
   \section{Notation and Preliminaries}
     \label{sec:notation_reliminaries}
@@ -54,31 +54,32 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
     \input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
     \input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
     \input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
-    \newevenside
+    \cleardoublepage
 
 
   \section{Problem Formulation}
     \label{sec:prob_formulation}
 
     \input{parts/01/sections/02.problem_formulation/01.system_model.tex}
-    \input{parts/01/sections/02.problem_formulation/02.problem_statement.tex}
-    \newevenside
+    \input{parts/01/sections/02.problem_formulation/02.objectives.tex}
+    \input{parts/01/sections/02.problem_formulation/03.problem_statement.tex}
+    \cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{Advocated Solutions}
-    \newevenside
+    \cleardoublepage
 
   \section{Formalizing the model}
     \label{sec:the_model}
 
     \input{parts/02/sections/01.model/model.tex}
-    \newevenside
+    \cleardoublepage
 
   \section{Position-based formation}
     \label{sec:position_based_solution}
 
     \input{parts/02/sections/02.position_based/01.position_based_formation.tex}
-    \newevenside
+    \cleardoublepage
 
 \bibliography{references}
 \bibliographystyle{ieeetr}
