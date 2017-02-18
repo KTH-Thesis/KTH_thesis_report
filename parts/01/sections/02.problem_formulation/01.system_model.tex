@@ -160,29 +160,43 @@ $\ell$ in workspace $W$ is depicted in Fig. \ref{fig:two_agents_one_obstacle}.\\
 	\label{fig:two_agents_one_obstacle}
 \end{figure}
 
-Let us now define the distance between any two \textit{agents} $i,j$ as
-$d_{ij,a}: \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$, and that between \textit{agent}
-$i$ and \textit{obstacle} $\ell$ as
-$d_{i\ell,o} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
+Let us now define the distance between any two agents $i,j$ as
+$d_{ij,a}$, that between agent $i$ and obstacle $\ell$ as $d_{i\ell,o}$,
+and that between an agent $i$ and the workspace $\mathcal{W}$ boundary as
+$d_{i,W}$, with $d_{ij,a}, d_{i\ell,o}, d_{i,W} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 \begin{subequations}
 	\begin{align}
     d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
-    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \|
+    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \|, \\
+    d_{i,W}(t) &\triangleq \| \vect{p}_W - \vect{p}_i(t) \|
 	\end{align}
 \end{subequations}
 as well as constants
 \begin{subequations}
 	\begin{align}
-    \underline{d}_{ij, a} \triangleq r_{i} + r_{j}, \\
-    \underline{d}_{i\ell, o} \triangleq r_{i} + r_{o_\ell}
+    \underline{d}_{ij, a} &\triangleq r_{i} + r_{j}, \\
+    \underline{d}_{i\ell, o} &\triangleq r_{i} + r_{\ell}
 	\end{align}
 \end{subequations}
-
 $\forall i, j \in \mathcal{V}$, $i \neq j$, $\ell \in \mathcal{L}$.
 The latter stand for the minimum distance between two \textit{agents}, and the
 minimum distance between an \textit{agent} and an \textit{obstacle}
 respectively. They arise spatially as physical limitations and will be utilized
 as collision-avoidance constraints.\\
+
+As is natural, and reasonable, we define the concept of a \textit{collision-free
+configuration} between
+
+\begin{itemize}
+  \item any two agents $i,j \in \mathcal{V}$, when $d_{ij,a}(t) > \underline{d}_{ij,a}$
+  \item an agent $i \in \mathcal{V}$ and an obstacle $\ell \in \mathcal{L}$,
+    when $d_{il,o}(t) > \underline{d}_{il,o}$
+  \item an agent $i \in \mathcal{V}$ and the workspace $\mathcal{W}$ boundary,
+    when $d_{i,W} < r_W - r_i$
+\end{itemize}
+for an generic time instant $t$.
+
+
 
 \begin{bw_box}
 \begin{definition}
