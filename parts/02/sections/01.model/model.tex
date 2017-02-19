@@ -1,13 +1,16 @@
 We begin by rewriting the system equations \eqref{eq:system_1},
-\eqref{eq:system_2} for a generic agent $i$ in state-space form:
+\eqref{eq:system_2} for a generic agent $i \in \mathcal{V}$ in state-space form:
+\begin{subequations}
 \begin{align}
   \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t) \\
   \dot{\vect{v}}_i(t) &= -\mat{M}_i^{-1}(\vect{x}_i)\mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)
     - \mat{M}_i^{-1}(\vect{x}_i)\vect{g}_i(\vect{x}_i)
     + \mat{M}_i^{-1}(\vect{x}_i)\vect{u}_i
-\label{eq:system}
 \end{align}
-Denoting $\vect{z}_i(t)$ by
+\label{eq:state_space_system}
+\end{subequations}
+where the inversion of $\mat{M}_i$ is possible due to it being
+positive-definite $\forall i \in \mathcal{V}$. Denoting $\vect{z}_i(t)$ by
 \begin{align}
   \vect{z}_i(t) =
     \begin{bmatrix}
@@ -17,10 +20,12 @@ Denoting $\vect{z}_i(t)$ by
 \end{align}
 and
 $\dot{\vect{x}}_i(t)$ and $\dot{\vect{v}}_i(t)$ by
+\begin{subequations}
 \begin{align}
   \dot{\vect{x}}_i(t) &= f_{i,x}(\vect{z}_i, \vect{u}_i) \\
   \dot{\vect{v}}_i(t) &= f_{i,v}(\vect{z}_i, \vect{u}_i)
 \end{align}
+\end{subequations}
 we get the compact representation of the system's model
 \begin{align}
   \dot{\vect{z}}_i(t) =
@@ -30,54 +35,67 @@ we get the compact representation of the system's model
     \end{bmatrix} =
  f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big)
 \end{align}
-
 The state evolution of agent $i$ is modeled by a system of non-linear
 continuous-time differential equations of the form
 \begin{align}
   \dot{\vect{z}}_i(t) &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system}\\
   \vect{z}_i(0) &= \vect{z}_{i,0} \\
-  \vect{z}_i (t) &\in \mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
-  \vect{u}_i (t) &\in \mathcal{U}_i \subset \mathbb{R}^6
+  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
+  \vect{u}_i (t) & \subset \mathbb{R}^6
 \end{align}
-where state $\vect{z}_i$ is directly measurable, and sets $\mathcal{Z}_i$,
-$\mathcal{U}_i$ are compact and contain the origin. Equation
+where state $\vect{z}_i$ is directly measurable. Equation
 \ref{eq:non_perturbed_system} does not consider model-plant mismatches or
 external disturbances. The applied input $\vect{u}_i$ is a portion of the
 optimal solution to an optimization problem where information on the states
-of the neighbouring agents of agent $i$ are taken into account, either in the
-cost function (in the displacement-based formation approach), or only in the
-constraints considered in the optimization problem (in the position-based
-approach). These constraints pertain to the set of its neighbours
-$\mathcal{N}_i$ and, in total, to the set of all agents within its sensing
-range $\mathcal{R}_i$.
+of the neighbouring agents of agent $i$ are taken into account only in the
+constraints considered in the optimization problem. These constraints pertain
+to the set of its neighbours $\mathcal{N}_i$ and, in total, to the set of
+all agents within its sensing range $\mathcal{R}_i$.\\
 
-Specifically, at time $t$, agent $i$ has access to\footnote{Although
+Specifically, considering the context of Model Predictive Control, when
+at time $t_k$, agent $i$ solves a finite horizon optimization problem, it has
+access to\footnote{Although
     $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
     the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
     with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
-    within the sensing range of agent $i$.}
+    within the sensing range of agent $i$. The distinction will prove the
+    justification of its existence when considering the state constraints
+    in the subsequent declaration of the optimization problem.}
 
 \begin{enumerate}
-  \item measurements of the states of
+  \item measurements of the states
     \begin{itemize}
-      \item all agents within its sensing range at time $t$
-      \item its neighbouring agents at time $t$
+      \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
+      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
       \end{itemize}
-    \item the last applied inputs to
+    \item the \textit{predicted states}
       \begin{itemize}
-        \item all agents within its sensing range
-        \item its neighbouring agents
+        \item $\overline{\vect{z}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
+        \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
       \end{itemize}
+      across the entire horizon $\tau \in [t_k + h, t_k + T_p]$, where $T_p$ is the
+      set horizon and $h$ is the sampling time.
 \end{enumerate}
-
 We assume that these pieces of information are (a) always available and
 accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
 
 \begin{align}
-  \vect{z}_{\mathcal{R}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{R}_i(t) \\
-  \vect{z}_{\mathcal{N}_i}(t) &\triangleq col[\vect{z}_j(t)], \forall j \in \mathcal{N}_i \\
-  \vect{u}_{\mathcal{R}_i}(t) &\triangleq col[\vect{u}_j(t)], \forall j \in \mathcal{R}_i(t) \\
-  \vect{u}_{\mathcal{N}_i}(t) &\triangleq col[\vect{u}_j(t)], \forall j \in \mathcal{N}_i
+  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
+  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k + h, t_k + T_p] \\
+  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k + h, t_k + T_p]
 \end{align}
 
+Considering that $\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
+vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
+4 bytes, and that sampling occurs with a frequency $f$ for all agents, the
+overall downstream bandwidth required by each agent is
+$$BW_d = 12 \times 32\ \text{[bits]} \times |\mathcal{R}_i| \times \dfrac{T_p}{h} \times f\ [\text{sec}^{-1}]$$
+Given conservative constants $f = 100$ Hz, $\dfrac{T_p}{h} = 100$, the
+wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
+can accomodate
+
+$$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \sim
+16 \cdot 10^2 \text{ agents}$$ within the range of one agent, a number that we deem is
+large enough for practical applications.

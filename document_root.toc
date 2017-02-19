@@ -9,9 +9,9 @@
 \contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Problem Statement}{16}{subsection.3.4}
-\contentsline {part}{II\hspace {1em}Advocated Solutions}{19}{part.2}
+\contentsline {part}{II\hspace {1em}Advocated Solution}{19}{part.2}
 \contentsline {section}{\numberline {4}Formalizing the model}{21}{section.4}
-\contentsline {section}{\numberline {5}Position-based formation}{23}{section.5}
+\contentsline {section}{\numberline {5}Stabilization}{23}{section.5}
 \contentsline {subsection}{\numberline {5.1}The error model}{23}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}The optimization problem}{23}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}Feasibility and Convergence}{26}{subsection.5.3}
