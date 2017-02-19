@@ -41,7 +41,7 @@ relations are reciprocal, i.e. agent $i$ is a neighbour of agent $j$ if and
 only if $j$ is a neighbour of $i$:
 \begin{subequations}
 \begin{align}
-  d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i \label{eq:initially_connected_0} \\
+  d_{ij,a}(0) &< d_i, \forall i \in \mathcal{V}, j \in \mathcal{N}_i \Leftrightarrow \label{eq:initially_connected_0} \\
   d_{ji,a}(0) &< d_j, \forall j \in \mathcal{V}, i \in \mathcal{N}_j \label{eq:initially_connected_1}
 \end{align}
 \end{subequations}
@@ -74,12 +74,10 @@ the initial conditions of the problem, are summarized in assumption
       the obstacles $\ell \in \mathcal{L}$ and the workspace $W$ boundary
 
     \item neighbouring relations are reciprocal:
-      \begin{subequations}
       \begin{align}
-        \underline{d}_{ij,a} < d_{ij,a}(0) &< d_i,\ \forall j \in \mathcal{N}_i \\
-        \underline{d}_{ji,a} < d_{ji,a}(0) &< d_j,\ \forall i \in \mathcal{N}_j
+        d_{ij,a}(0) < d_i,\ \forall j \in \mathcal{N}_i \Leftrightarrow
+        d_{ji,a}(0) < d_j,\ \forall i \in \mathcal{N}_j
       \end{align}
-      \end{subequations}
 
     \item all agents are in a singularity-free configuration:
 

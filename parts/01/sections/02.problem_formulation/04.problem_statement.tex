@@ -1,20 +1,19 @@
 \subsection{Problem Statement}
-Due to the fact that the agents are not dimensionless and their communication
-capabilities are limited, the control protocol should for all neighboring
-agents $i \in \mathcal{V}, j \in \mathcal{N}_i$ make sure that:
 
+In this section, the problem considered will be stated in a concrete manner.\\
+
+Due to the fact that the agents are not dimensionless and their communication
+capabilities are limited, the control protocol should for all
+agents $i \in \mathcal{V}$ guarantee that:
 \begin{enumerate}
-  \item the desired position formation $\vect{p}_{ij, \text{des}}$ is achieved
-    in finite time
-  \item the desired formation angles $\vect{q}_{ij, \text{des}}$ are achieved
-    in finite time
-  \item connectivity between initially connected agents (neighbours) is
-    maintained at all times, i.e. all edges of $\mathcal{G}(t=0)$ are maintained
+  \item the desired positions $\vect{p}_{i,des}$ are achieved in finite time
+  \item the desired angles $\vect{q}_{i,des}$ are achieved in finite time
+  \item connectivity between neighbouring agents $j \in \mathcal{N}_i$ is
+    maintained at all times
 \end{enumerate}
 Furthermore, for all agents $i \in \mathcal{V}$, obstacles $\ell \in \mathcal{L}$
 and the workspace boundary $W$, it should guarantee for all
 $t\in\mathbb{R}_{\geq 0}$ that:
-
 \begin{enumerate}
   \item all agents avoid collision with each other
   \item all agents avoid collision with all obstacles
@@ -23,9 +22,9 @@ $t\in\mathbb{R}_{\geq 0}$ that:
 \end{enumerate}
 
 Therefore, all neighboring agents of agent $i$ must remain within a distance
-less than $d_i$ from him, for all $i \in \mathcal{V}$,
+less than $d_i$ from him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
-greater than $\underline{d}_{ij,a}$ with one another.
+greater than $\underline{d}_{ij,a}$ with one another.\\
 
 Formally, the control problem under the aforementioned constraints is
 formulated as follows:
@@ -33,28 +32,26 @@ formulated as follows:
 \begin{bg_box}
 \begin{problem}
   Consider $N$ agents modeled as bounded spheres $\mathcal{B}(\vect{p}_i, r_i)$,
-  $i \in \mathcal{V}, |V| = N$ that operate in workspace $W$ that is also modeled
-  as a bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$, featuring $|\mathcal{L}|$ spherical obstacles,
-  also modeled as bounded spheres $\mathcal{B}(p_{\ell}, r_{\ell}), \ell \in \mathcal{L}$.
-  Each agent $i$ is governed by the dynamics \eqref{eq:system}, under assumptions
-  \ref{ass:measurements_access}, \ref{ass:initial_conditions},
-  \ref{ass:after_formation_geometry}. Given desired \textit{feasible}
-  inter-agent displacements $\vect{p}_{ij,des}$, $\vect{q}_{ij,des}$,
-  $\forall i \in \mathcal{V}, j \in \mathcal{N}_i$ such that
+  $i \in \mathcal{V}, N = |\mathcal{V}|$, that operate in workspace $W$ that is
+  also modeled as a bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$,
+  featuring $|\mathcal{L}|$ spherical obstacles, also modeled as bounded
+  spheres $\mathcal{B}(\vect{p}_{\ell}, r_{\ell}), \ell \in \mathcal{L}$.
 
-  $$\underline{d}_{ij,a} < d_{ij,a} < d_i, \forall (i,j) \in
-  \{(i,j) \in \mathcal{V} \times \mathcal{V}:
-  \|\vect{p}_i - \vect{p}_j - \vect{p}_{ij,des}\| = 0\}$$
-
-  design decentralized control laws $\vect{u}_i \in \mathbb{R}^6$ such that
-  $\forall i \in \mathcal{V}$ and $t \in \mathbb{R}_{\geq 0}$ the following
-  hold:
+  Each agent $i$ is governed by the dynamics \eqref{eq:system}, and the compound
+  system of agents, obstacles and the workspace is subject to assumptions
+  \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
+  \eqref{ass:intra_environmental_arrangement}. Given desired \textit{feasible}
+  steady-state agent configurations $\vect{x}_{i,des}$, $\vect{v}_{i,des}$,
+  $\forall i \in \mathcal{V}$, design decentralized control laws
+  $\vect{u}_i \in \mathcal{U}_i \subset \mathbb{R}^6$ such that
+  $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
+  the following hold:
 
   \begin{enumerate}
 
-    \item Position and orientation formation is achieved in steady-state
-      $$\lim_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_j(t) - \vect{x}_{ij,des}(t)\| < \mu_i,
-        \forall j \in \mathcal{N}_i$$
+    \item Position and orientation configuration is achieved in steady-state
+      $$\lim_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}(t)\| = 0$$
+      $$\lim_{t \to \infty} \|\vect{v}_i(t) - \vect{v}_{i,des}(t)\| = 0$$
 
     \item Inter-agent collision is avoided
       $$\|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a},
@@ -65,14 +62,14 @@ formulated as follows:
       \forall \ell \in \mathcal{L}$$
 
     \item Agent-with-workspace-boundary collision is avoided
-      $$\|\vect{p}_i(t)\| + r_i < r_W$$
+      $$\|\vect{p}_W - \vect{p}_i(t)\| < r_W - r_i$$
 
-    \item Inter-agent connectivity loss is avoided
+    \item Inter-agent connectivity loss between neighbouring agents is avoided
       $$\|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i,
       \forall j \in \mathcal{N}_i$$
 
     \item All maps $\mat{J}_i$ are well defined
-      $$\theta_i(t) \ne \pm \frac{\pi}{2}$$
+      $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
 
   \end{enumerate}
 \label{problem}
