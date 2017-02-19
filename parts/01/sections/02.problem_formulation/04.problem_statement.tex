@@ -24,7 +24,12 @@ $t\in\mathbb{R}_{\geq 0}$ that:
 Therefore, all neighboring agents of agent $i$ must remain within a distance
 less than $d_i$ from him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
-greater than $\underline{d}_{ij,a}$ with one another.\\
+greater than $\underline{d}_{ij,a}$ with one another.
+
+Lastly, the control protocol should provide feasible control inputs, that is,
+inputs that abide by input constraints per agent $i$:
+$\|\vect{u}_i (t)\| \leq \overline{u}_i$, $\forall i \in \mathcal{V}$,
+$\forall t \in \mathbb{R}_{\geq 0}$.
 
 Formally, the control problem under the aforementioned constraints is
 formulated as follows:
@@ -43,8 +48,7 @@ formulated as follows:
   \eqref{ass:intra_environmental_arrangement}. Given desired \textit{feasible}
   steady-state agent configurations $\vect{x}_{i,des}$, $\vect{v}_{i,des}$,
   $\forall i \in \mathcal{V}$, design decentralized control laws
-  $\vect{u}_i \in \mathcal{U}_i \subset \mathbb{R}^6$ such that
-  $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
+  $\vect{u}_i$ such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
   the following hold:
 
   \begin{enumerate}
@@ -70,6 +74,10 @@ formulated as follows:
 
     \item All maps $\mat{J}_i$ are well defined
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
+
+    \item The control laws $\vect{u}_i$ abide by the input constraints
+      $$\vect{u}_i \in \mathcal{U}_i = \{ \vect{u}_i \in \mathbb{R}^6 :
+        \|\vect{u}_i (t)\| \leq \overline{u}_i\} $$
 
   \end{enumerate}
 \label{problem}
