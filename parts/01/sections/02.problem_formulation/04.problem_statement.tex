@@ -58,19 +58,19 @@ formulated as follows:
       $$\lim_{t \to \infty} \|\vect{v}_i(t) - \vect{v}_{i,des}(t)\| = 0$$
 
     \item Inter-agent collision is avoided
-      $$\|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a},
+      $$\|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a}(t) > \underline{d}_{ij,a},
       \forall j \in \mathcal{V} \backslash \{i\}$$
 
+    \item Inter-agent connectivity loss between neighbouring agents is avoided
+      $$ \|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a} (t) < d_i,
+      \forall j \in \mathcal{N}_i, \forall i : |\mathcal{N}_i| \not= 0$$
+
     \item Agent-with-obstacle collision is avoided
-      $$\|\vect{p}_i(t) - \vect{p}_{\ell}(t)\| > \underline{d}_{i\ell,o},
+      $$ \|\vect{p}_i(t) - \vect{p}_{\ell}(t)\| = d_{i\ell,o} (t) > \underline{d}_{i\ell,o},
       \forall \ell \in \mathcal{L}$$
 
     \item Agent-with-workspace-boundary collision is avoided
-      $$\|\vect{p}_W - \vect{p}_i(t)\| < r_W - r_i$$
-
-    \item Inter-agent connectivity loss between neighbouring agents is avoided
-      $$\|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i,
-      \forall j \in \mathcal{N}_i, \forall i : |\mathcal{N}_i| \not= 0$$
+      $$ \|\vect{p}_W - \vect{p}_i(t)\| = d_{i,W} (t) < \overline{d}_{i,W}$$
 
     \item All maps $\mat{J}_i$ are well defined
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$

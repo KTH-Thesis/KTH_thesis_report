@@ -40,19 +40,37 @@ continuous-time differential equations of the form
 \begin{align}
   \dot{\vect{z}}_i(t) &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system}\\
   \vect{z}_i(0) &= \vect{z}_{i,0} \\
-  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
-  \vect{u}_i (t) & \subset \mathbb{R}^6
+  \vect{z}_i (t) & \in \mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
+  \vect{u}_i (t) & \in \mathcal{U}_i \subset \mathbb{R}^6
 \end{align}
-where state $\vect{z}_i$ is directly measurable. Equation
-\ref{eq:non_perturbed_system} does not consider model-plant mismatches or
-external disturbances. The applied input $\vect{u}_i$ is a portion of the
+where state $\vect{z}_i$ is directly measurable. It should be noted that
+equation \eqref{eq:non_perturbed_system} does not consider model-plant
+mismatches or external disturbances.
+
+The set $\mathcal{Z}_i$ captures all the state constraints of the system's
+dynamics posed by the problem \eqref{problem}, therefore $\mathcal{Z}_i$ is
+such that:
+\begin{align}
+  \mathcal{Z}_i = \{\vect{z}_i \in \mathbb{R}^{12} : \\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1}\\
+  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\
+  & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\
+  & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\
+  & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5}, \\
+  &\forall t \in \mathbb{R}_{\geq 0}\}
+\end{align}
+
+The applied input $\vect{u}_i$ is a portion of the
 optimal solution to an optimization problem where information on the states
 of the neighbouring agents of agent $i$ are taken into account only in the
 constraints considered in the optimization problem. These constraints pertain
 to the set of its neighbours $\mathcal{N}_i$ and, in total, to the set of
-all agents within its sensing range $\mathcal{R}_i$.\\
+all agents within its sensing range $\mathcal{R}_i$. Regarding these, we
+make the following assumption:\\
 
-Specifically, considering the context of Model Predictive Control, when
+\begin{gg_box}
+\begin{assumption}
+considering the context of Model Predictive Control, when
 at time $t_k$, agent $i$ solves a finite horizon optimization problem, it has
 access to\footnote{Although
     $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
@@ -76,6 +94,8 @@ access to\footnote{Although
       across the entire horizon $\tau \in [t_k + h, t_k + T_p]$, where $T_p$ is the
       set horizon and $h$ is the sampling time.
 \end{enumerate}
+\end{assumption}
+\end{gg_box}
 We assume that these pieces of information are (a) always available and
 accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
@@ -97,5 +117,6 @@ wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
 can accomodate
 
 $$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \sim
-16 \cdot 10^2 \text{ agents}$$ within the range of one agent, a number that we deem is
-large enough for practical applications.
+16 \cdot 10^2 \text{ agents}$$ within the range of one agent, a number that we
+deem is large enough for practical applications so as to consider this
+approach to be legal.
