@@ -12,27 +12,27 @@ position which results in feasible displacements:\\
   Suppose that
 
   \begin{enumerate}
-    \item the terminal region $\mathcal{E}_i^f \subseteq \mathcal{E}_i$ is
-      closed with $0 \in \mathcal{E}_i^f$
-    \item a solution to the optimal control problem \eqref{position_based_cost} -
-      \eqref{constraint:p_5} is feasible at time $t=0$, that is, assumptions
+    \item the terminal region $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is
+      closed with $0 \in \mathcal{E}_{i,f}$
+    \item a solution to the optimal control problem \eqref{position_based_cost}
+      is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
-      \eqref{ass:after_formation_geometry} hold at time $t=0$
+      \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input
-      $\vect{u}_i^f : [0, h] \to \mathcal{U}_i$ such that for all
-      $\vect{e}_i \in \mathcal{E}_i^f$ and $\tau \in [0,h]$:
+      $\vect{u}_{i,f} : [0, h] \to \mathcal{U}_i$ such that for all
+      $\vect{e}_i \in \mathcal{E}_{i,f}$ and $\tau \in [0,h]$:
 
       \begin{enumerate}
-        \item $\vect{e}_i(\tau) \in \mathcal{E}_i^f$
-        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{u}_i^f(\tau)\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{u}_i^f(\tau)\big) \leq 0$
+        \item $\vect{e}_i(\tau) \in \mathcal{E}_{i,f}$
+        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big)
+          + F_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big) \leq 0$
       \end{enumerate}
 
   \end{enumerate}
 
   then the closed loop system \eqref{eq:position_based_error_model} under the
   control input \eqref{eq:position_based_optimal_u} converges to the set
-  $\mathcal{E}_i^f$ when $t \to \infty$.
+  $\mathcal{E}_{i,f}$ when $t \to \infty$.
 
 \end{theorem}
 \end{bw_box}
@@ -41,7 +41,7 @@ position which results in feasible displacements:\\
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error $\vect{e}_i(t)$ converges to the
-terminal set $\mathcal{E}_i^f$.\\
+terminal set $\mathcal{E}_{i,f}$.\\
 
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
@@ -57,7 +57,7 @@ $t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider that the
 optimal control signal calculated at $t_k$ contains the following two portions:
 
 \begin{equation}
-  \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{ \\
+  \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
       \begin{array}{ll}
         \vect{u}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_k)\big), & \tau_1 \in [t_k, t_{k+1}] \\
         \vect{u}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
@@ -69,21 +69,21 @@ optimal control signal calculated at $t_k$ contains the following two portions:
 Both portions are admissible since the calculated optimal control input is
 admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
-crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i^f$.
+crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$.
 Furthermore, according to assumption (3) of the theorem, there exists an
-admissible (and certainly not guaranteed optimal) input $\vect{u}_i^f$ that
-renders $\mathcal{E}_i^f$ invariant over $[t_k + T_p, t_k + T_p + h]$.
+admissible (and certainly not guaranteed optimal) input $\vect{u}_{i,f}$ that
+renders $\mathcal{E}_{i,f}$ invariant over $[t_k + T_p, t_k + T_p + h]$.
 
 Given the above facts, we can construct an admissible input for time $t_{k+1}$
 by sewing together the second portion of \eqref{eq:optimal_input_portions}
-and the input $\vect{u}_i^f(\cdot)$:
+and the input $\vect{u}_{i,f}(\cdot)$:
 
 \begin{equation}
-  \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big) = \left\{ \\
+  \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big) = \left\{
       \begin{array}{ll}
         \vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
-        %\vect{u}_i^f\Big(\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_k)\big)\Big), & \tau_2 \in (t_k + T_p, t_{k+1} + T_p]
-        \vect{u}_i^f(\tau - t_k - T_p), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        %\vect{u}_{i,f}\Big(\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_k)\big)\Big), & \tau_2 \in (t_k + T_p, t_{k+1} + T_p]
+        \vect{u}_{i,f}(\tau - t_k - T_p), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}
@@ -99,7 +99,7 @@ is feasible for all $t \geq 0$.\\
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating the convergence of the
-state $\vect{e}_i$ to the terminal set $\mathcal{E}_i^f$. In order for this
+state $\vect{e}_i$ to the terminal set $\mathcal{E}_{i,f}$. In order for this
 to be proved, it must be shown that a proper value function decreases along
 the solution trajectories starting at some initial time $t_k$. We consider the
 \textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
@@ -145,13 +145,13 @@ which we shall denote by $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$,
 and the optimal cost $J_i^{\star}\big(\vect{e}_i(t_k)\big)$, while reminding
 ourselves that
 $J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{e}_i(t)\big)$ $=$
-$\int_{t}^{t + T_p} F_i \big(\overline{\vect{e}}_i(\tau), \overline{\vect{u}}_i (\tau)\big) d \tau$ $+$
+$\int_{t}^{t + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds$ $+$
 $V_i \big(\overline{\vect{e}}_i (t + T_p)\big)$:
 
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
-   & V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big) + \int_{t_{k+1}}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) d \tau \\
-  -&V_i \big(\vect{e}_{0,i} (t_k + T_p)\big) - \int_{t_k}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
+   & V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big) + \int_{t_{k+1}}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds \\
+  -&V_i \big(\vect{e}_{0,i} (t_k + T_p)\big) - \int_{t_k}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
 
 Considering that $t_k < t_{k+1} < t_k + T_p < t_{k+1} + T_p$, we break down the
@@ -160,11 +160,11 @@ two integrals above in between these intervals:
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
     V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
-    &+ \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) d \tau
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) d \tau \\
+    &+ \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\
     -V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
-    &- \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
-    - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
+    &- \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
 \label{eq:convergence_4_integrals}
 \end{align}
 
@@ -177,17 +177,16 @@ $\vect{u}_{1,i}(\cdot) = \vect{u}_{0,i}(\cdot)$ in the interval $[t_{k+1}, t_k +
 Furthermore, this means that the predicted states according to these inputs will
 be also equal in this interval: $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$.
 Hence, the following equality holds over $[t_{k+1}, t_k + T_p]$:
-
 \begin{align}
-  F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) =
-  F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big),\ \tau \in [t_{k+1}, t_k + T_p]
+  F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =
+  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big),\ s \in [t_{k+1}, t_k + T_p]
 \end{align}
 
 Integrating this equality over the interval where it is valid yields
 
 \begin{align}
-  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) d\tau =
-  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d\tau
+  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds =
+  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
 
 \end{gg_box}
@@ -198,9 +197,9 @@ This means that these two integrals featured in the right-hand side of eq.
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
     V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
-    &+\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i} (\tau)\big) d \tau \\
+    &+\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\
     -V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
-    &-\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
+    &-\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
 \label{eq:convergence_2_integrals}
 \end{align}
 
@@ -212,14 +211,14 @@ This means that these two integrals featured in the right-hand side of eq.
   interval $[t_{k+1} + T_p, t_k + T_p]$, for the controls and states that are
   applicable in it:
   \begin{align}
-    \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big)
-    + F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big)\Bigg) d\tau \leq 0 \\
-    \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{d\tau} V_i\big(\vect{e}_{1,i}(\tau)\big) d \tau
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau \leq 0 \\
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
+    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds \leq 0 \\
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau \leq 0 \\
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
   \end{align}
 
   The left-hand side expression is the same as the first two terms in the
@@ -228,7 +227,7 @@ This means that these two integrals featured in the right-hand side of eq.
   expression:
   \begin{align}
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
     \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
@@ -241,38 +240,39 @@ This means that these two integrals featured in the right-hand side of eq.
   becomes
   \begin{align}
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
     \leq L_{V_i} \big\|\vect{e}_{1,i}(t_k + T_p) - \vect{e}_{0,i}(t_k + T_p)\big\|
   \end{align}
 
   But in the interval $[t_{k+1}, t_k + T_p]$:
-  $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, hence the right-hand side
-  of the inequality equals zero
+  $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$ holds, hence the right-hand
+  side of the inequality equals zero:
   \begin{align}
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \leq 0
   \end{align}
 
   By subtracting the term
-  $-\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau$
+  $\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s$
   from both sides we get
   \begin{align}
     &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(\tau), \vect{u}_{1,i}(\tau)\big) d\tau \\
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \\
     - &V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
-    \leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    \leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
   \end{align}
 
-  The left-hand side of the inequality is equal to the cost difference.
+  The left-hand side of this inequality is now equal to the cost difference
+  $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)$.
 \end{gg_box}
 
 Hence, the cost difference becomes
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) d \tau
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
 
 \begin{gg_box}
@@ -281,29 +281,120 @@ Hence, the cost difference becomes
   $\|\vect{e}_i\|^2_{\mat{Q}_i}$. If we denote by $m \geq 0$ the
   minimum eigenvalue between those of matrices $\mat{R}_i, \mat{Q}_i$, this
   means that
-  $$F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) \geq m \|\vect{e}_{0,i}(\tau)\|^2$$
+  $$F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m \|\vect{e}_{0,i}(s)\|^2$$
 
   By integrating the above between our interval of interest $[t_k, t_{k+1}]$ we get
   \begin{align}
-    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) &\geq \int_{t_k}^{t_{k+1}} m \|\vect{e}_{0,i}(\tau)\|^2 d\tau \\
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(\tau), \vect{u}_{0,i} (\tau)\big) &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(\tau)\|^2 d\tau
+    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m \|\vect{e}_{0,i}(s)\|^2 ds \\
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
 \end{gg_box}
 
-Which means that the cost difference
+Which means that the cost difference becomes
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-  &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(\tau)\|^2 d\tau \\
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &\leq 0
+  &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
-
-And since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
+and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) \leq \overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$,
-the Lyapunov function $J_i^{\star}(\cdot)$ is decreasing along consecutive
-sampling times:
+which means that
 \begin{align}
- J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) \leq J_i^{\star}\big(\vect{e}_i(t_k)\big)
+ J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+ \label{eq:J_opt_between_consecutive_k}
 \end{align}
+With this result established, we need to trace the time $t_k$ back to $t_0 = 0$.
+
+\begin{gg_box}
+The integral
+  \begin{align}
+    \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds = \sum\limits_{j=0}^{k} \int_{t_j}^{t_{j+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  and the integral with limits from $t_0$ to $t_{k+1}$ can be decomposed into
+  the addition of two integrals with limits from (a) $t_0$ to $t_k$ and (b)
+  $t_k$ to $t_{k+1}$:
+  \begin{align}
+    \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds = \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds + \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  which means that
+  \begin{align}
+    \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds = \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds - \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  making the optimal cost difference between the consecutive sampling times
+  $t_k$ and $t_{k+1}$ in \eqref{eq:J_opt_between_consecutive_k}
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
+      -m \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds +m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  Similarly, the optimal cost difference between the sampling times $t_{k-1}$
+  and $t_{k}$ is
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_{k-1})\big) \leq
+      -m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds +m \int_{t_0}^{t_{k-1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+
+  and we can apply this rationale all the way back to that between $t_0$ and
+  $t_1$. Summing all the inequalities between the pairs of consecutive
+  sampling times $(t_0, t_1)$, $(t_1, t_2)$, $\dots$, $(t_{k-1}, t_k)$, we get
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_0)\big) \leq
+      -m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+\end{gg_box}
+
+Hence, for $t_0 = 0$
+\begin{align}
+  J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(0)\big) \leq
+    -m \int_{0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+\label{eq:J_opt_between_k_and_0}
+\end{align}
+which implies that the value function $J_i^{\star}\big(\vect{e}_i(t_{k})\big)$
+in non-increasing for all sampling times:
+\begin{align}
+  J_i^{\star}\big(\vect{e}_i(t_{k})\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big),\ \forall t_k \in \mathbb{R}_{\geq0}
+\end{align}
+Let us now define the function $V_i(\vect{e}_i(t))$:
+\begin{align}
+  V_i\big(\vect{e}(t)\big) \triangleq J_i^{\star}\big(\vect{e}_i(\tau)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big),\ t \in \mathbb{R}_{\geq0}
+\end{align}
+where $\tau = max\{t_k : t_k \leq t\}$. Since $J_i^{\star}\big(\vect{e}_i(0)\big)$
+is bounded, $V_i\big(\vect{e}(t)\big)$ is also bounded, which implies that the
+signals $\vect{e}_i(t)$ and $\vect{u}_i(t)$ are also bounded. According to
+\eqref{eq:position_based_error_model}, this means that $\dot{\vect{e}}_i(t)$
+is bounded as well. From inequality \eqref{eq:J_opt_between_k_and_0} we then
+have
+\begin{align}
+  V_i\big(\vect{e}_i(t)\big) = J_i^{\star}\big(\vect{e}_i(\tau)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big)
+    -m \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+\end{align}
+which, due to the fact that $\tau < t$, is equivalent to
+\begin{align}
+  V_i\big(\vect{e}_i(t)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0, t \in \mathbb{R}_{t\geq 0}
+\end{align}
+Solving for the integral we get
+\begin{align}
+  \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq \dfrac{1}{m}\Big(J_i^{\star}\big(\vect{e}_i(0)\big) - V_i\big(\vect{e}_i(t)\big)\Big), t \in \mathbb{R}_{t\geq 0}
+\end{align}
+Both $J_i^{\star}\big(\vect{e}_i(0)\big)$ and $V_i\big(\vect{e}_i(t)\big)$
+are bounded, and therefore so is their difference, which means that the
+term $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ is bounded as well.
+\begin{bw_box}
+  \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
+
+    Let $f$ be a continuous, positive-definite function, and $x$ be an
+    absolutely continuous function in $\mathbb{R}$. If the following hold:
+  \begin{itemize}
+    \item $\|x(\cdot)\| < \infty, \|\dot{x}(\cdot)\| < \infty$
+    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(x(s)\big) < \infty$
+  \end{itemize}
+  then $\lim\limits_{t \to \infty} \|x(t)\| = 0$
+  \label{lemma:barbalat}
+  \end{lemma}
+\end{bw_box}
+Lemma \eqref{lemma:barbalat} assures us that under these conditions for the
+error and its dynamics, the error
+$$\lim\limits_{t \to \infty}\|\vect{e}_{0,i}(t)\| \to 0$$
+which means that
+$$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| \to 0$$
 
 Therefore, the closed-loop trajectory of $\vect{e}_i$ converges to the terminal
-set $\mathcal{E}_i^f$ as $t \to \infty$. \qedsymbol
+set $\mathcal{E}_{i,f}$ as $t \to \infty$, and the proof is concluded. \qedsymbol

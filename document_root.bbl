@@ -5,4 +5,10 @@ R.~M. Murray, S.~S. Sastry, and L.~Zexiang, {\em A Mathematical Introduction to
   Robotic Manipulation}.
 \newblock Boca Raton, FL, USA: CRC Press, Inc., 1st~ed., 1994.
 
+\bibitem{Fontes2007}
+F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
+  Predictive Control for Nonlinear Time-Varying Systems: Stability and
+  Robustness}, pp.~115--129.
+\newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2007.
+
 \end{thebibliography}

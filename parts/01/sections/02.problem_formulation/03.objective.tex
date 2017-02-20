@@ -37,20 +37,20 @@ definitions in Definition \eqref{def:intra_environmental_arrangement}:
 \begin{definition} (\textit{Intra-environmental Arrangement})
 
   Let us define $\underline{d}_{\ell'\ell}$
-  \begin{align*}
+  \begin{align}
     \underline{d}_{\ell'\ell} &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| + r_{\ell} + r_{\ell'} :
       \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
-  \end{align*}
+  \end{align}
   as the distance between the two least distant obstacles in the workspace,
   $\underline{d}_{\ell,W}$
-  \begin{align*}
+  \begin{align}
     \underline{d}_{\ell,W} & \triangleq \min\{r_W - (\|\vect{p}_W - \vect{p}_{\ell}\| + r_{\ell}) : \ell \in \mathcal{L}\},
-  \end{align*}
+  \end{align}
   as the distance between the least distant obstacle from the boundary of the
   workspace and the boundary itself, and $D$
-  \begin{equation*}
+  \begin{equation}
     D \triangleq \min\{\underline{d}_{\ell'\ell}, \underline{d}_{\ell,W}\}
-  \end{equation*}
+  \end{equation}
   as the least of these two distances.
 \label{def:intra_environmental_arrangement}
 \end{definition}

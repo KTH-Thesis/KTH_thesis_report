@@ -1,6 +1,15 @@
 %-------------------------------------------------------------------------------
 \subsection{The optimization problem}
 
+Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
+sampling time $0 < h < T_p$, where $T_p$ is the finite time-horizon, such that
+$t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop optimal
+control problem (OCP) is solved at discrete sampling time instants $t_k$
+based on the current state error measurement $\vect{e}_i(t_k)$. The solution
+is an optimal control signal $\vect{u}_i^{\star}(t)$, computed over
+$t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
+between sampling times $t_k$ and $t_k + h$.
+
 At a generic time $t_k$, agent $i$ solves the following optimization problem:
 
 \begin{align}
@@ -9,21 +18,19 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost} \\
   \text{subject to:} & \nonumber \\
-  & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \\
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model} \\
   & \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
   & \overline{\vect{u}}_i(s) \in \mathcal{U}_i, s \in [t_k, t_k + T_p)\\
   & \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
-  & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i \\
-  \text{and } \forall s \in [t_k, t_k + T_p]:& \nonumber \\
-  & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t) \label{constraint:p_1}\\
-  & \|\overline{\vect{p}}_i(t) - \vect{p}_{\ell}(t)\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L} \\
-  & \|\overline{\vect{p}}_i(t)\| + r_i < r_W \\
-  & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| < d_i, \forall j \in \mathcal{N}_i \\
-  & \overline{\theta}_i(t) \ne \pm \frac{\pi}{2} \label{constraint:p_5}
-\end{align}\\
-Constraints \ref{constraint:p_1}-\ref{constraint:p_5} explicitly address the
-requirements posed by the problem \eqref{problem}, while the rest exist to
-ensure that formation is achieved under constrained states and input signals.
+  & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
+\end{align}
+
+The notation $\overline{\cdot}$ is used to distinguish predicted states which
+are internal to the controller, as opposed to their actual values. This means
+that $\overline{\vect{e}}_i(\cdot)$ is the solution to
+\eqref{eq:internal_error_model} driven by the control input
+$\vect{u}_i^{\star}(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
+initial condition $\vect{e}_i(t_k)$.
 
 The functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
@@ -36,9 +43,6 @@ $V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
 definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
 are symmetric and positive semi-definite.
-
-The set $\mathcal{E}_i$ is such that
-$$\mathcal{E}_i = \{\vect{e}_i \in \mathbb{R}^{12} : \vect{e}_i \in \mathcal{Z}_i \oplus (-z_{i,des} )\}$$
 
 The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
 positively invariant set \note{?? define it} for system
@@ -89,8 +93,8 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
 \end{bw_box}
 
 
-The solution to the optimal control problem \eqref{position_based_cost} -
-\eqref{constraint:p_5} at time $t_k$ is an optimal control input
+The solution to the optimal control problem \eqref{position_based_cost}
+at time $t_k$ is an optimal control input
 $\vect{u}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$ which
 is applied to the open-loop system until the next sampling instant $t_k + h$,
 at which time a new optimal control problem is solved in the same manner:

@@ -51,7 +51,7 @@ The set $\mathcal{Z}_i$ captures all the state constraints of the system's
 dynamics posed by the problem \eqref{problem}, therefore $\mathcal{Z}_i$ is
 such that:
 \begin{align}
-  \mathcal{Z}_i = \{\vect{z}_i \in \mathbb{R}^{12} : \\
+  \mathcal{Z}_i = \{\vect{z}_i \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
   & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1}\\
   & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\
   & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\
@@ -70,8 +70,8 @@ make the following assumption:\\
 
 \begin{gg_box}
 \begin{assumption}
-considering the context of Model Predictive Control, when
-at time $t_k$, agent $i$ solves a finite horizon optimization problem, it has
+Considering the context of Model Predictive Control, when
+at time $t_k$ agent $i$ solves a finite horizon optimization problem, it has
 access to\footnote{Although
     $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
     the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
@@ -100,12 +100,14 @@ We assume that these pieces of information are (a) always available and
 accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
 
+\begin{subequations}
 \begin{align}
   \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
   \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
-  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k + h, t_k + T_p] \\
-  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k + h, t_k + T_p]
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
+  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
 \end{align}
+\end{subequations}
 
 Considering that $\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
 vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
