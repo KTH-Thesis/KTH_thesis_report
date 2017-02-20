@@ -1,3 +1,13 @@
+Here we are interested in steering each agent $i \in \mathcal{V}$ into
+resting at a \textit{position} in 3D space, while conforming to the requirements
+of the problem; that is, all agents should avoid colliding with each other, all
+obstacles in the workspace, and the workspace boundary itself, while remaining
+in a non-singular configuration and sustaining the connectivity to their
+respective neighbours.
+
+%-------------------------------------------------------------------------------
+\subsection{Formalizing the model}
+
 We begin by rewriting the system equations \eqref{eq:system_1},
 \eqref{eq:system_2} for a generic agent $i \in \mathcal{V}$ in state-space form:
 \begin{subequations}
@@ -40,8 +50,8 @@ continuous-time differential equations of the form
 \begin{align}
   \dot{\vect{z}}_i(t) &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system}\\
   \vect{z}_i(0) &= \vect{z}_{i,0} \\
-  \vect{z}_i (t) & \in \mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
-  \vect{u}_i (t) & \in \mathcal{U}_i \subset \mathbb{R}^6
+  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
+  \vect{u}_i (t) & \subset \mathbb{R}^6
 \end{align}
 where state $\vect{z}_i$ is directly measurable. It should be noted that
 equation \eqref{eq:non_perturbed_system} does not consider model-plant

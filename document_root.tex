@@ -34,27 +34,27 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
   %simulation results verify the  performance of the proposed control scheme.
 %\end{abstract}
 
-\newpage
+\cleardoublepage
 \tableofcontents
-\newpage
+\cleardoublepage
 
 
-%\section{Introduction}
+\section{Introduction}
 
-  %\input{parts/01.introduction.tex}
-  %\cleardoublepage
+  \input{parts/01.introduction.tex}
+  \cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{The problem}
-%\cleardoublepage
+\cleardoublepage
 
-%  \section{Notation and Preliminaries}
-    %\label{sec:notation_reliminaries}
+  \section{Notation and Preliminaries}
+    \label{sec:notation_reliminaries}
 
-    %\input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
-    %\input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
-    %\input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
-    %\cleardoublepage
+    \input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
+    \input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
+    \input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
+    \cleardoublepage
 
 
   \section{Problem Formulation}
@@ -64,25 +64,21 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
     \input{parts/01/sections/02.problem_formulation/02.initial_conditions.tex}
     \input{parts/01/sections/02.problem_formulation/03.objective.tex}
     \input{parts/01/sections/02.problem_formulation/04.problem_statement.tex}
-    %\cleardoublepage
+    \cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{Advocated Solution}
-    %\cleardoublepage
-
-  \section{Formalizing the model}
-    \label{sec:the_model}
-
-    \input{parts/02/sections/01.model/model.tex}
-    %\cleardoublepage
+    \cleardoublepage
 
   \section{Stabilization}
     \label{sec:stabilization}
 
-    \input{parts/02/sections/02.stabilization/01.error_model.tex}
-    \input{parts/02/sections/02.stabilization/02.optimization_problem.tex}
-    \input{parts/02/sections/02.stabilization/03.feasibility_and_convergence.tex}
-    %\cleardoublepage
+    \input{parts/02/sections/02.stabilization/01.model.tex}
+    \input{parts/02/sections/02.stabilization/02.error_model.tex}
+    \input{parts/02/sections/02.stabilization/03.receding_horizon_control.tex}
+    \input{parts/02/sections/02.stabilization/04.optimization_problem.tex}
+    \input{parts/02/sections/02.stabilization/05.feasibility_and_convergence.tex}
+    \cleardoublepage
 
 \bibliography{references}
 \bibliographystyle{ieeetr}
