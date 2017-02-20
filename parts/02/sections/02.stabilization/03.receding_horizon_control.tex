@@ -1,9 +1,9 @@
-\subsection{Nonlinear Receding Horizon}
+\subsection{Nonlinear Receding Horizon: Assumptions and Constraints}
 
 Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
-sampling time $0 < h < T_p$, where $T_p$ is the finite time-horizon, such that
-$t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop optimal
-control problem (OCP) is solved at discrete sampling time instants $t_k$
+sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
+that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
+optimal control problem (OCP) is solved at discrete sampling time instants $t_k$
 based on the current state error measurement $\vect{e}_i(t_k)$. The solution
 is an optimal control signal $\vect{u}_i^{\star}(t)$, computed over
 $t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
@@ -40,8 +40,7 @@ access to\footnote{Although
         \item $\overline{\vect{z}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
         \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
       \end{itemize}
-      across the entire horizon $\tau \in [t_k + h, t_k + T_p]$, where $T_p$ is the
-      set time-horizon and $h$ is the sampling time.
+      across the entire horizon $\tau \in (t_k, t_k + T_p]$
 \end{enumerate}
 \end{assumption}
 \end{gg_box}
