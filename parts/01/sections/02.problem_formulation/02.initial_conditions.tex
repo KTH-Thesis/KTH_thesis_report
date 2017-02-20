@@ -48,7 +48,7 @@ Topologically, this means that the graph $\mathcal{G}$ constructed by the edges
 connecting neighbouring agents $i \in \mathcal{V}$ is undirected.
 
 Furthermore, it is assumed that, initially, the Jacobians $\mat{J}_i$ are
-well-defined $\forall i \in \mathcal{V}$. These four assumptions, which concern
+well-defined $\forall i \in \mathcal{V}$. These assumptions, which concern
 the initial conditions of the problem, are summarized in assumption
 \ref{ass:initial_conditions}:
 
@@ -71,12 +71,6 @@ the initial conditions of the problem, are summarized in assumption
 
     \item all agents are in a collision-free configuration with each other,
       the obstacles $\ell \in \mathcal{L}$ and the workspace $W$ boundary
-
-    \item neighbouring relations are reciprocal:
-      \begin{align}
-        d_{ij,a}(0) < d_i,\ \forall j \in \mathcal{N}_i \Leftrightarrow
-        d_{ji,a}(0) < d_j,\ \forall i \in \mathcal{N}_j
-      \end{align}
 
     \item all agents are in a singularity-free configuration:
 

@@ -27,10 +27,13 @@ less than $d_i$ to him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
 greater than $\underline{d}_{ij,a}$ with one another.
 
-Lastly, the control protocol should provide feasible control inputs, that is,
-inputs that abide by input constraints per agent $i$:
-$\|\vect{u}_i (t)\| \leq \overline{u}_i$, $\forall i \in \mathcal{V}$,
-$\forall t \in \mathbb{R}_{\geq 0}$.
+Lastly, the control protocol should provide feasible control inputs $\vect{u}_i$
+per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
+constraints $\mathcal{U}_i$
+\begin{align}
+\vect{u}_i \in \mathcal{U}_i = \{ \vect{u}_i \in \mathbb{R}^6 :
+        \|\vect{u}_i (t)\| \leq \overline{u}_i\}
+\end{align}
 
 Formally, the control problem under the aforementioned constraints is
 formulated as follows:
@@ -76,8 +79,8 @@ formulated as follows:
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
 
     \item The control laws $\vect{u}_i$ abide by their respective input constraints
-      $$\vect{u}_i \in \mathcal{U}_i = \{ \vect{u}_i \in \mathbb{R}^6 :
-        \|\vect{u}_i (t)\| \leq \overline{u}_i\} $$
+      at all times
+      $$\vect{u}_i(t) \in \mathcal{U}_i,\ \forall t \in \mathbb{R}_{\geq 0} $$
 
   \end{enumerate}
 \label{problem}
