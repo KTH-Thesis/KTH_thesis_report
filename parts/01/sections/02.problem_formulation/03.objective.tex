@@ -13,8 +13,8 @@ workspace boundary.
 \begin{bw_box}
 \begin{definition} (\textit{Feasible Steady-state Configuration})
 
-The desired steady-state configuration $\vect{x}_{i,des}, \vect{v}_{i,des}$ of
-agents $i \in \mathcal{V}$ is \textit{feasible} only if it is a collision-free
+The desired steady-state configuration $\vect{x}_{i,des}$ of agents
+$i \in \mathcal{V}$ is \textit{feasible} only if it is a collision-free
 configuration.
 
 \end{definition}
@@ -22,10 +22,10 @@ configuration.
 
 Formally then, the objective of each agent $i$ is
 $\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$ and
-$\lim\limits_{t \to \infty} \|\vect{v}_i(t) - \vect{v}_{i,des}\| = 0$.
+$\lim\limits_{t \to \infty} \|\vect{v}_i(t)\| = 0$.
 
 Before formally stating the problem to be solved, we must address an issue
-that addresses the feasibility of its solution and relates to the avoidance of
+that refers to the feasibility of its solution and relates to the avoidance of
 collision from an intra-environmental perspective. Namely, we demand that a
 solution be feasible if and only if the agent with the largest radius is able to
 pass through the spaces demarcated by (a) the two least distant obstacles,

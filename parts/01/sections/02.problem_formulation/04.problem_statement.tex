@@ -3,7 +3,8 @@
 In this section, the problem considered will be stated in a concrete manner.\\
 
 Due to the fact that the agents are not dimensionless and their communication
-capabilities are limited, the control protocol should for all
+capabilities are limited, given feasible steady-state configurations
+$\vect{p}_{i,des}, \vect{q}_{i,des}$, the control protocol should for all
 agents $i \in \mathcal{V}$ guarantee that:
 \begin{enumerate}
   \item the desired positions $\vect{p}_{i,des}$ are achieved in finite time
@@ -22,7 +23,7 @@ $t\in\mathbb{R}_{\geq 0}$ that:
 \end{enumerate}
 
 Therefore, all neighboring agents of agent $i$ must remain within a distance
-less than $d_i$ from him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
+less than $d_i$ to him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
 greater than $\underline{d}_{ij,a}$ with one another.
 
@@ -46,7 +47,7 @@ formulated as follows:
   system of agents, obstacles and the workspace is subject to assumptions
   \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
   \eqref{ass:intra_environmental_arrangement}. Given desired \textit{feasible}
-  steady-state agent configurations $\vect{x}_{i,des}$, $\vect{v}_{i,des}$,
+  steady-state agent configurations $\vect{x}_{i,des}$,
   $\forall i \in \mathcal{V}$, design decentralized control laws
   $\vect{u}_i$ such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
   the following hold:
@@ -55,7 +56,7 @@ formulated as follows:
 
     \item Position and orientation configuration is achieved in steady-state
       $$\lim_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}(t)\| = 0$$
-      $$\lim_{t \to \infty} \|\vect{v}_i(t) - \vect{v}_{i,des}(t)\| = 0$$
+      $$\lim_{t \to \infty} \|\vect{v}_i(t)\| = 0$$
 
     \item Inter-agent collision is avoided
       $$\|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a}(t) > \underline{d}_{ij,a},
@@ -75,7 +76,7 @@ formulated as follows:
     \item All maps $\mat{J}_i$ are well defined
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
 
-    \item The control laws $\vect{u}_i$ abide by the input constraints
+    \item The control laws $\vect{u}_i$ abide by their respective input constraints
       $$\vect{u}_i \in \mathcal{U}_i = \{ \vect{u}_i \in \mathbb{R}^6 :
         \|\vect{u}_i (t)\| \leq \overline{u}_i\} $$
 

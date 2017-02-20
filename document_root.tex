@@ -20,41 +20,41 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
 
 \maketitle
 
-\begin{abstract}
-	This paper addresses the problem of cooperation within a multi-robot
-  system composed of second-order nonlinear multi-agent systems that operate
-  in $3$D space. Specifically, we propose a Distributed Nonlinear Model
-  Predictive Control scheme in which each agent solves a nonlinear optimization
-  problem using only local information from its neighbors to calculate its own
-  control signal. Additionally, by introducing certain
-  inter-agent distance constraints, we guarantee collision avoidance both
-  between among the agents and between the agents and possible obstacles of the
-  workspace. Connectivity maintenance between agents that are initially
-  connected is also achieved by the proposed controller scheme. Finally,
-  simulation results verify the  performance of the proposed control scheme.
-\end{abstract}
+%\begin{abstract}
+	%This paper addresses the problem of cooperation within a multi-robot
+  %system composed of second-order nonlinear multi-agent systems that operate
+  %in $3$D space. Specifically, we propose a Distributed Nonlinear Model
+  %Predictive Control scheme in which each agent solves a nonlinear optimization
+  %problem using only local information from its neighbors to calculate its own
+  %control signal. Additionally, by introducing certain
+  %inter-agent distance constraints, we guarantee collision avoidance both
+  %between among the agents and between the agents and possible obstacles of the
+  %workspace. Connectivity maintenance between agents that are initially
+  %connected is also achieved by the proposed controller scheme. Finally,
+  %simulation results verify the  performance of the proposed control scheme.
+%\end{abstract}
 
-\cleardoublepage
+\newpage
 \tableofcontents
-\cleardoublepage
+\newpage
 
 
-\section{Introduction}
+%\section{Introduction}
 
-  \input{parts/01.introduction.tex}
-  \cleardoublepage
+  %\input{parts/01.introduction.tex}
+  %\cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{The problem}
-\cleardoublepage
+%\cleardoublepage
 
-  \section{Notation and Preliminaries}
-    \label{sec:notation_reliminaries}
+%  \section{Notation and Preliminaries}
+    %\label{sec:notation_reliminaries}
 
-    \input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
-    \input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
-    \input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
-    \cleardoublepage
+    %\input{parts/01/sections/01.notation_and_preliminaries/01.notation.tex}
+    %\input{parts/01/sections/01.notation_and_preliminaries/02.graph_theory.tex}
+    %\input{parts/01/sections/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
+    %\cleardoublepage
 
 
   \section{Problem Formulation}
@@ -64,17 +64,17 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
     \input{parts/01/sections/02.problem_formulation/02.initial_conditions.tex}
     \input{parts/01/sections/02.problem_formulation/03.objective.tex}
     \input{parts/01/sections/02.problem_formulation/04.problem_statement.tex}
-    \cleardoublepage
+    %\cleardoublepage
 
 %-------------------------------------------------------------------------------
 \part{Advocated Solution}
-    \cleardoublepage
+    %\cleardoublepage
 
   \section{Formalizing the model}
     \label{sec:the_model}
 
     \input{parts/02/sections/01.model/model.tex}
-    \cleardoublepage
+    %\cleardoublepage
 
   \section{Stabilization}
     \label{sec:stabilization}
@@ -82,7 +82,7 @@ Examiner: Dimos Dimarogonas (\href{mailto: dimos@kth.se}{dimos@kth.se}) \\}
     \input{parts/02/sections/02.stabilization/01.error_model.tex}
     \input{parts/02/sections/02.stabilization/02.optimization_problem.tex}
     \input{parts/02/sections/02.stabilization/03.feasibility_and_convergence.tex}
-    \cleardoublepage
+    %\cleardoublepage
 
 \bibliography{references}
 \bibliographystyle{ieeetr}

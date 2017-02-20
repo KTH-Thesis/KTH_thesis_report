@@ -1,17 +1,19 @@
 %-------------------------------------------------------------------------------
 \subsection{System Model}
 
-Consider a set of $N$ rigid bodies, with $\mathcal{V} = \{ 1,2, \ldots, N\}$,
-$N  \geq 2$, operating in a workspace $W\subseteq \mathbb{R}^3$.
-A coordinate frame $\{i\}, i\in\mathcal{V}$ is attached to each body's
-center of mass. The workspace is assumed to be modeled as a
+Consider a set $\mathcal{V}$ of $N$ rigid bodies,
+$\mathcal{V} = \{ 1,2, \ldots, N\}$, $|\mathcal{V}| = N \geq 2$, operating in
+a workspace $W\subseteq \mathbb{R}^3$. A coordinate frame
+$\{i\}, i\in\mathcal{V}$ is attached to the center of mass of each body.
+The workspace is assumed to be modeled as a
 bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$ expressed in an inertial frame
 $\{\mathcal{O}\}$.
 
-We consider that over time $t$ each agent $i$ occupies the space of a sphere
-$\mathcal{B}(\vect{p}_i(t), r_i)$, where $\vect{p}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3$
+We consider that over time $t$ each agent $i \in \mathcal{V}$ occupies the
+space of a sphere $\mathcal{B}(\vect{p}_i(t), r_i)$, where
+$\vect{p}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^3$
 is the position of the agent's center of mass, and $r_i < r_W$ is the radius of the
-agent's body. We denote $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3, i\in\mathcal{V}$,
+agent's body. We denote by $\vect{q}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{T}^3$,
 the Euler angles representing the agents' orientation with respect to the
 inertial frame $\{\mathcal{O}\}$,
 with $\vect{q}_i \triangleq [\phi_i,\theta_i,\psi_i]^{\top}$, where
@@ -26,7 +28,8 @@ and model the motion of agent $i$ under second order dynamics:
 \begin{subequations}
 	\begin{align}
     \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t), \label{eq:system_1} \\
-    \vect{u}_i &= \mat{M}_i(\vect{x}_i) \dot{\vect{v}}_i(t) + \mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)+\vect{g}_i(\vect{x}_i), \label{eq:system_2}
+    \vect{u}_i(t) &= \mat{M}_i(\vect{x}_i) \dot{\vect{v}}_i(t) +
+      \mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)+\vect{g}_i(\vect{x}_i), \label{eq:system_2}
 	\end{align}
   \label{eq:system}
 \end{subequations}
@@ -92,7 +95,7 @@ the $6$D generalized \textit{actuation force} acting on the agent.
 \end{bw_box}
 
 However, access to measurements of, or knowledge about these matrices and
-vectors was not considered up until now. At this point we make the following
+vectors was not hitherto considered. At this point we make the following
 assumption:
 
 \begin{gg_box}
@@ -101,7 +104,7 @@ assumption:
   \begin{enumerate}
 
     \item Agent $i$ has access to measurements
-      $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, i\in\mathcal{V}$,
+      $\vect{p}_i, \vect{q}_i, \dot{\vect{p}}_i, \vect{\omega}_i, \forall i\in\mathcal{V}$,
       that is, vectors $\vect{x}_i, \vect{v}_i$ pertaining to himself,
 
     \item Agent $i$ has a (upper-bounded) sensing range $d_i$ such that
@@ -117,8 +120,9 @@ assumption:
 \end{assumption}
 \end{gg_box}
 
-The consequence of points 1 and 2 is that, by defining the set of
-agents $j$ that are within the sensing range of agent $i$ at time $t$ as
+The consequence of points 1 and 2 of assumption \eqref{ass:measurements_access}
+is that, by defining the set of agents $j$ that are within the sensing range
+of agent $i$ at time $t$ as
 $$\mathcal{R}_i(t) \triangleq \{j\in\mathcal{V} : \vect{p}_j(t)\in\mathcal{B}(\vect{p}_i(t), d_i)\}$$
 or equivalently
 $$\mathcal{R}_i(t) \triangleq \{j\in\mathcal{V} : \| \vect{p}_i(t) - \vect{p}_j(t) \| \leq d_i\}$$
@@ -128,7 +132,8 @@ $$\vect{p}_{j \triangleright i}(t), \vect{q}_{j \triangleright i}(t),
 Therefore, agent $i$ assumes access to all measurements
 $$\vect{p}_{j}(t), \vect{q}_{j}(t), \dot{\vect{p}}_j(t),
 \vect{\omega}_j(t),\ \forall j\in \mathcal{R}_i(t),t\in\mathbb{R}_{\geq 0}$$
-of agent $j$ by virtue of being able to calculate them using knowledge of its own
+of agent $j \in \mathcal{R}_i(t)$ by virtue of being able to calculate
+them using knowledge of its own
 $\vect{p}_i(t)$, $\vect{q}_i(t)$, $\dot{\vect{p}}_i(t)$, $\vect{\omega}_i(t)$.
 
 
@@ -161,10 +166,10 @@ $\ell$ in workspace $W$ is depicted in Fig. \ref{fig:two_agents_one_obstacle}.\\
 	\label{fig:two_agents_one_obstacle}
 \end{figure}
 
-Let us now define the distance between any two agents $i,j$ as
-$d_{ij,a}$, that between agent $i$ and obstacle $\ell$ as $d_{i\ell,o}$,
+Let us now define the distance between any two agents $i,j$ at time $t$ as
+$d_{ij,a}(t)$; that between agent $i$ and obstacle $\ell$ as $d_{i\ell,o}(t)$;
 and that between an agent $i$ and the origin of the workspace $W$ as
-$d_{i,W}$, with $d_{ij,a}, d_{i\ell,o}, d_{i,W} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
+$d_{i,W}(t)$, with $d_{ij,a}, d_{i\ell,o}, d_{i,W} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 \begin{subequations}
 	\begin{align}
     d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \|, \\
