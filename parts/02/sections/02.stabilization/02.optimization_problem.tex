@@ -42,11 +42,32 @@ $V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
 \end{align}\\
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
 definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
-are symmetric and positive semi-definite.
+are symmetric and positive semi-definite. Before defining the terminal set
+$\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
+invariant set:
+
+\begin{bw_box}
+  \begin{definition} (\textit{Positively Invariant Set})
+
+    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
+    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
+    where $vect{x}_0$ is the initial condition. The set
+    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
+    $\gamma$ is a valued function, is said to be \textit{positively invariant}
+    if the following holds:
+    \begin{align}
+      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
+    \end{align}
+
+    Intuitively, this means that the set $S$ is positively invariant if a
+    trajectory of the system does not exit it once it enters it.
+    \label{def:positively_invariant}
+  \end{definition}
+\end{bw_box}
 
 The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
-positively invariant set \note{?? define it} for system
-\eqref{eq:position_based_error_model} such that
+positively invariant set for system \eqref{eq:position_based_error_model}
+such that
 \begin{align}
   \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \varepsilon_0 \}
 \end{align}
@@ -65,7 +86,7 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
   where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,f}$,
   with Lipschitz constant $L_{V_i} = 2 \varepsilon_0 \lambda_{max}(P_i)$\\
 
-  \begin{gg_box}
+  %\begin{gg_box}
   \textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_{i,f}$, it holds that
   \begin{align}
     |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
@@ -87,7 +108,7 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
     &= 2 \varepsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
   \end{align}
   \qedsymbol
-  \end{gg_box}
+  %\end{gg_box}
 \label{lemma:V_Lipschitz_e_0}
 \end{lemma}
 \end{bw_box}
@@ -121,8 +142,11 @@ is denoted by
 \begin{align}
   \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0}
 \end{align}
-As is natural,
-$\vect{e}_i(t_k) = \overline{\vect{e}}_i\big(t_k;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big)$.\\
+As is natural
+\begin{align}
+  \vect{e}_i(t_k) = \overline{\vect{e}}_i\big(t_k;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big)
+  \label{eq:error_now_to_predicted_error}
+\end{align}
 
 We can now give the definition of an \textit{admissible input}:
 
@@ -141,4 +165,3 @@ We can now give the definition of an \textit{admissible input}:
 
 \end{definition}
 \end{bw_box}
-

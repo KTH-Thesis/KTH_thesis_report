@@ -366,7 +366,7 @@ have
   V_i\big(\vect{e}_i(t)\big) = J_i^{\star}\big(\vect{e}_i(\tau)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big)
     -m \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
-which, due to the fact that $\tau < t$, is equivalent to
+which, due to the fact that $\tau \leq t$, is equivalent to
 \begin{align}
   V_i\big(\vect{e}_i(t)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0, t \in \mathbb{R}_{t\geq 0}
 \end{align}
@@ -376,24 +376,31 @@ Solving for the integral we get
 \end{align}
 Both $J_i^{\star}\big(\vect{e}_i(0)\big)$ and $V_i\big(\vect{e}_i(t)\big)$
 are bounded, and therefore so is their difference, which means that the
-term $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ is bounded as well.
+integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ is bounded as well.
+We make use of the following lemma to show that the error internal to the
+norm of the integral goes to zero in steady-state:
 \begin{bw_box}
   \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
 
-    Let $f$ be a continuous, positive-definite function, and $x$ be an
+    Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
     absolutely continuous function in $\mathbb{R}$. If the following hold:
   \begin{itemize}
-    \item $\|x(\cdot)\| < \infty, \|\dot{x}(\cdot)\| < \infty$
-    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(x(s)\big) < \infty$
+    \item $\|\vect{x}(\cdot)\| < \infty, \|\dot{\vect{x}}(\cdot)\| < \infty$
+    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
   \end{itemize}
-  then $\lim\limits_{t \to \infty} \|x(t)\| = 0$
+  then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
   \label{lemma:barbalat}
   \end{lemma}
 \end{bw_box}
 Lemma \eqref{lemma:barbalat} assures us that under these conditions for the
-error and its dynamics, the error
-$$\lim\limits_{t \to \infty}\|\vect{e}_{0,i}(t)\| \to 0$$
-which means that
+error and its dynamics, which are fulfilled in our case, the error
+\begin{align}
+  \lim\limits_{t \to \infty}&\|\vect{e}_{0,i}(t)\| \to 0 \Leftrightarrow \\
+  \lim\limits_{t \to \infty}
+    &\Big\| \overline{\vect{e}}_i\Big(t;\ \vect{u}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| \to 0,\
+\forall t_k \in \mathbb{R}_{\geq 0}
+\end{align}
+which, given \eqref{eq:error_now_to_predicted_error}, means that
 $$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| \to 0$$
 
 Therefore, the closed-loop trajectory of $\vect{e}_i$ converges to the terminal

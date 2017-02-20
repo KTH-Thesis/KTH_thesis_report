@@ -31,7 +31,7 @@ we get the compact representation of the system's model
   \dot{\vect{z}}_i(t) =
     \begin{bmatrix}
       f_{i,x}(\vect{z}_i, \vect{u}_i) \\
-      f_{i,v}(\vect{z}_i, \vect{u}_i) \\
+      f_{i,v}(\vect{z}_i, \vect{u}_i)
     \end{bmatrix} =
  f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big)
 \end{align}
@@ -45,46 +45,31 @@ continuous-time differential equations of the form
 \end{align}
 where state $\vect{z}_i$ is directly measurable. It should be noted that
 equation \eqref{eq:non_perturbed_system} does not consider model-plant
-mismatches or external disturbances.
-
-The set $\mathcal{Z}_i$ captures all the state constraints of the system's
-dynamics posed by the problem \eqref{problem}, therefore $\mathcal{Z}_i$ is
-such that:
-\begin{align}
-  \mathcal{Z}_i = \{\vect{z}_i \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1}\\
-  & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\
-  & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\
-  & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\
-  & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5}, \\
-  &\forall t \in \mathbb{R}_{\geq 0}\}
-\end{align}
-
-The applied input $\vect{u}_i$ is a portion of the
-optimal solution to an optimization problem where information on the states
-of the neighbouring agents of agent $i$ are taken into account only in the
-constraints considered in the optimization problem. These constraints pertain
-to the set of its neighbours $\mathcal{N}_i$ and, in total, to the set of
-all agents within its sensing range $\mathcal{R}_i$. Regarding these, we
-make the following assumption:\\
+mismatches or external disturbances. The applied input $\vect{u}_i$ is a
+portion of the optimal solution to an optimization problem where information on
+the states of the neighbouring agents of agent $i$ are taken into account only
+in the constraints considered in the optimization problem. These constraints
+pertain to the set of its neighbours $\mathcal{N}_i$ and, in total, to the
+set of all agents within its sensing range $\mathcal{R}_i$. Regarding these, we
+make the following assumption:
 
 \begin{gg_box}
 \begin{assumption}
 Considering the context of Model Predictive Control, when
 at time $t_k$ agent $i$ solves a finite horizon optimization problem, it has
 access to\footnote{Although
-    $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
-    the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
-    with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
-    within the sensing range of agent $i$. The distinction will prove the
-    justification of its existence when considering the state constraints
-    in the subsequent declaration of the optimization problem.}
+  $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
+  the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
+  with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
+  within the sensing range of agent $i$. The distinction will prove the
+  justification of its existence when considering the state constraints
+  in the subsequent declaration of the optimization problem.}
 
 \begin{enumerate}
   \item measurements of the states
     \begin{itemize}
       \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
-      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
+      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
       \end{itemize}
     \item the \textit{predicted states}
       \begin{itemize}
@@ -92,14 +77,13 @@ access to\footnote{Although
         \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
       \end{itemize}
       across the entire horizon $\tau \in [t_k + h, t_k + T_p]$, where $T_p$ is the
-      set horizon and $h$ is the sampling time.
+      set time-horizon and $h$ is the sampling time.
 \end{enumerate}
 \end{assumption}
 \end{gg_box}
 We assume that these pieces of information are (a) always available and
 accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
-
 \begin{subequations}
 \begin{align}
   \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
@@ -108,6 +92,20 @@ information in four stacked vectors:
   \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
 \end{align}
 \end{subequations}
+
+The set $\mathcal{Z}_i$ captures all the state constraints of the system's
+dynamics posed by the problem \eqref{problem}, not only for time $t_k$, but
+over the entire prediction horizon $t \in [t_k, t_k + T_p]$.
+Therefore $\mathcal{Z}_i$ is such that:
+\begin{align}
+  \mathcal{Z}_i = \{\overline{\vect{z}}_i \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+      & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1}\\
+      & \|\overline{\vect{p}}_i(t) - \overline{\vect{p}}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\
+      & \|\overline{\vect{p}}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\
+      & \|\vect{p}_W - \overline{\vect{p}}_i(t)\| < \overline{d}_{i,W}, \\
+      & - \frac{\pi}{2} < \overline{\theta}_i(t) < \frac{\pi}{2} \label{constraint:p_5}, \\
+  &\forall t \in [t_k, t_k + T_p]\}
+\end{align}
 
 Considering that $\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
 vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
@@ -119,6 +117,7 @@ wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
 can accomodate
 
 $$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \sim
-16 \cdot 10^2 \text{ agents}$$ within the range of one agent, a number that we
-deem is large enough for practical applications so as to consider this
-approach to be legal.
+16 \cdot 10^2 \text{ agents}$$ within the range of one agent.
+We deem this number to be large enough for practical applications
+for the approach of assuming access to the predicted states of agents
+within the range of one agent to be legal.
