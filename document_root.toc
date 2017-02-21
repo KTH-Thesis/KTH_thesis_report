@@ -13,7 +13,6 @@
 \contentsline {part}{II\hspace {1em}Advocated Solution}{19}{part.2}
 \contentsline {section}{\numberline {4}Stabilization}{21}{section.4}
 \contentsline {subsection}{\numberline {4.1}Formalizing the model}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}The error model}{21}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Nonlinear Receding Horizon: Assumptions and Constraints}{22}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}The optimization problem}{23}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Feasibility and Convergence}{26}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.2}The error model}{23}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}The optimization problem}{23}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Feasibility and Convergence}{26}{subsection.4.4}

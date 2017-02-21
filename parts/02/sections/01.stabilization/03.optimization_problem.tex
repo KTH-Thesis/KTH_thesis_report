@@ -1,5 +1,13 @@
 %-------------------------------------------------------------------------------
 \subsection{The optimization problem}
+Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
+sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
+that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
+optimal control problem (OCP) is solved at discrete sampling time instants $t_k$
+based on the current state error measurement $\vect{e}_i(t_k)$. The solution
+is an optimal control signal $\vect{u}_i^{\star}(t)$, computed over
+$t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
+between sampling times $t_k$ and $t_k + h$.
 
 At a generic time $t_k$, agent $i$ solves the following optimization problem:
 
@@ -27,10 +35,10 @@ The functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
 $V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
-  F_i (\vect{e}_i, \vect{u}_i)
-  &\triangleq \vect{e}_i^{\top} \mat{Q}_i \vect{e}_i + \vect{u}_i^{\top} \mat{R}_i \vect{u}_i\\
-  V_i (\vect{e}_i) & \triangleq \vect{e}_i^{\top} \mat{P}_i \vect{e}_i
-\end{align}\\
+  F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big)
+  &\triangleq \vect{e}_i(t)^{\top} \mat{Q}_i \vect{e}_i(t) + \vect{u}_i(t)^{\top} \mat{R}_i \vect{u}_i(t)\\
+  V_i \big(\vect{e}_i(t)\big) & \triangleq \vect{e}_i(t)^{\top} \mat{P}_i \vect{e}_i(t)
+\end{align}
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
 definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
 are symmetric and positive semi-definite. Before defining the terminal set
@@ -129,7 +137,6 @@ at time $t_k + \tau$, based on the measurement of the state at time
 $t_k$, $\vect{e}_i(t_k)$, by application of the control input
 $\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big)$, for the time period $t \in [t_k, t_{k+1}]$
 is denoted by
-
 \begin{align}
   \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0}
 \end{align}
