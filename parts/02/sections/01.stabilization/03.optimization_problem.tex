@@ -4,8 +4,8 @@ Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
 sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
 that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
 optimal control problem (OCP) is solved at discrete sampling time instants $t_k$
-based on the current state error measurement $\vect{e}_i(t_k)$. The solution
-is an optimal control signal $\vect{u}_i^{\star}(t)$, computed over
+based on the then-current state error measurement $\vect{e}_i(t_k)$. The
+solution is an optimal control signal $\vect{u}_i^{\star}(t)$, computed over
 $t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
 between sampling times $t_k$ and $t_k + h$.
 
@@ -30,6 +30,85 @@ that $\overline{\vect{e}}_i(\cdot)$ is the solution to
 \eqref{eq:internal_error_model} driven by the control input
 $\vect{u}_i^{\star}(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
 initial condition $\vect{e}_i(t_k)$.
+
+The applied input signal is a portion of the optimal solution to an
+optimization problem where information on the states of the neighbouring agents
+of agent $i$ are taken into account only in the constraints considered in the
+optimization problem. These constraints pertain to the set of its neighbours
+$\mathcal{N}_i$ and, in total, to the set of all agents within its sensing
+range $\mathcal{R}_i$. Regarding these, we make the following assumption:
+
+\begin{gg_box}
+  \begin{assumption} (\textit{Access to Predicted Information from an
+    Inter-agent Perspective})
+
+Considering the context of Receding Horizon Control, when
+at time $t_k$ agent $i$ solves a finite horizon optimization problem, he has
+access to\footnote{Although
+  $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
+  the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
+  with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
+  within the sensing range of agent $i$.
+  %The distinction will prove the
+  %justification of its existence when considering the state constraints
+  %in the subsequent declaration of the optimization problem.
+}
+
+\begin{enumerate}
+  \item measurements of the states\footnote{as per assumption
+    \eqref{ass:measurements_access}}
+    \begin{itemize}
+      \item $\vect{e}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
+      \item $\vect{e}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
+      \end{itemize}
+    \item the \textit{predicted states}
+      \begin{itemize}
+        \item $\overline{\vect{e}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
+        \item $\overline{\vect{e}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
+      \end{itemize}
+      across the entire horizon $\tau \in (t_k, t_k + T_p]$
+\end{enumerate}
+\end{assumption}
+\end{gg_box}
+In other words, each time an agent solves its own individual
+optimization problem, he knows the error predictions that have been generated
+by the solution of the optimization problem of all agents within
+its range at that time, for the next $T_p$ timesteps. This assumption is
+crucial to satisfying the constraints regarding collision aversion and
+connectivity maintenance between neighbouring agents.
+We assume that the above pieces of information are (a) always available and
+accurate, and (b) exchanged without delay. We encapsulate these pieces of
+information in four stacked vectors:
+\begin{subequations}
+\begin{align}
+  \vect{e}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{e}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
+  \vect{e}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{e}_j(t_k)], \forall j \in \mathcal{N}_i \\
+  \overline{\vect{e}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{e}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
+  \overline{\vect{e}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{e}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
+\end{align}
+\end{subequations}
+
+\begin{gg_box}
+The justification for this assumption is the following: considering that
+$\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
+vectors $\vect{e}_j$ are comprised of 12 real numbers that are encoded by
+4 bytes, and that sampling occurs with a frequency $f$ for all agents, the
+overall downstream bandwidth required by each agent is
+$$BW_d = 12 \times 32\ \text{[bits]} \times |\mathcal{R}_i| \times \dfrac{T_p}{h} \times f\ [\text{sec}^{-1}]$$
+Given conservative constants $f = 100$ Hz, $\dfrac{T_p}{h} = 100$, the
+wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
+can accommodate up to
+
+$$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \approx
+16 \cdot 10^2 \text{ agents}$$ within the range of one agent.
+We deem this number to be large enough for practical applications
+for the approach of assuming access to the predicted states of agents
+within the range of one agent to be legal.
+\end{gg_box}
+
+\note{?? more on the actual $\mathcal{E}_i$}
+
+
 
 The functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and

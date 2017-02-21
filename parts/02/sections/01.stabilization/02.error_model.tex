@@ -22,15 +22,15 @@ regarding the error state $\vect{e}_i(t)$, we define the set
 $\mathcal{E}_i \subset \mathbb{R}^9 \times \mathbb{T}^3$ as:
 $$\mathcal{E}_i = \{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
 \vect{e}_i(t) \in \mathcal{Z}_i \oplus (-\vect{z}_{i,des} )\}$$
-as the set that captures all constraints of the error dynamics
-\eqref{eq:position_based_error_model}.
+as the set that captures all constraints for the error dynamics
+\eqref{eq:position_based_error_model} dictated by the problem \eqref{problem}.
 
 If we design control laws $\vect{u}_i \in \mathcal{U}_i$,
 $\forall i \in \mathcal{V}$ such that the error signal $\vect{e}_i(t)$ with
 dynamics given in \eqref{eq:position_based_error_model}, constrained under
 $\vect{e}_i(t) \in \mathcal{E}_i$, satisfies
 $\lim\limits_{t \to \infty} \|\vect{e}_i(t)\| = 0$, while all system related
-signals remain bounded in their respective regions,$-$ if all of these are
+signals remain bounded in their respective regions,$-$ if all of the above are
 achieved, then problem \eqref{problem} has been solved.
 
 In order to achieve this task, we employ a Nonlinear Receding Horizon scheme.
