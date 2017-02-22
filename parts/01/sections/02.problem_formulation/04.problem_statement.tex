@@ -31,7 +31,7 @@ Lastly, the control protocol should provide feasible control inputs $\vect{u}_i$
 per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
 constraints $\mathcal{U}_i$
 \begin{align}
-\vect{u}_i \in \mathcal{U}_i = \{ \vect{u}_i \in \mathbb{R}^6 :
+  \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 :
         \|\vect{u}_i (t)\| \leq \overline{u}_i\}
 \end{align}
 
@@ -52,7 +52,7 @@ formulated as follows:
   \eqref{ass:intra_environmental_arrangement}. Given desired \textit{feasible}
   steady-state agent configurations $\vect{x}_{i,des}$,
   $\forall i \in \mathcal{V}$, design decentralized control laws
-  $\vect{u}_i$ such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
+  $\vect{u}_i(t)$ such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
   the following hold:
 
   \begin{enumerate}
@@ -78,7 +78,7 @@ formulated as follows:
     \item All maps $\mat{J}_i$ are well defined
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
 
-    \item The control laws $\vect{u}_i$ abide by their respective input constraints
+    \item The control laws $\vect{u}_i(t)$ abide by their respective input constraints
       at all times
       $$\vect{u}_i(t) \in \mathcal{U}_i,\ \forall t \in \mathbb{R}_{\geq 0} $$
 
