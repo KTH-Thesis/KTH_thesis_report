@@ -14,8 +14,17 @@ workspace boundary.
 \begin{definition} (\textit{Feasible Steady-state Configuration})
 
 The desired steady-state configuration $\vect{x}_{i,des}$ of agents
-$i \in \mathcal{V}$ is \textit{feasible} only if it is a collision-free
-configuration.
+$\forall i \in \mathcal{V}, j \in \mathcal{N}_i$ is \textit{feasible} if and
+only if
+
+\begin{enumerate}
+  \item it is a collision-free configuration
+  \item the communication constraints are not violated in steady-state:
+    \begin{align}
+      \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_i \\
+      \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_j \\
+    \end{align}
+\end{enumerate}
 
 \end{definition}
 \end{bw_box}
