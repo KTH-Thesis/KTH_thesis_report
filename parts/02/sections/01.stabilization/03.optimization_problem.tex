@@ -120,7 +120,30 @@ $V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
 \end{align}
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
 definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
-are symmetric and positive semi-definite. Before defining the terminal set
+are symmetric and positive semi-definite. The running cost $F$ is
+upper- and lower-bounded:
+\begin{align}
+  \alpha_i \|\vect{e}_i(t)\|^2 \leq
+  \alpha_i \Bigg\| \begin{bmatrix}
+      \vect{e}_i(t) \\
+      \vect{u}_i(t)
+    \end{bmatrix}\Bigg\| \leq
+  F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \leq
+  \beta_i \Bigg\| \begin{bmatrix}
+      \vect{e}_i(t) \\
+      \vect{u}_i(t)
+    \end{bmatrix}\Bigg\| \leq
+  \beta_i \|\vect{e}_i(t)\|^2
+\end{align}
+where $\alpha_i$ is the smallest eigenvalue between those of matrices
+$\mat{Q}_i$ and $\mat{R}_i$, and $\beta_i$ the largest. Since the terms
+$\alpha_i \|\vect{e}_i(t)\|$ and $\beta_i \|\vect{e}_i(t)\|$ are themselves
+class $\mathcal{K}$ functions according to definition \eqref{def:k_class},
+$F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions. As is
+obvious, $F_i(\vect{0}, \vect{0}) = 0$.
+
+
+Before defining the terminal set
 $\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
 invariant set:
 

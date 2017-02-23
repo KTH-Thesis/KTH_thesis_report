@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {2}Notation and Preliminaries}{9}{section.2}
 \contentsline {subsection}{\numberline {2.1}Notation}{9}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Graph Theory}{9}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control for continuous-time systems}{9}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control for continuous-time systems}{10}{subsection.2.3}
 \contentsline {section}{\numberline {3}Problem Formulation}{11}{section.3}
 \contentsline {subsection}{\numberline {3.1}System Model}{11}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
