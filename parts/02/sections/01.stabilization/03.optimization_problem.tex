@@ -58,13 +58,13 @@ access to\footnote{Although
   \item measurements of the states\footnote{as per assumption
     \eqref{ass:measurements_access}}
     \begin{itemize}
-      \item $\vect{e}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
-      \item $\vect{e}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
+      \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
+      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
       \end{itemize}
     \item the \textit{predicted states}
       \begin{itemize}
-        \item $\overline{\vect{e}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
-        \item $\overline{\vect{e}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
+        \item $\overline{\vect{z}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
+        \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
       \end{itemize}
       across the entire horizon $\tau \in (t_k, t_k + T_p]$
 \end{enumerate}
@@ -81,10 +81,10 @@ accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
 \begin{subequations}
 \begin{align}
-  \vect{e}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{e}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
-  \vect{e}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{e}_j(t_k)], \forall j \in \mathcal{N}_i \\
-  \overline{\vect{e}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{e}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
-  \overline{\vect{e}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{e}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
+  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
+  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
+  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
 \end{align}
 \end{subequations}
 
@@ -92,7 +92,7 @@ information in four stacked vectors:
 \begin{remark}
 The justification for this assumption is the following: considering that
 $\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
-vectors $\vect{e}_j$ are comprised of 12 real numbers that are encoded by
+vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
 4 bytes, and that sampling occurs with a frequency $f$ for all agents, the
 overall downstream bandwidth required by each agent is
 $$BW_d = 12 \times 32\ \text{[bits]} \times |\mathcal{R}_i| \times \dfrac{T_p}{h} \times f\ [\text{sec}^{-1}]$$

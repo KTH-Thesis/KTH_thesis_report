@@ -16,11 +16,11 @@ workspace boundary.
 The desired steady-state configuration $\vect{x}_{i,des}$ of agents
 $\forall i \in \mathcal{V}, j \in \mathcal{N}_i$ is \textit{feasible} if and
 only if
-
 \begin{enumerate}
   \item it is a collision-free configuration
-  \item they do not result in violation of the communication constraints
-    between neighbouring agents:
+  \item it does not result in violation of the communication constraints
+    between neighbouring agents $i,j$, i.e. both following inequalities hold
+    true:
     \begin{align}
       \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_i \\
       \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_j \\
