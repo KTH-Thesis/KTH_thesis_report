@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Problem Statement}{16}{subsection.3.4}
-\contentsline {part}{II\hspace {1em}Advocated Solution}{19}{part.2}
+\contentsline {part}{II\hspace {1em}Advocated Solutions}{19}{part.2}
 \contentsline {section}{\numberline {4}Stabilization}{21}{section.4}
 \contentsline {subsection}{\numberline {4.1}Formalizing the model}{21}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}The error model}{22}{subsection.4.2}

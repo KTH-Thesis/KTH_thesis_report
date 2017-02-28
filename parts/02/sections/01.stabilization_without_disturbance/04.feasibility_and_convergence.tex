@@ -13,14 +13,14 @@ position which results in feasible displacements:\\
 
   \begin{enumerate}
     \item the terminal region $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is
-      closed with $0 \in \mathcal{E}_{i,f}$
+      closed with $\vect{0} \in \mathcal{E}_{i,f}$
     \item a solution to the optimal control problem \eqref{position_based_cost}
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input
       $\vect{u}_{i,f} : [0, h] \to \mathcal{U}_i$ such that for all
-      $\vect{e}_i \in \mathcal{E}_{i,f}$ and $\tau \in [0,h]$:
+      $\vect{e}_i \in \mathcal{E}_{i,f}$ and $\forall \tau \in [0,h]$:
 
       \begin{enumerate}
         \item $\vect{e}_i(\tau) \in \mathcal{E}_{i,f}$
@@ -45,7 +45,7 @@ terminal set $\mathcal{E}_{i,f}$.\\
 
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
-solution $\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
+solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 \eqref{position_based_cost} exists.
 %In between $t_k$ and $t_k + h$,
 %where $h$ is the sampling time, the optimal control signal
@@ -57,10 +57,10 @@ $t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider that the
 optimal control signal calculated at $t_k$ contains the following two portions:
 
 \begin{equation}
-  \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
+  \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
       \begin{array}{ll}
-        \vect{u}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_k)\big), & \tau_1 \in [t_k, t_{k+1}] \\
-        \vect{u}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
+        \overline{\vect{u}}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_k)\big), & \tau_1 \in [t_k, t_{k+1}] \\
+        \overline{\vect{u}}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
       \end{array}
       \right.
   \label{eq:optimal_input_portions}
@@ -69,7 +69,7 @@ optimal control signal calculated at $t_k$ contains the following two portions:
 Both portions are admissible since the calculated optimal control input is
 admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
-crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$.
+crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$.
 Furthermore, according to assumption (3) of the theorem, there exists an
 admissible (and certainly not guaranteed optimal) input $\vect{u}_{i,f}$ that
 renders $\mathcal{E}_{i,f}$ invariant over $[t_k + T_p, t_k + T_p + h]$.
@@ -81,7 +81,7 @@ and the input $\vect{u}_{i,f}(\cdot)$:
 \begin{equation}
   \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big) = \left\{
       \begin{array}{ll}
-        \vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
+        \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
         %\vect{u}_{i,f}\Big(\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_k)\big)\Big), & \tau_2 \in (t_k + T_p, t_{k+1} + T_p]
         \vect{u}_{i,f}(\tau - t_k - T_p), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
@@ -104,7 +104,7 @@ to be proved, it must be shown that a proper value function decreases along
 the solution trajectories starting at some initial time $t_k$. We consider the
 \textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
 Lyapunov function:
-$$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
+$$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
 and, in particular, our goal is to show that that this cost decreases over
 consecutive sampling instants $t_{k+1} = t_k + h$, i.e.
 $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq 0$.\\
@@ -112,13 +112,13 @@ $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
 In order not to wreak notational havoc, let us define the following terms:
 \begin{gg_box}
 \begin{itemize}
-  \item $\vect{u}_{0,i}(\tau) \triangleq \vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$
+  \item $\vect{u}_{0,i}(\tau) \triangleq \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$
     as the \textit{optimal} input based on the measurement of state
     $\vect{e}_i(t_k)$, applied at time $\tau \geq t_k$
   \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{0,i}(\tau), \vect{e}_i(t_k)\big)$
     as the \textit{predicted} state at time $\tau \geq t_k$, that is,
     the state that results from the application of the above input
-    $\vect{u}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ at time $\tau$
+    $\overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ at time $\tau$
   \item $\vect{u}_{1,i}(\tau) \triangleq \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$
     as the \textit{feasible} input applied at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one} above)
   \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{1,i}(\tau), \vect{e}_i(t_{k+1})\big)$
@@ -129,14 +129,14 @@ In order not to wreak notational havoc, let us define the following terms:
 \end{gg_box}
 
 Before beginning to prove convergence, it is worth noting that while the cost
-$$J_i \Big(\vect{e}_i(t), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
+$$J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
 is optimal (in the sense that it is based on the optimal input, which provides
 its minimum realization), a cost that is based on a plainly feasible
 (and thus, without loss of generality, sub-optimal) input
-$\vect{u}_i \not= \vect{u}_i^{\star}$ will result in a configuration where
+$\vect{u}_i \not= \overline{\vect{u}}_i^{\star}$ will result in a configuration where
 \begin{equation}
 J_i \Big(\vect{e}_i(t), \vect{u}_i\big(\cdot;\ \vect{e}_i(t)\big)\Big)
-\geq J_i \Big(\vect{e}_i(t), \vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)
+\geq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)
 \end{equation}
 
 Let us now begin our investigation on the sign of the difference between the cost
@@ -171,7 +171,7 @@ two integrals above in between these intervals:
 \begin{gg_box}
 In between the times $t_{k+1}$ and $t_k + T_p$, the constructed feasible input
 $\tilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$ is equal to the optimal
-input $\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
+input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
 (see eq. \ref{eq:optimal_input_t_plus_one}), which means that
 $\vect{u}_{1,i}(\cdot) = \vect{u}_{0,i}(\cdot)$ in the interval $[t_{k+1}, t_k + T_p]$.
 Furthermore, this means that the predicted states according to these inputs will
@@ -397,7 +397,7 @@ error and its dynamics, which are fulfilled in our case, the error
 \begin{align}
   \lim\limits_{t \to \infty}&\|\vect{e}_{0,i}(t)\| \to 0 \Leftrightarrow \\
   \lim\limits_{t \to \infty}
-    &\Big\| \overline{\vect{e}}_i\Big(t;\ \vect{u}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| \to 0,\
+  &\Big\| \overline{\vect{e}}_i\Big(t;\ \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| \to 0,\
 \forall t_k \in \mathbb{R}_{\geq 0}
 \end{align}
 which, given \eqref{eq:error_now_to_predicted_error}, means that
