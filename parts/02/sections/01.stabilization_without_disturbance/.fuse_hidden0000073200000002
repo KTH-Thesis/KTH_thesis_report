@@ -1,0 +1,271 @@
+%-------------------------------------------------------------------------------
+\subsection{The optimization problem}
+Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
+sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
+that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
+optimal control problem (OCP) is solved at discrete sampling time instants $t_k$
+based on the then-current state error measurement $\vect{e}_i(t_k)$. The
+solution is an optimal control signal $\overline{\vect{u}}_i^{\star}(t)$, computed over
+$t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
+between sampling times $t_k$ and $t_k + h$.
+
+At a generic time $t_k$, agent $i$ solves the following optimization problem:
+
+\begin{align}
+  \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
+      \int_{t_k}^{t_k + T_p} F_i \big(\\vect{varepsilon}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
+      V_i \big(\\vect{varepsilon}}_i (t_k + T_p)\big) \label{position_based_cost} \\
+  \text{subject to:} & \nonumber \\
+                     & \dot{\\vect{varepsilon}}}_i(s) = g_i \big(\\vect{varepsilon}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \\vect{varepsilon}}_i (t_k) = \vect{e}_i (t_k) \\
+  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i, s \in [t_k, t_k + T_p)\\
+  & \\vect{varepsilon}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
+  & \\vect{varepsilon}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
+\end{align}
+
+The notation $\overline{\cdot}$ is used to distinguish predicted states which
+are internal to the controller, as opposed to their actual values. This means
+that $\\vect{varepsilon}}_i(\cdot)$ is the solution to
+\eqref{eq:internal_error_model} driven by the control input
+$\overline{\vect{u}}_i^{\star}(\cdot) : [t_k, t_k + T_p) \to \mathcal{U}_i$ with
+initial condition $\vect{e}_i(t_k)$.
+
+The applied input signal is a portion of the optimal solution to an
+optimization problem where information on the states of the neighbouring agents
+of agent $i$ are taken into account only in the constraints considered in the
+optimization problem. These constraints pertain to the set of its neighbours
+$\mathcal{N}_i$ and, in total, to the set of all agents within its sensing
+range $\mathcal{R}_i$. Regarding these, we make the following assumption:
+
+\begin{gg_box}
+  \begin{assumption} (\textit{Access to Predicted Information from an
+    Inter-agent Perspective})
+
+Considering the context of Receding Horizon Control, when
+at time $t_k$ agent $i$ solves a finite horizon optimization problem, he has
+access to\footnote{Although
+  $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
+  the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
+  with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
+  within the sensing range of agent $i$.
+  %The distinction will prove the
+  %justification of its existence when considering the state constraints
+  %in the subsequent declaration of the optimization problem.
+}
+
+\begin{enumerate}
+  \item measurements of the states\footnote{as per assumption
+    \eqref{ass:measurements_access}}
+    \begin{itemize}
+      \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
+      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
+      \end{itemize}
+    \item the \textit{predicted states}
+      \begin{itemize}
+        \item $\overline{\vect{z}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
+        \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
+      \end{itemize}
+      across the entire horizon $\tau \in (t_k, t_k + T_p]$
+\end{enumerate}
+\end{assumption}
+\end{gg_box}
+In other words, each time an agent solves its own individual
+optimization problem, he knows the error predictions that have been generated
+by the solution of the optimization problem of all agents within
+its range at that time, for the next $T_p$ timesteps. This assumption is
+crucial to satisfying the constraints regarding collision aversion and
+connectivity maintenance between neighbouring agents.
+We assume that the above pieces of information are (a) always available and
+accurate, and (b) exchanged without delay. We encapsulate these pieces of
+information in four stacked vectors:
+\begin{subequations}
+\begin{align}
+  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
+  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
+  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
+\end{align}
+\end{subequations}
+
+\begin{bw_box}
+\begin{remark}
+The justification for this assumption is the following: considering that
+$\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
+vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
+4 bytes, and that sampling occurs with a frequency $f$ for all agents, the
+overall downstream bandwidth required by each agent is
+$$BW_d = 12 \times 32\ \text{[bits]} \times |\mathcal{R}_i| \times \dfrac{T_p}{h} \times f\ [\text{sec}^{-1}]$$
+Given conservative constants $f = 100$ Hz, $\dfrac{T_p}{h} = 100$, the
+wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
+can accommodate up to
+
+$$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \approx
+16 \cdot 10^2 \text{ agents}$$ within the range of one agent.
+We deem this number to be large enough for practical applications
+for the approach of assuming access to the predicted states of agents
+within the range of one agent to be legal.
+\end{remark}
+\end{bw_box}
+
+\note{?? more on the actual $\mathcal{E}_i$}
+
+
+
+The functions
+$F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
+$V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
+\begin{align}
+  F_i \big(\\vect{varepsilon}}_i(t), \overline{\vect{u}}_i(t)\big)
+  &\triangleq \\vect{varepsilon}}_i(t)^{\top} \mat{Q}_i \\vect{varepsilon}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\
+  V_i \big(\\vect{varepsilon}}_i(t)\big) & \triangleq \\vect{varepsilon}}_i(t)^{\top} \mat{P}_i \\vect{varepsilon}}_i(t)
+\end{align}
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
+definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
+are symmetric and positive semi-definite. The running costs $F_i$ are
+upper- and lower-bounded:
+\begin{align}
+  \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
+  \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
+      \vect{e}_i(t) \\
+      \vect{u}_i(t)
+    \end{bmatrix}\Bigg\|^2  \\
+    &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\
+    &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
+      \vect{e}_i(t) \\
+      \vect{u}_i(t)
+    \end{bmatrix}\Bigg\|^2 \leq
+  \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
+\end{align}
+where $\lambda_{min}(\mat{Q}_i, \mat{R}_i)$ is the smallest eigenvalue between
+those of matrices $\mat{Q}_i$ and $\mat{R}_i$, and
+$\lambda_{max}(\mat{Q}_i, \mat{R}_i)$ the largest. Since the terms
+$\lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ and
+$\lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ are themselves
+class $\mathcal{K}$ functions according to definition \eqref{def:k_class},
+$F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions. As is
+obvious, $F_i(\vect{0}, \vect{0}) = 0$.
+
+
+Before defining the terminal set
+$\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
+invariant set:
+
+\begin{bw_box}
+  \begin{definition} (\textit{Positively Invariant Set})
+
+    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
+    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
+    where $\vect{x}_0$ is the initial condition. The set
+    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
+    $\gamma$ is a valued function, is said to be \textit{positively invariant}
+    if the following holds:
+    \begin{align}
+      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
+    \end{align}
+
+    Intuitively, this means that the set $S$ is positively invariant if a
+    trajectory of the system does not exit it once it enters it.
+    \label{def:positively_invariant}
+  \end{definition}
+\end{bw_box}
+
+The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
+positively invariant set for system \eqref{eq:position_based_error_model}
+such that
+\begin{align}
+  \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \varepsilon_0 \}
+\end{align}
+where $\varepsilon_0$ is an arbitrarily small but fixed positive real scalar.\\
+
+With regard to the terminal penalty function $V_i$, the following lemma will
+prove to be useful in guaranteeing the convergence of the solution to the
+optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
+
+\begin{bw_box}
+\begin{lemma} ($V_i$ is Lipschitz continuous in $\mathcal{E}_{i,f}$)
+
+  The terminal penalty function $V_i$ is Lipschitz continuous in
+  $\mathcal{E}_{i,f}$
+  $$|V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| \leq L_{V_i} \|\vect{e}_{1,i} - \vect{e}_{2,i}\|$$
+  where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,f}$,
+  with Lipschitz constant $L_{V_i} = 2 \varepsilon_0 \lambda_{max}(P_i)$\\
+
+  %\begin{gg_box}
+  \textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_{i,f}$, it holds that
+  \begin{align}
+    |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
+      &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i} \pm \vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
+      &= |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i}) - \vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| \\
+      &\leq |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| + |\vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})|
+  \end{align}
+
+  But for any $\vect{x}, \vect{y} \in \mathbb{R}^n$
+  $$|\vect{x}^{\top} \mat{A} \vect{y}| \leq \lambda_{max}(A) \|\vect{x}\| \|\vect{y}\|$$
+  where $\lambda_{max}(A)$ denotes the largest eigenvalue of matrix $\mat{A}$.
+  Hence:
+  \begin{align}
+    |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &\leq
+    \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| +
+    \lambda_{max}(\mat{P}_i) \|\vect{e}_{2,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+    &= \lambda_{max}(\mat{P}_i) (\|\vect{e}_{1,i}\| + \|\vect{e}_{2,i}\|)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+    & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_0 + \varepsilon_0)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+    &= 2 \varepsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
+  \end{align}
+  \qedsymbol
+  %\end{gg_box}
+\label{lemma:V_Lipschitz_e_0}
+\end{lemma}
+\end{bw_box}
+
+
+The solution to the optimal control problem \eqref{position_based_cost}
+at time $t_k$ is an optimal control input
+$\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$ which
+is applied to the open-loop system until the next sampling instant $t_k + h$,
+at which time a new optimal control problem is solved in the same manner:
+\begin{align}
+  \vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big) \label{eq:position_based_optimal_u} \\
+  t \in [t_k, t_k + h) \nonumber \\
+  0 < h < T_p \nonumber
+\end{align}
+
+The control input $\vect{u}_i(t;\ \vect{e}_i(t_k))$ is of feedback form,
+since it is recalculated at each sampling instant based on the then-current
+state. The solution to equation \eqref{eq:position_based_error_model}, starting at time
+$t_1$, from an initial condition $\vect{e}_i(t_1)$, by application of the
+control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$ is denoted by
+\begin{align}
+  \vect{e}_i\big(t;\ \vect{u}_i(\cdot), \vect{e}_i(t_1)\big),\ t \in [t_1, t_2]
+\end{align}
+
+The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
+at time $t_k + \tau$, based on the measurement of the state at time
+$t_k$, $\vect{e}_i(t_k)$, by application of the control input
+$\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big)$, for the time period $t \in [t_k, t_k + \tau]$
+is denoted by
+\begin{align}
+  \\vect{varepsilon}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0}
+\end{align}
+As is natural, the equality
+\begin{align}
+  \vect{e}_i(\alpha) = \\vect{varepsilon}}_i\big(\beta;\ \vect{u}_i(\cdot), \vect{e}_i(\gamma)\big)
+  \label{eq:error_now_to_predicted_error}
+\end{align}
+holds true only when $\alpha=\beta=\gamma$. We can now give the definition of an
+\textit{admissible input}:
+
+\begin{bw_box}
+\begin{definition} (Admissible input)\\
+
+  A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
+  $\vect{e}_i(t_k)$ is called \textit{admissible} if all the following hold:
+
+  \begin{enumerate}
+    \item $\vect{u}_i(\cdot)$ is piecewise continuous
+    \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$
+  \end{enumerate}
+
+\end{definition}
+\end{bw_box}
