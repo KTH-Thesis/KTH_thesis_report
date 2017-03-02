@@ -118,17 +118,17 @@ In order not to wreak notational havoc, let us define the following terms:
     as the \textit{optimal} input that results from the solution to problem
     \eqref{problem:opt_without_disturbances} based on the measurement of state
     $\vect{e}_i(t_k)$, applied at time $\tau \geq t_k$
-  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$
+  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$
     as the \textit{predicted} state at time $\tau \geq t_k$, that is,
     the state that results from the application of the above input
-    $\overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ to the
+    $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to the
     state $\vect{e}_i(t_k)$, at time $\tau$
   \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i(\tau)$
     as the \textit{admissible} input at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one})
-  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\tau), \vect{e}_i(t_{k+1})\big)$
+  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big)$
     as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
     the state that results from the application of the above input
-    $\widetilde{\vect{u}}_i(\tau)$ to the state
+    $\widetilde{\vect{u}}_i(\cdot)$ to the state
     $\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$, at time $\tau$
 \end{itemize}
 \end{gg_box}
@@ -136,7 +136,8 @@ In order not to wreak notational havoc, let us define the following terms:
 \begin{bw_box}
   \begin{remark}
     Given that no model mismatch or disturbances exist, for
-    the predicted and actual states at time $\tau_1 \geq \tau_0$ it holds that:
+    the predicted and actual states at time
+    $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
     \begin{align}
       \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
         \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
@@ -171,7 +172,6 @@ $V_i \big(\overline{\vect{e}}_i (t + T_p)\big)$:
    & V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big) + \int_{t_{k+1}}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds \\
   -&V_i \big(\vect{e}_{0,i} (t_k + T_p)\big) - \int_{t_k}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
-
 Considering that $t_k < t_{k+1} < t_k + T_p < t_{k+1} + T_p$, we break down the
 two integrals above in between these intervals:
 \begin{align}
@@ -196,42 +196,44 @@ for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
   \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
     \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
 \end{align}
-hence
-$\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
-\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$.
-
-In between the times $t_{k+1}$ and $t_k + T_p$, the constructed feasible input
+hence, since the right-hand side expressions are equal:
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
+    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+\end{align}
+In between times $t_{k+1}$ and $t_k + T_p$, the constructed admissible input
 $\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
 input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
 (see eq. \ref{eq:optimal_input_t_plus_one}), which means that
 $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval $\tau \in [t_{k+1}, t_k + T_p]$.
-
-the predicted states according to these inputs will
-be also equal in this interval: $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$,
-Hence, the following equality holds over $[t_{k+1}, t_k + T_p]$:
+Since the initial conditions at $t=t_{k+1}$ are equal and the control laws
+are also equal, so will the predicted states over the same interval:
+\begin{align}
+  \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) =
+  \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
+\end{align}
+Using our notation then, in the same interval:
+$\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, and therefore the following
+equality holds over $[t_{k+1}, t_k + T_p]$:
 \begin{align}
   F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =
   F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big),\ s \in [t_{k+1}, t_k + T_p]
 \end{align}
-
 Integrating this equality over the interval where it is valid yields
-
 \begin{align}
   \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds =
   \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
-
 \end{gg_box}
-
-This means that these two integrals featured in the right-hand side of eq.
+This means that these two integrals with ends over the interval
+$[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
 \eqref{eq:convergence_4_integrals} vanish, and thus the cost difference becomes
-
 \begin{align}
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &=
     V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
-    &+\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\
-    -V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
-    &-\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    +\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\
+    &-V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
 \label{eq:convergence_2_integrals}
 \end{align}
 
