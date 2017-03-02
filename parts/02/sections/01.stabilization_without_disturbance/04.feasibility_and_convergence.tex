@@ -74,12 +74,13 @@ Furthermore, according to assumption (3) of the theorem, there exists an
 admissible (and certainly not guaranteed optimal) input $\vect{u}_{i,f}$ that
 renders $\mathcal{E}_{i,f}$ invariant over $[t_k + T_p, t_k + T_p + h]$.
 
-Given the above facts, we can construct an admissible input for time $t_{k+1}$
-by sewing together the second portion of \eqref{eq:optimal_input_portions}
-and the input $\vect{u}_{i,f}(\cdot)$:
+Given the above facts, we can construct an admissible input
+$\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
+portion of \eqref{eq:optimal_input_portions} and the input
+$\vect{u}_{i,f}(\cdot)$:
 
 \begin{equation}
-  \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big) = \left\{
+  \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
         %\vect{u}_{i,f}\Big(\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_k)\big)\Big), & \tau_2 \in (t_k + T_p, t_{k+1} + T_p]
@@ -89,7 +90,7 @@ and the input $\vect{u}_{i,f}(\cdot)$:
 \label{eq:optimal_input_t_plus_one}
 \end{equation}
 
-Applied at time $t_{k+1}$, $\tilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$
+Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$
 is an admissible control input as a composition of admissible control inputs.
 
 This means that feasibility of a solution to the optimization problem at time
@@ -119,12 +120,12 @@ In order not to wreak notational havoc, let us define the following terms:
     as the \textit{predicted} state at time $\tau \geq t_k$, that is,
     the state that results from the application of the above input
     $\overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ at time $\tau$
-  \item $\vect{u}_{1,i}(\tau) \triangleq \tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$
+  \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$
     as the \textit{feasible} input applied at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one} above)
   \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{1,i}(\tau), \vect{e}_i(t_{k+1})\big)$
     as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
     the state that results from the application of the above input
-    $\tilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$ at time $\tau$
+    $\widetilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$ at time $\tau$
 \end{itemize}
 \end{gg_box}
 
@@ -170,7 +171,7 @@ two integrals above in between these intervals:
 
 \begin{gg_box}
 In between the times $t_{k+1}$ and $t_k + T_p$, the constructed feasible input
-$\tilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$ is equal to the optimal
+$\widetilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$ is equal to the optimal
 input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
 (see eq. \ref{eq:optimal_input_t_plus_one}), which means that
 $\vect{u}_{1,i}(\cdot) = \vect{u}_{0,i}(\cdot)$ in the interval $[t_{k+1}, t_k + T_p]$.
