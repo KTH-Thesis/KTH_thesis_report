@@ -54,7 +54,8 @@ solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 Suppose now a time instant $t_{k+1}$ such that\footnote{It is not strictly necessary
 that $t_{k+1} = t_k + h$ here, however it is necessary for the following that
 $t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider that the
-optimal control signal calculated at $t_k$ contains the following two portions:
+optimal control signal calculated at $t_k$ is comprised by the following two
+portions:
 
 \begin{equation}
   \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
@@ -90,7 +91,7 @@ $\vect{u}_{i,f}(\cdot)$:
 \label{eq:optimal_input_t_plus_one}
 \end{equation}
 
-Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$
+Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\cdot)$
 is an admissible control input as a composition of admissible control inputs.
 
 This means that feasibility of a solution to the optimization problem at time
@@ -114,25 +115,42 @@ In order not to wreak notational havoc, let us define the following terms:
 \begin{gg_box}
 \begin{itemize}
   \item $\vect{u}_{0,i}(\tau) \triangleq \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$
-    as the \textit{optimal} input based on the measurement of state
+    as the \textit{optimal} input that results from the solution to problem
+    \eqref{problem:opt_without_disturbances} based on the measurement of state
     $\vect{e}_i(t_k)$, applied at time $\tau \geq t_k$
-  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{0,i}(\tau), \vect{e}_i(t_k)\big)$
+  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$
     as the \textit{predicted} state at time $\tau \geq t_k$, that is,
     the state that results from the application of the above input
-    $\overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ at time $\tau$
-  \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$
-    as the \textit{feasible} input applied at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one} above)
-  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \vect{u}_{1,i}(\tau), \vect{e}_i(t_{k+1})\big)$
+    $\overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$ to the
+    state $\vect{e}_i(t_k)$, at time $\tau$
+  \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i(\tau)$
+    as the \textit{admissible} input at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one})
+  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\tau), \vect{e}_i(t_{k+1})\big)$
     as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
     the state that results from the application of the above input
-    $\widetilde{\vect{u}}_i\big(\tau;\ \vect{e}_i(t_{k+1})\big)$ at time $\tau$
+    $\widetilde{\vect{u}}_i(\tau)$ to the state
+    $\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$, at time $\tau$
 \end{itemize}
 \end{gg_box}
+
+\begin{bw_box}
+  \begin{remark}
+    Given that no model mismatch or disturbances exist, for
+    the predicted and actual states at time $\tau_1 \geq \tau_0$ it holds that:
+    \begin{align}
+      \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
+      \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
+    \end{align}
+    \label{remark:predicted_actual_equations_without_disturbance}
+  \end{remark}
+\end{bw_box}
 
 Before beginning to prove convergence, it is worth noting that while the cost
 $$J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
 is optimal (in the sense that it is based on the optimal input, which provides
-its minimum realization), a cost that is based on a plainly feasible
+its minimum realization), a cost that is based on a plainly admissible
 (and thus, without loss of generality, sub-optimal) input
 $\vect{u}_i \not= \overline{\vect{u}}_i^{\star}$ will result in a configuration where
 \begin{equation}
@@ -145,19 +163,17 @@ that results from the application of the feasible input $\vect{u}_{1,i}$,
 which we shall denote by $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$,
 and the optimal cost $J_i^{\star}\big(\vect{e}_i(t_k)\big)$, while reminding
 ourselves that
-$J_i \big(\overline{\vect{u}}_i (\cdot);\ \vect{e}_i(t)\big)$ $=$
+$J_i \big(\vect{e}_i(t), \overline{\vect{u}}_i (\cdot)\big)$ $=$
 $\int_{t}^{t + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds$ $+$
 $V_i \big(\overline{\vect{e}}_i (t + T_p)\big)$:
-
 \begin{align}
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) =\
    & V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big) + \int_{t_{k+1}}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds \\
   -&V_i \big(\vect{e}_{0,i} (t_k + T_p)\big) - \int_{t_k}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
 \end{align}
 
 Considering that $t_k < t_{k+1} < t_k + T_p < t_{k+1} + T_p$, we break down the
 two integrals above in between these intervals:
-
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\
     V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
@@ -170,13 +186,28 @@ two integrals above in between these intervals:
 \end{align}
 
 \begin{gg_box}
+
+Since no model mismatch or disturbances are present, consulting remark
+\eqref{remark:predicted_actual_equations_without_disturbance} and substituting
+for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \\
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+\end{align}
+hence
+$\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
+\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$.
+
 In between the times $t_{k+1}$ and $t_k + T_p$, the constructed feasible input
-$\widetilde{\vect{u}}_i\big(\cdot;\ \vect{e}_i(t_{k+1})\big)$ is equal to the optimal
+$\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
 input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
 (see eq. \ref{eq:optimal_input_t_plus_one}), which means that
-$\vect{u}_{1,i}(\cdot) = \vect{u}_{0,i}(\cdot)$ in the interval $[t_{k+1}, t_k + T_p]$.
-Furthermore, this means that the predicted states according to these inputs will
-be also equal in this interval: $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$.
+$\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval $\tau \in [t_{k+1}, t_k + T_p]$.
+
+the predicted states according to these inputs will
+be also equal in this interval: $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$,
 Hence, the following equality holds over $[t_{k+1}, t_k + T_p]$:
 \begin{align}
   F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =

@@ -10,24 +10,30 @@ $t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
 between sampling times $t_k$ and $t_k + h$.
 
 At a generic time $t_k$, agent $i$ solves the following optimization problem:
-
+\begin{problem}
 \begin{align}
-  \min\limits_{\overline{\vect{u}}_i (\cdot)}\ &
-    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
+  \text{Find }& \\
+              &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \\
+    \text{where}& \\
+    &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost} \\
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
-  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i, s \in [t_k, t_k + T_p)\\
-  & \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
+  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
   & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
 \end{align}
+\label{problem:opt_without_disturbances}
+\end{problem}
 
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
-are internal to the controller, as opposed to their actual values. This means
+are internal to the controller, as opposed to their actual values, because,
+even in the nominal case, the predicted values will not be equal to the
+actual closed-loop values. This means
 that $\overline{\vect{e}}_i(\cdot)$ is the solution to
 \eqref{eq:internal_error_model} driven by the control input
-$\overline{\vect{u}}_i^{\star}(\cdot) : [t_k, t_k + T_p) \to \mathcal{U}_i$ with
+$\overline{\vect{u}}_i(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
 initial condition $\vect{e}_i(t_k)$.
 
 The applied input signal is a portion of the optimal solution to an
@@ -190,46 +196,48 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
   where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,f}$,
   with Lipschitz constant $L_{V_i} = 2 \varepsilon_0 \lambda_{max}(P_i)$\\
 
-  %\begin{gg_box}
-  \textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_{i,f}$, it holds that
-  \begin{align}
-    |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
-      &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i} \pm \vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
-      &= |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i}) - \vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| \\
-      &\leq |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| + |\vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})|
-  \end{align}
-
-  But for any $\vect{x}, \vect{y} \in \mathbb{R}^n$
-  $$|\vect{x}^{\top} \mat{A} \vect{y}| \leq \lambda_{max}(A) \|\vect{x}\| \|\vect{y}\|$$
-  where $\lambda_{max}(A)$ denotes the largest eigenvalue of matrix $\mat{A}$.
-  Hence:
-  \begin{align}
-    |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &\leq
-    \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| +
-    \lambda_{max}(\mat{P}_i) \|\vect{e}_{2,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-    &= \lambda_{max}(\mat{P}_i) (\|\vect{e}_{1,i}\| + \|\vect{e}_{2,i}\|)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-    & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_0 + \varepsilon_0)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-    &= 2 \varepsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
-  \end{align}
-  \qedsymbol
-  %\end{gg_box}
 \label{lemma:V_Lipschitz_e_0}
 \end{lemma}
 \end{bw_box}
 
 
-The solution to the optimal control problem \eqref{position_based_cost}
-at time $t_k$ is an optimal control input
-$\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$ which
-is applied to the open-loop system until the next sampling instant $t_k + h$,
-at which time a new optimal control problem is solved in the same manner:
+\begin{gg_box}
+\textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_{i,f}$, it holds that
 \begin{align}
-  \vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big) \label{eq:position_based_optimal_u} \\
-  t \in [t_k, t_k + h) \nonumber \\
-  0 < h < T_p \nonumber
+  |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
+    &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i} \pm \vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
+    &= |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i}) - \vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| \\
+    &\leq |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| + |\vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})|
 \end{align}
 
-The control input $\vect{u}_i(t;\ \vect{e}_i(t_k))$ is of feedback form,
+But for any $\vect{x}, \vect{y} \in \mathbb{R}^n$
+$$|\vect{x}^{\top} \mat{A} \vect{y}| \leq \lambda_{max}(A) \|\vect{x}\| \|\vect{y}\|$$
+where $\lambda_{max}(A)$ denotes the largest eigenvalue of matrix $\mat{A}$.
+Hence:
+\begin{align}
+  |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &\leq
+  \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| +
+  \lambda_{max}(\mat{P}_i) \|\vect{e}_{2,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+  &= \lambda_{max}(\mat{P}_i) (\|\vect{e}_{1,i}\| + \|\vect{e}_{2,i}\|)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+  & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_0 + \varepsilon_0)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+  &= 2 \varepsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
+\end{align}
+\qedsymbol
+\end{gg_box}
+
+
+The solution to the optimal control problem \eqref{position_based_cost}
+at time $t_k$ is an optimal control input, denoted by
+$\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
+is applied to the open-loop system until the next sampling instant $t_k + h$,
+with $h \in (0,T_p)$, at which time a new optimal control problem is solved in
+the same manner:
+\begin{align}
+  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\
+  \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
+ \label{eq:position_based_optimal_u}
+\end{align}
+The control input $\vect{u}_i(\cdot)$ is of feedback form,
 since it is recalculated at each sampling instant based on the then-current
 state. The solution to equation \eqref{eq:position_based_error_model}, starting at time
 $t_1$, from an initial condition $\vect{e}_i(t_1)$, by application of the
@@ -248,11 +256,12 @@ is denoted by
 \end{align}
 As is natural, the equality
 \begin{align}
-  \vect{e}_i(\alpha) = \overline{\vect{e}}_i\big(\beta;\ \vect{u}_i(\cdot), \vect{e}_i(\gamma)\big)
+  \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) =
+  \vect{e}_i(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0))
   \label{eq:error_now_to_predicted_error}
 \end{align}
-holds true only when $\alpha=\beta=\gamma$. We can now give the definition of an
-\textit{admissible input}:
+holds true here because there are no disturbances acting on the system.
+We can now give the definition of an \textit{admissible input}:
 
 \begin{bw_box}
 \begin{definition} (Admissible input)\\
