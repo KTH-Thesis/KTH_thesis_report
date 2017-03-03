@@ -1,0 +1,38 @@
+%-------------------------------------------------------------------------------
+\subsection{The error model}
+
+A feasible desired configuration
+$\vect{z}_{i,des} \in \mathbb{R}^9 \times \mathbb{T}^3$
+is associated to each agent $i \in \mathcal{V}$, with the aim of agent $i$
+achieving it in steady-state:
+$\lim\limits_{t \to \infty} \|\vect{z}_i(t) - \vect{z}_{i,des}\| = 0$. The
+interior of the norm of this expression denotes the state error of agent $i$:
+$$\vect{e}_i(t) = \vect{z}_i(t) - \vect{z}_{i,des},\ \vect{e}_i(t) :
+\mathbb{R}_{\geq 0} \to \mathbb{R}^9 \times \mathbb{T}^3$$
+The error dynamics are denoted by $g_i^R(\vect{e}_i, \vect{u}_i)$:
+\begin{align}
+  \dot{\vect{e}}_i(t) &= \dot{\vect{z}}_i(t) - \dot{\vect{z}}_{i,des} =
+  \dot{\vect{z}}_i(t) = f_i^R\big(\vect{z}_i(t), \vect{u}_i(t)\big) =  f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) + \vect{\delta}_i(t) \\
+                      &=g_i \big(\vect{e}_i (t), \vect{u}_i (t)\big) + \vect{\delta}_i(t) \\
+                      &= g_i^R(\vect{e}_i(t), \vect{u}_i(t)\big)
+    \label{eq:position_based_error_model_with_disturbance}
+\end{align}
+with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$.
+In order to translate
+the constraints that are dictated for the state $\vect{z}_i(t)$ into constraints
+regarding the error state $\vect{e}_i(t)$, we define the set
+$\mathcal{E}_i \subset \mathbb{R}^9 \times \mathbb{T}^3$ as:
+$$\mathcal{E}_i = \{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
+\vect{e}_i(t) \in \mathcal{Z}_i \oplus (-\vect{z}_{i,des} )\}$$
+as the set that captures all constraints for the error dynamics
+\eqref{eq:position_based_error_model_with_disturbance} dictated by the problem \eqref{problem}.
+
+If we design control laws $\vect{u}_i \in \mathcal{U}_i$,
+$\forall i \in \mathcal{V}$ such that the error signal $\vect{e}_i(t)$ with
+dynamics given in \eqref{eq:position_based_error_model_with_disturbance}, constrained under
+$\vect{e}_i(t) \in \mathcal{E}_i$, satisfies
+$\lim\limits_{t \to \infty} \|\vect{e}_i(t)\| = 0$, while all system related
+signals remain bounded in their respective regions,$-$ if all of the above are
+achieved, then problem \eqref{problem} has been solved.
+
+In order to achieve this task, we employ a Nonlinear Receding Horizon scheme.

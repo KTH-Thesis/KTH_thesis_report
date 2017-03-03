@@ -18,13 +18,13 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
     \text{where}& \\
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
-      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost} \\
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost_2} \\
   \text{subject to:} & \nonumber \\
-                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
   & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
   & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
 \end{align}
-\label{problem:opt_without_disturbances}
+\label{problem:opt_without_disturbances_2}
 \end{problem}
 
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
@@ -32,7 +32,7 @@ are internal to the controller, as opposed to their actual values, because,
 even in the nominal case, the predicted values will not be equal to the
 actual closed-loop values. This means
 that $\overline{\vect{e}}_i(\cdot)$ is the solution to
-\eqref{eq:internal_error_model} driven by the control input
+\eqref{eq:internal_error_model_2} driven by the control input
 $\overline{\vect{u}}_i(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
 initial condition $\vect{e}_i(t_k)$.
 
@@ -61,7 +61,7 @@ access to\footnote{Although
 
 \begin{enumerate}
   \item measurements of the states\footnote{as per assumption
-    \eqref{ass:measurements_access}}
+    \eqref{ass:measurements_access_2}}
     \begin{itemize}
       \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
       \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
@@ -147,7 +147,7 @@ those of matrices $\mat{Q}_i$ and $\mat{R}_i$, and
 $\lambda_{max}(\mat{Q}_i, \mat{R}_i)$ the largest. Since the terms
 $\lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ and
 $\lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ are themselves
-class $\mathcal{K}$ functions according to definition \eqref{def:k_class},
+class $\mathcal{K}$ functions according to definition \eqref{def:k_class_2},
 $F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions. As is
 obvious, $F_i(\vect{0}, \vect{0}) = 0$.
 
@@ -171,12 +171,12 @@ invariant set:
 
     Intuitively, this means that the set $S$ is positively invariant if a
     trajectory of the system does not exit it once it enters it.
-    \label{def:positively_invariant}
+    \label{def:positively_invariant_2}
   \end{definition}
 \end{bw_box}
 
 The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
-positively invariant set for system \eqref{eq:position_based_error_model}
+positively invariant set for system \eqref{eq:position_based_error_model_2}
 such that
 \begin{align}
   \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \varepsilon_0 \}
@@ -196,7 +196,7 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
   where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,f}$,
   with Lipschitz constant $L_{V_i} = 2 \varepsilon_0 \lambda_{max}(P_i)$\\
 
-\label{lemma:V_Lipschitz_e_0}
+\label{lemma:V_Lipschitz_e_0_2}
 \end{lemma}
 \end{bw_box}
 
@@ -226,7 +226,7 @@ Hence:
 \end{gg_box}
 
 
-The solution to the optimal control problem \eqref{position_based_cost}
+The solution to the optimal control problem \eqref{position_based_cost_2}
 at time $t_k$ is an optimal control input, denoted by
 $\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
 is applied to the open-loop system until the next sampling instant $t_k + h$,
@@ -235,37 +235,37 @@ the same manner:
 \begin{align}
   %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\
   \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
- \label{eq:position_based_optimal_u}
+ \label{eq:position_based_optimal_u_2}
 \end{align}
 The control input $\vect{u}_i(\cdot)$ is of feedback form,
 since it is recalculated at each sampling instant based on the then-current
-state. The solution to equation \eqref{eq:position_based_error_model}, starting at time
+state. The solution to equation \eqref{eq:position_based_error_model_with_disturbance}, starting at time
 $t_1$, from an initial condition $\vect{e}_i(t_1)$, by application of the
 control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$ is denoted by
 \begin{align}
   \vect{e}_i\big(t;\ \vect{u}_i(\cdot), \vect{e}_i(t_1)\big),\ t \in [t_1, t_2]
 \end{align}
 
-The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
+The \textit{predicted} state of the system \eqref{eq:position_based_error_model_with_disturbance}
 at time $t_k + \tau$, based on the measurement of the state at time
 $t_k$, $\vect{e}_i(t_k)$, by application of the control input
 $\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big)$, for the time period $t \in [t_k, t_k + \tau]$
 is denoted by
 \begin{align}
-  \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0}
+  \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0_2}
 \end{align}
-As is natural, the equality
+In contrast to the disturbance-free case:
 \begin{align}
-  \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) =
+  \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) \not=
   \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big)
-  \label{eq:error_now_to_predicted_error}
+  \label{eq:error_now_to_predicted_error_2}
 \end{align}
-holds true here because there are no disturbances acting on the system.
+holds true here because \textit{there are} disturbances acting on the system.
 
 The closed-loop system for which stability is to be guaranteed is
 \begin{align}
-  \vect{e}_i(\tau) = g_i\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
-  \label{eq:without_disturbances_closed_loop}
+  \vect{e}_i(\tau) = g_i^R\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
+  \label{eq:without_disturbances_closed_loop_2}
 \end{align}
 where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,
 $\tau \in [t_k, t_k + h)$.

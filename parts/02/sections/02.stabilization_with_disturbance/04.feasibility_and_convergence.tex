@@ -135,16 +135,15 @@ In order not to wreak notational havoc, let us define the following terms:
 
 \begin{bw_box}
   \begin{remark}
-    Given that no model mismatch or disturbances exist, for
-    the predicted and actual states at time
-    $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
+    Given that disturbances \textit{are} present, for the predicted and actual
+    states at time $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
     \begin{align}
       \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
-        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i^R\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
       \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
         \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
     \end{align}
-    \label{remark:predicted_actual_equations_without_disturbance}
+    \label{remark:predicted_actual_equations_with_disturbance}
   \end{remark}
 \end{bw_box}
 
@@ -187,51 +186,22 @@ two integrals above in between these intervals:
 
 \begin{gg_box}
 
-Since no model mismatch or disturbances are present, consulting remark
-\eqref{remark:predicted_actual_equations_without_disturbance} and substituting
+Since there are disturbances present, consulting remark
+\eqref{remark:predicted_actual_equations_with_disturbance} and substituting
 for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
 \begin{align}
   \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
-    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \\
+    \vect{e}_i(t_k)
+    + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds\\
   \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
     \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
 \end{align}
-Subtracting the second expression from the first, we get
+hence, since the right-hand side expressions are equal:
 \begin{align}
-  &\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \\
-  &=\int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds -
-    \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds\\
-  &=\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
-  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \\
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
+    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
 \end{align}
-Taking norms on either side yields
-\begin{align}
-  &\bigg\|\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &=\bigg\|\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
-  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \bigg\|\\
-  &=\int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
-  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds\\
-  &\leq L_{g_i}\int_{t_k}^{t_{k+1}} \bigg\|
-    \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds\\
-\end{align}
-since $g_i$ is Lipschitz continuous in $\vect{e}_i$ with Lipschitz constant
-$L_{g_i}$. Notice how the norm in the first line has appeared inside
-the integral. By applying the Gronwall-Bellman inequality we obtain zero as an
-upper bound for the norm of the difference between the two states. Since
-any norm cannot be negative, we conclude that
-\begin{align}
-  \bigg\|\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| = 0 \\
-\end{align}
-which means that
-\begin{align}
-  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    =\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-\end{align}
-
 In between times $t_{k+1}$ and $t_k + T_p$, the constructed admissible input
 $\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
 input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
