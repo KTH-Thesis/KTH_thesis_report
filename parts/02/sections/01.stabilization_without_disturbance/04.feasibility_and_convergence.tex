@@ -218,8 +218,15 @@ Taking norms on either side yields
     -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds\\
 \end{align}
 since $g_i$ is Lipschitz continuous in $\vect{e}_i$ with Lipschitz constant
-$L_{g_i}$. Notice how the norm in the first line has appeared inside
-the integral. By applying the Gronwall-Bellman inequality we obtain zero as an
+$L_{g_i}$. Reformulation yields
+\begin{align}
+  &\bigg\|\vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &\leq L_{g_i}\int_{0}^{h} \bigg\|
+    \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds\\
+\end{align}
+By applying the Gr\"{o}nwall-Bellman inequality we obtain zero as an
 upper bound for the norm of the difference between the two states. Since
 any norm cannot be negative, we conclude that
 \begin{align}

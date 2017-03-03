@@ -197,6 +197,74 @@ for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
   \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
     \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
 \end{align}
+Subtracting the latter from the former and taking norms on either side yields:
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &=\bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds \bigg\| \\
+  & \leq \bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
+     + (t_{k+1} - t_k)\overline{\delta}_i \\
+  &= h \overline{\delta}_i
+     + \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)s
+     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds \\
+  &\leq h \overline{\delta}_i
+     + L_{g_i} \int_{t_k}^{t_{k+1}} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds \\
+\end{align}
+since $g_i$ is Lipschitz continuous in $\vect{e}_i$ with Lipschitz constant
+$L_{g_i}$. Reformulation yields
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &\leq h \overline{\delta}_i
+     + L_{g_i} \int_{0}^{h} \bigg\| \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds \\
+\end{align}
+By applying the Gr\"{o}nwall-Bellman inequality we get:
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &\leq h \overline{\delta}_i +  L_{g_i} \int_{0}^{h} s \overline{\delta}_i e^{L_{g_i}(h - s)} ds \\
+  &= h \overline{\delta}_i - \overline{\delta}_i \int_{0}^{h} s  \big(e^{L_{g_i}(h - s)}\big)' ds \\
+  &= h \overline{\delta}_i -
+    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(h - s)}\big]_0^h
+      - \int_{0}^{h} e^{L_{g_i}(h - s)}ds\bigg) \\
+  &= h \overline{\delta}_i - \overline{\delta}_i \bigg( h + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}h})\bigg) \\
+  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1)
+\end{align}
+\end{gg_box}
+
+\begin{bw_box}
+  \begin{lemma}
+    Suppose that the real system and the model are both at time $t_k$ at state
+    $\vect{e}_i(t_k)$. Applying at time $t_k$ a control law $\vect{u}(\cdot)$
+    to the real system and the model will cause at time $t_k + \tau$,
+    $\tau \geq 0$ a divergence between the states of the real system and the
+    model. The norm of the difference between the state of the real system
+    and the state of the model is bounded by
+    \begin{align}
+      \bigg\| \vect{e}_i\big(t_k + \tau;\ \vect{u}(\cdot), \vect{e}_i(t_k)\big) -
+        \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
+        \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} \tau} - 1)
+    \end{align}
+  \end{lemma}
+\end{bw_box}
+
+
+
+
+
+
+
+
+
+\begin{gg_box}
+
+\textcolor{red}{=======================================================}
+
 hence, since the right-hand side expressions are equal:
 \begin{align}
   \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
