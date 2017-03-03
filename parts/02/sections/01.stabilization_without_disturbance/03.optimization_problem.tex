@@ -261,6 +261,15 @@ As is natural, the equality
   \label{eq:error_now_to_predicted_error}
 \end{align}
 holds true here because there are no disturbances acting on the system.
+
+The closed-loop system for which stability is to be guaranteed is
+\begin{align}
+  \vect{e}_i(\tau) = g_i\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
+  \label{eq:without_disturbances_closed_loop}
+\end{align}
+where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,
+$\tau \in [t_k, t_k + h)$.
+
 We can now give the definition of an \textit{admissible input}:
 
 \begin{bw_box}

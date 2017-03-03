@@ -30,8 +30,8 @@ position which results in feasible displacements:\\
 
   \end{enumerate}
 
-  then the closed loop system \eqref{eq:position_based_error_model} under the
-  control input \eqref{eq:position_based_optimal_u} converges to the set
+  then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
+  the control input \eqref{eq:position_based_optimal_u} converges to the set
   $\mathcal{E}_{i,f}$ when $t \to \infty$.
 
 \end{theorem}
@@ -40,8 +40,8 @@ position which results in feasible displacements:\\
 \textbf{Proof}. The proof of the above theorem consists of two parts:
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
-on the first part, it is shown that the error $\vect{e}_i(t)$ converges to the
-terminal set $\mathcal{E}_{i,f}$.\\
+on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
+to the terminal set $\mathcal{E}_{i,f}$.\\
 
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
