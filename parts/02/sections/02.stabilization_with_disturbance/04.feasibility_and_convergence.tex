@@ -310,15 +310,31 @@ Subtracting the latter from the former and taking norms on either side yields
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we get:
 \begin{align}
-  &\bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
+  \bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
     \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\|
-  \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) e^{L_{g_i}(T_p - h)}\\
+  \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) e^{L_{g_i}(T_p - h)}
 \end{align}
-
 \end{gg_box}
 
 
-
+\begin{bw_box}
+  \begin{lemma}
+    Suppose that the model of the real system (\textit{not} the real model itself),
+    at time $t_k$ is at state $\vect{e}_i(t_k)$, and that another identical
+    model is at time $t_k$ at state $\overline{\vect{e}}_i(t_k)$. Applying at
+    time $t_k$ a control law $\vect{u}(\cdot)$ to both will cause at time
+    $t_k + \tau$, $\tau \geq 0$ a divergence between their states.
+    The norm of the difference between these states is bounded by
+    \begin{align}
+      \bigg\| \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}(\cdot), \vect{e}_i(t_k)\big) -
+        \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}(\cdot), \overline{\vect{e}}_i(t_k)\big) \bigg\|
+        \leq \big\| \vect{e}_i(t_k) - \overline{\vect{e}}_i(t_k) \big\| e^{L_{g_i}\tau}
+    \end{align}
+    where $\overline{\delta}_i$ is the upper bound of the disturbance,
+    and $L_{g_i}$ the Lipschitz constant of the models.
+    \label{lemma:diff_state_from_diff_conditions}
+  \end{lemma}
+\end{bw_box}
 
 
 
