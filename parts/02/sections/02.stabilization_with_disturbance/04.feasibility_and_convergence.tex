@@ -295,24 +295,24 @@ Subtracting the latter from the former and taking norms on either side yields
   &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
   &+ \bigg\| \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds
     - \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds\bigg\| \\
-  &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \text{ (from lemma \eqref{lemma:diff_state_from_same_conditions} for } \tau = h \text{)} \\
+  &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
   &+ \bigg\| \int_{t_k +h}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big)
     - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) \bigg)ds\bigg\| \\
-  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \\
+  &= \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
   &+ \int_{t_k +h}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big)
     - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) \bigg\| ds \\
-  &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \\
+  &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
   &+ L_{g_i}\int_{t_k +h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
     - \overline{\vect{e}}_i\big(s;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
-  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \\
+  &= \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
   &+ L_{g_i}\int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
     - \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we get:
 \begin{align}
   \bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
-    \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\|
-  \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) e^{L_{g_i}(T_p - h)}
+    \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\| \\
+  \leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| e^{L_{g_i}(T_p - h)}
 \end{align}
 \end{gg_box}
 
