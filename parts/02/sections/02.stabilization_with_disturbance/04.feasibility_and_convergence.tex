@@ -33,7 +33,7 @@ position which results in feasible displacements:\\
   then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
   the control input \eqref{eq:position_based_optimal_u} converges to the set
   $\mathcal{E}_{i,f}$ when $t \to \infty$.
-
+  \label{theorem:with_disturbances}
 \end{theorem}
 \end{bw_box}
 
@@ -139,12 +139,39 @@ In order not to wreak notational havoc, let us define the following terms:
     states at time $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
     \begin{align}
       \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
-        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i^r\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i^R\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
       \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
         \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
     \end{align}
     \label{remark:predicted_actual_equations_with_disturbance}
   \end{remark}
+\end{bw_box}
+
+The following proof of convergence to the terminal set relies heavily on the
+Gr\"{o}nwall-Bellman inequality. We state it here for reference purposes.
+\begin{bw_box}
+  \begin{lemma} \eqref{khalil_nonlinear_systems} \textit{Gr\"{o}nwall-Bellman Inequality}
+    Let $\lambda : [a,b] \to \mathbb{R}$ be continuous and
+    $\mu : [a,b] \to \mathbb{R}$ be continuous and non-negative. If a
+    continuous function $y : [a,b] \to \mathbb{R}$ satisfies
+    \begin{align}
+      y(t) \leq \lambda(t) + \int_a^t \mu(s) y(s) ds
+    \end{align}
+    for $a \leq t \leq b$, then on the same interval
+    \begin{align}
+      y(t) \leq \lambda(t) + \int_a^t \lambda(s) \mu(s) e^{\int_s^t \mu(\tau)d\tau} ds
+    \end{align}
+    In particular, if $\lambda(t) \equiv \lambda$ is a constant, then
+    \begin{align}
+      y(t) \leq \lambda e^{\int_a^t \mu(\tau)d\tau} ds
+    \end{align}
+    If $\lambda(t) \equiv \lambda$ and $\mu(t) \equiv \mu$ are both constants,
+    then
+    \begin{align}
+      y(t) \leq \lambda e^{\mu (t - a)} ds
+    \end{align}
+    \label{lemma:bellman_inequality}
+  \end{lemma}
 \end{bw_box}
 
 Before beginning to prove convergence, it is worth noting that while the cost
@@ -287,32 +314,32 @@ equation for the two different initial conditions we get
 \end{align}
 Subtracting the latter from the former and taking norms on either side yields
 \begin{align}
-  &\bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
-    \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\| \\
+  &\bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
+    \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}_i^{\star}}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\| \\
   &\leq \bigg \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \\
-  &+ \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds
-    - \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds\bigg\| \\
+  &+ \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    - \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) ds\bigg\| \\
   &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
-  &+ \bigg\| \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds
-    - \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) ds\bigg\| \\
+  &+ \bigg\| \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    - \int_{t_k +h}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) ds\bigg\| \\
   &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
-  &+ \bigg\| \int_{t_k +h}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big)
-    - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) \bigg)ds\bigg\| \\
+  &+ \bigg\| \int_{t_k +h}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big)
+    - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg)ds\bigg\| \\
   &= \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
-  &+ \int_{t_k +h}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(s)\big)
-    - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \vect{u}_i^{\star}(s)\big) \bigg\| ds \\
+  &+ \int_{t_k +h}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big)
+  - g_i\big(\overline{\vect{e}}_i(s;\ \overline{\vect{e}}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds \\
   &\leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
-  &+ L_{g_i}\int_{t_k +h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
-    - \overline{\vect{e}}_i\big(s;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
+  &+ L_{g_i}\int_{t_k +h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \overline{\vect{}u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
+    - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
   &= \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| \\
-  &+ L_{g_i}\int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
-    - \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
+  &+ L_{g_i}\int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
+    - \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k + h)\big)  \bigg\| ds \\
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we get:
 \begin{align}
-  \bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big) -
-    \overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\| \\
-  \leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| e^{L_{g_i}(T_p - h)}
+  \bigg\| \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+    & - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_k +h)\big) \bigg\| \\
+  & \leq \big \| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k +h) \big \| e^{L_{g_i}(T_p - h)}
 \end{align}
 \end{gg_box}
 
@@ -348,11 +375,67 @@ Given lemma \eqref{lemma:diff_state_from_diff_conditions},
   & \leq L_{F_i}\int_{h}^{T_p} \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg\| e^{L_{g_i}(s-h)} ds \\
   & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \int_{h}^{T_p}  e^{L_{g_i}(s-h)} ds \text{, from lemma \eqref{lemma:diff_state_from_same_conditions} for } \tau = h \\
   & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \dfrac{1}{L_{g_i}}(e^{L_{g_i}(T_p-h)} - 1) ds \\
-  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds \\
+  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds
 \end{align}
+Hence we discovered that
+\begin{bw_box}
+\begin{align}
+  \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+  &- \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\
+  & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds
+\label{eq:end_result_two_integrals}
+\end{align}
+\end{bw_box}
 
+With this partial result established, we turn back to the remaining terms
+found in \eqref{eq:convergence_4_integrals_2} and, in particular, we focus on
+the integral
+\begin{align}
+  \int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+\end{align}
+\begin{gg_box}
+  We discern that the range of the above integral has a length\footnote{$(t_{k+1} + T_p) - (t_k + T_p) = t_{k+1} - t_k = h$}
+  equal to the length of the interval where assumption (3b) (??) of theorem
+  \eqref{theorem:with_disturbances} holds.
+  Integrating the expression found in the assumption over the
+  interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
+  in it we get
+  \begin{align}
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
+    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds \leq 0 \\\\
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\\\
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\\\
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+  \end{align}
 
+  The left-hand side expression is the same as the first two terms in the
+  right-hand side of equality \eqref{eq:convergence_4_integrals_2}. We can
+  introduce the third one by subtracting it from both sides:
+  \begin{align}
+    &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
+    &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
+    &\leq \Big\|V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big\| \text{, for } x \leq |x|, \forall x \in \mathbb{R} \\
+    &\leq L_{V_i}\bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
+    \text{, from lemma } \eqref{lemma:V_Lipschitz_e_0}
+  \end{align}
+  Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
+  we get that the two terms interior to the norm are respectively equal to
+  \begin{align}
+    \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) &=
+      \vect{e}_i(t_{k+1}) + \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+    \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) &=
+      \vect{e}_i(t_{k+1}) + \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+  \end{align}
 
+  \end{gg_box}
 
 
 

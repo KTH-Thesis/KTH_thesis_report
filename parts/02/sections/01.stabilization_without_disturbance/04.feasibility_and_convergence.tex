@@ -280,7 +280,7 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
   note that $(t_{k+1} + T_p) - (t_k + T_p) = t_{k+1} - t_k = h$, which is exactly the
   length of the interval where assumption (3b) of the theorem holds. Hence,
   we decide to integrate the expression found in the assumption over the
-  interval $[t_{k+1} + T_p, t_k + T_p]$, for the controls and states applicable
+  interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
   in it:
   \begin{align}
     \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
