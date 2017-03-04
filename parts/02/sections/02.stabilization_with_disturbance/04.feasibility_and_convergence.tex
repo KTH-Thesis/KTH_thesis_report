@@ -269,9 +269,9 @@ first on the difference between the two intervals over $[t_{k+1}, t_{k+1} + T_p]
     -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg) d s \bigg\| \\
   & = \int_{t_k+h}^{t_k + T_p} \bigg\| F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big)
     -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg\| d s \\
-  & \leq L_{V_i}\int_{t_k+h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_{1,i} (\cdot), \vect{e}_i(t_k + h) \big)
+  & \leq L_{F_i}\int_{t_k+h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_{1,i} (\cdot), \vect{e}_i(t_k + h) \big)
     -  \overline{\vect{e}}_i\big(s;\ \vect{u}_{0,i} (\cdot), \overline{\vect{e}}_i(t_k + h)\big) \bigg\| d s
-    \text{ (for } V \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)}
+    \text{ (for } F_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \label{eq:integrals_over_same_u_LV}
 \end{align}
 
 
@@ -336,8 +336,20 @@ By applying the Gr\"{o}nwall-Bellman inequality we get:
   \end{lemma}
 \end{bw_box}
 
-
-
+Given lemma \eqref{lemma:diff_state_from_diff_conditions},
+\eqref{eq:integrals_over_same_u_LV} becomes
+\begin{align}
+  &\int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+    - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\
+  &\leq L_{F_i}\int_{t_k+h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_{1,i} (\cdot), \vect{e}_i(t_k + h) \big)
+    -  \overline{\vect{e}}_i\big(s;\ \vect{u}_{0,i} (\cdot), \overline{\vect{e}}_i(t_k + h)\big) \bigg\| d s \\
+  & = L_{F_i}\int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_{1,i} (\cdot), \vect{e}_i(t_k + h) \big)
+    -  \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_{0,i} (\cdot), \overline{\vect{e}}_i(t_k + h)\big) \bigg\| d s \\
+  & \leq L_{F_i}\int_{h}^{T_p} \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg\| e^{L_{g_i}(s-h)} ds \\
+  & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \int_{h}^{T_p}  e^{L_{g_i}(s-h)} ds \text{, from lemma \eqref{lemma:diff_state_from_same_conditions} for } \tau = h \\
+  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \dfrac{1}{L_{g_i}}(e^{L_{g_i}(T_p-h)} - 1) ds \\
+  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds \\
+\end{align}
 
 
 
