@@ -150,7 +150,8 @@ In order not to wreak notational havoc, let us define the following terms:
 The following proof of convergence to the terminal set relies heavily on the
 Gr\"{o}nwall-Bellman inequality. We state it here for reference purposes.
 \begin{bw_box}
-  \begin{lemma} \eqref{khalil_nonlinear_systems} \textit{Gr\"{o}nwall-Bellman Inequality}
+  \begin{lemma} \cite{khalil_nonlinear_systems} \textit{Gr\"{o}nwall-Bellman Inequality}
+
     Let $\lambda : [a,b] \to \mathbb{R}$ be continuous and
     $\mu : [a,b] \to \mathbb{R}$ be continuous and non-negative. If a
     continuous function $y : [a,b] \to \mathbb{R}$ satisfies
@@ -514,41 +515,45 @@ By rearranging terms, the cost difference becomes bounded by
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) &- J_i^{\star}\big(\vect{e}_i(t_k)\big) \\
   &\leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
     + \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
-    \bigg( e^{L_{g_i}(T_p-h)} \big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) - \dfrac{L_{F_i}}{\L_{g_i}}\bigg)
+    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg) \\
+  &= -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s + \xi_i
 \end{align}
-
-\textcolor{red}{=======================================================}
+where
+\begin{align}
+  \xi_i = \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
+    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg)
+\end{align}
 
 \begin{gg_box}
   $F_i$ is a positive-definite function as a sum of a positive-definite
   $\|\vect{u}_i\|^2_{\mat{R}_i}$ and a positive semi-definite function
   $\|\vect{e}_i\|^2_{\mat{Q}_i}$. If we denote by
-  $m = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \geq 0$ the minimum eigenvalue
+  $m_i = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \geq 0$ the minimum eigenvalue
   between those of matrices $\mat{R}_i, \mat{Q}_i$, this means that
   \begin{align}
-    F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m \|\vect{e}_{0,i}(s)\|^2
+    F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m_i \|\vect{e}_{0,i}(s)\|^2
   \end{align}
-
   By integrating the above between our interval of interest $[t_k, t_{k+1}]$ we get
   \begin{align}
-    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m \|\vect{e}_{0,i}(s)\|^2 ds \\
+    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m_i \|\vect{e}_{0,i}(s)\|^2 ds \\
     \text{or}\\
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
 \end{gg_box}
-
-This means that the cost difference is upper-bounded by a class $\mathcal{K}$
-function
+This means that the cost difference is upper-bounded by
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-  &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+  &\leq \xi_i -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
 and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
 \begin{align}
- J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
- \label{eq:J_opt_between_consecutive_k}
+ J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq \xi_i -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+ \label{eq:J_opt_between_consecutive_k_2}
 \end{align}
+
+\textcolor{red}{=======================================================}
+
 With this milestone result established, we need to trace the time $t_k$ back
 to $t_0 = 0$.
 
