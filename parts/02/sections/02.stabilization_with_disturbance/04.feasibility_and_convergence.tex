@@ -374,15 +374,15 @@ Given lemma \eqref{lemma:diff_state_from_diff_conditions},
     -  \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_{0,i} (\cdot), \overline{\vect{e}}_i(t_k + h)\big) \bigg\| d s \\
   & \leq L_{F_i}\int_{h}^{T_p} \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg\| e^{L_{g_i}(s-h)} ds \\
   & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \int_{h}^{T_p}  e^{L_{g_i}(s-h)} ds \text{, from lemma \eqref{lemma:diff_state_from_same_conditions} for } \tau = h \\
-  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \dfrac{1}{L_{g_i}}(e^{L_{g_i}(T_p-h)} - 1) ds \\
-  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds
+  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \dfrac{1}{L_{g_i}}(e^{L_{g_i}(T_p-h)} - 1) \\
+  & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
 \end{align}
 Hence we discovered that
 \begin{bw_box}
 \begin{align}
   \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
   &- \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\
-  & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1) ds
+  & \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
 \label{eq:end_result_two_integrals}
 \end{align}
 \end{bw_box}
@@ -487,135 +487,38 @@ With the above result established, we substitute for the norm in
   \label{eq:end_result_diff_V_plus_int}
 \end{align}
 \end{bw_box}
+
 Adding the milestone inequalities \eqref{eq:end_result_two_integrals} and
 \eqref{eq:end_result_diff_V_plus_int} yields
+\begin{alignat}{2}
+  &\int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+  - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\
+  &+ V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+  + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+  - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
+  &\leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
+  + L_{V_i}\dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
+\end{alignat}
+and therefore \eqref{eq:convergence_4_integrals_2}, by bringing the integral
+ranging from $t_k$ to $t_{k+1}$ to the left-hand side, becomes
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big)
+    - J_i^{\star}\big(\vect{e}_i(t_k)\big)
+    + \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\
+    \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
+  + L_{V_i}\dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
+\end{align}
 
+By rearranging terms, the cost difference becomes bounded by
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) &- J_i^{\star}\big(\vect{e}_i(t_k)\big) \\
+  &\leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    + \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
+    \bigg( e^{L_{g_i}(T_p-h)} \big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) - \dfrac{L_{F_i}}{\L_{g_i}}\bigg)
+\end{align}
 
 \textcolor{red}{=======================================================}
 
-
-
-
-
-
-
-
-
-
-
-\begin{gg_box}
-
-hence, since the right-hand side expressions are equal:
-\begin{align}
-  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) =
-    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-\end{align}
-In between times $t_{k+1}$ and $t_k + T_p$, the constructed admissible input
-$\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
-input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
-(see eq. \ref{eq:optimal_input_t_plus_one}), which means that
-$\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval $\tau \in [t_{k+1}, t_k + T_p]$.
-Since the initial conditions at $t=t_{k+1}$ are equal and the control laws
-are also equal, so will the predicted states over the same interval:
-\begin{align}
-  \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) =
-  \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
-\end{align}
-Using our notation then, in the same interval:
-$\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, and therefore the following
-equality holds over $[t_{k+1}, t_k + T_p]$:
-\begin{align}
-  F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =
-  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big),\ s \in [t_{k+1}, t_k + T_p]
-\end{align}
-Integrating this equality over the interval where it is valid yields
-\begin{align}
-  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds =
-  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
-\end{align}
-\end{gg_box}
-This means that these two integrals with ends over the interval
-$[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
-\eqref{eq:convergence_4_integrals} vanish, and thus the cost difference becomes
-\begin{align}
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &=
-    V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
-    +\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\
-    &-V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
-\label{eq:convergence_2_integrals}
-\end{align}
-
-\begin{gg_box}
-  We turn our attention to the first integral in the above expression, and we
-  note that $(t_{k+1} + T_p) - (t_k + T_p) = t_{k+1} - t_k = h$, which is exactly the
-  length of the interval where assumption (3b) of the theorem holds. Hence,
-  we decide to integrate the expression found in the assumption over the
-  interval $[t_{k+1} + T_p, t_k + T_p]$, for the controls and states applicable
-  in it:
-  \begin{align}
-    \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
-    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds \leq 0 \\\\
-    \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\\\
-    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\\\
-    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-  \end{align}
-
-  The left-hand side expression is the same as the first two terms in the
-  right-hand side of equality \eqref{eq:convergence_2_integrals}. We can
-  introduce the third one by subtracting it from both sides:
-  \begin{align}
-    &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
-    &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)
-    \leq \Big|V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big|
-  \end{align}
-  since $x \leq |x|, \forall x \in \mathbb{R}$.
-
-  By revisiting lemma \eqref{lemma:V_Lipschitz_e_0}, the above inequality
-  becomes
-  \begin{align}
-    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
-    \leq L_{V_i} \big\|\vect{e}_{1,i}(t_k + T_p) - \vect{e}_{0,i}(t_k + T_p)\big\|
-  \end{align}
-
-  However, in the interval $[t_{k+1}, t_k + T_p]$:
-  $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, hence the right-hand
-  side of the inequality equals zero:
-  \begin{align}
-    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \leq 0
-  \end{align}
-
-  By subtracting the fourth term needed to complete the right-hand side
-  expression of \eqref{eq:convergence_2_integrals}, i.e.
-  $\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s$
-  from both sides we get
-  \begin{align}
-    &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \\\\
-    - &V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
-    \leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
-  \end{align}
-
-  The left-hand side of this inequality is now equal to the cost difference
-  $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)$.
-\end{gg_box}
-Hence, the cost difference becomes bounded by
-\begin{align}
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
-\end{align}
 \begin{gg_box}
   $F_i$ is a positive-definite function as a sum of a positive-definite
   $\|\vect{u}_i\|^2_{\mat{R}_i}$ and a positive semi-definite function
