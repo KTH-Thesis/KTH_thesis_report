@@ -19,99 +19,247 @@
 \providecommand\csxdef[2]{}
 \@writefile{toc}{\providecommand\autonum@processReference[2]{}}
 \@writefile{lof}{\providecommand\autonum@processReference[2]{}}
-\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Advocated Solutions}{1}{part.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Stabilization in the face of Disturbances}{3}{section.1}}
-\newlabel{sec:stabilization_with_disturbance}{{1}{3}{Stabilization in the face of Disturbances}{section.1}{}}
-\newlabel{sec:stabilization_with_disturbance@cref}{{[section][1][]1}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Formalizing the model}{3}{subsection.1.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{5}{section.1}}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}The problem}{7}{part.1}}
+\citation{khalil_nonlinear_systems}
+\citation{khalil_nonlinear_systems}
+\citation{Sontag2008}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Notation and Preliminaries}{9}{section.2}}
+\newlabel{sec:notation_reliminaries}{{2}{9}{Notation and Preliminaries}{section.2}{}}
+\newlabel{sec:notation_reliminaries@cref}{{[section][2][]2}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Notation}{9}{subsection.2.1}}
+\newlabel{def:k_class}{{2.1}{9}{}{Item.2}{}}
+\newlabel{def:k_class@cref}{{[definition][1][2]2.1}{9}}
+\newlabel{def:kl_class}{{2.2}{9}{}{Item.5}{}}
+\newlabel{def:kl_class@cref}{{[definition][2][2]2.2}{9}}
+\citation{Sontag2008}
+\citation{Sontag2008}
+\newlabel{def:ISS}{{2.3}{10}{}{definition.2.3}{}}
+\newlabel{def:ISS@cref}{{[definition][3][2]2.3}{10}}
+\newlabel{def:ISS_Lyapunov}{{2.4}{10}{}{definition.2.4}{}}
+\newlabel{def:ISS_Lyapunov@cref}{{[definition][4][2]2.4}{10}}
+\newlabel{def:ISS_Lyapunov_admit_theorem}{{2.1}{10}{}{theorem.2.1}{}}
+\newlabel{def:ISS_Lyapunov_admit_theorem@cref}{{[theorem][1][2]2.1}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Graph Theory}{10}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control for continuous-time systems}{10}{subsection.2.3}}
+\citation{Murray:1994:MIR:561828}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{11}{section.3}}
+\newlabel{sec:prob_formulation}{{3}{11}{Problem Formulation}{section.3}{}}
+\newlabel{sec:prob_formulation@cref}{{[section][3][]3}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}System Model}{11}{subsection.3.1}}
+\newlabel{eq:system_1}{{1a}{11}{System Model}{equation.0.1a}{}}
+\newlabel{eq:system_1@cref}{{[subequation][1][1]1a}{11}}
+\newlabel{eq:system_2}{{1b}{11}{System Model}{equation.0.1b}{}}
+\newlabel{eq:system_2@cref}{{[subequation][2][1]1b}{11}}
+\newlabel{eq:system}{{1}{11}{System Model}{equation.0.1b}{}}
+\newlabel{eq:system@cref}{{[subequation][1][]1}{11}}
+\csxdef {autonum@eq:system_1Referenced}{}
 \csxdef {autonum@eq:system_1Referenced}{}
 \csxdef {autonum@eq:system_2Referenced}{}
-\newlabel{eq:state_space_system_2}{{1}{3}{Formalizing the model}{equation.0.1}{}}
-\newlabel{eq:state_space_system_2@cref}{{[subequation][1][]1}{3}}
-\newlabel{eq:non_perturbed_system_2}{{3}{4}{Formalizing the model}{equation.0.3}{}}
-\newlabel{eq:non_perturbed_system_2@cref}{{[equation][3][]3}{4}}
-\csxdef {autonum@eq:non_perturbed_system_2Referenced}{}
+\newlabel{ass:measurements_access}{{3.1}{12}{}{Item.9}{}}
+\newlabel{ass:measurements_access@cref}{{[assumption][1][3]3.1}{12}}
+\csxdef {autonum@ass:measurements_accessReferenced}{}
+\csxdef {autonum@fig:two_agents_one_obstacleReferenced}{}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Illustration of two agents $i, j \in \mathcal  {V}$ and an static obstacle $\ell \in \mathcal  {L}$ in the workspace; $\{\mathcal  {O}\}$ is the inertial frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of mass, $\bm  {\mathbf  {p}}_i, \bm  {\mathbf  {p}}_j, \bm  {\mathbf  {p}}_{\ell } \in \mathbb  {R}^3$ are the positions of the center of mass of the agents $i,j$ and the obstacle $\ell $ respectively, expressed in frame $\{\mathcal  {O}\}$. $r_i, r_j, r_{\ell }$ are the radii of the agents $i,j$ and the obstacle $\ell $ respectively. $d_i, d_j$ with $d_i > d_j$ are the agents' sensing ranges. In this figure, agents $i$ and $j$ are not neighbours, since the center of mass of agent $j$ is not within the sensing range of agent $i$ and vice versa: $\bm  {\mathbf  {p}}_j \notin  \mathcal  {B}(\bm  {\mathbf  {p}}_i(t), d_i)$ and $\bm  {\mathbf  {p}}_i \notin  \mathcal  {B}(\bm  {\mathbf  {p}}_j(t), d_j)$.}}{13}{figure.1}}
+\newlabel{fig:two_agents_one_obstacle}{{1}{13}{Illustration of two agents $i, j \in \mathcal {V}$ and an static obstacle $\ell \in \mathcal {L}$ in the workspace; $\{\mathcal {O}\}$ is the inertial frame, $\{i\}, \{j\}$ are the frames attached to the agents' center of mass, $\vect {p}_i, \vect {p}_j, \vect {p}_{\ell } \in \mathbb {R}^3$ are the positions of the center of mass of the agents $i,j$ and the obstacle $\ell $ respectively, expressed in frame $\{\mathcal {O}\}$. $r_i, r_j, r_{\ell }$ are the radii of the agents $i,j$ and the obstacle $\ell $ respectively. $d_i, d_j$ with $d_i > d_j$ are the agents' sensing ranges. In this figure, agents $i$ and $j$ are not neighbours, since the center of mass of agent $j$ is not within the sensing range of agent $i$ and vice versa: $\vect {p}_j \notin \mathcal {B}(\vect {p}_i(t), d_i)$ and $\vect {p}_i \notin \mathcal {B}(\vect {p}_j(t), d_j)$}{figure.1}{}}
+\newlabel{fig:two_agents_one_obstacle@cref}{{[figure][1][]1}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}}
+\csxdef {autonum@ass:initial_conditionsReferenced}{}
+\newlabel{ass:initial_conditions}{{3.2}{15}{}{Item.15}{}}
+\newlabel{ass:initial_conditions@cref}{{[assumption][2][3]3.2}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}}
+\csxdef {autonum@ass:initial_conditionsReferenced}{}
+\csxdef {autonum@def:intra_environmental_arrangementReferenced}{}
+\newlabel{def:intra_environmental_arrangement}{{3.4}{16}{}{equation.0.6}{}}
+\newlabel{def:intra_environmental_arrangement@cref}{{[definition][4][3]3.4}{16}}
+\csxdef {autonum@def:intra_environmental_arrangementReferenced}{}
+\newlabel{ass:intra_environmental_arrangement}{{3.3}{17}{}{equation.0.6}{}}
+\newlabel{ass:intra_environmental_arrangement@cref}{{[assumption][3][3]3.3}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Problem Statement}{17}{subsection.3.4}}
+\csxdef {autonum@eq:systemReferenced}{}
+\csxdef {autonum@ass:measurements_accessReferenced}{}
+\csxdef {autonum@ass:initial_conditionsReferenced}{}
+\csxdef {autonum@ass:intra_environmental_arrangementReferenced}{}
+\newlabel{problem}{{3.1}{18}{}{Item.31}{}}
+\newlabel{problem@cref}{{[problem][1][3]3.1}{18}}
+\@writefile{toc}{\contentsline {part}{II\hspace  {1em}Advocated Solutions}{19}{part.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Disturbance-free Stabililization}{21}{section.4}}
+\newlabel{sec:stabilization_without_disturbance}{{4}{21}{Disturbance-free Stabililization}{section.4}{}}
+\newlabel{sec:stabilization_without_disturbance@cref}{{[section][4][]4}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Formalizing the model}{21}{subsection.4.1}}
+\csxdef {autonum@eq:system_1Referenced}{}
+\csxdef {autonum@eq:system_2Referenced}{}
+\newlabel{eq:state_space_system}{{6}{21}{Formalizing the model}{equation.0.6}{}}
+\newlabel{eq:state_space_system@cref}{{[subequation][6][]6}{21}}
+\newlabel{eq:non_perturbed_system}{{8}{21}{Formalizing the model}{equation.0.8}{}}
+\newlabel{eq:non_perturbed_system@cref}{{[equation][8][]8}{21}}
+\csxdef {autonum@eq:non_perturbed_systemReferenced}{}
 \csxdef {autonum@problemReferenced}{}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}The error model}{5}{subsection.1.2}}
-\newlabel{eq:position_based_error_model_with_disturbance}{{4}{5}{The error model}{equation.0.4}{}}
-\newlabel{eq:position_based_error_model_with_disturbance@cref}{{[equation][4][]4}{5}}
-\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}The error model}{22}{subsection.4.2}}
+\newlabel{eq:position_based_error_model}{{9}{22}{The error model}{equation.0.9}{}}
+\newlabel{eq:position_based_error_model@cref}{{[equation][9][]9}{22}}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
 \csxdef {autonum@problemReferenced}{}
-\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
 \csxdef {autonum@problemReferenced}{}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}The optimization problem}{5}{subsection.1.3}}
-\newlabel{position_based_cost_2}{{5}{6}{}{equation.0.5}{}}
-\newlabel{position_based_cost_2@cref}{{[equation][5][]5}{6}}
-\newlabel{eq:internal_error_model_2}{{6}{6}{}{equation.0.6}{}}
-\newlabel{eq:internal_error_model_2@cref}{{[equation][6][]6}{6}}
-\newlabel{problem:opt_without_disturbances_2}{{1.1}{6}{}{equation.0.6}{}}
-\newlabel{problem:opt_without_disturbances_2@cref}{{[problem][1][1]1.1}{6}}
-\csxdef {autonum@eq:internal_error_model_2Referenced}{}
-\csxdef {autonum@ass:measurements_access_2Referenced}{}
-\csxdef {autonum@def:k_class_2Referenced}{}
-\newlabel{def:positively_invariant_2}{{1.1}{8}{}{definition.1.1}{}}
-\newlabel{def:positively_invariant_2@cref}{{[definition][1][1]1.1}{8}}
-\csxdef {autonum@eq:position_based_error_model_2Referenced}{}
-\newlabel{lemma:V_Lipschitz_e_0_2}{{1.1}{9}{}{lemma.1.1}{}}
-\newlabel{lemma:V_Lipschitz_e_0_2@cref}{{[lemma][1][1]1.1}{9}}
-\csxdef {autonum@position_based_cost_2Referenced}{}
-\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
-\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Feasibility and Convergence}{10}{subsection.1.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The optimization problem}{23}{subsection.4.3}}
+\newlabel{position_based_cost}{{10}{23}{}{equation.0.10}{}}
+\newlabel{position_based_cost@cref}{{[equation][10][]10}{23}}
+\newlabel{eq:internal_error_model}{{11}{23}{}{equation.0.11}{}}
+\newlabel{eq:internal_error_model@cref}{{[equation][11][]11}{23}}
+\newlabel{problem:opt_without_disturbances}{{4.1}{23}{}{equation.0.11}{}}
+\newlabel{problem:opt_without_disturbances@cref}{{[problem][1][4]4.1}{23}}
+\csxdef {autonum@eq:internal_error_modelReferenced}{}
+\csxdef {autonum@ass:measurements_accessReferenced}{}
+\csxdef {autonum@def:k_classReferenced}{}
+\newlabel{def:positively_invariant}{{4.1}{25}{}{definition.4.1}{}}
+\newlabel{def:positively_invariant@cref}{{[definition][1][4]4.1}{25}}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
+\newlabel{lemma:V_Lipschitz_e_0}{{4.1}{26}{}{lemma.4.1}{}}
+\newlabel{lemma:V_Lipschitz_e_0@cref}{{[lemma][1][4]4.1}{26}}
+\csxdef {autonum@position_based_costReferenced}{}
+\newlabel{eq:position_based_optimal_u}{{13}{27}{The optimization problem}{equation.0.13}{}}
+\newlabel{eq:position_based_optimal_u@cref}{{[equation][13][]13}{27}}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
+\newlabel{eq:error_now_to_predicted_error}{{14}{27}{The optimization problem}{equation.0.14}{}}
+\newlabel{eq:error_now_to_predicted_error@cref}{{[equation][14][]14}{27}}
+\newlabel{eq:without_disturbances_closed_loop}{{15}{27}{The optimization problem}{equation.0.15}{}}
+\newlabel{eq:without_disturbances_closed_loop@cref}{{[equation][15][]15}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Feasibility and Convergence}{28}{subsection.4.4}}
 \csxdef {autonum@position_based_costReferenced}{}
 \csxdef {autonum@ass:measurements_accessReferenced}{}
 \csxdef {autonum@ass:initial_conditionsReferenced}{}
 \csxdef {autonum@ass:intra_environmental_arrangementReferenced}{}
 \csxdef {autonum@eq:without_disturbances_closed_loopReferenced}{}
 \csxdef {autonum@eq:position_based_optimal_uReferenced}{}
-\newlabel{theorem:with_disturbances}{{1.1}{11}{}{Item.11}{}}
-\newlabel{theorem:with_disturbances@cref}{{[theorem][1][1]1.1}{11}}
 \csxdef {autonum@position_based_costReferenced}{}
-\newlabel{eq:optimal_input_portions}{{8}{11}{Feasibility and Convergence}{equation.0.8}{}}
-\newlabel{eq:optimal_input_portions@cref}{{[equation][8][]8}{11}}
+\newlabel{eq:optimal_input_portions}{{16}{28}{Feasibility and Convergence}{equation.0.16}{}}
+\newlabel{eq:optimal_input_portions@cref}{{[equation][16][]16}{28}}
 \csxdef {autonum@eq:optimal_input_portionsReferenced}{}
-\newlabel{eq:optimal_input_t_plus_one}{{9}{12}{Feasibility and Convergence}{equation.0.9}{}}
-\newlabel{eq:optimal_input_t_plus_one@cref}{{[equation][9][]9}{12}}
+\newlabel{eq:optimal_input_t_plus_one}{{17}{29}{Feasibility and Convergence}{equation.0.17}{}}
+\newlabel{eq:optimal_input_t_plus_one@cref}{{[equation][17][]17}{29}}
+\csxdef {autonum@problem:opt_without_disturbancesReferenced}{}
+\csxdef {autonum@eq:optimal_input_t_plus_oneReferenced}{}
+\newlabel{remark:predicted_actual_equations_without_disturbance}{{4.2}{30}{}{remark.4.2}{}}
+\newlabel{remark:predicted_actual_equations_without_disturbance@cref}{{[remark][2][4]4.2}{30}}
+\newlabel{eq:convergence_4_integrals}{{18}{30}{Feasibility and Convergence}{equation.0.18}{}}
+\newlabel{eq:convergence_4_integrals@cref}{{[equation][18][]18}{30}}
+\csxdef {autonum@remark:predicted_actual_equations_without_disturbanceReferenced}{}
+\csxdef {autonum@eq:optimal_input_t_plus_oneReferenced}{}
+\csxdef {autonum@eq:convergence_4_integralsReferenced}{}
+\newlabel{eq:convergence_2_integrals}{{19}{32}{Feasibility and Convergence}{equation.0.19}{}}
+\newlabel{eq:convergence_2_integrals@cref}{{[equation][19][]19}{32}}
+\csxdef {autonum@eq:convergence_2_integralsReferenced}{}
+\csxdef {autonum@lemma:V_Lipschitz_e_0Referenced}{}
+\csxdef {autonum@eq:convergence_2_integralsReferenced}{}
+\newlabel{eq:J_opt_between_consecutive_k}{{20}{34}{Feasibility and Convergence}{equation.0.20}{}}
+\newlabel{eq:J_opt_between_consecutive_k@cref}{{[equation][20][]20}{34}}
+\csxdef {autonum@eq:J_opt_between_consecutive_kReferenced}{}
+\newlabel{eq:J_opt_between_k_and_0}{{21}{35}{Feasibility and Convergence}{equation.0.21}{}}
+\newlabel{eq:J_opt_between_k_and_0@cref}{{[equation][21][]21}{35}}
+\csxdef {autonum@eq:position_based_error_modelReferenced}{}
+\citation{Fontes2007}
+\csxdef {autonum@eq:J_opt_between_k_and_0Referenced}{}
+\newlabel{lemma:barbalat}{{4.2}{36}{}{lemma.4.2}{}}
+\newlabel{lemma:barbalat@cref}{{[lemma][2][4]4.2}{36}}
+\csxdef {autonum@lemma:barbalatReferenced}{}
+\csxdef {autonum@eq:error_now_to_predicted_errorReferenced}{}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Stabilization in the face of Disturbances}{39}{section.5}}
+\newlabel{sec:stabilization_with_disturbance}{{5}{39}{Stabilization in the face of Disturbances}{section.5}{}}
+\newlabel{sec:stabilization_with_disturbance@cref}{{[section][5][]5}{39}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Formalizing the model}{39}{subsection.5.1}}
+\csxdef {autonum@eq:system_1Referenced}{}
+\csxdef {autonum@eq:system_2Referenced}{}
+\newlabel{eq:state_space_system_2}{{22}{39}{Formalizing the model}{equation.0.22}{}}
+\newlabel{eq:state_space_system_2@cref}{{[subequation][22][]22}{39}}
+\newlabel{eq:non_perturbed_system_2}{{24}{40}{Formalizing the model}{equation.0.24}{}}
+\newlabel{eq:non_perturbed_system_2@cref}{{[equation][24][]24}{40}}
+\csxdef {autonum@eq:non_perturbed_system_2Referenced}{}
+\csxdef {autonum@problemReferenced}{}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}The error model}{41}{subsection.5.2}}
+\newlabel{eq:position_based_error_model_with_disturbance}{{25}{41}{The error model}{equation.0.25}{}}
+\newlabel{eq:position_based_error_model_with_disturbance@cref}{{[equation][25][]25}{41}}
+\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\csxdef {autonum@problemReferenced}{}
+\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\csxdef {autonum@problemReferenced}{}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The optimization problem}{41}{subsection.5.3}}
+\newlabel{position_based_cost_2}{{26}{42}{}{equation.0.26}{}}
+\newlabel{position_based_cost_2@cref}{{[equation][26][]26}{42}}
+\newlabel{eq:internal_error_model_2}{{27}{42}{}{equation.0.27}{}}
+\newlabel{eq:internal_error_model_2@cref}{{[equation][27][]27}{42}}
+\newlabel{problem:opt_without_disturbances_2}{{5.1}{42}{}{equation.0.27}{}}
+\newlabel{problem:opt_without_disturbances_2@cref}{{[problem][1][5]5.1}{42}}
+\csxdef {autonum@eq:internal_error_model_2Referenced}{}
+\csxdef {autonum@ass:measurements_access_2Referenced}{}
+\csxdef {autonum@def:k_class_2Referenced}{}
+\newlabel{def:positively_invariant_2}{{5.1}{44}{}{definition.5.1}{}}
+\newlabel{def:positively_invariant_2@cref}{{[definition][1][5]5.1}{44}}
+\csxdef {autonum@eq:position_based_error_model_2Referenced}{}
+\newlabel{lemma:V_Lipschitz_e_0_2}{{5.1}{45}{}{lemma.5.1}{}}
+\newlabel{lemma:V_Lipschitz_e_0_2@cref}{{[lemma][1][5]5.1}{45}}
+\csxdef {autonum@position_based_cost_2Referenced}{}
+\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Feasibility and Convergence}{46}{subsection.5.4}}
+\csxdef {autonum@position_based_costReferenced}{}
+\csxdef {autonum@ass:measurements_accessReferenced}{}
+\csxdef {autonum@ass:initial_conditionsReferenced}{}
+\csxdef {autonum@ass:intra_environmental_arrangementReferenced}{}
+\csxdef {autonum@eq:without_disturbances_closed_loopReferenced}{}
+\csxdef {autonum@eq:position_based_optimal_uReferenced}{}
+\newlabel{theorem:with_disturbances}{{5.1}{47}{}{Item.53}{}}
+\newlabel{theorem:with_disturbances@cref}{{[theorem][1][5]5.1}{47}}
+\csxdef {autonum@position_based_costReferenced}{}
+\newlabel{eq:optimal_input_portions}{{29}{47}{Feasibility and Convergence}{equation.0.29}{}}
+\newlabel{eq:optimal_input_portions@cref}{{[equation][29][]29}{47}}
+\csxdef {autonum@eq:optimal_input_portionsReferenced}{}
+\newlabel{eq:optimal_input_t_plus_one}{{30}{48}{Feasibility and Convergence}{equation.0.30}{}}
+\newlabel{eq:optimal_input_t_plus_one@cref}{{[equation][30][]30}{48}}
 \csxdef {autonum@problem:opt_without_disturbancesReferenced}{}
 \csxdef {autonum@eq:optimal_input_t_plus_oneReferenced}{}
 \citation{khalil_nonlinear_systems}
-\newlabel{remark:predicted_actual_equations_with_disturbance}{{1.3}{13}{}{remark.1.3}{}}
-\newlabel{remark:predicted_actual_equations_with_disturbance@cref}{{[remark][3][1]1.3}{13}}
-\newlabel{lemma:bellman_inequality}{{1.2}{13}{}{lemma.1.2}{}}
-\newlabel{lemma:bellman_inequality@cref}{{[lemma][2][1]1.2}{13}}
-\newlabel{eq:convergence_4_integrals_2}{{10}{14}{Feasibility and Convergence}{equation.0.10}{}}
-\newlabel{eq:convergence_4_integrals_2@cref}{{[equation][10][]10}{14}}
+\newlabel{remark:predicted_actual_equations_with_disturbance}{{5.3}{49}{}{remark.5.3}{}}
+\newlabel{remark:predicted_actual_equations_with_disturbance@cref}{{[remark][3][5]5.3}{49}}
+\newlabel{lemma:bellman_inequality}{{5.2}{49}{}{lemma.5.2}{}}
+\newlabel{lemma:bellman_inequality@cref}{{[lemma][2][5]5.2}{49}}
+\newlabel{eq:convergence_4_integrals_2}{{31}{50}{Feasibility and Convergence}{equation.0.31}{}}
+\newlabel{eq:convergence_4_integrals_2@cref}{{[equation][31][]31}{50}}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
-\newlabel{eq:integrals_over_same_u_LV}{{11}{14}{Feasibility and Convergence}{equation.0.11}{}}
-\newlabel{eq:integrals_over_same_u_LV@cref}{{[equation][11][]11}{14}}
+\newlabel{eq:integrals_over_same_u_LV}{{32}{50}{Feasibility and Convergence}{equation.0.32}{}}
+\newlabel{eq:integrals_over_same_u_LV@cref}{{[equation][32][]32}{50}}
 \csxdef {autonum@remark:predicted_actual_equations_with_disturbanceReferenced}{}
-\newlabel{eq:df_interim_es}{{12}{15}{Feasibility and Convergence}{equation.0.12}{}}
-\newlabel{eq:df_interim_es@cref}{{[equation][12][]12}{15}}
+\newlabel{eq:df_interim_es}{{33}{51}{Feasibility and Convergence}{equation.0.33}{}}
+\newlabel{eq:df_interim_es@cref}{{[equation][33][]33}{51}}
 \csxdef {autonum@remark:predicted_actual_equations_with_disturbanceReferenced}{}
-\newlabel{lemma:diff_state_from_same_conditions}{{1.3}{17}{}{lemma.1.3}{}}
-\newlabel{lemma:diff_state_from_same_conditions@cref}{{[lemma][3][1]1.3}{17}}
+\newlabel{lemma:diff_state_from_same_conditions}{{5.3}{53}{}{lemma.5.3}{}}
+\newlabel{lemma:diff_state_from_same_conditions@cref}{{[lemma][3][5]5.3}{53}}
 \csxdef {autonum@lemma:diff_state_from_same_conditionsReferenced}{}
 \csxdef {autonum@eq:df_interim_esReferenced}{}
 \csxdef {autonum@eq:df_interim_esReferenced}{}
 \csxdef {autonum@eq:integrals_over_same_u_LVReferenced}{}
-\newlabel{eq:end_result_two_integrals}{{13}{17}{Feasibility and Convergence}{equation.0.13}{}}
-\newlabel{eq:end_result_two_integrals@cref}{{[equation][13][]13}{17}}
+\newlabel{eq:end_result_two_integrals}{{34}{53}{Feasibility and Convergence}{equation.0.34}{}}
+\newlabel{eq:end_result_two_integrals@cref}{{[equation][34][]34}{53}}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
 \csxdef {autonum@theorem:with_disturbancesReferenced}{}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
 \csxdef {autonum@lemma:V_Lipschitz_e_0Referenced}{}
-\newlabel{eq:V_diff_intermediate}{{14}{18}{Feasibility and Convergence}{equation.0.14}{}}
-\newlabel{eq:V_diff_intermediate@cref}{{[equation][14][]14}{18}}
+\newlabel{eq:V_diff_intermediate}{{35}{54}{Feasibility and Convergence}{equation.0.35}{}}
+\newlabel{eq:V_diff_intermediate@cref}{{[equation][35][]35}{54}}
 \csxdef {autonum@remark:predicted_actual_equations_with_disturbanceReferenced}{}
 \csxdef {autonum@lemma:diff_state_from_same_conditionsReferenced}{}
 \csxdef {autonum@eq:V_diff_intermediateReferenced}{}
-\newlabel{eq:end_result_diff_V_plus_int}{{15}{20}{Feasibility and Convergence}{equation.0.15}{}}
-\newlabel{eq:end_result_diff_V_plus_int@cref}{{[equation][15][]15}{20}}
+\newlabel{eq:end_result_diff_V_plus_int}{{36}{56}{Feasibility and Convergence}{equation.0.36}{}}
+\newlabel{eq:end_result_diff_V_plus_int@cref}{{[equation][36][]36}{56}}
 \csxdef {autonum@eq:end_result_two_integralsReferenced}{}
 \csxdef {autonum@eq:end_result_diff_V_plus_intReferenced}{}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
+\csxdef {autonum@def:ISS_LyapunovReferenced}{}
+\csxdef {autonum@def:ISS_Lyapunov_admit_theoremReferenced}{}
 \bibdata{references}
 \bibcite{khalil_nonlinear_systems}{1}
-\bibcite{Murray:1994:MIR:561828}{2}
-\bibcite{Fontes2007}{3}
+\bibcite{Sontag2008}{2}
+\bibcite{Murray:1994:MIR:561828}{3}
+\bibcite{Fontes2007}{4}
 \bibstyle{ieeetr}

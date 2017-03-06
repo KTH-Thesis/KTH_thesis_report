@@ -460,7 +460,7 @@ the integral
     -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg\| ds \\
     \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
     +  L_{g_i} \int_{t_{k+1}}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \text{, for } g_i \text{ is Lipschitz continuous in } \mathcal{E}\\
+    - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \text{, for } g_i \text{ is Lipschitz continuous in } \mathcal{E}_i\\
     = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
     +  L_{g_i} \int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     - \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds
@@ -541,20 +541,32 @@ to the nominal cost difference (the case without disturbances).
   \begin{align}
     \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m_i \|\vect{e}_{0,i}(s)\|^2 ds \\
     \text{or}\\
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big)
+    &\leq -m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}, \vect{e}_i(t_k)) \|^2 ds
   \end{align}
 \end{gg_box}
 This means that the cost difference is upper-bounded by
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-  &\leq \xi_i -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+    &\leq \xi_i-m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
 \end{align}
 and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
 \begin{align}
- J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq \xi_i -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+ J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
+   \leq \xi_i-m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
  \label{eq:J_opt_between_consecutive_k_2}
 \end{align}
+
+It is easy to verify that both right-hand side terms are class
+$\mathcal{K}_{\infty}$ functions, and therefore, according to definition
+\eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
+the closed-loop system is Input to State Stable. Inevitably then, the
+closed-loop trajectories converge to the terminal set $\mathcal{E}_{i,f}$.
+
+
+
+
 
 % NOT NEEDED -- THIS CALCULATES THE EXACT BOUND FOR ΔJ
 %\textcolor{red}{THIS-THIS-THIS-THIS-THIS-THIS-THIS-THIS-THIS-THIS-THIS}
@@ -685,8 +697,4 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
   %+\int_{t_{k+1}}^{t_k + T_p} g_i \big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \vect{u}_i^{\star}(s)\big)ds
     %- \vect{e}_i(t_k) \bigg\|
   %\end{align}
-
-
 %\end{bw_box}
-
-
