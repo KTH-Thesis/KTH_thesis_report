@@ -43,6 +43,126 @@ feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
 to the terminal set $\mathcal{E}_{i,f}$.\\
 
+The following proof relies heavily on the Gr\"{o}nwall-Bellman inequality.
+We state it here for reference purposes.
+\begin{bw_box}
+  \begin{lemma} \cite{khalil_nonlinear_systems} \textit{Gr\"{o}nwall-Bellman Inequality}
+
+    Let $\lambda : [a,b] \to \mathbb{R}$ be continuous and
+    $\mu : [a,b] \to \mathbb{R}$ be continuous and non-negative. If a
+    continuous function $y : [a,b] \to \mathbb{R}$ satisfies
+    \begin{align}
+      y(t) \leq \lambda(t) + \int_a^t \mu(s) y(s) ds
+    \end{align}
+    for $a \leq t \leq b$, then on the same interval
+    \begin{align}
+      y(t) \leq \lambda(t) + \int_a^t \lambda(s) \mu(s) e^{\int_s^t \mu(\tau)d\tau} ds
+    \end{align}
+    In particular, if $\lambda(t) \equiv \lambda$ is a constant, then
+    \begin{align}
+      y(t) \leq \lambda e^{\int_a^t \mu(\tau)d\tau} ds
+    \end{align}
+    If $\lambda(t) \equiv \lambda$ and $\mu(t) \equiv \mu$ are both constants,
+    then
+    \begin{align}
+      y(t) \leq \lambda e^{\mu (t - a)}
+    \end{align}
+    \label{lemma:bellman_inequality}
+  \end{lemma}
+\end{bw_box}
+
+\begin{bw_box}
+  \begin{remark}
+    Given that disturbances \textit{are} present, for the predicted and actual
+    states at time $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
+    \begin{align}
+      \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i^R\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
+      \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
+    \end{align}
+    \label{remark:predicted_actual_equations_with_disturbance}
+  \end{remark}
+\end{bw_box}
+
+
+% --- START diff real_vs_predicted at t_(k+1) from t_k -------------------------
+\begin{bw_box}
+  \begin{lemma}
+    Suppose that the real system, which is under the existence of bounded
+    additive disturbances, and the model are both at time $t$ at state
+    $\vect{e}_i(t)$. Applying at time $t$ a control law $\vect{u}(\cdot)$
+    to the system model deemed ``real" and its model will cause at time $t + \tau$,
+    $\tau \geq 0$ a divergence between the states of the real system and its
+    model. The norm of the difference between the state of the real system
+    and the state of the model system is bounded by
+    \begin{align}
+      \bigg\| \vect{e}_i\big(t + \tau;\ \vect{u}(\cdot), \vect{e}_i(t)\big) -
+        \overline{\vect{e}}_i\big(t + \tau;\ \vect{u}(\cdot), \vect{e}_i(t)\big) \bigg\|
+        \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} \tau} - 1)
+    \end{align}
+    where $\overline{\delta}_i$ is the upper bound of the disturbance,
+    and $L_{g_i}$ the Lipschitz constant of both models.
+    \label{lemma:diff_state_from_same_conditions}
+  \end{lemma}
+\end{bw_box}
+
+\begin{gg_box}
+\textbf{Proof of lemma \eqref{lemma:diff_state_from_same_conditions}}
+
+Since there are disturbances present, consulting remark
+\eqref{remark:predicted_actual_equations_with_disturbance} and substituting
+for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k)
+    + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds\\
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+\end{align}
+Subtracting the latter from the former and taking norms on either side yields:
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &=\bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds \bigg\| \\
+  & \leq \bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
+     + (t_{k+1} - t_k)\overline{\delta}_i \\
+  &=
+     \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)s
+     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds + h \overline{\delta}_i\\
+  &\leq L_{g_i} \int_{t_k}^{t_{k+1}} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds + h \overline{\delta}_i  \\
+\end{align}
+since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
+$L_{g_i}$. Reformulation yields
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &\leq h \overline{\delta}_i
+     + L_{g_i} \int_{0}^{h} \bigg\| \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds \\
+\end{align}
+By applying the Gr\"{o}nwall-Bellman inequality we get:
+\begin{align}
+  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
+  &\leq h \overline{\delta}_i +  L_{g_i} \int_{0}^{h} s \overline{\delta}_i e^{L_{g_i}(h - s)} ds \\
+  &= h \overline{\delta}_i - \overline{\delta}_i \int_{0}^{h} s  \big(e^{L_{g_i}(h - s)}\big)' ds \\
+  &= h \overline{\delta}_i -
+    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(h - s)}\big]_0^h
+      - \int_{0}^{h} e^{L_{g_i}(h - s)}ds\bigg) \\
+  &= h \overline{\delta}_i - \overline{\delta}_i \bigg( h + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}h})\bigg) \\
+  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1)
+\end{align}
+\qedsymbol
+\end{gg_box}
+
+% --- END diff real_vs_predicted at t_(k+1) from t_k ---------------------------
+
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
 solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
@@ -96,7 +216,6 @@ is an admissible control input as a composition of admissible control inputs,
 for all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
 
 Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \mathcal{E}_{i,f}$.
-
 \begin{gg_box}
 To prove this statement we begin with
 \begin{align}
@@ -108,9 +227,67 @@ To prove this statement we begin with
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
     \text{ (for } V_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \\
   =  L_{V_i}\bigg \| & \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\| \\
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
+\label{eq:from_DV_to_De}
 \end{align}
+Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
+we get that the two terms interior to the norm are respectively equal to
+\begin{alignat}{2}
+  \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    &= \vect{e}_i(t_{k+1}) &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+    &\text{and}\\
+  \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+    &= \vect{e}_i(t_k)     &&+ \int_{t_k}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+    &= \vect{e}_i(t_k)     &&+ \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+    &                      &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+    &= \overline{\vect{e}}_i(t_{k+1}) &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
+\end{alignat}
+Subtracting the latter from the former and taking norms on either side we get
+\begin{alignat}{2}
+  \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| \\
+  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \\
+  + \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
+    - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\
+  \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
+  + \bigg \| \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
+    - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\
+  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
+  + \bigg \| \int_{t_{k+1}}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
+  -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg) ds \bigg \| \\
+  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
+  +  \int_{t_{k+1}}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
+  -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg\| ds \\
+  \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
+  +  L_{g_i} \int_{t_{k+1}}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+  - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \text{, for } g_i \text{ is Lipschitz continuous in } \mathcal{E}_i\\
+  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
+  +  L_{g_i} \int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+  - \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds
+\end{alignat}
+By applying the  Gr\"{o}nwall-Bellman inequality we get
+\begin{alignat}{2}
+  \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
+    \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| e^{L_{g_i} (T_p - h)}
+\end{alignat}
+By applying lemma \eqref{lemma:diff_state_from_same_conditions} for $\tau = h$
+we get
+\begin{alignat}{2}
+  \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
+    \leq \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
+\end{alignat}
 
+Hence \eqref{eq:from_DV_to_De} becomes
+\begin{align}
+  V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
+    &- V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  &\leq L_{V_i}\bigg \| \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\| \\
+  &= L_{V_i} \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
+\label{eq:from_DV_to_eq}
+\end{align}
 
 \end{gg_box}
 
@@ -168,47 +345,9 @@ In order not to wreak notational havoc, let us define the following terms:
 \end{itemize}
 \end{gg_box}
 
-\begin{bw_box}
-  \begin{remark}
-    Given that disturbances \textit{are} present, for the predicted and actual
-    states at time $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
-    \begin{align}
-      \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
-        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i^R\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
-      \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
-        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
-    \end{align}
-    \label{remark:predicted_actual_equations_with_disturbance}
-  \end{remark}
-\end{bw_box}
 
-The following proof of convergence to the terminal set relies heavily on the
-Gr\"{o}nwall-Bellman inequality. We state it here for reference purposes.
-\begin{bw_box}
-  \begin{lemma} \cite{khalil_nonlinear_systems} \textit{Gr\"{o}nwall-Bellman Inequality}
 
-    Let $\lambda : [a,b] \to \mathbb{R}$ be continuous and
-    $\mu : [a,b] \to \mathbb{R}$ be continuous and non-negative. If a
-    continuous function $y : [a,b] \to \mathbb{R}$ satisfies
-    \begin{align}
-      y(t) \leq \lambda(t) + \int_a^t \mu(s) y(s) ds
-    \end{align}
-    for $a \leq t \leq b$, then on the same interval
-    \begin{align}
-      y(t) \leq \lambda(t) + \int_a^t \lambda(s) \mu(s) e^{\int_s^t \mu(\tau)d\tau} ds
-    \end{align}
-    In particular, if $\lambda(t) \equiv \lambda$ is a constant, then
-    \begin{align}
-      y(t) \leq \lambda e^{\int_a^t \mu(\tau)d\tau} ds
-    \end{align}
-    If $\lambda(t) \equiv \lambda$ and $\mu(t) \equiv \mu$ are both constants,
-    then
-    \begin{align}
-      y(t) \leq \lambda e^{\mu (t - a)}
-    \end{align}
-    \label{lemma:bellman_inequality}
-  \end{lemma}
-\end{bw_box}
+
 
 Before beginning to prove convergence, it is worth noting that while the cost
 $$J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
@@ -314,94 +453,17 @@ Subtracting the latter from the former and taking norms on either side yields
     -  \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\
     \label{eq:df_interim_es}
 \end{align}
-Before applying the Gr\"{o}nwall-Bellman inequality, we will compute the value
-of the first term in the above sum.
-\end{gg_box}
 
-% --- START diff real_vs_predicted at t_(k+1) from t_k -------------------------
-\begin{gg_box}
-Since there are disturbances present, consulting remark
-\eqref{remark:predicted_actual_equations_with_disturbance} and substituting
-for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
+Given that from lemma \eqref{lemma:diff_state_from_same_conditions}
+the first term of the sum featured in \eqref{eq:df_interim_es} is a constant,
+by application of the the Gr\"{o}nwall-Bellman inequality,
+\eqref{eq:df_interim_es} becomes:
 \begin{align}
-  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
-    \vect{e}_i(t_k)
-    + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds\\
-  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
-    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+    -\overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
+    \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| e^{L_{g_i}(s-h)} \\
+    \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)}
 \end{align}
-Subtracting the latter from the former and taking norms on either side yields:
-\begin{align}
-  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &=\bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds \bigg\| \\
-  & \leq \bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
-     + (t_{k+1} - t_k)\overline{\delta}_i \\
-  &=
-     \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)s
-     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds + h \overline{\delta}_i\\
-  &\leq L_{g_i} \int_{t_k}^{t_{k+1}} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds + h \overline{\delta}_i  \\
-\end{align}
-since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
-$L_{g_i}$. Reformulation yields
-\begin{align}
-  &\bigg\| \vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &\leq h \overline{\delta}_i
-     + L_{g_i} \int_{0}^{h} \bigg\| \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds \\
-\end{align}
-By applying the Gr\"{o}nwall-Bellman inequality we get:
-\begin{align}
-  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &\leq h \overline{\delta}_i +  L_{g_i} \int_{0}^{h} s \overline{\delta}_i e^{L_{g_i}(h - s)} ds \\
-  &= h \overline{\delta}_i - \overline{\delta}_i \int_{0}^{h} s  \big(e^{L_{g_i}(h - s)}\big)' ds \\
-  &= h \overline{\delta}_i -
-    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(h - s)}\big]_0^h
-      - \int_{0}^{h} e^{L_{g_i}(h - s)}ds\bigg) \\
-  &= h \overline{\delta}_i - \overline{\delta}_i \bigg( h + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}h})\bigg) \\
-  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1)
-\end{align}
-\end{gg_box}
-
-\begin{bw_box}
-  \begin{lemma}
-    Suppose that the real system, which is under the existence of bounded
-    additive disturbances, and the model are both at time $t$ at state
-    $\vect{e}_i(t)$. Applying at time $t$ a control law $\vect{u}(\cdot)$
-    to the system model deemed ``real" and its model will cause at time $t + \tau$,
-    $\tau \geq 0$ a divergence between the states of the real system and its
-    model. The norm of the difference between the state of the real system
-    and the state of the model system is bounded by
-    \begin{align}
-      \bigg\| \vect{e}_i\big(t + \tau;\ \vect{u}(\cdot), \vect{e}_i(t)\big) -
-        \overline{\vect{e}}_i\big(t + \tau;\ \vect{u}(\cdot), \vect{e}_i(t)\big) \bigg\|
-        \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} \tau} - 1)
-    \end{align}
-    where $\overline{\delta}_i$ is the upper bound of the disturbance,
-    and $L_{g_i}$ the Lipschitz constant of both models.
-    \label{lemma:diff_state_from_same_conditions}
-  \end{lemma}
-\end{bw_box}
-% --- END diff real_vs_predicted at t_(k+1) from t_k ---------------------------
-
-\begin{gg_box}
-  Given that from lemma \eqref{lemma:diff_state_from_same_conditions}
-  the first term of the sum featured in \eqref{eq:df_interim_es} is a constant,
-  by application of the the Gr\"{o}nwall-Bellman inequality,
-  \eqref{eq:df_interim_es} becomes:
-  \begin{align}
-    \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
-      -\overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
-      \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| e^{L_{g_i}(s-h)} \\
-      \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)}
-  \end{align}
 \end{gg_box}
 
 Given the above result, \eqref{eq:integrals_over_same_u_LV} becomes
@@ -462,60 +524,11 @@ the integral
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big\| \text{, for } x \leq |x|, \forall x \in \mathbb{R} \\
     &\leq L_{V_i}\bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
-    \text{, from lemma } \eqref{lemma:V_Lipschitz_e_0}
-    \label{eq:V_diff_intermediate}
+    \text{ (for } V_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \\
+    &\leq L_{V_i} \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)} \text{ ( from \eqref{eq:from_DV_to_eq})}
   \end{align}
-  Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
-  we get that the two terms interior to the norm are respectively equal to
-  \begin{alignat}{2}
-    \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      &= \vect{e}_i(t_{k+1}) &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
-      &\text{and}\\
-    \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      &= \vect{e}_i(t_k)     &&+ \int_{t_k}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
-      &= \vect{e}_i(t_k)     &&+ \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
-      &                      &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
-      &= \overline{\vect{e}}_i(t_{k+1}) &&+ \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \\
-  \end{alignat}
-  Subtracting the latter from the former and taking norms on either side we get
-  \begin{alignat}{2}
-    \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| \\
-    = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \\
-    + \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
-      - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\
-    \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
-    + \bigg \| \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
-      - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\
-    = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
-    + \bigg \| \int_{t_{k+1}}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
-    -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg) ds \bigg \| \\
-    = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
-    +  \int_{t_{k+1}}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
-    -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg\| ds \\
-    \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
-    +  L_{g_i} \int_{t_{k+1}}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \text{, for } g_i \text{ is Lipschitz continuous in } \mathcal{E}_i\\
-    = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\
-    +  L_{g_i} \int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds
-  \end{alignat}
-  By applying the  Gr\"{o}nwall-Bellman inequality we get
-  \begin{alignat}{2}
-    \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
-      \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| e^{L_{g_i} (T_p - h)}
-  \end{alignat}
-  By applying lemma \eqref{lemma:diff_state_from_same_conditions} for $\tau = h$
-  we get
-  \begin{alignat}{2}
-    \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
-      \leq \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
-  \end{alignat}
 \end{gg_box}
-With the above result established, we substitute for the norm in
-\eqref{eq:V_diff_intermediate}, getting
+Hence, we discovered that
 \begin{bw_box}
 \begin{align}
   V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)

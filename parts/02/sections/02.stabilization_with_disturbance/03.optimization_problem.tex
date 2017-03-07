@@ -115,6 +115,81 @@ within the range of one agent to be legal.
 
 \note{?? more on the actual $\mathcal{E}_i$}
 
+While in the disturbance-free case the constraint set is $\mathcal{E}_i$,
+due to the existence of disturbances here, the constraint set is replaced in
+problem \eqref{problem:opt_with_disturbances} by
+\begin{align}
+  \mathcal{E}_{i, s-t_k} \equiv \mathcal{E}_i \oplus \mathcal{B}_{s-t_k}
+\label{eq:restricted_constraint_set}
+\end{align}
+where
+\begin{align}
+  \mathcal{B}_{s-t_k} \equiv \big\{ \vect{e}_i \in \mathbb{R}^9 \times \mathbb{T}^3 :
+    \|\vect{e}_i(s)\| \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big( e^{L_{g_i}(s - t_k)} - 1\big),\ \forall s \in [t_k, t_k + T_p] \big\}
+\label{eq:b_restricted_constraint_set}
+\end{align}
+The reason for this substitution lies in the following. Consider that there
+are no disturbances affecting the states of the plant; the state evolution of
+the plant and its model considered in the solution to the optimization problem
+abide both by the state constraints since the two models are identical. Consider
+now that there are disturbances affecting the states of the plant, disturbances
+that are unknown to the model considered in the solution to the optimization
+problem. If the state constraint set was left unchanged during the solution of
+the optimization problem, then the uncertainty affecting the plant could,
+without loss of generality\footnote{Receding Horizon Control is inherently robust
+under some considerations, see \cite{Fontes2007} for more.}, force the states
+of the plant to escape their intended bounds.
+
+If the state constraint set considered in the solution of the optimization
+problem \eqref{problem:opt_with_disturbances} is equal to
+\eqref{eq:restricted_constraint_set}, then the state of the real system,
+the plant, is guaranteed to abide by the original state constraint set
+$\mathcal{E}_i$. We formalize this statement in property
+\eqref{property:restricted_constraint_set}:
+
+\begin{bw_box}
+\begin{property}
+
+  For every $s \in [t_k, t_k + T_p]$
+  \begin{align}
+    \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t_k)), \vect{e}_i(t_k) \big) \in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k}
+    \Rightarrow
+    \vect{e}_i(s) \in \mathcal{E}_i
+  \end{align}
+  where $\mathcal{B}_{s-t_k}$ is given by \eqref{eq:b_restricted_constraint_set}.
+\label{property:restricted_constraint_set}
+
+\begin{gg_box}
+\textbf{Proof}
+
+Let us define for convenience $\vect{\zeta}_i \in \mathbb{R}^9 \times \mathbb{T}^3$:
+$\vect{\zeta}_i(s) \triangleq \vect{e}_i(s) - \overline{\vect{e}}_i(s;\ \vect{u}_i(s;\ \vect{e}_i(t_k)), \vect{e}_i(t_k))$,
+for $s \in [t_k, t_k + T_p]$.
+
+According to lemma
+\eqref{lemma:diff_state_from_same_conditions}
+\begin{align}
+ \|\vect{e}_i(s) - \overline{\vect{e}}_i(s;\ \vect{u}_i(s;\ \vect{e}_i(t_k)), \vect{e}_i(t_k))\|
+   &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t_k)} - 1) \\
+ \|\vect{\zeta}_i(s)\| &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t_k)} - 1)
+\end{align}
+which means that $\vect{\zeta}_i(s) \in \mathcal{B}_{s-t_k}$. If
+$\vect{\zeta}_i(s)$ resides in $\mathcal{B}_{s-t_k}$, then
+$-\vect{\zeta}_i(s)$ also resides in $\mathcal{B}_{s-t_k}$.
+
+Now let us assume that
+$\overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t_k)), \vect{e}_i(t_k) \big) \in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k}$.
+Then,
+\begin{align}
+  \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t_k)), \vect{e}_i(t_k) \big) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
+  \vect{e}_i(s) - \vect{\zeta}_i(s) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
+  \vect{e}_i(s) + \big(-\vect{\zeta}_i(s)\big) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
+  \vect{e}_i(s) &\in \mathcal{E}_i
+\end{align}
+\qedsymbol
+\end{gg_box}
+\end{property}
+\end{bw_box}
 
 
 The functions
@@ -179,9 +254,8 @@ The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
 positively invariant set for system \eqref{eq:position_based_error_model_2}
 such that
 \begin{align}
-  \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : \|\vect{e}_i\| \leq \varepsilon_0 \}
+  \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_0 \}
 \end{align}
-where $\varepsilon_0$ is an arbitrarily small but fixed positive real scalar.\\
 
 With regard to the terminal penalty function $V_i$, the following lemma will
 prove to be useful in guaranteeing the convergence of the solution to the
