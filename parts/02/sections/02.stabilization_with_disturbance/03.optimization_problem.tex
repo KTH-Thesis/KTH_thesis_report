@@ -21,10 +21,10 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost_2} \\
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
-  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\
   & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
 \end{align}
-\label{problem:opt_without_disturbances_2}
+\label{problem:opt_with_disturbances}
 \end{problem}
 
 The notation $\overline{\cdot}$ is used to distinguish predicted states which

@@ -46,7 +46,7 @@ to the terminal set $\mathcal{E}_{i,f}$.\\
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
 solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
-\eqref{position_based_cost} exists.
+problem \eqref{problem:opt_with_disturbances} exists.
 %In between $t_k$ and $t_k + h$,
 %where $h$ is the sampling time, the optimal control signal
 %$\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ is applied to the open-loop
@@ -91,8 +91,43 @@ $\vect{u}_{i,f}(\cdot)$:
 \label{eq:optimal_input_t_plus_one}
 \end{equation}
 
-Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\cdot)$
-is an admissible control input as a composition of admissible control inputs.
+Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\tau)$
+is an admissible control input as a composition of admissible control inputs,
+for all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
+
+Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \mathcal{E}_{i,f}$.
+
+\begin{gg_box}
+To prove this statement we begin with
+\begin{align}
+  & V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
+    - V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \leq \bigg\| & V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
+    - V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
+  \leq L_{V_i}\bigg \|& \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
+    \text{ (for } V_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \\
+  =  L_{V_i}\bigg \| & \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\| \\
+\end{align}
+
+
+\end{gg_box}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textcolor{red}{=========================================================}
 
 This means that feasibility of a solution to the optimization problem at time
 $t_k$ implies feasibility at time $t_{k+1} > t_k$, and, thus, since at time $t=0$
@@ -561,7 +596,7 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
 It is easy to verify that both right-hand side terms are class
 $\mathcal{K}_{\infty}$ functions, and therefore, according to definition
 \eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
-the closed-loop system is Input to State Stable. Inevitably then, the
+the closed-loop system is input-to-state stable. Inevitably then, the
 closed-loop trajectories converge to the terminal set $\mathcal{E}_{i,f}$.
 
 
