@@ -267,7 +267,7 @@ The terminal set $\Omega_i$ is defined as
 
 The functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
-$V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
+$V_i: \Phi_i \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
   F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
   &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\
@@ -305,12 +305,16 @@ prove to be useful in guaranteeing the convergence of the solution to the
 optimal control problem to the terminal region $\Omega_i$:
 
 \begin{bw_box}
-\begin{lemma} ($V_i$ is Lipschitz continuous in $\mathcal{E}_{i,F}$)
+\begin{lemma} ($V_i$ is Lipschitz continuous in $\Phi_i$)
+
+  \textcolor{red}{UNFINISHED -- which set?}
 
   The terminal penalty function $V_i$ is Lipschitz continuous in
-  $\mathcal{E}_{i,F}$
-  $$|V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| \leq L_{V_i} \|\vect{e}_{1,i} - \vect{e}_{2,i}\|$$
-  where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,F}$,
+  $\Phi_i$
+  \begin{align}
+    \| V(\vect{a}) - V(\vect{b}) \| \leq L_{V_i} \|\vect{a} - \vect{b}\|
+  \end{align}
+  where $\vect{a}, \vect{b} \in \Phi_i$,
   with Lipschitz constant $L_{V_i} = 2 \varepsilon_F \lambda_{max}(P_i)$\\
 
 \label{lemma:V_Lipschitz_e_0_2}
