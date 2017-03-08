@@ -22,7 +22,7 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
                      & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\
-  & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_i
+                     & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_{i,F} \subseteq \mathcal{E}_i
 \end{align}
 \label{problem:opt_with_disturbances}
 \end{problem}
@@ -137,7 +137,7 @@ that are unknown to the model considered in the solution to the optimization
 problem. If the state constraint set was left unchanged during the solution of
 the optimization problem, then the uncertainty affecting the plant could,
 without loss of generality\footnote{Receding Horizon Control is inherently robust
-under some considerations, see \cite{Fontes2007} for more.}, force the states
+under certain considerations, see \cite{Fontes2007} for more.}, force the states
 of the plant to escape their intended bounds.
 
 If the state constraint set considered in the solution of the optimization
@@ -145,7 +145,7 @@ problem \eqref{problem:opt_with_disturbances} is equal to
 \eqref{eq:restricted_constraint_set}, then the state of the real system,
 the plant, is guaranteed to abide by the original state constraint set
 $\mathcal{E}_i$. We formalize this statement in property
-\eqref{property:restricted_constraint_set}:
+\eqref{property:restricted_constraint_set}.
 
 \begin{bw_box}
 \begin{property}
@@ -158,11 +158,13 @@ $\mathcal{E}_i$. We formalize this statement in property
   \end{align}
   where $\mathcal{B}_{s-t_k}$ is given by \eqref{eq:b_restricted_constraint_set}.
 \label{property:restricted_constraint_set}
+\end{property}
+\end{bw_box}
 
 \begin{gg_box}
-\textbf{Proof}
+\textbf{Proof of property \eqref{property:restricted_constraint_set}}
 
-Let us define for convenience $\vect{\zeta}_i \in \mathbb{R}^9 \times \mathbb{T}^3$:
+Let us define for convenience $\vect{\zeta}_i : \mathbb{R}_{\geq 0} \to \mathbb{R}^9 \times \mathbb{T}^3$:
 $\vect{\zeta}_i(s) \triangleq \vect{e}_i(s) - \overline{\vect{e}}_i(s;\ \vect{u}_i(s;\ \vect{e}_i(t_k)), \vect{e}_i(t_k))$,
 for $s \in [t_k, t_k + T_p]$.
 
@@ -173,23 +175,83 @@ According to lemma
    &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t_k)} - 1) \\
  \|\vect{\zeta}_i(s)\| &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t_k)} - 1)
 \end{align}
-which means that $\vect{\zeta}_i(s) \in \mathcal{B}_{s-t_k}$. If
-$\vect{\zeta}_i(s)$ resides in $\mathcal{B}_{s-t_k}$, then
-$-\vect{\zeta}_i(s)$ also resides in $\mathcal{B}_{s-t_k}$.
-
+which means that $\vect{\zeta}_i(s) \in \mathcal{B}_{s-t_k}$.
 Now let us assume that
 $\overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t_k)), \vect{e}_i(t_k) \big) \in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k}$.
 Then,
 \begin{align}
   \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t_k)), \vect{e}_i(t_k) \big) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
-  \vect{e}_i(s) - \vect{\zeta}_i(s) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
+  \vect{e}_i(s) - \vect{\zeta}_i(s) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k}
+\end{align}
+If $\vect{\zeta}_i(s)$ resides in $\mathcal{B}_{s-t_k}$, then
+$-\vect{\zeta}_i(s)$ also resides in $\mathcal{B}_{s-t_k}$, which means that
+\begin{align}
   \vect{e}_i(s) + \big(-\vect{\zeta}_i(s)\big) &\in \mathcal{E}_i \oplus \mathcal{B}_{s-t_k} \\
   \vect{e}_i(s) &\in \mathcal{E}_i
 \end{align}
 \qedsymbol
 \end{gg_box}
-\end{property}
+
+
+
+
+Before defining the terminal set
+$\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
+invariant set:
+\begin{bw_box}
+  \begin{definition} (\textit{Positively Invariant Set})
+
+    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
+    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
+    where $\vect{x}_0$ is the initial condition. The set
+    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
+    $\gamma$ is a valued function, is said to be \textit{positively invariant}
+    if the following holds:
+    \begin{align}
+      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
+    \end{align}
+
+    Intuitively, this means that the set $S$ is positively invariant if a
+    trajectory of the system does not exit it once it enters it.
+    \label{def:positively_invariant_2}
+  \end{definition}
 \end{bw_box}
+
+The terminal set
+$\mathcal{E}_{i,f} \subseteq \mathcal{E}_{i,F}$ is a
+subset of an admissible positively invariant set
+$\mathcal{E}_{i,F} \subseteq \mathcal{E}_i$ for system
+\eqref{eq:position_based_error_model_2}, where $\mathcal{E}_{i,F}$ is defined as
+\begin{align}
+  \mathcal{E}_{i,F} \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_F,\ \varepsilon_F > 0 \big\}
+\end{align}
+
+In particular, $\mathcal{E}_{i,F}$ is a subset of the restricted constraint
+set that corresponds to the constraints on the predicted state
+$\overline{\vect{e}}_i(t_k + T_p)$, which is the set
+$\mathcal{E}_{i,t_k + T_p - t_k} \equiv \mathcal{E}_{i,T_p}$. Using our
+adopted notation, $\mathcal{E}_{i,T_p} = \mathcal{E}_i \oplus \mathcal{B}_{i, T_p}$
+
+and is such that for all
+$\vect{e}_i \in \mathcal{E}_{i,F} \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \mathcal{E}_{i,f}$.
+
+
+The terminal set $\mathcal{E}_{i,f}$ is defined as
+\begin{align}
+  \mathcal{E}_{i,f} \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_f,\ \varepsilon_f \in (0, \varepsilon_F) \big\}
+\end{align}
+
+\begin{figure}[ht!]
+  \centering
+  \input{figures/restricted_constraint_sets.tex}
+    %\caption{}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \input{figures/terminal_set_restricted.tex}
+    %\caption{}
+\end{figure}
 
 
 The functions
@@ -227,48 +289,18 @@ $F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions. As is
 obvious, $F_i(\vect{0}, \vect{0}) = 0$.
 
 
-Before defining the terminal set
-$\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
-invariant set:
-
-\begin{bw_box}
-  \begin{definition} (\textit{Positively Invariant Set})
-
-    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
-    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
-    where $\vect{x}_0$ is the initial condition. The set
-    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
-    $\gamma$ is a valued function, is said to be \textit{positively invariant}
-    if the following holds:
-    \begin{align}
-      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
-    \end{align}
-
-    Intuitively, this means that the set $S$ is positively invariant if a
-    trajectory of the system does not exit it once it enters it.
-    \label{def:positively_invariant_2}
-  \end{definition}
-\end{bw_box}
-
-The terminal set $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is an admissible
-positively invariant set for system \eqref{eq:position_based_error_model_2}
-such that
-\begin{align}
-  \mathcal{E}_{i,f} = \{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_0 \}
-\end{align}
-
 With regard to the terminal penalty function $V_i$, the following lemma will
 prove to be useful in guaranteeing the convergence of the solution to the
 optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
 
 \begin{bw_box}
-\begin{lemma} ($V_i$ is Lipschitz continuous in $\mathcal{E}_{i,f}$)
+\begin{lemma} ($V_i$ is Lipschitz continuous in $\mathcal{E}_{i,F}$)
 
   The terminal penalty function $V_i$ is Lipschitz continuous in
-  $\mathcal{E}_{i,f}$
+  $\mathcal{E}_{i,F}$
   $$|V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| \leq L_{V_i} \|\vect{e}_{1,i} - \vect{e}_{2,i}\|$$
-  where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,f}$,
-  with Lipschitz constant $L_{V_i} = 2 \varepsilon_0 \lambda_{max}(P_i)$\\
+  where $\vect{e}_{1,i}, \vect{e}_{2,i} \in \mathcal{E}_{i,F}$,
+  with Lipschitz constant $L_{V_i} = 2 \varepsilon_F \lambda_{max}(P_i)$\\
 
 \label{lemma:V_Lipschitz_e_0_2}
 \end{lemma}
@@ -293,8 +325,8 @@ Hence:
   \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| +
   \lambda_{max}(\mat{P}_i) \|\vect{e}_{2,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
   &= \lambda_{max}(\mat{P}_i) (\|\vect{e}_{1,i}\| + \|\vect{e}_{2,i}\|)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-  & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_0 + \varepsilon_0)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-  &= 2 \varepsilon_0 \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
+  & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_F + \varepsilon_F)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
+  &= 2 \varepsilon_F \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
 \end{align}
 \qedsymbol
 \end{gg_box}
