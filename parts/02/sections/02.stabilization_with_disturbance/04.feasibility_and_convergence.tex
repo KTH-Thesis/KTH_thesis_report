@@ -110,51 +110,51 @@ We state it here for reference purposes.
 
 Since there are disturbances present, consulting remark
 \eqref{remark:predicted_actual_equations_with_disturbance} and substituting
-for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
+for $\tau_0 = t$ and $\tau_1 = t + \tau$ yields:
 \begin{align}
-  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
-    \vect{e}_i(t_k)
-    + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds\\
-  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
-    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+  \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &=
+    \vect{e}_i(t)
+    + \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t}^{t + \tau}\delta_i(s)ds\\
+  \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &=
+    \vect{e}_i(t) + \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
 \end{align}
 Subtracting the latter from the former and taking norms on either side yields:
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &=\bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t_k}^{t_{k+1}}\delta_i(s)ds \bigg\| \\
-  & \leq \bigg\| \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
-     + (t_{k+1} - t_k)\overline{\delta}_i \\
+  &\bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\
+  &=\bigg\| \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+    + \int_{t}^{t + \tau}\delta_i(s)ds \bigg\| \\
+  & \leq \bigg\| \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+     - \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
+     + (t + \tau - t)\overline{\delta}_i \\
   &=
-     \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)s
-     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds + h \overline{\delta}_i\\
-  &\leq L_{g_i} \int_{t_k}^{t_{k+1}} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds + h \overline{\delta}_i  \\
+     \int_{t}^{t + \tau} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big)s
+     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds + \tau \overline{\delta}_i\\
+  &\leq L_{g_i} \int_{t}^{t + \tau} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| ds + \tau \overline{\delta}_i  \\
 \end{align}
 since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
 $L_{g_i}$. Reformulation yields
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &\leq h \overline{\delta}_i
-     + L_{g_i} \int_{0}^{h} \bigg\| \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds \\
+  &\bigg\| \vect{e}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \overline{\vect{e}}_i\big(t+tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\
+  &\leq \tau \overline{\delta}_i
+  + L_{g_i} \int_{0}^{\tau} \bigg\| \vect{e}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \overline{\vect{e}}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| ds \\
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we get:
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
-    \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
-  &\leq h \overline{\delta}_i +  L_{g_i} \int_{0}^{h} s \overline{\delta}_i e^{L_{g_i}(h - s)} ds \\
-  &= h \overline{\delta}_i - \overline{\delta}_i \int_{0}^{h} s  \big(e^{L_{g_i}(h - s)}\big)' ds \\
-  &= h \overline{\delta}_i -
-    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(h - s)}\big]_0^h
-      - \int_{0}^{h} e^{L_{g_i}(h - s)}ds\bigg) \\
-  &= h \overline{\delta}_i - \overline{\delta}_i \bigg( h + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}h})\bigg) \\
-  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1)
+  &\bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+    \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\
+  &\leq \tau \overline{\delta}_i +  L_{g_i} \int_{0}^{\tau} s \overline{\delta}_i e^{L_{g_i}(\tau - s)} ds \\
+  &= \tau \overline{\delta}_i - \overline{\delta}_i \int_{0}^{\tau} s  \big(e^{L_{g_i}(\tau - s)}\big)' ds \\
+  &= \tau \overline{\delta}_i -
+    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(\tau - s)}\big]_0^{\tau}
+      - \int_{0}^{\tau} e^{L_{g_i}(\tau - s)}ds\bigg) \\
+  &= \tau \overline{\delta}_i - \overline{\delta}_i \bigg( \tau + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}\tau})\bigg) \\
+  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}\tau} - 1)
 \end{align}
 \qedsymbol
 \end{gg_box}
@@ -269,8 +269,8 @@ By applying the  Gr\"{o}nwall-Bellman inequality we get
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
     \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| e^{L_{g_i} (T_p - h)}
 \end{alignat}
-By applying lemma \eqref{lemma:diff_state_from_same_conditions} for $\tau = h$
-we get
+By applying lemma \eqref{lemma:diff_state_from_same_conditions} for $t = t_k$ and
+$\tau = h$ we get
 \begin{alignat}{2}
   \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|
@@ -325,7 +325,69 @@ Therefore, overall
 \qedsymbol
 \end{gg_box}
 
+\textcolor{blue}{----------------START proof for point 3 ----------------------}
 
+\begin{gg_box}
+Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
+for the two different initial conditions we get
+\begin{alignat}{2}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    &= \vect{e}_i(t_{k+1})
+    &&+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+\end{alignat}
+and
+\begin{alignat}{2}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+    &= \vect{e}_i(t_k)
+    &&+ \int_{t_k}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
+  &= \vect{e}_i(t_k)
+    &&+ \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
+  & &&+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+\end{alignat}
+Subtracting the latter from the former and taking norms on either side yields
+\begin{align}
+  \bigg\| &\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)\bigg\| \\
+    &= \bigg\| \vect{e}_i(t_{k+1})
+      - \bigg( \vect{e}_i(t_k) +  \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg) \\
+    &+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+    - \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\
+    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+    &+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+    - \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\
+    &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
+    &+ \bigg\| \int_{t_{k+1}}^{t_{k+1} + s} \bigg(g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big)
+    -g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
+    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
+    &+ \int_{t_{k+1}}^{t_{k+1} + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big)
+    -g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg\| d\tau \\
+    &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
+    &+ L_{g_i}\int_{t_{k+1}}^{t_{k+1} + s} \bigg\| \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1}) \big)
+    -\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot),\vect{e}_i(t_k)\big)  \bigg\| d\tau \\
+    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
+    &+ L_{g_i}\int_{0}^{s} \bigg\| \overline{\vect{e}}_i\big(t_{k+1} + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1}) \big)
+    -\overline{\vect{e}}_i\big(t_{k+1} + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot),\vect{e}_i(t_k)\big)  \bigg\| d\tau
+    \label{eq:de_interim_es}
+\end{align}
+
+
+Given that from lemma \eqref{lemma:diff_state_from_same_conditions}
+the first term of the sum featured in \eqref{eq:de_interim_es} is a constant,
+by application of the the Gr\"{o}nwall-Bellman inequality,
+\eqref{eq:df_interim_es} becomes
+\begin{align}
+  \bigg\| &\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)\bigg\| \\
+  &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| e^{L_{g_i}s} \\
+  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}h} - 1\big) e^{L_{g_i} s} \\
+  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}(h+s)} - e^{L_{g_i} s}\bigg) \\
+  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg( \big(e^{L_{g_i}(h+s)} -1\big) - \big(e^{L_{g_i} s}-1\big)\bigg) \\
+  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \\
+\end{align}
+
+
+\end{gg_box}
+\textcolor{blue}{------------------END proof for point 3-----------------------}
 
 
 
@@ -449,42 +511,42 @@ first on the difference between the two intervals over $[t_{k+1}, t_{k+1} + T_p]
 Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
 for the two different initial conditions we get
 \begin{alignat}{2}
-  \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
     &= \vect{e}_i(t_k +h)
-    &&+ \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(\tau)\big) d\tau
+    &&+ \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
 \end{alignat}
 and
 \begin{alignat}{2}
-  \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
     &= \vect{e}_i(t_k)
-    &&+ \int_{t_k}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) d\tau \\
+    &&+ \int_{t_k}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
   &= \vect{e}_i(t_k)
-    &&+ \int_{t_k}^{t_k + h} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) d\tau \\
-  & &&+ \int_{t_k + h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) d\tau
+    &&+ \int_{t_k}^{t_k + h} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
+  & &&+ \int_{t_k + h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
 \end{alignat}
 Subtracting the latter from the former and taking norms on either side yields
 \begin{align}
-  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
-    -\overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
+  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
  = \bigg\| \vect{e}_i(t_k +h)
- - \bigg( \vect{e}_i(t_k) + \int_{t_k}^{t_k + h} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) d\tau \bigg) \\
-    + \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(\tau)\big) d\tau
-    - \int_{t_k + h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) d\tau \bigg\| \\
+ - \bigg( \vect{e}_i(t_k) + \int_{t_k}^{t_k + h} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg) \\
+    + \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+    - \int_{t_k + h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\
     = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h)
-    + \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(\tau)\big)
-    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
+    + \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
+    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
     \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
-    + \bigg\| \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(\tau)\big)
-    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
+    + \bigg\| \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
+    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
     = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
-    + \int_{t_k +h}^{t_k + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \vect{u}_i^{\star}(\tau)\big)
-    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \vect{u}_i^{\star}(\tau)\big) \bigg\| d\tau \\
+    + \int_{t_k +h}^{t_k + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
+    -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg\| d\tau \\
     \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
-    + L_{g_i} \int_{t_k +h}^{t_k + s} \bigg\| \overline{\vect{e}}_i\big(\tau;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
-    -  \overline{\vect{e}}_i\big(\tau;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\
+    + L_{g_i} \int_{t_k +h}^{t_k + s} \bigg\| \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
+    -  \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\
     = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
-    + L_{g_i} \int_{h}^{s} \bigg\| \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
-    -  \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\
+    + L_{g_i} \int_{h}^{s} \bigg\| \overline{\vect{e}}_i\big(t_k + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
+    -  \overline{\vect{e}}_i\big(t_k + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\
     \label{eq:df_interim_es}
 \end{align}
 
@@ -493,8 +555,8 @@ the first term of the sum featured in \eqref{eq:df_interim_es} is a constant,
 by application of the the Gr\"{o}nwall-Bellman inequality,
 \eqref{eq:df_interim_es} becomes:
 \begin{align}
-  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
-    -\overline{\vect{e}}_i\big(t_k + s;\ \vect{u}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
+  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\
     \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| e^{L_{g_i}(s-h)} \\
     \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)}
 \end{align}
