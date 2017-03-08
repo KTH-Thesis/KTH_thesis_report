@@ -12,18 +12,18 @@ position which results in feasible displacements:\\
   Suppose that
 
   \begin{enumerate}
-    \item the terminal region $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is
-      closed with $\vect{0} \in \mathcal{E}_{i,f}$
+    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
+      closed with $\vect{0} \in \Omega_i$
     \item a solution to the optimal control problem \eqref{position_based_cost}
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input
       $\vect{u}_{i,f} : [0, h] \to \mathcal{U}_i$ such that for all
-      $\vect{e}_i \in \mathcal{E}_{i,f}$ and $\forall \tau \in [0,h]$:
+      $\vect{e}_i \in \Omega_i$ and $\forall \tau \in [0,h]$:
 
       \begin{enumerate}
-        \item $\vect{e}_i(\tau) \in \mathcal{E}_{i,f}$
+        \item $\vect{e}_i(\tau) \in \Omega_i$
         \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big)
           + F_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big) \leq 0$
       \end{enumerate}
@@ -32,7 +32,7 @@ position which results in feasible displacements:\\
 
   then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
   the control input \eqref{eq:position_based_optimal_u} converges to the set
-  $\mathcal{E}_{i,f}$ when $t \to \infty$.
+  $\Omega_i$ when $t \to \infty$.
   \label{theorem:with_disturbances}
 \end{theorem}
 \end{bw_box}
@@ -41,7 +41,7 @@ position which results in feasible displacements:\\
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
-to the terminal set $\mathcal{E}_{i,f}$.\\
+to the terminal set $\Omega_i$.\\
 
 The following proof relies heavily on the Gr\"{o}nwall-Bellman inequality.
 We state it here for reference purposes.
@@ -190,10 +190,10 @@ portions:
 Both portions are admissible since the calculated optimal control input is
 admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
-crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$.
+crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 Furthermore, according to assumption (3) of the theorem, there exists an
 admissible (and certainly not guaranteed optimal) input $\vect{u}_{i,f}$ that
-renders $\mathcal{E}_{i,f}$ invariant over $[t_k + T_p, t_k + T_p + h]$.
+renders $\Omega_i$ invariant over $[t_k + T_p, t_k + T_p + h]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
@@ -215,7 +215,7 @@ Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\tau)$
 is an admissible control input as a composition of admissible control inputs,
 for all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
 
-Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \mathcal{E}_{i,f}$.
+Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i$.
 \begin{gg_box}
 To prove this statement we begin with
 \begin{align}
@@ -313,7 +313,7 @@ is feasible for all $t \geq 0$.\\
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating the convergence of the
-state $\vect{e}_i$ to the terminal set $\mathcal{E}_{i,f}$. In order for this
+state $\vect{e}_i$ to the terminal set $\Omega_i$. In order for this
 to be proved, it must be shown that a proper value function decreases along
 the solution trajectories starting at some initial time $t_k$. We consider the
 \textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
@@ -610,7 +610,7 @@ It is easy to verify that both right-hand side terms are class
 $\mathcal{K}_{\infty}$ functions, and therefore, according to definition
 \eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
 the closed-loop system is input-to-state stable. Inevitably then, the
-closed-loop trajectories converge to the terminal set $\mathcal{E}_{i,f}$.
+closed-loop trajectories converge to the terminal set $\Omega_i$.
 
 
 

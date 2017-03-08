@@ -22,7 +22,7 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
                      & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\
-                     & \overline{\vect{e}}_i (t_k + T_p) \in \mathcal{E}_{i,f} \subseteq \mathcal{E}_{i,F} \subseteq \mathcal{E}_i
+                     & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i
 \end{align}
 \label{problem:opt_with_disturbances}
 \end{problem}
@@ -115,6 +115,14 @@ within the range of one agent to be legal.
 
 \note{?? more on the actual $\mathcal{E}_i$}
 
+\begin{figure}[ht!]
+  \centering
+  \input{figures/restricted_constraint_sets.tex}
+  \caption{The nominal constraint set $\mathcal{E}_i$ in bold and the
+    consecutive restricted constraint sets $\mathcal{E}_i \oplus \mathcal{B}_{i, s-t_k}$,
+    $s \in [t_k, t_k + T_p]$, dashed.}
+\end{figure}
+
 While in the disturbance-free case the constraint set is $\mathcal{E}_i$,
 due to the existence of disturbances here, the constraint set is replaced in
 problem \eqref{problem:opt_with_disturbances} by
@@ -135,8 +143,9 @@ abide both by the state constraints since the two models are identical. Consider
 now that there are disturbances affecting the states of the plant, disturbances
 that are unknown to the model considered in the solution to the optimization
 problem. If the state constraint set was left unchanged during the solution of
-the optimization problem, then the uncertainty affecting the plant could,
-without loss of generality\footnote{Receding Horizon Control is inherently robust
+the optimization problem, the applied input to the plant, coupled with the
+uncertainty affecting the states of the plant could, without loss of
+generality\footnote{Receding Horizon Control is inherently robust
 under certain considerations, see \cite{Fontes2007} for more.}, force the states
 of the plant to escape their intended bounds.
 
@@ -196,7 +205,7 @@ $-\vect{\zeta}_i(s)$ also resides in $\mathcal{B}_{i,s-t_k}$, which means that
 
 
 Before defining the terminal set
-$\mathcal{E}_{i,f}$ it is necessary to state the definition of a positively
+$\Omega_i$ it is necessary to state the definition of a positively
 invariant set:
 \begin{bw_box}
   \begin{definition} (\textit{Positively Invariant Set})
@@ -217,48 +226,48 @@ invariant set:
   \end{definition}
 \end{bw_box}
 
-The terminal set
-$\mathcal{E}_{i,f} \subseteq \mathcal{E}_{i,F}$ is a
-subset of an admissible positively invariant set
-$\mathcal{E}_{i,F} \subseteq \mathcal{E}_i$ for system
-\eqref{eq:position_based_error_model_2}, where $\mathcal{E}_{i,F}$ is defined as
+The terminal set $\Omega_i \subseteq \Psi_i$ is a subset of an admissible and
+positively invariant set $\Psi_i$, where $\Psi_i$ is defined as
 \begin{align}
-  \mathcal{E}_{i,F} \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_F,\ \varepsilon_F > 0 \big\}
+  \Psi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+    \leq \varepsilon_{\Psi_i} \big\},\ \varepsilon_{\Psi_i} > 0
 \end{align}
 
-In particular, $\mathcal{E}_{i,F}$ is a subset of the restricted constraint
-set that corresponds to the constraints on the predicted state
-$\overline{\vect{e}}_i(t_k + T_p)$, which is the set
-$\mathcal{E}_{i,t_k + T_p - t_k} \equiv \mathcal{E}_{i,T_p}$. Using our
-adopted notation, $\mathcal{E}_{i,T_p} = \mathcal{E}_i \oplus \mathcal{B}_{i, T_p}$
-
-and is such that for all
-$\vect{e}_i \in \mathcal{E}_{i,F} \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \mathcal{E}_{i,f}$.
-
-
-The terminal set $\mathcal{E}_{i,f}$ is defined as
+In particular, the set $\Psi_i$ belongs to the set
+$\Phi_i$, $\Psi_i \subseteq \Phi_i$, which is the set of states within
+$\mathcal{E}_{i,T_p}$ for which there is an admissible control input whose form
+is of linear feedback with regard to the state:
 \begin{align}
-  \mathcal{E}_{i,f} \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_f,\ \varepsilon_f \in (0, \varepsilon_F) \big\}
+  \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p} : \vect{h}_i(\vect{e}_i) \in \mathcal{U}_i \big\}
 \end{align}
 
-\begin{figure}[ht!]
-  \centering
-  \input{figures/restricted_constraint_sets.tex}
-  \caption{The nominal constraint set $\mathcal{E}_i$ in bold and the
-    consecutive restricted constraint sets $\mathcal{E}_i \oplus \mathcal{B}_{i, s-t_k}$,
-    $s \in [t_k, t_k + T_p]$, dashed.}
-\end{figure}
+Furthermore, the admissible and positively invariant set $\Psi_i$ is such that
+\begin{align}
+\forall \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i
+\end{align}
+
+The terminal set $\Omega_i$ is defined as
+\begin{align}
+  \Omega_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+    \leq \varepsilon_{\Omega_i}\big\}\ \text{, where } \varepsilon_{\Omega_i} \in (0, \varepsilon_{\Psi_i})
+\end{align}
+
 
 \begin{figure}[ht!]
   \centering
   \input{figures/terminal_set_restricted.tex}
-    %\caption{}
+  \caption{The hierarchy of sets
+  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p}$.
+  For every state in $\Phi_i$ there is a linear state feedback control
+  $\vect{h}_i(\vect{e}_i)$ which, when applied to a state
+  $\vect{e}_i \in \Psi_i$, causes the trajectory of the state of the system to
+  fall into the terminal set $\Omega_i$.}
 \end{figure}
 
 
 The functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
-$V_i: \mathcal{E}_{i,f} \to \mathbb{R}_{\geq 0}$ are defined as
+$V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
   F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
   &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\
@@ -293,7 +302,7 @@ obvious, $F_i(\vect{0}, \vect{0}) = 0$.
 
 With regard to the terminal penalty function $V_i$, the following lemma will
 prove to be useful in guaranteeing the convergence of the solution to the
-optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
+optimal control problem to the terminal region $\Omega_i$:
 
 \begin{bw_box}
 \begin{lemma} ($V_i$ is Lipschitz continuous in $\mathcal{E}_{i,F}$)
@@ -310,7 +319,7 @@ optimal control problem to the terminal region $\mathcal{E}_{i,f}$:
 
 
 \begin{gg_box}
-\textbf{Proof} For every $\vect{e}_i \in \mathcal{E}_{i,f}$, it holds that
+\textbf{Proof} For every $\vect{e}_i \in \Omega_i$, it holds that
 \begin{align}
   |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
     &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i} \pm \vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
@@ -390,7 +399,7 @@ We can now give the definition of an \textit{admissible input}:
     \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$
+    \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
   \end{enumerate}
 
 \end{definition}
