@@ -139,7 +139,7 @@ since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
 $L_{g_i}$. Reformulation yields
 \begin{align}
   &\bigg\| \vect{e}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
-  \overline{\vect{e}}_i\big(t+tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\
+  \overline{\vect{e}}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\
   &\leq \tau \overline{\delta}_i
   + L_{g_i} \int_{0}^{\tau} \bigg\| \vect{e}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
   \overline{\vect{e}}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| ds \\
@@ -386,102 +386,60 @@ by application of the the Gr\"{o}nwall-Bellman inequality,
 \label{eq:df_interim_es_2}
 \end{align}
 
-In other words
+By applying a reasoning similar to lemma
+\eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ (in the model
+equation) and $t = t_k$ (in the real model equation), and $\tau = s$ we get
 \begin{align}
-\bigg\| &\big(\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) - \vect{e}_i(t_{k+1}+s)\big)
-  -\big(\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) - \vect{e}_i(t_{k+1}+s)\big)\bigg\| \\
-  &\leq \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-\end{align}
-Using the inverse triangular inequality\footnote{$\forall x,y \in \mathbb{R}: \bigg| \|x\| - \|y\| \bigg| \leq \| x-y\|$} we get
-\begin{align}
-  \Bigg| \bigg\| & \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  -\bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| \Bigg| \\
-  &\leq \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-\end{align}
-By utilizing lemma \eqref{lemma:diff_state_from_same_conditions} once more
-with regard to the second term in the left-hand side we get:
-\begin{align}
-  \Bigg| \bigg\| & \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  -\dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(t_{k+1} + s -t_k)}\big) \Bigg|\\
-  &\leq \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-\end{align}
-but since $t_{k+1}+s - t_k = t_k + h + s - t_k = h+s$
-\begin{align}
-  \Bigg| \bigg\| & \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  -\dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(s+h)}\big) \Bigg|\\
-  &\leq \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \\
-  &\leq \bigg\| \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \bigg\|
-\end{align}
-since $x \leq \|x\|, \forall x \in \mathbb{R}$. Expanding we get
-\begin{align}
-  &-\bigg\| \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \bigg\| \\
-  &\leq \bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  -\dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(s+h)}\big) \\
-  &\leq \bigg\| \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \bigg\|
-\end{align}
-Expanding once more for the right-hand side inequality, we get
-\begin{align}
-  & \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \\
-  &\geq \bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  -\dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(s+h)}\big) \\
-  &\text{or} \\
-  & \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big) \\
-  &\leq -\bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
-  +\dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(s+h)}\big)
-\end{align}
-Removing the equal terms, the last inequality yields
-\begin{align}
-  - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-    \leq -\bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|\\
-    \bigg\| \vect{e}_i(t_{k+1}+s) - \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\bigg\|
+    \bigg\|
+      \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+    \bigg\|
   \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
 \end{align}
-Notice that we could have arrived at the same result by direct application of
-lemma \eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ and
-$\tau = s$.
 
 
 
 
 
 
-Now, the sets $\mathcal{B}_{i, h+s}$ and $\mathcal{B}_{i,s}$ are defined
-conceptually in form in this case as
-\begin{align}
-  \mathcal{B}_{i,h+s} &= \big\{ \vect{a}_i : \|\vect{a}_i\| \leq \gamma_i(h+s) \big\} \\
-  \mathcal{B}_{i,s} &= \big\{ \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s) \big\}
-\end{align}
-where
-\begin{align}
-  \vect{a}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) - \vect{e}_i(t_{k+1}+s) \\
-  \vect{b}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) - \vect{e}_i(t_{k+1}+s)
-\end{align}
-and $\gamma_i(t) = \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} t}-1\big)$.
-The Pontryagin difference $\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ is
-\begin{align}
-  \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-  &= \bigg\{
-      \vect{c}_i : \big\| \vect{c}_i + \vect{b}_i \big\| \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
-    \bigg\}
-\end{align}
-Since $h+s > s \Leftrightarrow \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big) > \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)$,
-which means that $\gamma(h+s) > \gamma(s)$, and
-$\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ becomes
-\begin{align}
-  \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-  &= \bigg\{
-    \vect{c}_i : \big\| \vect{c}_i\| + \gamma_i(s) \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
-    \bigg\} \\
-  &= \bigg\{
-    \vect{c}_i : \big\| \vect{c}_i\| \leq \gamma_i(h+s) - \gamma_i(s)
-    \bigg\}
-\end{align}
-What this means is that
-\begin{align}
-\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-    \in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-\end{align}
+
+%Now, the sets $\mathcal{B}_{i, h+s}$ and $\mathcal{B}_{i,s}$ are defined
+%conceptually in form in this case as
+%\begin{align}
+  %\mathcal{B}_{i,h+s} &= \big\{ \vect{a}_i : \|\vect{a}_i\| \leq \gamma_i(h+s) \big\} \\
+  %\mathcal{B}_{i,s} &= \big\{ \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s) \big\}
+%\end{align}
+%where
+%\begin{align}
+  %\vect{a}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) - \vect{e}_i(t_{k+1}+s) \\
+  %\vect{b}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) - \vect{e}_i(t_{k+1}+s)
+%\end{align}
+%and $\gamma_i(t) = \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} t}-1\big)$.
+%The Pontryagin difference $\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ is
+%\begin{align}
+  %\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
+  %&= \bigg\{
+      %\vect{c}_i : \big\| \vect{c}_i + \vect{b}_i \big\| \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
+    %\bigg\}
+%\end{align}
+%Since $h+s > s \Leftrightarrow \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big) > \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)$,
+%which means that $\gamma(h+s) > \gamma(s)$, and
+%$\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ becomes
+%\begin{align}
+  %\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
+  %&= \bigg\{
+    %\vect{c}_i : \big\| \vect{c}_i\| + \gamma_i(s) \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
+    %\bigg\} \\
+  %&= \bigg\{
+    %\vect{c}_i : \big\| \vect{c}_i\| \leq \gamma_i(h+s) - \gamma_i(s)
+    %\bigg\}
+%\end{align}
+%What this means is that
+%\begin{align}
+%\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    %-\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+    %\in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
+%\end{align}
 
 
 
