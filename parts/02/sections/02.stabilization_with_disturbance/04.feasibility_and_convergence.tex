@@ -455,6 +455,7 @@ $\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ becomes
   &= \bigg\{
     \vect{c}_i : \big\| \vect{c}_i\| \leq \gamma_i(h+s) - \gamma_i(s)
     \bigg\}
+\label{eq:first_pontryagin_diff}
 \end{align}
 What this means is that
 \begin{align}
@@ -474,7 +475,51 @@ A brief recapitulation is in order. $-$ we have hitherto discovered that
 and we know that the solution to the optimization problem is feasible at time
 $t_k$, which means that
 \begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \oplus \mathcal{B}_{h+s}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \oplus \mathcal{B}_{i,h+s}
+\end{align}
+Let us for sake of readability translate the above system of set inclusions:
+\begin{align}
+  \overline{\vect{e}}_{0} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \vect{e}_{0} &= \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \overline{\vect{e}}_{1} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+\end{align}
+Then, the system of inclusions becomes:
+\begin{align}
+  \overline{\vect{e}}_{i,0} - \vect{e}_{i,0} &\in \mathcal{B}_{i, h+s} \\
+  \overline{\vect{e}}_{i,1} - \vect{e}_{i,0} &\in \mathcal{B}_{i,s}  \\
+  \overline{\vect{e}}_{i,1} - \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s} \\
+  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \oplus \mathcal{B}_{i,h+s}
+\end{align}
+The first two are of no use here; rearranging the third and subtracting it from
+the fourth yields
+\begin{align}
+  \overline{\vect{e}}_{i,0} - \overline{\vect{e}}_{i,0} + \overline{\vect{e}}_{i,1}
+  &\in \mathcal{E}_i \oplus \bigg(\mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) \bigg)
+\end{align}
+
+Considering \eqref{eq:first_pontryagin_diff}, the Minkowski difference
+interior to the large parenthesis is
+\begin{align}
+  \mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) =
+    \bigg\{
+        \vect{b}_i - &\vect{c}_i : \vect{b}_i \in \mathcal{B}_{i,h+s}, \vect{c}_i \in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
+    \bigg\}
+\end{align}
+The set of the above two inequalities is
+\begin{align}
+  \|\vect{b}_i\| &\leq \gamma_i(h+s) \\
+  \|\vect{c}_i\| &\leq \gamma_i(h+s) - \gamma_i(s)
+\end{align}
+Subtracting the latter from the former yields
+\begin{align}
+  \|\vect{b}_i\| - \|\vect{c}_i\| \leq \gamma_i(s)
+\end{align}
+which means that
+\begin{align}
+  \mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) = \bigg\{
+  \vect{b}_i - &\vect{c}_i :
+  \|\vect{b}_i\| - \|\vect{c}_i\| \leq \gamma_i(s)
+\bigg\}
 \end{align}
 
 
