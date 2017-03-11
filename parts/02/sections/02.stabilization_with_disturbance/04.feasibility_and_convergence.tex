@@ -325,205 +325,100 @@ Therefore, overall
 \qedsymbol
 \end{gg_box}
 
-Finally, $\overline{\vect{e}}_i\big(s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \oplus \mathcal{B}_{s-t_{k+1}}$,
-for all $s \in [t_{k+1}, t_{k+1} + T_p]$
+Finally, $\overline{\vect{e}}_i\big(t_{k+1} + s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{s}$,
+for all $s \in [0,  T_p]$
 
 \textcolor{blue}{----------------START proof for point 3 ----------------------}
 
 \begin{gg_box}
-Consulting with remark \eqref{remark:predicted_actual_equations_with_disturbance}
-for the two different initial conditions we get
-\begin{alignat}{2}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    &= \vect{e}_i(t_{k+1})
-    &&+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
-\end{alignat}
-and
-\begin{alignat}{2}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-    &= \vect{e}_i(t_k)
-    &&+ \int_{t_k}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
-  &= \vect{e}_i(t_k)
-    &&+ \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \\
-  & &&+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
-\end{alignat}
-Subtracting the latter from the former and taking norms on either side yields
-\begin{align}
-  \bigg\| &\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)\bigg\| \\
-    &= \bigg\| \vect{e}_i(t_{k+1})
-      - \bigg( \vect{e}_i(t_k) +  \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg) \\
-    &+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
-    - \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\
-    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
-    &+ \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
-    - \int_{t_{k+1}}^{t_{k+1} + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\
-    &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
-    &+ \bigg\| \int_{t_{k+1}}^{t_{k+1} + s} \bigg(g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big)
-    -g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\
-    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
-    &+ \int_{t_{k+1}}^{t_{k+1} + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(\tau)\big)
-    -g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg\| d\tau \\
-    &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
-    &+ L_{g_i}\int_{t_{k+1}}^{t_{k+1} + s} \bigg\| \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1}) \big)
-    -\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot),\vect{e}_i(t_k)\big)  \bigg\| d\tau \\
-    &= \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\|\\
-    &+ L_{g_i}\int_{0}^{s} \bigg\| \overline{\vect{e}}_i\big(t_{k+1} + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1}) \big)
-    -\overline{\vect{e}}_i\big(t_{k+1} + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot),\vect{e}_i(t_k)\big)  \bigg\| d\tau
-    \label{eq:de_interim_es}
-\end{align}
-
-
-Given that from lemma \eqref{lemma:diff_state_from_same_conditions}
-the first term of the sum featured in \eqref{eq:de_interim_es} is a constant,
-by application of the the Gr\"{o}nwall-Bellman inequality,
-\eqref{eq:df_interim_es} becomes
-\begin{align}
-  \bigg\| &\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)\bigg\| \\
-  &\leq \bigg\| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i\big( t_{k+1};\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| e^{L_{g_i}s} \\
-  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}h} - 1\big) e^{L_{g_i} s} \\
-  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}(h+s)} - e^{L_{g_i} s}\bigg) \\
-  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg( \big(e^{L_{g_i}(h+s)} -1\big) - \big(e^{L_{g_i} s}-1\big)\bigg) \\
-  &= \dfrac{\overline{\delta}_i}{L_{g_i}} \big(e^{L_{g_i}(h+s)} -1\big) - \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-\label{eq:df_interim_es_2}
-\end{align}
 
 By applying lemma \eqref{lemma:diff_state_from_same_conditions} for
 $t=t_{k+1} + s$ and $\tau=t_k$ we get
 \begin{align}
     \bigg\|
-      \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
     \bigg\|
     \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big)
 \end{align}
 or, in set language
 \begin{align}
-      \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
       \in \mathcal{B}_{i, h+s}
 \end{align}
 
-By applying a reasoning similar to lemma
+By applying a reasoning identical to the proof of lemma
 \eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ (in the model
 equation) and $t = t_k$ (in the real model equation), and $\tau = s$ we get
 \begin{align}
     \bigg\|
-      \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     \bigg\|
   \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
 \end{align}
-or, in set language
+which translates to
 \begin{align}
-      \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
       \in \mathcal{B}_{i,s}
 \end{align}
 
-
-Now, the sets $\mathcal{B}_{i, h+s}$ and $\mathcal{B}_{i,s}$ are defined
-conceptually in form in this case as
+Furthermore, we know that the solution to the optimization problem is
+feasible at time $t_k$, which means that
 \begin{align}
-  \mathcal{B}_{i,h+s} &= \big\{ \vect{a}_i : \|\vect{a}_i\| \leq \gamma_i(h+s) \big\} \\
-  \mathcal{B}_{i,s} &= \big\{ \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s) \big\}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
 \end{align}
-where
+Let us for sake of readability set
 \begin{align}
-  \vect{a}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
-  \vect{b}_i &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      -\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-\end{align}
-and $\gamma_i(t) = \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} t}-1\big)$.
-The Pontryagin difference $\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ is
-\begin{align}
-  \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-  &= \bigg\{
-      \vect{c}_i : \big\| \vect{c}_i + \vect{b}_i \big\| \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
-    \bigg\}
-\end{align}
-Since $h+s > s \Leftrightarrow \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big) > \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)$,
-which means that $\gamma(h+s) > \gamma(s)$, and
-$\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}$ becomes
-\begin{align}
-  \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-  &= \bigg\{
-    \vect{c}_i : \big\| \vect{c}_i\| + \gamma_i(s) \leq \gamma_i(h+s)\ \forall \vect{b}_i : \|\vect{b}_i\| \leq \gamma_i(s)
-    \bigg\} \\
-  &= \bigg\{
-    \vect{c}_i : \big\| \vect{c}_i\| \leq \gamma_i(h+s) - \gamma_i(s)
-    \bigg\}
-\label{eq:first_pontryagin_diff}
-\end{align}
-What this means is that
-\begin{align}
-\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-    \in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-\end{align}
-A brief recapitulation is in order. $-$ we have hitherto discovered that
-\begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-    &-\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{B}_{i, h+s} \\
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    &-\vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{B}_{i,s} \\
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    &-\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-\end{align}
-and we know that the solution to the optimization problem is feasible at time
-$t_k$, which means that
-\begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \oplus \mathcal{B}_{i,h+s}
-\end{align}
-Let us for sake of readability translate the above system of set inclusions:
-\begin{align}
-  \overline{\vect{e}}_{0} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
   \vect{e}_{0} &= \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \overline{\vect{e}}_{0} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
   \overline{\vect{e}}_{1} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
 \end{align}
-Then, the system of inclusions becomes:
+and translate the above system of include statements to:
 \begin{align}
-  \overline{\vect{e}}_{i,0} - \vect{e}_{i,0} &\in \mathcal{B}_{i, h+s} \\
-  \overline{\vect{e}}_{i,1} - \vect{e}_{i,0} &\in \mathcal{B}_{i,s}  \\
-  \overline{\vect{e}}_{i,1} - \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s} \\
-  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \oplus \mathcal{B}_{i,h+s}
+  \vect{e}_{i,0} - \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \\
+  \vect{e}_{i,0} - \overline{\vect{e}}_{i,1} &\in \mathcal{B}_{i,s} \\
+  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
 \end{align}
-The first two are of no use here; rearranging the third and subtracting it from
-the fourth yields
+First we will focus on the two first statements, and we will derive a result
+that will combine with the third statement so as to prove that the predicted
+state will be feasible from $t_{k+1}$ to $t_{k+1} + T_p$. Subtracting the
+second from the first yields
 \begin{align}
-  \overline{\vect{e}}_{i,0} - \overline{\vect{e}}_{i,0} + \overline{\vect{e}}_{i,1}
-  &\in \mathcal{E}_i \oplus \bigg(\mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) \bigg)
+  \overline{\vect{e}}_{i,1} - \overline{\vect{e}}_{i,0} \in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
 \end{align}
-
-Considering \eqref{eq:first_pontryagin_diff}, the Minkowski difference
-interior to the large parenthesis is
+Now we introduce the third statement
 \begin{align}
-  \mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) =
-    \bigg\{
-        \vect{b}_i - &\vect{c}_i : \vect{b}_i \in \mathcal{B}_{i,h+s}, \vect{c}_i \in \mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}
-    \bigg\}
+  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s} \\
+  \overline{\vect{e}}_{i,1}- \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
 \end{align}
-The set of the above two inequalities is
+Adding the latter to the former yields
 \begin{align}
-  \|\vect{b}_i\| &\leq \gamma_i(h+s) \\
-  \|\vect{c}_i\| &\leq \gamma_i(h+s) - \gamma_i(s)
+  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \ominus \mathcal{B}_{i,h+s}\big) \oplus \big(\mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}\big)
 \end{align}
-Subtracting the latter from the former yields
+But\footnote{PROOF} $(A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)$
+for arbitrary sets $A,B,C$. Hence
 \begin{align}
-  \|\vect{b}_i\| - \|\vect{c}_i\| \leq \gamma_i(s)
+  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big)
 \end{align}
-which means that
+Using implication\footnote{
+$A = B_1 \oplus B_2 \Rightarrow A \ominus B = (A \ominus B_1) \ominus B_2$}
+(v) of theorem 2.1 from \cite{kolmanovsky} yields
 \begin{align}
-  \mathcal{B}_{i,h+s} \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big) = \bigg\{
-  \vect{b}_i - &\vect{c}_i :
-  \|\vect{b}_i\| - \|\vect{c}_i\| \leq \gamma_i(s)
-\bigg\}
+  \overline{\vect{e}}_{i,1} \in \bigg(\big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \mathcal{B}_{i, h+s}\bigg) \ominus \mathcal{B}_{i,s}
 \end{align}
-
-
-
+Using implication\footnote{$(A \oplus B) \ominus B \subset A$}
+(3.1.11) from \cite{schneider_2013} yields
+\begin{align}
+  \overline{\vect{e}}_{i,1} \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+\end{align}
+Translating back to our native language, we get the desired result:
+\begin{align}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+\end{align}
+\qedsymbol
 \end{gg_box}
 \textcolor{blue}{------------------END proof for point 3-----------------------}
 
