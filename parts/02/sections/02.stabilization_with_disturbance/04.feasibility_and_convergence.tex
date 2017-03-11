@@ -398,7 +398,20 @@ Adding the latter to the former yields
 \begin{align}
   \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \ominus \mathcal{B}_{i,h+s}\big) \oplus \big(\mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}\big)
 \end{align}
-But\footnote{PROOF} $(A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)$
+But\footnote{
+Suppose sets $A,B,C$. Then
+\begin{align}
+  A \ominus B = \{\vect{a} - \vect{b},\ \vect{a} \in A, \vect{b} \in B\} \\
+  B \ominus C = \{\vect{b} - \vect{c},\ \vect{b} \in B, \vect{c} \in C\}
+\end{align}
+Adding the latter to the former yields
+\begin{align}
+  (A \ominus B) \oplus (B \ominus C)
+    &= \{\vect{a} - \vect{b} + \vect{b} - \vect{c},\ \vect{a} \in A, \vect{b} \in B, \vect{c} \in C\} \\
+    &= \{\vect{a} - \vect{c},\ \vect{a} \in A, \vect{c} \in C\}
+\end{align}
+}
+$(A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)$
 for arbitrary sets $A,B,C$. Hence
 \begin{align}
   \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big)
