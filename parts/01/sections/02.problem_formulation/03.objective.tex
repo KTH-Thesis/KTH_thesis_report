@@ -8,7 +8,7 @@ from an initial configuration abiding by assumption
 $\vect{x}_{i,des}, \vect{v}_{i,des}$, while
 satisfying all communication constraints, i.e. sustaining connectivity between
 neighbouring agents, and avoiding collisions between agents, obstacles, and the
-workspace boundary. The concept of \textit{desired feasible configuration}
+workspace boundary. The concept of a \textit{desired feasible configuration}
 or \textit{feasible steady-state configuration} is given in definition
 \eqref{definition:feasible_steady_state_conf}.
 
@@ -34,17 +34,14 @@ only if
 \end{definition}
 \end{bw_box}
 
-Formally then, the objective of each agent $i$ is
-$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$.
-
-Before formally stating the problem to be solved, we must address an issue
+At this point we must address an issue
 that refers to the feasibility of its solution and relates to the avoidance of
 collisions from an intra-environmental perspective. Namely, we demand that a
 solution be feasible if and only if the agent with the largest radius is able to
 pass through the spaces demarcated by (a) the two least distant obstacles,
 and (b) the obstacle closest to the boundary of the workspace and the
 boundary of the workspace itself. To this end, we formalize the relevant notions
-in Definition \eqref{def:intra_environmental_arrangement}:
+in Definition \eqref{def:intra_environmental_arrangement}. \\
 
 \begin{bw_box}
 \begin{definition} (\textit{Intra-environmental Arrangement})
@@ -85,3 +82,33 @@ solution to the problem that this work addresses:
   where $D$ is defined in Definition \eqref{def:intra_environmental_arrangement}.
 \end{assumption}
 \end{gg_box}
+
+The designed desirable control scheme should provide feasible control
+inputs $\vect{u}_i$
+per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
+constraints $\mathcal{U}_i$:
+
+\begin{bw_box}
+  \begin{definition} (\textit{Feasible Control Input})
+    \label{definition:feasible_control_input}
+    The control input $\vect{u}_i (\cdot)$ is called feasible when it abides
+    by its respective constraint:
+  \begin{align}
+    \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 : \|\vect{u}_i (t)\| \leq \overline{u}_i\}
+  \end{align}
+
+\end{definition}
+\end{bw_box}
+
+Overall then, the objective of each agent $i$ is for
+$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$.
+If we design feasible control inputs $\vect{u}_i \in \mathcal{U}_i$,
+$\forall i \in \mathcal{V}$ such that the signal
+$\lim\limits_{t \to \infty} \vect{x}_i(t) = \vect{x}_{i,des}$ with
+dynamics given in \eqref{eq:system}, constrained under
+assumptions \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
+and \eqref{ass:intra_environmental_arrangement} satisfies
+$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$,
+while all system related signals remain bounded in their respective regions,
+$-$ if all of the above are achieved, then problem \eqref{problem} has been
+solved.

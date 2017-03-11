@@ -18,29 +18,13 @@ $t\in\mathbb{R}_{\geq 0}$ that:
   \item all agents avoid collision with all obstacles
   \item all agents avoid collision with the workspace boundary
   \item singularity of the Jacobian matrices $\mat{J}_i$ is avoided
+  \item all input control signals are bounded in their respective regions
 \end{enumerate}
 
 Therefore, all neighboring agents of agent $i$ must remain within a distance
 less than $d_i$ to him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
 greater than $\underline{d}_{ij,a}$ with one another.
-
-Lastly, the control protocol should provide feasible control inputs $\vect{u}_i$
-per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
-constraints $\mathcal{U}_i$
-
-\begin{bw_box}
-  \begin{definition} (\textit{Feasible Control Input})
-    \label{definition:feasible_control_input}
-    The control input $\vect{u}_i (\cdot)$ is called feasible when it abides
-    by its respective constraint:
-  \begin{align}
-    \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 : \|\vect{u}_i (t)\| \leq \overline{u}_i\}
-  \end{align}
-
-\end{definition}
-\end{bw_box}
-\newpage
 
 Formally, the control problem under the aforementioned constraints is
 formulated as follows:\\
