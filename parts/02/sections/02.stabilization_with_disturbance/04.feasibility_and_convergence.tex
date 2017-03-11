@@ -210,10 +210,139 @@ $\vect{h}_i(\cdot)$:
 \end{equation}
 
 Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\tau)$
-is an admissible control input as a composition of admissible control inputs,
-for all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
+is an admissible control input with regard to the input constraints as
+a composition of admissible control inputs, for
+all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
 
-Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i$.
+
+%-------- START Feasibility point 2 --------------------------------------------
+Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{s}$,
+for all $s \in [0,  T_p]$
+
+
+\begin{gg_box}
+
+By applying lemma \eqref{lemma:diff_state_from_same_conditions} for
+$t=t_{k+1} + s$ and $\tau=t_k$ we get
+\begin{align}
+    \bigg\|
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+    \bigg\|
+    \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big)
+\end{align}
+or, in set language
+\begin{align}
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      \in \mathcal{B}_{i, h+s}
+\end{align}
+
+By applying a reasoning identical to the proof of lemma
+\eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ (in the model
+equation) and $t = t_k$ (in the real model equation), and $\tau = s$ we get
+\begin{align}
+    \bigg\|
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    \bigg\|
+  \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
+\end{align}
+which translates to
+\begin{align}
+      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
+      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+      \in \mathcal{B}_{i,s}
+\end{align}
+
+Furthermore, we know that the solution to the optimization problem is
+feasible at time $t_k$, which means that
+\begin{align}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
+\end{align}
+Let us for sake of readability set
+\begin{align}
+  \vect{e}_{0} &= \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \overline{\vect{e}}_{0} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
+  \overline{\vect{e}}_{1} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+\end{align}
+and translate the above system of include statements to:
+\begin{align}
+  \vect{e}_{i,0} - \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \\
+  \vect{e}_{i,0} - \overline{\vect{e}}_{i,1} &\in \mathcal{B}_{i,s} \\
+  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
+\end{align}
+First we will focus on the two first statements, and we will derive a result
+that will combine with the third statement so as to prove that the predicted
+state will be feasible from $t_{k+1}$ to $t_{k+1} + T_p$. Subtracting the
+second from the first yields
+\begin{align}
+  \overline{\vect{e}}_{i,1} - \overline{\vect{e}}_{i,0} \in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
+\end{align}
+Now we introduce the third statement
+\begin{align}
+  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s} \\
+  \overline{\vect{e}}_{i,1}- \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
+\end{align}
+Adding the latter to the former yields
+\begin{align}
+  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \ominus \mathcal{B}_{i,h+s}\big) \oplus \big(\mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}\big)
+\end{align}
+But\footnote{
+  Suppose sets $A,B,C$ and vectors
+  $\vect{a} \in A, \vect{b} \in B, \vect{c} \in C$, where
+  $\vect{a}, \vect{b}, \vect{c} \in \mathbb{R}^n$. Then
+\begin{align}
+  A \ominus B = \{\vect{a} - \vect{b},\ \vect{a} \in A, \vect{b} \in B\} \\
+  B \ominus C = \{\vect{b} - \vect{c},\ \vect{b} \in B, \vect{c} \in C\}
+\end{align}
+Adding the latter to the former yields
+\begin{align}
+  (A \ominus B) \oplus (B \ominus C)
+    &= \{\vect{a} - \vect{b} + \vect{b} - \vect{c},\ \vect{a} \in A, \vect{b} \in B, \vect{c} \in C\} \\
+    &= \{\vect{a} - \vect{c},\ \vect{a} \in A, \vect{c} \in C\}
+\end{align}
+On the other hand
+\begin{align}
+  A \oplus B = \{\vect{a} + \vect{b},\ \vect{a} \in A, \vect{b} \in B\} \\
+  B \oplus C = \{\vect{b} + \vect{c},\ \vect{b} \in B, \vect{c} \in C\}
+\end{align}
+Subtracting the latter from the former yields
+\begin{align}
+  (A \oplus B) \ominus (B \oplus C) &= \{\vect{a} + \vect{b} - \vect{b} - \vect{c},\ \vect{a} \in A, \vect{b} \in B, \vect{c} \in C\} \\
+    &= \{\vect{a} - \vect{c},\ \vect{a} \in A, \vect{c} \in C\}
+\end{align}
+Therefore
+\begin{align}
+  (A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)
+\end{align}
+}
+$(A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)$
+for arbitrary sets $A,B,C$. Hence
+\begin{align}
+  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big)
+\end{align}
+Using implication\footnote{
+$A = B_1 \oplus B_2 \Rightarrow A \ominus B = (A \ominus B_1) \ominus B_2$}
+(v) of theorem 2.1 from \cite{kolmanovsky} yields
+\begin{align}
+  \overline{\vect{e}}_{i,1} \in \bigg(\big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \mathcal{B}_{i, h+s}\bigg) \ominus \mathcal{B}_{i,s}
+\end{align}
+Using implication\footnote{$(A \oplus B) \ominus B \subset A$}
+(3.1.11) from \cite{schneider_2013} yields
+\begin{align}
+  \overline{\vect{e}}_{i,1} \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+\end{align}
+Translating back to our native language, we get the desired result:
+\begin{align}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+\end{align}
+\qedsymbol
+\end{gg_box}
+%---------- END Feasibility point 2 --------------------------------------------
+
+%-------- START Feasibility point 3 --------------------------------------------
+Finally, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i$.
 \begin{gg_box}
 To prove this statement we begin with
 \begin{align}
@@ -324,134 +453,19 @@ Therefore, overall
 \end{align}
 \qedsymbol
 \end{gg_box}
+%---------- END Feasibility point 3 --------------------------------------------
 
-Finally, $\overline{\vect{e}}_i\big(t_{k+1} + s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{s}$,
-for all $s \in [0,  T_p]$
+Piecing the two last statements together, we conclude that the application of
+the control input $\widetilde{u}_i(\cdot)$ at time $t_{k+1}$ results in
+the states of the real system abiding by their intended state constraints
+across the entire horizon $t_{k+1}, t_{k+1} + T_p$.
 
-\textcolor{blue}{----------------START proof for point 3 ----------------------}
-
-\begin{gg_box}
-
-By applying lemma \eqref{lemma:diff_state_from_same_conditions} for
-$t=t_{k+1} + s$ and $\tau=t_k$ we get
-\begin{align}
-    \bigg\|
-      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-    \bigg\|
-    \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} (h+s)}-1\big)
-\end{align}
-or, in set language
-\begin{align}
-      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      \in \mathcal{B}_{i, h+s}
-\end{align}
-
-By applying a reasoning identical to the proof of lemma
-\eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ (in the model
-equation) and $t = t_k$ (in the real model equation), and $\tau = s$ we get
-\begin{align}
-    \bigg\|
-      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    \bigg\|
-  \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big(e^{L_{g_i} s}-1\big)
-\end{align}
-which translates to
-\begin{align}
-      \vect{e}_i\big(t_{k+1}+s;\  \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big)
-      -\overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-      \in \mathcal{B}_{i,s}
-\end{align}
-
-Furthermore, we know that the solution to the optimization problem is
-feasible at time $t_k$, which means that
-\begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
-\end{align}
-Let us for sake of readability set
-\begin{align}
-  \vect{e}_{0} &= \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
-  \overline{\vect{e}}_{0} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\
-  \overline{\vect{e}}_{1} &= \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-\end{align}
-and translate the above system of include statements to:
-\begin{align}
-  \vect{e}_{i,0} - \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \\
-  \vect{e}_{i,0} - \overline{\vect{e}}_{i,1} &\in \mathcal{B}_{i,s} \\
-  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s}
-\end{align}
-First we will focus on the two first statements, and we will derive a result
-that will combine with the third statement so as to prove that the predicted
-state will be feasible from $t_{k+1}$ to $t_{k+1} + T_p$. Subtracting the
-second from the first yields
-\begin{align}
-  \overline{\vect{e}}_{i,1} - \overline{\vect{e}}_{i,0} \in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
-\end{align}
-Now we introduce the third statement
-\begin{align}
-  \overline{\vect{e}}_{i,0} &\in \mathcal{E}_i \ominus \mathcal{B}_{i,h+s} \\
-  \overline{\vect{e}}_{i,1}- \overline{\vect{e}}_{i,0} &\in \mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}
-\end{align}
-Adding the latter to the former yields
-\begin{align}
-  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \ominus \mathcal{B}_{i,h+s}\big) \oplus \big(\mathcal{B}_{i, h+s} \ominus \mathcal{B}_{i,s}\big)
-\end{align}
-But\footnote{
-Suppose sets $A,B,C$. Then
-\begin{align}
-  A \ominus B = \{\vect{a} - \vect{b},\ \vect{a} \in A, \vect{b} \in B\} \\
-  B \ominus C = \{\vect{b} - \vect{c},\ \vect{b} \in B, \vect{c} \in C\}
-\end{align}
-Adding the latter to the former yields
-\begin{align}
-  (A \ominus B) \oplus (B \ominus C)
-    &= \{\vect{a} - \vect{b} + \vect{b} - \vect{c},\ \vect{a} \in A, \vect{b} \in B, \vect{c} \in C\} \\
-    &= \{\vect{a} - \vect{c},\ \vect{a} \in A, \vect{c} \in C\}
-\end{align}
-}
-$(A \ominus B) \oplus (B \ominus C) = (A \oplus B) \ominus (B \oplus C)$
-for arbitrary sets $A,B,C$. Hence
-\begin{align}
-  \overline{\vect{e}}_{i,1} \in \big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \big(\mathcal{B}_{i, h+s} \oplus \mathcal{B}_{i,s}\big)
-\end{align}
-Using implication\footnote{
-$A = B_1 \oplus B_2 \Rightarrow A \ominus B = (A \ominus B_1) \ominus B_2$}
-(v) of theorem 2.1 from \cite{kolmanovsky} yields
-\begin{align}
-  \overline{\vect{e}}_{i,1} \in \bigg(\big(\mathcal{E}_i \oplus \mathcal{B}_{i,h+s}\big) \ominus \mathcal{B}_{i, h+s}\bigg) \ominus \mathcal{B}_{i,s}
-\end{align}
-Using implication\footnote{$(A \oplus B) \ominus B \subset A$}
-(3.1.11) from \cite{schneider_2013} yields
-\begin{align}
-  \overline{\vect{e}}_{i,1} \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
-\end{align}
-Translating back to our native language, we get the desired result:
-\begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
-\end{align}
-\qedsymbol
-\end{gg_box}
-\textcolor{blue}{------------------END proof for point 3-----------------------}
-
-
-
-
-
-
-
-
-
-
-
-
-\textcolor{red}{=========================================================}
-
-This means that feasibility of a solution to the optimization problem at time
-$t_k$ implies feasibility at time $t_{k+1} > t_k$, and, thus, since at time $t=0$
-a solution is assumed to be feasible, a solution to the optimal control problem
-is feasible for all $t \geq 0$.\\
+Therefore, overall, the (sub-optimal) control input $\widetilde{u}_i(\cdot)$
+is admissible at time $t_{k+1}$, which means that feasibility of a solution to
+the optimization problem at time $t_k$ implies feasibility at time
+$t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to be
+feasible, a solution to the optimal control problem is feasible for
+all $t \geq 0$.\\
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating the convergence of the

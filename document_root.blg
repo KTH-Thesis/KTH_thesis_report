@@ -6,43 +6,43 @@ Database file #1: references.bib
 Warning--can't use both author and editor fields in Fontes2007
 You've used 4 entries,
             1876 wiz_defined-function locations,
-            507 strings with 4302 characters,
-and the built_in function-call counts, 1218 in all, are:
-= -- 134
+            507 strings with 4301 characters,
+and the built_in function-call counts, 1197 in all, are:
+= -- 130
 > -- 27
 < -- 0
 + -- 11
 - -- 7
-* -- 62
-:= -- 154
+* -- 70
+:= -- 158
 add.period$ -- 7
 call.type$ -- 4
 change.case$ -- 1
 chr.to.int$ -- 0
 cite$ -- 5
-duplicate$ -- 72
-empty$ -- 120
+duplicate$ -- 62
+empty$ -- 123
 format.name$ -- 7
-if$ -- 316
+if$ -- 303
 int.to.chr$ -- 0
 int.to.str$ -- 4
 missing$ -- 7
 newline$ -- 18
 num.names$ -- 4
-pop$ -- 17
+pop$ -- 16
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 59
+skip$ -- 45
 stack$ -- 0
-substring$ -- 82
-swap$ -- 39
+substring$ -- 96
+swap$ -- 29
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 11
+while$ -- 13
 width$ -- 5
 write$ -- 43
 (There was 1 warning)
