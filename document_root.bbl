@@ -1,5 +1,14 @@
 \begin{thebibliography}{1}
 
+\bibitem{khalil_nonlinear_systems}
+H.~Khalil, {\em {N}oninear {S}ystems}.
+\newblock Prentice-Hall, New Jersey, 1996.
+
+\bibitem{Sontag2008}
+E.~D. Sontag, {\em Input to State Stability: Basic Concepts and Results},
+  pp.~163--220.
+\newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2008.
+
 \bibitem{Fontes2007}
 F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
   Predictive Control for Nonlinear Time-Varying Systems: Stability and
@@ -10,10 +19,6 @@ F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
 I.~Kolmanovsky and E.~G. Gilbert, ``Theory and computation of disturbance
   invariant sets for discrete-time linear systems,'' {\em Mathematical Problems
   in Engineering}, vol.~4, no.~4, pp.~317--367, 1998.
-
-\bibitem{khalil_nonlinear_systems}
-H.~Khalil, {\em {N}oninear {S}ystems}.
-\newblock Prentice-Hall, New Jersey, 1996.
 
 \bibitem{schneider_2013}
 R.~Schneider, {\em Minkowski addition}, pp.~139--207.

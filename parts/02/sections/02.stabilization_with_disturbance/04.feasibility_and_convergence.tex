@@ -455,14 +455,16 @@ Therefore, overall
 \end{gg_box}
 %---------- END Feasibility point 3 --------------------------------------------
 
-Piecing the two last statements together, we conclude that the application of
-the control input $\widetilde{u}_i(\cdot)$ at time $t_{k+1}$ results in
+Piecing the two last statements together, and consulting with property
+\eqref{property:restricted_constraint_set}, we conclude that the application of
+the control input $\widetilde{\vect{u}}_i(\cdot)$ at time $t_{k+1}$ results in
 the states of the real system abiding by their intended state constraints
-across the entire horizon $t_{k+1}, t_{k+1} + T_p$.
+across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$.
 
-Therefore, overall, the (sub-optimal) control input $\widetilde{u}_i(\cdot)$
-is admissible at time $t_{k+1}$, which means that feasibility of a solution to
-the optimization problem at time $t_k$ implies feasibility at time
+Therefore, overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdot)$
+is admissible at time $t_{k+1}$ according to definition
+\eqref{definition:admissible_input}, which means that feasibility of a solution
+to the optimization problem at time $t_k$ implies feasibility at time
 $t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to be
 feasible, a solution to the optimal control problem is feasible for
 all $t \geq 0$.\\

@@ -23,7 +23,7 @@ agent $i \in \mathcal{V}$. The set $\mathcal{N}_i$ is composed of the
 indices of agents $j \in \mathcal{V}$ which
 \begin{enumerate}
   \item are within the sensing range of agent $i$ at time $t=0$, i.e.
-    $j \in \mathcal{R}_i(0)$, and
+    $j \in \mathcal{R}_i(0)$, \textit{and}
   \item are \textit{intended} to be kept within the sensing range of agent $i$ at all
     times $t \in \mathbb{R}_{> 0}$
 \end{enumerate}
@@ -36,40 +36,40 @@ invariant over time\footnote{This reason, and the fact that the proposed
 control scheme guarantees that $\mathcal{N}_i$ \textit{will} remain invariant
 over time, is why we do not refer to this set as $\mathcal{N}_i(t)$.}.
 
-It is assumed that $\mathcal{N}_i$ is given at $t=0$, and that neighbouring
-relations are reciprocal, i.e. agent $i$ is a neighbour of agent $j$ if and
-only if $j$ is a neighbour of $i$:
+It is not necessary that all agents are assigned a set of agents with whom they
+should maintain connectivity; however, if \textit{all} agents were
+neighbour-less, then the concept of \textit{cooperation} between them would be
+void, since in that case the problem would break down into $|\mathcal{V}|$
+individual problems of smaller significance or interest, while weakening the
+``multi-agent" perspective as well. Therefore, we assume that
+$\sum\limits_i |\mathcal{N}_i| > 0$.
+
+It is further assumed that $\mathcal{N}_i$ is given at $t=0$, and that
+neighbouring relations are reciprocal, i.e. agent $i$ is a neighbour of
+agent $j$ if and only if $j$ is a neighbour of $i$:
 \begin{subequations}
 \begin{align}
   j \in \mathcal{N}_i \Leftrightarrow i \in \mathcal{N}_j,\ \forall i,j \in \mathcal{V}, i\not=j
 \end{align}
 \end{subequations}
-Topologically, this means that the graph $\mathcal{G}$ constructed by the edges
-connecting neighbouring agents $i \in \mathcal{V}$ is undirected.
+%Topologically, this means that the graph $\mathcal{G}$ constructed by the edges
+%connecting neighbouring agents $i \in \mathcal{V}$ is undirected.
 
-Furthermore, it is assumed that, initially, the Jacobians $\mat{J}_i$ are
-well-defined $\forall i \in \mathcal{V}$. These assumptions, which concern
-the initial conditions of the problem, are summarized in assumption
+Furthermore, it is assumed that at time $t=0$ the Jacobians $\mat{J}_i$ are
+well-defined $\forall i \in \mathcal{V}$. The assumptions which concern
+the initial conditions of the problem are summarized in assumption
 \ref{ass:initial_conditions}:
 
 \begin{gg_box}
 \begin{assumption}(\textit{Initial Conditions Assumption})\\
+  \label{ass:initial_conditions}
 
   At time $t = 0$
 
   \begin{enumerate}
 
     \item the sets $\mathcal{N}_i$ are known for all $i \in \mathcal{V}$
-      and\footnote{It is not necessary that
-      all agents are assigned a set of agents with whom they should maintain
-      connectivity; however, if \textit{all} agents were neighbour-less,
-      then the concept of \textit{cooperation} between them would be void,
-      since in that case the problem would break down into $|\mathcal{V}|$
-      individual problems of smaller significance or interest, while
-      weakening the ``multi-agent" perspective as well.}
-      $\sum\limits_i |\mathcal{N}_i| > 0$
-
-    \item the given neighbouring relations are reciprocal
+      and $\sum\limits_i |\mathcal{N}_i| > 0$
 
     \item all agents are in a collision-free configuration with each other,
       the obstacles $\ell \in \mathcal{L}$ and the workspace $W$ boundary
@@ -79,6 +79,5 @@ the initial conditions of the problem, are summarized in assumption
       $$ -\frac{\pi}{2} < \theta_i(0) < \frac{\pi}{2},\ \forall i \in \mathcal{V}$$
 
   \end{enumerate}
-  \label{ass:initial_conditions}
 \end{assumption}
 \end{gg_box}

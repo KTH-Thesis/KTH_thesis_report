@@ -22,8 +22,8 @@ In order to translate
 the constraints that are dictated for the state $\vect{z}_i(t)$ into constraints
 regarding the error state $\vect{e}_i(t)$, we define the set
 $\mathcal{E}_i \subset \mathbb{R}^9 \times \mathbb{T}^3$ as:
-$$\mathcal{E}_i = \{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
-\vect{e}_i(t) \in \mathcal{Z}_i \oplus (-\vect{z}_{i,des} )\}$$
+$$\mathcal{E}_i = \big\{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
+\vect{e}_i(t) \in \mathcal{Z}_i \ominus \vect{z}_{i,des} \big\}$$
 as the set that captures all constraints for the error dynamics
 \eqref{eq:position_based_error_model_with_disturbance} dictated by the problem \eqref{problem}.
 

@@ -1,28 +1,29 @@
 \subsection{Notation}
 
 The set of positive integers is denoted by $\mathbb{N}$. The real $n$-coordinate
-space, with $n\in\mathbb{N}$, is denoted by $\mathbb{R}^n$;
+space, $n\in\mathbb{N}$, is denoted by $\mathbb{R}^n$;
 $\mathbb{R}^n_{\geq 0}$ and $\mathbb{R}^n_{> 0}$ are the sets of real
 $n$-vectors with all elements nonnegative and positive, respectively. Given a
-set $S$, we denote as $\lvert S\lvert$ its cardinality. The notation
+set $S$, we denote by $\lvert S\lvert$ its cardinality. The notation
 $\|\vect{x}\|$ is used for the Euclidean norm of a vector
-$\vect{x} \in \mathbb{R}^n$. Given a symmetric matrix
-$\mat{A} = \mat{A}^T, \lambda_{\text{min}}(\mat{A})$
-denotes the minimum eigenvalue of $\mat{A}$, respectively, where
-$\sigma(\mat{A})$ is the set of all the eigenvalues of
-$\mat{A}$ and $\text{rank}(\mat{A})$ is its rank. Given two sets $A$ and $B$,
-the operation $A \oplus B$ denotes the Minkowski addition, defined by
-$A \oplus B = \{\vect{a} + \vect{b}, \vect{a} \in A, \vect{b} \in B$. Similarly,
+$\vect{x} \in \mathbb{R}^n$. Given matrix $\mat{A}$, $\lambda_{\text{min}}(\mat{A})$
+and $\lambda_{\text{max}}(\mat{A})$
+denote the minimum and maximum eigenvalues of $\mat{A}$, respectively.
+Its minimum and maximum singular values are denoted by
+$\sigma_{\text{min}}(\mat{A})$ and $\sigma_{\text{max}}(\mat{A})$ respectively.
+Given two sets $A$ and $B$, the operation $A \oplus B$ denotes the Minkowski
+addition, defined by
+$A \oplus B = \{\vect{a} + \vect{b},\ \vect{a} \in A, \vect{b} \in B\}$. Similarly,
 the Minkowski $-$ or Pontryagin difference is defined by
-$A \ominus B = \{\vect{a} - \vect{b}, \vect{a} \in A, \vect{b} \in B$.
+$A \ominus B = \{\vect{a} - \vect{b},\ \vect{a} \in A, \vect{b} \in B\}$.
 $\mat{I_n} \in \mathbb{R}^{n \times n}$ and
 $\mat{0}_{m \times n} \in \mathbb{R}^{m \times n}$
-are the unit matrix and the $m \times n$ matrix with all entries zeros,
+are the unit matrix and the $m \times n$ matrix with all entries zeros
 respectively.  A matrix $\mat{A} \in \mathbb{R}^{n \times n}$ is called
-skew-symmetric if and only if $\mat{A}^\top = -\mat{A}$.
+skew-symmetric if and only if $\mat{A}^\top = -\mat{A}$. The notation
 $\mathcal{B}(\vect{c},r) \overset{\Delta}{=} \{\vect{x} \in \mathbb{R}^3: \|\vect{x}-\vect{c}\| \leq r\}$
-is the $3$D sphere of radius $r \in \mathbb{R}_{\ge 0}$ and center
-$\vect{c}\in\mathbb{R}^{3}$.
+is reserved for the 3D sphere of radius $r \in \mathbb{R}_{\ge 0}$ and center
+located at $\vect{c}\in\mathbb{R}^{3}$.
 
 The vector expressing the coordinates of the origin of frame $\{j\}$ in
 frame $\{i\}$ is denoted by $\vect{p}_{j \triangleright i}$. When this vector is
@@ -33,16 +34,16 @@ $\vect{p}_{j \triangleright i}^{k}$.
 The angular velocity of frame $\{j\}$ with respect to frame $\{i\}$, expressed
 in frame $\{k\}$ coordinates, is denoted by
 $\vect{\omega}^k_{j \triangleright i}\in \mathbb{R}^{3}$.
-We also use the notation $\mathbb{M} = \mathbb{R}^3\times \mathbb{T}^3$.
-We further denote as $\vect{q}_{j \triangleright i} \in \mathbb{T}^3$
+We further denote by $\vect{q}_{j \triangleright i} \in \mathbb{T}^3$
 the Euler angles representing the orientation of frame $\{j\}$ with respect to
 frame $\{i\}$, where $\mathbb{T}^3$ is the $3$D torus.
+We also use the notation $\mathbb{M} = \mathbb{R}^3\times \mathbb{T}^3$.
 For notational brevity, when a coordinate frame corresponds to the inertial frame
 of reference $\{\mathcal{O}\}$, we will omit its explicit notation
-(e.g., $\vect{p}_i = \vect{p}_{i \triangleright \mathcal{O}} = \vect{p}^\mathcal{O}_{i \triangleright \mathcal{O}}$,
+(e.g., $\vect{p}_i = \vect{p}_{i \triangleright \mathcal{O}} = \vect{p}^\mathcal{O}_{i \triangleright \mathcal{O}}$, and
 $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^\mathcal{O}_{i \triangleright \mathcal{O}}$).
-All vector and matrix differentiations are derived with respect to the inertial
-frame $\{\mathcal{O}\}$ unless stated otherwise.
+%All vector and matrix differentiations are derived with respect to the inertial
+%frame $\{\mathcal{O}\}$ unless stated otherwise.
 
 \begin{bw_box}
 \begin{definition}\cite{khalil_nonlinear_systems} (\textit{Class $\mathcal{K}$ function})
@@ -51,7 +52,7 @@ frame $\{\mathcal{O}\}$ unless stated otherwise.
   is said to belong to class $\mathcal{K}$ if
   \begin{enumerate}
     \item it is strictly increasing
-    \item $f(0) = 0$
+    \item $\alpha (0) = 0$
   \end{enumerate}
   If $a = \infty$ and $\lim\limits_{r \to \infty} a(r) = \infty$, then function
   $\alpha$ is said to belong to class $\mathcal{K}_{\infty}$
@@ -66,8 +67,7 @@ frame $\{\mathcal{O}\}$ unless stated otherwise.
   is said to belong to class $\mathcal{KL}$ if
   \begin{enumerate}
     \item for a fixed $s$, the mapping $\beta(r,s)$ belongs to class $\mathcal{K}$ with respect to $r$
-    \item for a fixed $r$, the mapping $\beta(r,s)$ is decreasing with respect
-      to $s$
+    \item for a fixed $r$, the mapping $\beta(r,s)$ decreases with respect to $s$
     \item $\lim\limits_{s \to \infty} \beta(r,s) = 0$
   \end{enumerate}
   \label{def:kl_class}
@@ -82,7 +82,7 @@ frame $\{\mathcal{O}\}$ unless stated otherwise.
   to be \textit{Input-to-State Stable (ISS)} if there exist functions
   $\sigma \in \mathcal{K}_{\infty}$ and $\beta \in \mathcal{KL}$ such that
   \begin{align}
-    \|x(t)\| \leq \beta\big(\|x(t_0)\|,t\big) + \sigma\big(\|u\|_{infty}\big)
+    \|x(t)\| \leq \beta\big(\|x(t_0)\|,t\big) + \sigma\big(\|u\|_{\infty}\big)
   \end{align}
   \label{def:ISS}
 \end{definition}

@@ -3,8 +3,7 @@
 \contentsline {part}{I\hspace {1em}The problem}{7}{part.1}
 \contentsline {section}{\numberline {2}Notation and Preliminaries}{9}{section.2}
 \contentsline {subsection}{\numberline {2.1}Notation}{9}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Graph Theory}{10}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Non-linear Model Predictive Control for continuous-time systems}{10}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.2}Model Predictive Control for non-linear continuous-time systems}{10}{subsection.2.2}
 \contentsline {section}{\numberline {3}Problem Formulation}{11}{section.3}
 \contentsline {subsection}{\numberline {3.1}System Model}{11}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
@@ -20,4 +19,4 @@
 \contentsline {subsection}{\numberline {5.1}Formalizing the model}{39}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}The error model}{41}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}The optimization problem}{41}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Feasibility and Convergence}{46}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.4}Feasibility and Convergence}{49}{subsection.5.4}

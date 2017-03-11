@@ -26,7 +26,6 @@ At a generic time $t_k$, agent $i$ solves the following optimization problem:
 \end{align}
 \label{problem:opt_with_disturbances}
 \end{problem}
-
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
 are internal to the controller, as opposed to their actual values, because,
 even in the nominal case, the predicted values will not be equal to the
@@ -157,7 +156,7 @@ $\mathcal{E}_i$. We formalize this statement in property
 \eqref{property:restricted_constraint_set}.
 
 \begin{bw_box}
-  \begin{property}%\cite{kolmanovsky}
+  \begin{property}
 
   For every $s \in [t, t + T_p]$
   \begin{align}
@@ -410,5 +409,6 @@ We can now give the definition of an \textit{admissible input}:
     \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
   \end{enumerate}
 
+\label{definition:admissible_input}
 \end{definition}
 \end{bw_box}

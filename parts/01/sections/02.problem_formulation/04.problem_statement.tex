@@ -1,7 +1,5 @@
 \subsection{Problem Statement}
 
-In this section, the problem considered will be stated in a concrete manner.\\
-
 Due to the fact that the agents are not dimensionless and their communication
 capabilities are limited, given feasible steady-state configurations
 $\vect{p}_{i,des}, \vect{q}_{i,des}$, the control protocol should for all
@@ -30,29 +28,41 @@ greater than $\underline{d}_{ij,a}$ with one another.
 Lastly, the control protocol should provide feasible control inputs $\vect{u}_i$
 per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
 constraints $\mathcal{U}_i$
-\begin{align}
-  \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 :
-        \|\vect{u}_i (t)\| \leq \overline{u}_i\}
-\end{align}
+
+\begin{bw_box}
+  \begin{definition} (\textit{Feasible Control Input})
+    \label{definition:feasible_control_input}
+    The control input $\vect{u}_i (\cdot)$ is called feasible when it abides
+    by its respective constraint:
+  \begin{align}
+    \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 : \|\vect{u}_i (t)\| \leq \overline{u}_i\}
+  \end{align}
+
+\end{definition}
+\end{bw_box}
+\newpage
 
 Formally, the control problem under the aforementioned constraints is
-formulated as follows:
+formulated as follows:\\
 
 \begin{bg_box}
+\label{problem}
 \begin{problem}
   Consider $N$ agents modeled as bounded spheres $\mathcal{B}(\vect{p}_i, r_i)$,
   $i \in \mathcal{V}, N = |\mathcal{V}|$, that operate in workspace $W$ that is
-  also modeled as a bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$,
-  featuring $|\mathcal{L}|$ spherical obstacles, also modeled as bounded
-  spheres $\mathcal{B}(\vect{p}_{\ell}, r_{\ell}), \ell \in \mathcal{L}$.
+  also modeled as a bounded sphere $\mathcal{B}(\vect{p}_W,r_W)$. $W$
+  features $|\mathcal{L}|$ spherical obstacles in its interior, also modeled as
+  bounded spheres $\mathcal{B}(\vect{p}_{\ell}, r_{\ell}), \ell \in \mathcal{L}$.
 
-  Each agent $i$ is governed by the dynamics \eqref{eq:system}, and the compound
-  system of agents, obstacles and the workspace is subject to assumptions
-  \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
+  All agents $i \in \mathcal{V}$ are governed by the dynamics \eqref{eq:system},
+  and the compound system of agents, obstacles and the workspace is subject to
+  assumptions \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
   \eqref{ass:intra_environmental_arrangement}. Given desired \textit{feasible}
-  steady-state agent configurations $\vect{x}_{i,des}$,
-  $\forall i \in \mathcal{V}$, design decentralized control laws
-  $\vect{u}_i(t)$ such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
+  steady-state agent configurations $\vect{x}_{i,des}$ according to definition
+  \eqref{definition:feasible_steady_state_conf},
+  $\forall i \in \mathcal{V}$, design feasible decentralized control laws
+  $\vect{u}_i(t)$ according to definition \eqref{definition:feasible_control_input},
+  such that $\forall i \in \mathcal{V}$ and for all times $t \in \mathbb{R}_{\geq 0}$,
   the following hold:
 
   \begin{enumerate}
@@ -79,10 +89,8 @@ formulated as follows:
       $$- \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2}$$
 
     \item The control laws $\vect{u}_i(t)$ abide by their respective input constraints
-      at all times
-      $$\vect{u}_i(t) \in \mathcal{U}_i,\ \forall t \in \mathbb{R}_{\geq 0} $$
+      $$\vect{u}_i(t) \in \mathcal{U}_i$$
 
   \end{enumerate}
-\label{problem}
 \end{problem}
 \end{bg_box}
