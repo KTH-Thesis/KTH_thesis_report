@@ -1,5 +1,5 @@
 %-------------------------------------------------------------------------------
-\subsection{Feasibility and Convergence}
+\subsection{Stabilization: Feasibility and Convergence}
 
 Under these considerations, we can now state the theorem that relates to
 the guaranteeing of the stability of the compound system of agents
@@ -12,27 +12,29 @@ position which results in feasible displacements:\\
   Suppose that
 
   \begin{enumerate}
-    \item the terminal region $\mathcal{E}_{i,f} \subseteq \mathcal{E}_i$ is
-      closed with $\vect{0} \in \mathcal{E}_{i,f}$
+    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
+      closed with $\vect{0} \in \Omega_i$
     \item a solution to the optimal control problem \eqref{position_based_cost}
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input
-      $\vect{u}_{i,f} : [0, h] \to \mathcal{U}_i$ such that for all
-      $\vect{e}_i \in \mathcal{E}_{i,f}$ and $\forall \tau \in [0,h]$:
+      $\vect{h}_i(\vect{u}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      such that for all $\vect{e}_i \in \Omega_i$ and
+      $\forall \tau \in [t_k + T_p, t_{k+1} + T_p]$:
 
       \begin{enumerate}
-        \item $\vect{e}_i(\tau) \in \mathcal{E}_{i,f}$
-        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{u}_{i,f}(\tau)\big) \leq 0$
+        \item $\vect{e}_i(\tau) \in \Omega_i$
+        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau),
+        \vect{h}_i\big(\vect{u}_i(\tau)\big)
+          + F_i\big(\vect{e}_i(\tau), \vect{h}_i\big(\vect{u}_i(\tau)\big)\big) \leq 0$
       \end{enumerate}
 
   \end{enumerate}
 
   then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
   the control input \eqref{eq:position_based_optimal_u} converges to the set
-  $\mathcal{E}_{i,f}$ when $t \to \infty$.
+  $\Omega_i$ when $t \to \infty$.
 
 \end{theorem}
 \end{bw_box}
@@ -41,7 +43,7 @@ position which results in feasible displacements:\\
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
-to the terminal set $\mathcal{E}_{i,f}$.\\
+to the terminal set $\Omega_i$.\\
 
 \textbf{Feasibility analysis}
 Consider a sampling instant $t_k$ for which a
@@ -70,40 +72,38 @@ portions:
 Both portions are admissible since the calculated optimal control input is
 admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
-crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,f}$.
+crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 Furthermore, according to assumption (3) of the theorem, there exists an
-admissible (and certainly not guaranteed optimal) input $\vect{u}_{i,f}$ that
-renders $\mathcal{E}_{i,f}$ invariant over $[t_k + T_p, t_k + T_p + h]$.
+admissible (and certainly not guaranteed optimal) input $\vect{h}_i(\vect{u}_i)$ that
+renders $\Omega_i$ invariant over $[t_k + T_p, t_{k+1} + T_p]$.
 
 Given the above facts, we can construct an admissible input
-$\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
-portion of \eqref{eq:optimal_input_portions} and the input
-$\vect{u}_{i,f}(\cdot)$:
+$\widetilde{\vect{u}}_i(\cdot)$  starting at time $t_{k+1}$ by sewing together
+the second portion of \eqref{eq:optimal_input_portions} and the input
+$\vect{h}_i(\vect{u}_i)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
-        %\vect{u}_{i,f}\Big(\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i^{\star}, \vect{e}_i(t_k)\big)\Big), & \tau_2 \in (t_k + T_p, t_{k+1} + T_p]
-        \vect{u}_{i,f}(\tau - t_k - T_p), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        \vect{h}_i\big(\vect{u}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}
 \end{equation}
 
-Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\cdot)$
-is an admissible control input as a composition of admissible control inputs.
-
-This means that feasibility of a solution to the optimization problem at time
-$t_k$ implies feasibility at time $t_{k+1} > t_k$, and, thus, since at time $t=0$
-a solution is assumed to be feasible, a solution to the optimal control problem
-is feasible for all $t \geq 0$.\\
+The control input $\widetilde{\vect{u}}_i(\cdot)$ is admissible as a
+composition of admissible control inputs. This means that feasibility of a
+solution to the optimization problem at time $t_k$ implies feasibility at
+time $t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to
+be feasible, a solution to the optimal control problem is feasible for all
+$t \geq 0$.\\
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating the convergence of the
-state $\vect{e}_i$ to the terminal set $\mathcal{E}_{i,f}$. In order for this
+state $\vect{e}_i$ to the terminal set $\Omega_i$. In order for this
 to be proved, it must be shown that a proper value function decreases along
-the solution trajectories starting at some initial time $t_k$. We consider the
+closed-loop trajectories starting at some initial time $t_k$. We consider the
 \textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
 Lyapunov function:
 $$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
@@ -159,10 +159,10 @@ J_i \Big(\vect{e}_i(t), \vect{u}_i\big(\cdot;\ \vect{e}_i(t)\big)\Big)
 \geq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)
 \end{equation}
 
-Let us now begin our investigation on the sign of the difference between the cost
+Let us now begin our investigation on the difference between the cost
 that results from the application of the feasible input $\vect{u}_{1,i}$,
 which we shall denote by $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$,
-and the optimal cost $J_i^{\star}\big(\vect{e}_i(t_k)\big)$, while reminding
+and the optimal cost $J_i^{\star}\big(\vect{e}_i(t_k)\big)$. We remind
 ourselves that
 $J_i \big(\vect{e}_i(t), \overline{\vect{u}}_i (\cdot)\big)$ $=$
 $\int_{t}^{t + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds$ $+$
@@ -187,7 +187,7 @@ two integrals above in between these intervals:
 
 \begin{gg_box}
 
-Since no model mismatch or disturbances are present, consulting remark
+Since no model mismatch or disturbances are present, consulting with remark
 \eqref{remark:predicted_actual_equations_without_disturbance} and substituting
 for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
 \begin{align}
@@ -249,9 +249,11 @@ are also equal, so will the predicted states over the same interval:
 \begin{align}
   \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) =
   \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
+  \label{eq:equal_predicted_without_disturbance}
 \end{align}
 Using our notation then, in the same interval:
-$\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, and therefore the following
+$\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$. Coupled with the fact that
+in the same interval $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$, the following
 equality holds over $[t_{k+1}, t_k + T_p]$:
 \begin{align}
   F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =
@@ -277,8 +279,8 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
 
 \begin{gg_box}
   We turn our attention to the first integral in the above expression, and we
-  note that $(t_{k+1} + T_p) - (t_k + T_p) = t_{k+1} - t_k = h$, which is exactly the
-  length of the interval where assumption (3b) of the theorem holds. Hence,
+  note that $[t_{k+1} + T_p, t_k + T_p]$, is exactly the
+  the interval where assumption (3b) of the theorem holds. Hence,
   we decide to integrate the expression found in the assumption over the
   interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
   in it:
@@ -316,7 +318,8 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
     \leq L_{V_i} \big\|\vect{e}_{1,i}(t_k + T_p) - \vect{e}_{0,i}(t_k + T_p)\big\|
   \end{align}
 
-  However, in the interval $[t_{k+1}, t_k + T_p]$:
+  However, as we witnessed in \eqref{eq:equal_predicted_without_disturbance},
+  in the interval $[t_{k+1}, t_k + T_p]$:
   $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, hence the right-hand
   side of the inequality equals zero:
   \begin{align}
@@ -376,7 +379,8 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
  \label{eq:J_opt_between_consecutive_k}
 \end{align}
 With this milestone result established, we need to trace the time $t_k$ back
-to $t_0 = 0$.
+to $t_0 = 0$ in order to prove that the closed-loop system is stable at all
+times $t \in \mathbb{R}_{\geq 0}$.
 
 \begin{gg_box}
   The integral of $\|\vect{e}_{0,i}(\tau)\|^2$ over the interval $[t_0, t_{k+1}]$,
@@ -426,9 +430,11 @@ Let us now define the function $V_i(\vect{e}_i(t))$:
 \begin{align}
   V_i\big(\vect{e}(t)\big) \triangleq J_i^{\star}\big(\vect{e}_i(\tau)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big),\ t \in \mathbb{R}_{\geq0}
 \end{align}
-where $\tau = max\{t_k : t_k \leq t\}$. Since $J_i^{\star}\big(\vect{e}_i(0)\big)$
-is bounded, this implies that $V_i\big(\vect{e}(t)\big)$ is also bounded. The
-signals $\vect{e}_i(t) \in \mathcal{E}_i$ and $\vect{u}_i(t) \in \mathcal{U}_i$
+where $\tau = max\{t_k : t_k \leq t\}$ $-$ i.e. the immediately previous sampling
+time. Since $J_i^{\star}\big(\vect{e}_i(0)\big)$
+is bounded (as composition of bounded parts), this implies
+that $V_i\big(\vect{e}(t)\big)$ is also bounded. The signals
+$\vect{e}_i(t) \in \mathcal{E}_i$ and $\vect{u}_i(t) \in \mathcal{U}_i$
 are also bounded. According to \eqref{eq:position_based_error_model}, this
 means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
 \eqref{eq:J_opt_between_k_and_0} we then have
@@ -476,6 +482,6 @@ which, given \eqref{eq:error_now_to_predicted_error} and substituting
 for $\tau_1 = t$ while dropping the initial condition at $\tau_0 = t_k$, means that
 $$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| = 0$$
 which implies that
-$$\lim\limits_{t \to \infty}\vect{e}_i(t) \in \mathcal{E}_{i,f}$$
+$$\lim\limits_{t \to \infty}\vect{e}_i(t) \in \Omega_i$$
 Therefore, the closed-loop trajectory of the error state $\vect{e}_i$ converges
-to the terminal set $\mathcal{E}_{i,f}$ as $t \to \infty$.\\ \qedsymbol
+to the terminal set $\Omega_i$ as $t \to \infty$.\\ \qedsymbol
