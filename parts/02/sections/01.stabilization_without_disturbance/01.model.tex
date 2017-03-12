@@ -1,9 +1,20 @@
-Here we are interested in steering each agent $i \in \mathcal{V}$ into
+We are interested in steering each agent $i \in \mathcal{V}$ into
 a \textit{position} in 3D space, while conforming to the requirements
-of the problem; that is, all agents should avoid colliding with each other, all
-obstacles in the workspace, and the workspace boundary itself, while remaining
-in a non-singular configuration and sustaining the connectivity to their
-respective neighbours.
+posed by the problem. Here, the real system and its model are equivalent:
+no model-reality mismatches exist, and neither do disturbances act on the real
+system. At first, the model of system \eqref{eq:system} will be formalized.
+Next, the error model and \textit{its} constraints will be expressed. We will
+then pose the optimization problem to be solved periodically: it will equip us
+with the optimum feasible input that steers the system towards achieving
+its intended collision-free steady-state configuration, while avoiding the
+pitfall of violating the satisfaction of its constraints. This will lead to
+the proof of this statement, i.e. that the closed-loop compound system of
+agents $i \in \mathcal{V}$ is stable under the proposed control regime.
+
+%; that is, all agents should avoid colliding with each other, all
+%obstacles in the workspace, and the workspace boundary itself, while remaining
+%in a non-singular configuration and sustaining the connectivity to their
+%respective neighbours.
 
 %-------------------------------------------------------------------------------
 \subsection{Formalizing the model}
@@ -54,12 +65,11 @@ continuous-time differential equations of the form
   \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
   \vect{u}_i (t) & \subset \mathbb{R}^6
 \end{align}
-where state $\vect{z}_i$ is directly measurable. It should be noted that
-equation \eqref{eq:non_perturbed_system} does not consider model-plant
-mismatches or external disturbances.
+where state $\vect{z}_i$ is directly measurable as per assumption
+\eqref{ass:measurements_access}.
 
 We define the set $\mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3$
-as the set that captures all the state constraints of the system's dynamics
+as the set that captures all the \textit{state} constraints on the system
 posed by the problem \eqref{problem}, for $t \in \mathbb{R}_{\geq 0}$.
 Therefore $\mathcal{Z}_i$ is such that:
 \begin{align}
