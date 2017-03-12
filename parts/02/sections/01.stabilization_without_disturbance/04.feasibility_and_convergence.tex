@@ -19,15 +19,15 @@ position which results in feasible displacements:\\
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input
-      $\vect{h}_i(\vect{u}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Omega_i$ and
       $\forall \tau \in [t_k + T_p, t_{k+1} + T_p]$:
 
       \begin{enumerate}
         \item $\vect{e}_i(\tau) \in \Omega_i$
         \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau),
-        \vect{h}_i\big(\vect{u}_i(\tau)\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{h}_i\big(\vect{u}_i(\tau)\big)\big) \leq 0$
+        \vect{h}_i\big(\vect{e}_i(\tau)\big)
+          + F_i\big(\vect{e}_i(\tau), \vect{h}_i\big(\vect{e}_i(\tau)\big)\big) \leq 0$
       \end{enumerate}
 
   \end{enumerate}
@@ -74,19 +74,19 @@ admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
 crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 Furthermore, according to assumption (3) of the theorem, there exists an
-admissible (and certainly not guaranteed optimal) input $\vect{h}_i(\vect{u}_i)$ that
+admissible (and certainly not guaranteed optimal) input $\vect{h}_i(\vect{e}_i)$ that
 renders $\Omega_i$ invariant over $[t_k + T_p, t_{k+1} + T_p]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  starting at time $t_{k+1}$ by sewing together
 the second portion of \eqref{eq:optimal_input_portions} and the input
-$\vect{h}_i(\vect{u}_i)$:
+$\vect{h}_i(\vect{e}_i)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\
-        \vect{h}_i\big(\vect{u}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        \vect{h}_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}
@@ -277,6 +277,20 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
 \label{eq:convergence_2_integrals}
 \end{align}
 
+During the course of arriving at the above result we have concluded that,
+in the absence of disturbances, the remark \eqref{eq:error_now_to_predicted_error}
+holds.
+\begin{bw_box}
+  \begin{remark}
+  \label{eq:error_now_to_predicted_error}
+    For $t \in [t_k, t_k + T_p]$:
+    \begin{align}
+      \vect{e}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+        =\overline{\vect{e}}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    \end{align}
+  \end{remark}
+\end{bw_box}
+
 \begin{gg_box}
   We turn our attention to the first integral in the above expression, and we
   note that $[t_{k+1} + T_p, t_k + T_p]$, is exactly the
@@ -464,7 +478,8 @@ norm of the integral goes to zero in steady-state:
     Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
     absolutely continuous function in $\mathbb{R}$. If the following hold:
   \begin{itemize}
-    \item $\|\vect{x}(\cdot)\| < \infty, \|\dot{\vect{x}}(\cdot)\| < \infty$
+    \item $\|\vect{x}(\cdot)\| < \infty$
+    \item $\|\dot{\vect{x}}(\cdot)\| < \infty$
     \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
   \end{itemize}
   then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
@@ -473,15 +488,20 @@ norm of the integral goes to zero in steady-state:
 Lemma \eqref{lemma:barbalat} assures us that under these conditions for the
 error and its dynamics, which are fulfilled in our case, the error
 \begin{align}
-  \lim\limits_{t \to \infty}&\|\vect{e}_{0,i}(t)\| = 0 \Leftrightarrow \\
+  \lim\limits_{t \to \infty}\|\vect{e}_{0,i}(t)\| &= 0 \Leftrightarrow \\
   \lim\limits_{t \to \infty}
-  &\Big\| \overline{\vect{e}}_i\Big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| = 0,\
+  \Big\| \overline{\vect{e}}_i\Big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| &= 0,\
 \forall t_k \in \mathbb{R}_{\geq 0}
 \end{align}
-which, given \eqref{eq:error_now_to_predicted_error} and substituting
-for $\tau_1 = t$ while dropping the initial condition at $\tau_0 = t_k$, means that
+which, given remark \eqref{eq:error_now_to_predicted_error},
+and dropping the initial condition at $\tau_0 = t_k$, means that
 $$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| = 0$$
 which implies that
 $$\lim\limits_{t \to \infty}\vect{e}_i(t) \in \Omega_i$$
 Therefore, the closed-loop trajectory of the error state $\vect{e}_i$ converges
-to the terminal set $\Omega_i$ as $t \to \infty$.\\ \qedsymbol
+to the terminal set $\Omega_i$ as $t \to \infty$.\\
+
+In turn, this means that the system \eqref{eq:original_z_system} converges
+to $\vect{z}_{i,des}$ while simultaneously conforming to
+all constraints $\mathcal{Z}_i$, as $t \to \infty$.
+\qedsymbol
