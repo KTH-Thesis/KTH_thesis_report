@@ -47,6 +47,7 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 
 \begin{bw_box}
 \begin{definition}\cite{khalil_nonlinear_systems} (\textit{Class $\mathcal{K}$ function})
+\label{def:k_class}
 
   A continuous function $\alpha : [0, a) \to [0, \infty)$
   is said to belong to class $\mathcal{K}$ if
@@ -56,12 +57,12 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
   \end{enumerate}
   If $a = \infty$ and $\lim\limits_{r \to \infty} a(r) = \infty$, then function
   $\alpha$ is said to belong to class $\mathcal{K}_{\infty}$
-  \label{def:k_class}
 \end{definition}
 \end{bw_box}
 
 \begin{bw_box}
 \begin{definition}\cite{khalil_nonlinear_systems} (\textit{Class $\mathcal{KL}$ function})
+\label{def:kl_class}
 
   A continuous function $\beta : [0, a) \times [0, \infty) \to [0, \infty)$
   is said to belong to class $\mathcal{KL}$ if
@@ -70,13 +71,13 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
     \item for a fixed $r$, the mapping $\beta(r,s)$ decreases with respect to $s$
     \item $\lim\limits_{s \to \infty} \beta(r,s) = 0$
   \end{enumerate}
-  \label{def:kl_class}
 \end{definition}
 \end{bw_box}
 
 
 \begin{bw_box}
 \begin{definition}\cite{Sontag2008} (\textit{Input-to-State Stability})
+\label{def:ISS}
 
   A nonlinear system $\dot{x} = f(x,u)$ with initial condition $x(t_0)$ is said
   to be \textit{Input-to-State Stable (ISS)} if there exist functions
@@ -84,12 +85,12 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
   \begin{align}
     \|x(t)\| \leq \beta\big(\|x(t_0)\|,t\big) + \sigma\big(\|u\|_{\infty}\big)
   \end{align}
-  \label{def:ISS}
 \end{definition}
 \end{bw_box}
 
 \begin{bw_box}
 \begin{definition}\cite{Sontag2008} (\textit{ISS Lyapunov function})
+\label{def:ISS_Lyapunov}
 
   A Lyapunov function $V(x,u)$ for the nonlinear system $\dot{x} = f(x,u)$
   with initial condition $x(t_0)$ is said to be a \textit{ISS-Lyapunov function}
@@ -97,16 +98,15 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
   \begin{align}
     \dot{V}(x,u) \leq -\alpha\big(\|x\|\big) + \sigma\big(\|u\|\big),\ \forall x,u
   \end{align}
-  \label{def:ISS_Lyapunov}
 \end{definition}
 \end{bw_box}
 
 \begin{bw_box}
 \begin{theorem}\cite{Sontag2008}
+\label{def:ISS_Lyapunov_admit_theorem}
 
   A nonlinear system $\dot{x} = f(x,u)$ with initial condition $x(t_0)$ is said
   to be \textit{Input-to-State Stable} if and only if it admits an
   ISS-Lyapunov function.
-  \label{def:ISS_Lyapunov_admit_theorem}
 \end{theorem}
 \end{bw_box}

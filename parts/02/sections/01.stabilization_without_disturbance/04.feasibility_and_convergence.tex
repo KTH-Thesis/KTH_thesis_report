@@ -135,16 +135,16 @@ In order not to wreak notational havoc, let us define the following terms:
 
 \begin{bw_box}
   \begin{remark}
+  \label{remark:predicted_actual_equations_without_disturbance}
     Given that no model mismatch or disturbances exist, for
     the predicted and actual states at time
     $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
     \begin{align}
       \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
-        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\\\
       \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
         \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
     \end{align}
-    \label{remark:predicted_actual_equations_without_disturbance}
   \end{remark}
 \end{bw_box}
 
@@ -198,7 +198,7 @@ for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
 \end{align}
 Subtracting the second expression from the first, we get
 \begin{align}
-  &\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &-
   \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \\
   &=\int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds -
     \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds\\
@@ -207,7 +207,7 @@ Subtracting the second expression from the first, we get
 \end{align}
 Taking norms on either side yields
 \begin{align}
-  &\bigg\|\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+  \bigg\|\vect{e}_i\big(t_{k+1};\ &\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
     -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
   &=\bigg\|\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
   - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \bigg\|\\
@@ -215,23 +215,23 @@ Taking norms on either side yields
   - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds\\
   &\leq L_{g_i}\int_{t_k}^{t_{k+1}} \bigg\|
     \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds\\
+    -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds
 \end{align}
 since $g_i$ is Lipschitz continuous in $\vect{e}_i$ with Lipschitz constant
 $L_{g_i}$. Reformulation yields
 \begin{align}
-  &\bigg\|\vect{e}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+  \bigg\|\vect{e}_i\big(t_k+h;\ &\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
     -\overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\
   &\leq L_{g_i}\int_{0}^{h} \bigg\|
     \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds\\
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we obtain zero as an
 upper bound for the norm of the difference between the two states. Since
 any norm cannot be negative, we conclude that
 \begin{align}
   \bigg\|\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| = 0 \\
+    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| = 0
 \end{align}
 which means that
 \begin{align}
@@ -299,8 +299,8 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
   right-hand side of equality \eqref{eq:convergence_2_integrals}. We can
   introduce the third one by subtracting it from both sides:
   \begin{align}
-    &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    &+ \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\
     &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)
@@ -459,6 +459,7 @@ norm of the integral goes to zero in steady-state:
 
 \begin{bw_box}
   \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
+  \label{lemma:barbalat}
 
     Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
     absolutely continuous function in $\mathbb{R}$. If the following hold:
@@ -467,7 +468,6 @@ norm of the integral goes to zero in steady-state:
     \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
   \end{itemize}
   then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
-  \label{lemma:barbalat}
   \end{lemma}
 \end{bw_box}
 Lemma \eqref{lemma:barbalat} assures us that under these conditions for the

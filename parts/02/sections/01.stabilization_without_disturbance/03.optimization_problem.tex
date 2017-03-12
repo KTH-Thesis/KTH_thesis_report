@@ -158,6 +158,7 @@ invariant set:
 
 \begin{bw_box}
   \begin{definition} (\textit{Positively Invariant Set})
+    \label{def:positively_invariant}
 
     Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
     $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
@@ -171,7 +172,6 @@ invariant set:
 
     Intuitively, this means that the set $S$ is positively invariant if a
     trajectory of the system does not exit it once it enters it.
-    \label{def:positively_invariant}
   \end{definition}
 \end{bw_box}
 
@@ -189,6 +189,7 @@ optimal control problem to the terminal region $\Omega_i$:
 
 \begin{bw_box}
 \begin{lemma} ($V_i$ is Lipschitz continuous in $\Omega_i$)
+\label{lemma:V_Lipschitz_e_0}
 
   The terminal penalty function $V_i$ is Lipschitz continuous in
   $\Omega_i$
@@ -196,7 +197,6 @@ optimal control problem to the terminal region $\Omega_i$:
   where $\vect{x}, \vect{y} \in \Omega_i$,
   with Lipschitz constant $L_{V_i} = 2 \varepsilon_{\Omega_i} \lambda_{max}(\mat{P}_i)$\\
 
-\label{lemma:V_Lipschitz_e_0}
 \end{lemma}
 \end{bw_box}
 
