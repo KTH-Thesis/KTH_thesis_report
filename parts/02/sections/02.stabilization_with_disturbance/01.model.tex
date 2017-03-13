@@ -23,12 +23,12 @@ $\vect{\delta}_i \in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3$, where
 $\Delta_i$ is a compact set containing the origin.
 The real system is described by:
 \begin{align}
-  \dot{\vect{z}}_i(t) &= f_i^R \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:perturbed_system} \\
-                      &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) + \vect{\delta}_i(t) \\
-  \vect{z}_i(0) &= \vect{z}_{i,0} \\
-  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
-  \vect{u}_i (t) & \subset \mathbb{R}^6 \\
-  \vect{\delta}_i(t) &\in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3,\ t \in \mathbb{R}_{\geq 0}\\
+  \dot{\vect{z}}_i(t) &= f_i^R \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:perturbed_system} \\[2.5ex]
+                      &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) + \vect{\delta}_i(t) \\[2.5ex]
+  \vect{z}_i(0) &= \vect{z}_{i,0} \\[2.5ex]
+  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\[2.5ex]
+  \vect{u}_i (t) & \subset \mathbb{R}^6 \\[2.5ex]
+  \vect{\delta}_i(t) &\in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3,\ t \in \mathbb{R}_{\geq 0}\\[2.5ex]
   \text{sup}\limits_{t \in \mathbb{R}_{\geq 0}} \|\vect{\delta}_i(t)\| &\leq \overline{\delta}_i
 \end{align}
 where state $\vect{z}_i$ is directly measurable as per assumption
@@ -41,10 +41,10 @@ for $t \in \mathbb{R}_{\geq 0}$. We include it again here for reference
 purposes.
 \begin{align}
   \mathcal{Z}_i = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
-      & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1_2}\\
-      & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\
-      & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\
-      & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\
-      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5_2}, \\
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1_2}\\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
+      & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\[2.5ex]
+      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5_2}, \\[2.5ex]
       &\forall t \in \mathbb{R}_{\geq 0}\big\}
 \end{align}

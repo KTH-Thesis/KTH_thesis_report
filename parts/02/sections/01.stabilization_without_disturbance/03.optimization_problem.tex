@@ -13,16 +13,16 @@ At a generic time $t_k$ then, agent $i$ solves the following
 optimization problem:
 \begin{problem}
 \begin{align}
-  \text{Find }& \\
+  \text{Find }& \\[2.5ex]
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
-    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big)  \label{position_based_cost} \\
-    \text{where}& \\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big)  \label{position_based_cost} \\[2.5ex]
+    \text{where}& \\[2.5ex]
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
-      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \\
-  \text{subject to:} & \nonumber \\
-                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
-  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \\[2.5ex]
+  \text{subject to:} & \nonumber \\[2.5ex]
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
+  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\[2.5ex]
   & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i \subseteq \mathcal{E}_i
 \end{align}
 \label{problem:opt_without_disturbances}
@@ -88,9 +88,9 @@ accurate, and (b) exchanged without delay. We encapsulate these pieces of
 information in four stacked vectors:
 \begin{subequations}
 \begin{align}
-  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
-  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
-  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
+  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\[2.5ex]
+  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\[2.5ex]
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\[2.5ex]
   \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
 \end{align}
 \end{subequations}
@@ -124,7 +124,7 @@ $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
 $V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
   F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
-  &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\
+  &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\[2.5ex]
   V_i \big(\overline{\vect{e}}_i(t)\big) & \triangleq \overline{\vect{e}}_i(t)^{\top} \mat{P}_i \overline{\vect{e}}_i(t)
 \end{align}
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
@@ -134,12 +134,12 @@ upper- and lower-bounded:
 \begin{align}
   \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
   \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\
+      \vect{e}_i(t) \\[2.5ex]
       \vect{u}_i(t)
-    \end{bmatrix}\Bigg\|^2  \\
-    &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\
+    \end{bmatrix}\Bigg\|^2  \\[2.5ex]
+    &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\[2.5ex]
     &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\
+      \vect{e}_i(t) \\[2.5ex]
       \vect{u}_i(t)
     \end{bmatrix}\Bigg\|^2 \leq
   \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
@@ -196,7 +196,7 @@ optimal control problem to the terminal region $\Omega_i$:
   $\Omega_i$
   $$|V(\vect{x}) - V(\vect{y})| \leq L_{V_i} \|\vect{x} - \vect{y}\|$$
   where $\vect{x}, \vect{y} \in \Omega_i$,
-  with Lipschitz constant $L_{V_i} = 2 \varepsilon_{\Omega_i} \lambda_{max}(\mat{P}_i)$\\
+  with Lipschitz constant $L_{V_i} = 2 \varepsilon_{\Omega_i} \lambda_{max}(\mat{P}_i)$\\[2.5ex]
 
 \end{lemma}
 \end{bw_box}
@@ -205,9 +205,9 @@ optimal control problem to the terminal region $\Omega_i$:
 \begin{gg_box}
 \textbf{Proof} For every $\vect{x}, \vect{y} \in \Omega_i$, it holds that
 \begin{align}
-  |V(\vect{x}) - V(\vect{y})| &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y}| \\
-    &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y} \pm \vect{x}^{\top} \mat{P}_i \vect{y}| \\
-    &= |\vect{x}^{\top} \mat{P}_i (\vect{x} -\vect{y}) - \vect{y}^{\top} \mat{P}_i (\vect{x}-\vect{y})| \\
+  |V(\vect{x}) - V(\vect{y})| &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y}| \\[2.5ex]
+    &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y} \pm \vect{x}^{\top} \mat{P}_i \vect{y}| \\[2.5ex]
+    &= |\vect{x}^{\top} \mat{P}_i (\vect{x} -\vect{y}) - \vect{y}^{\top} \mat{P}_i (\vect{x}-\vect{y})| \\[2.5ex]
     &\leq |\vect{x}^{\top} \mat{P}_i (\vect{x} -\vect{y})| + |\vect{y}^{\top} \mat{P}_i (\vect{x}-\vect{y})|
 \end{align}
 
@@ -218,9 +218,9 @@ $\mat{P}_i$. Hence:
 \begin{align}
   |V(\vect{x}) - V(\vect{y})| &\leq
   \sigma_{max}(\mat{P}_i) \|\vect{x}\| \|\vect{x} - \vect{y}\| +
-  \sigma_{max}(\mat{P}_i) \|\vect{y}\| \|\vect{x} - \vect{y}\| \\
-  &= \sigma_{max}(\mat{P}_i) (\|\vect{x}\| + \|\vect{y}\|)\|\vect{x} - \vect{y}\| \\
-  & \leq \sigma_{max}(\mat{P}_i) (\varepsilon_{\Omega_i} + \varepsilon_{\Omega_i})\|\vect{x} - \vect{y}\| \\
+  \sigma_{max}(\mat{P}_i) \|\vect{y}\| \|\vect{x} - \vect{y}\| \\[2.5ex]
+  &= \sigma_{max}(\mat{P}_i) (\|\vect{x}\| + \|\vect{y}\|)\|\vect{x} - \vect{y}\| \\[2.5ex]
+  & \leq \sigma_{max}(\mat{P}_i) (\varepsilon_{\Omega_i} + \varepsilon_{\Omega_i})\|\vect{x} - \vect{y}\| \\[2.5ex]
   &= 2 \varepsilon_{\Omega_i} \sigma_{max}(\mat{P}_i) \|\vect{x} - \vect{y}\|
 \end{align}
 \qedsymbol
@@ -233,7 +233,7 @@ $\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
 is applied to the open-loop system until the next sampling instant $t_k + h$,
 with $h \in (0,T_p)$:
 \begin{align}
-  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\
+  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\[2.5ex]
   \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
  \label{eq:position_based_optimal_u}
 \end{align}
@@ -291,7 +291,7 @@ $\tau \in [t_k, t_k + h)$ and $t_0 = 0$.
 We can now give the definition of an \textit{admissible input}:
 
 \begin{bw_box}
-\begin{definition} (Admissible input)\\
+\begin{definition} (Admissible input)\\[2.5ex]
 
   A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
   $\vect{e}_i(t_k)$ is called \textit{admissible} if all the following hold:

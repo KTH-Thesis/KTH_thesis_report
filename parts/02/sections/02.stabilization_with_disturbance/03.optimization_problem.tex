@@ -13,16 +13,16 @@ At a generic time $t_k$ then, agent $i$ solves the following optimization
 problem:
 \begin{problem}
 \begin{align}
-  \text{Find }& \\
+  \text{Find }& \\[2.5ex]
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
-    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \label{position_based_cost_2} \\
-    \text{where}& \\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \label{position_based_cost_2} \\[2.5ex]
+    \text{where}& \\[2.5ex]
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
-      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big)  \\
-  \text{subject to:} & \nonumber \\
-                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
-                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big)  \\[2.5ex]
+  \text{subject to:} & \nonumber \\[2.5ex]
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\[2.5ex]
                      & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i
 \end{align}
 \label{problem:opt_with_disturbances}
@@ -115,7 +115,7 @@ According to lemma
 \eqref{lemma:diff_state_from_same_conditions}
 \begin{align}
  \|\vect{e}_i(s) - \overline{\vect{e}}_i\big(s;\ \vect{u}_i(s;\ \vect{e}_i(t)), \vect{e}_i(t)\big)\|
-   &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t)} - 1) \\
+   &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t)} - 1) \\[2.5ex]
  \|\vect{\zeta}_i(s)\| &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} (s-t)} - 1)
 \end{align}
 which means that $\vect{\zeta}_i(s) \in \mathcal{B}_{i,s-t}$.
@@ -123,7 +123,7 @@ Now let us assume that
 $\overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t)), \vect{e}_i(t) \big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s-t}$.
 Then, we add the two include statements:
 \begin{align}
-  \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t)), \vect{e}_i(t) \big) &\in \mathcal{E}_i \ominus \mathcal{B}_{i,s-t} \\
+  \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t)), \vect{e}_i(t) \big) &\in \mathcal{E}_i \ominus \mathcal{B}_{i,s-t} \\[2.5ex]
   \vect{\zeta}_i(s) &\in \mathcal{B}_{i,s-t}
 \end{align}
 which yields
@@ -133,7 +133,7 @@ which yields
 \end{align}
 Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
 \begin{align}
-  \vect{\zeta}_i(s) + \overline{\vect{e}}_i\big(s;\ \vect{u}_i(s;\ \vect{e}_i(t)), \vect{e}_i(t)\big) &\in \mathcal{E}_i \\
+  \vect{\zeta}_i(s) + \overline{\vect{e}}_i\big(s;\ \vect{u}_i(s;\ \vect{e}_i(t)), \vect{e}_i(t)\big) &\in \mathcal{E}_i \\[2.5ex]
   \vect{e}_i(s) &\in \mathcal{E}_i
 \end{align}
 \qedsymbol
@@ -181,7 +181,7 @@ The terminal set $\Omega_i$ is defined as
 
 For functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
-$V_i: \Phi_i \to \mathbb{R}_{\geq 0}$ and matrices
+$V_i: \Psi_i \to \mathbb{R}_{\geq 0}$ and matrices
 $\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
 $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$, the same things hold
 as in the disturbance-free case. With regard to the terminal penalty function $V_i$, we assume that it is
@@ -195,7 +195,7 @@ $\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
 is applied to the open-loop system until the next sampling instant $t_k + h$,
 with $h \in (0,T_p)$.
 \begin{align}
-  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\
+  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\[2.5ex]
   \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
  \label{eq:position_based_optimal_u_2}
 \end{align}

@@ -26,7 +26,7 @@ $$\vect{v}_i(t) \triangleq [\dot{\vect{p}}_i(t)^{\top}, \vect{\omega}_i(t)^{\top
 and model the motion of agent $i$ under continuous second order dynamics:
 \begin{subequations}
 	\begin{align}
-    \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t), \label{eq:system_1} \\
+    \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t), \label{eq:system_1} \\[2.5ex]
     \vect{u}_i(t) &= \mat{M}_i(\vect{x}_i) \dot{\vect{v}}_i(t) +
       \mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)+\vect{g}_i(\vect{x}_i) \label{eq:system_2}
 	\end{align}
@@ -40,13 +40,13 @@ orthogonal angular velocities $\vect{v}_i$:
 \begin{equation}
   \mat{J}_i(\vect{x}_i) =
   \begin{bmatrix}
-    \mat{I}_3 & \mat{0}_{3 \times 3} \\
-    \mat{0}_{3 \times 3} & \mat{J}_{ q }(\vect{x}_i) \\
+    \mat{I}_3 & \mat{0}_{3 \times 3} \\[2.5ex]
+    \mat{0}_{3 \times 3} & \mat{J}_{ q }(\vect{x}_i) \\[2.5ex]
   \end{bmatrix} \notag, \text{ where }
   \mat{J}_q(\vect{x}_i) =
   \begin{bmatrix}
-    1 & 0 & \sin\theta_i \\
-    0 & \cos\phi_i & -\cos\theta_i \sin\phi_i \\
+    1 & 0 & \sin\theta_i \\[2.5ex]
+    0 & \cos\phi_i & -\cos\theta_i \sin\phi_i \\[2.5ex]
     0 & \sin\phi_i & \cos\phi_i \cos\theta_i
   \end{bmatrix} \notag
 \end{equation}
@@ -170,16 +170,16 @@ and that between an agent $i$ and the origin of the workspace $W$ as
 $d_{i,W}(t)$, with $d_{ij,a}, d_{i\ell,o}, d_{i,W} : \mathbb{R}^3 \to \mathbb{R}_{\geq 0}$:
 \begin{subequations}
 	\begin{align}
-    d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \| \\
-    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \| \\
+    d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \| \\[2.5ex]
+    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \| \\[2.5ex]
     d_{i,W}(t) &\triangleq \| \vect{p}_W - \vect{p}_i(t) \|
 	\end{align}
 \end{subequations}
 as well as constants
 \begin{subequations}
 	\begin{align}
-    \underline{d}_{ij, a} &\triangleq r_{i} + r_{j} \\
-    \underline{d}_{i\ell, o} &\triangleq r_{i} + r_{\ell} \\
+    \underline{d}_{ij, a} &\triangleq r_{i} + r_{j} \\[2.5ex]
+    \underline{d}_{i\ell, o} &\triangleq r_{i} + r_{\ell} \\[2.5ex]
     \overline{d}_{i,W} &\triangleq r_W - r_i
 	\end{align}
 \end{subequations}

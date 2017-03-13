@@ -9,14 +9,14 @@
 \contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Problem Statement}{17}{subsection.3.4}
-\contentsline {part}{II\hspace {1em}Advocated Solutions}{19}{part.2}
-\contentsline {section}{\numberline {4}Disturbance-free Stabililization}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Formalizing the system's model}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}The error model}{22}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}The optimization problem}{23}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Stabilization: Feasibility and Convergence}{28}{subsection.4.4}
-\contentsline {section}{\numberline {5}Stabilization in the face of Disturbances}{39}{section.5}
-\contentsline {subsection}{\numberline {5.1}The perturbed model}{39}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}The error model}{40}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}The optimization problem}{41}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Feasibility and Convergence}{45}{subsection.5.4}
+\contentsline {part}{II\hspace {1em}Advocated Solutions}{21}{part.2}
+\contentsline {section}{\numberline {4}Disturbance-free Stabililization}{23}{section.4}
+\contentsline {subsection}{\numberline {4.1}Formalizing the system's model}{23}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}The error model}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}The optimization problem}{25}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Stabilization: Feasibility and Convergence}{30}{subsection.4.4}
+\contentsline {section}{\numberline {5}Stabilization in the face of Disturbances}{41}{section.5}
+\contentsline {subsection}{\numberline {5.1}The perturbed model}{41}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}The error model}{42}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}The optimization problem}{43}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Feasibility and Convergence}{48}{subsection.5.4}
