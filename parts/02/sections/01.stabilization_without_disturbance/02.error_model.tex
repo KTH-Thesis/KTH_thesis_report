@@ -18,6 +18,7 @@ The error dynamics are denoted by $g_i(\vect{e}_i, \vect{u}_i)$:
   \label{eq:position_based_error_model}
 \end{align}
 with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$.
+
 In order to translate
 the constraints that are dictated for the state $\vect{z}_i(t)$ into constraints
 regarding the error state $\vect{e}_i(t)$, we define the set
@@ -26,6 +27,16 @@ $$\mathcal{E}_i = \big\{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
 \vect{e}_i(t) \in \mathcal{Z}_i \ominus \vect{z}_{i,des}\big\}$$
 as the set that captures all constraints on the error state with dynamics
 \eqref{eq:position_based_error_model} dictated by problem \eqref{problem}.
+
+On functions $g_i$ we make the following assumption:
+\begin{bw_box}
+  \begin{assumption}
+
+    Functions $g_i$ are Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz
+    constants $L_{g_i}$.
+
+\end{assumption}
+\end{bw_box}
 
 If we design control laws $\vect{u}_i \in \mathcal{U}_i$,
 $\forall i \in \mathcal{V}$ such that the error signal $\vect{e}_i(t)$ with

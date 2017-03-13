@@ -129,7 +129,7 @@ for $\tau_0 = t$ and $\tau_1 = t + \tau$ yields:
 \end{align}
 Subtracting the latter from the former and taking norms on either side yields:
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \bigg\| \vect{e}_i\big(t + \tau;&\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
   \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
   &=\bigg\| \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
      - \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
@@ -146,7 +146,7 @@ Subtracting the latter from the former and taking norms on either side yields:
 since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
 $L_{g_i}$. Reformulation yields
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \bigg\| \vect{e}_i\big(t+\tau;&\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
   \overline{\vect{e}}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
   &\leq \tau \overline{\delta}_i
   + L_{g_i} \int_{0}^{\tau} \bigg\| \vect{e}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
@@ -154,7 +154,7 @@ $L_{g_i}$. Reformulation yields
 \end{align}
 By applying the Gr\"{o}nwall-Bellman inequality we get:
 \begin{align}
-  &\bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
+  \bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &-
     \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
   &\leq \tau \overline{\delta}_i +  L_{g_i} \int_{0}^{\tau} s \overline{\delta}_i e^{L_{g_i}(\tau - s)} ds \\[2.5ex]
   &= \tau \overline{\delta}_i - \overline{\delta}_i \int_{0}^{\tau} s  \big(e^{L_{g_i}(\tau - s)}\big)' ds \\[2.5ex]
@@ -170,6 +170,9 @@ By applying the Gr\"{o}nwall-Bellman inequality we get:
 % --- END diff real_vs_predicted at t_(k+1) from t_k ---------------------------
 
 \textbf{Feasibility analysis}
+In this section we will show that there can be constructed an admissible
+but not necessarily optimal control input according to definition
+\eqref{definition:admissible_input}.
 Consider a sampling instant $t_k$ for which a
 solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 problem \eqref{problem:opt_with_disturbances} exists.
@@ -354,14 +357,13 @@ Finally, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot
 \begin{gg_box}
 To prove this statement we begin with
 \begin{align}
-  & V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
+  V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;&\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
     - V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \\[2.5ex]
-  \leq \bigg\| & V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
-    - V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\[2.5ex]
-  \leq L_{V_i}\bigg \|& \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
-    \text{ (for } V_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \\[2.5ex]
-  =  L_{V_i}\bigg \| & \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+  &\leq \bigg|  V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
+    - V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg | \\[2.5ex]
+  &\leq L_{V_i}\bigg \| \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\| \\[2.5ex]
+  &=  L_{V_i}\bigg \|  \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
 \label{eq:from_DV_to_De}
 \end{align}
@@ -379,24 +381,24 @@ we get that the two terms interior to the norm are respectively equal to
 \end{alignat}
 Subtracting the latter from the former and taking norms on either side we get
 \begin{alignat}{2}
-  \bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
+  &\bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
     - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| \\[2.5ex]
-  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \\[2.5ex]
+  &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1})
   + \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
     - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\[2.5ex]
-  \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
-  + \bigg \| \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
+  &\leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  &+ \bigg \| \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)ds
     - \int_{t_{k+1}}^{t_k + T_p} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big)ds \bigg \| \\[2.5ex]
-  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\|
   + \bigg \| \int_{t_{k+1}}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
   -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg) ds \bigg \| \\[2.5ex]
-  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\|
   +  \int_{t_{k+1}}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
   -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg\| ds \\[2.5ex]
-  \leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  &\leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\|
   +  L_{g_i} \int_{t_{k+1}}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-  - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \text{, for } g_i \text{ is Lipschitz continuous in } \mathcal{E}_i\\[2.5ex]
-  = \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  - \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds \\[2.5ex]
+  &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\|
   +  L_{g_i} \int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
   - \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| ds
 \end{alignat}
@@ -450,8 +452,9 @@ Therefore
 \end{align}
 which means that the state
 $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
-From assumption ??, and since $\Psi_i \subseteq \Phi_i$, there is an
-admissible control signal $\vect{h}_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
+From assumption 2 of theorem \eqref{theorem:with_disturbances},
+and since $\Psi_i \subseteq \Phi_i$, there is an admissible control signal
+$\vect{h}_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
 such that
 \begin{align}
   \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \vect{h}_i(\cdot), \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \in \Omega_i
@@ -558,20 +561,18 @@ two integrals above in between these intervals:
 We begin working on \eqref{eq:convergence_4_integrals_2} focusing
 first on the difference between the two intervals over $[t_{k+1}, t_{k+1} + T_p]$:
 \begin{align}
-  &\int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
-    - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
-  &\int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+  \int_{t_{k+1}}^{t_k + T_p} F_i \big(&\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+  - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
+  &= \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
     - \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
-  & \leq \bigg\| \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
-    - \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \bigg\|
-    \text{ (for } x \leq |x|, x \in \mathbb{R} \text{)}\\[2.5ex]
-  & = \bigg\| \int_{t_k+h}^{t_k + T_p} \bigg( F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big)
-    -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg) d s \bigg\| \\[2.5ex]
-  & = \int_{t_k+h}^{t_k + T_p} \bigg\| F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big)
-    -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg\| d s \\[2.5ex]
+  & \leq \bigg| \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+    - \int_{t_k+h}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \bigg| \\[2.5ex]
+  & = \bigg| \int_{t_k+h}^{t_k + T_p} \bigg( F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big)
+    -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg) d s \bigg| \\[2.5ex]
+  & = \int_{t_k+h}^{t_k + T_p} \bigg| F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big)
+    -  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \bigg| d s \\[2.5ex]
   & \leq L_{F_i}\int_{t_k+h}^{t_k + T_p} \bigg\| \overline{\vect{e}}_i\big(s;\ \vect{u}_{1,i} (\cdot), \vect{e}_i(t_k + h) \big)
-    -  \overline{\vect{e}}_i\big(s;\ \vect{u}_{0,i} (\cdot), \vect{e}_i(t_k)\big) \bigg\| d s
-    \text{ (for } F_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)}  \\[2.5ex]
+    -  \overline{\vect{e}}_i\big(s;\ \vect{u}_{0,i} (\cdot), \vect{e}_i(t_k)\big) \bigg\| d s \\[2.5ex]
     & = L_{F_i}\int_{h}^{T_p} \bigg\| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
     -  \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d s
 \label{eq:integrals_over_same_u_LV}
@@ -597,25 +598,25 @@ and
 \end{alignat}
 Subtracting the latter from the former and taking norms on either side yields
 \begin{align}
-  \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
+  &\bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
     -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\[2.5ex]
- = \bigg\| \vect{e}_i(t_k +h)
+    &= \bigg\| \vect{e}_i(t_k +h)
  - \bigg( \vect{e}_i(t_k) + \int_{t_k}^{t_k + h} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg) \\[2.5ex]
-    + \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
+ &+ \int_{t_k +h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau
     - \int_{t_k + h}^{t_k + s} g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) d\tau \bigg\| \\[2.5ex]
-    = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h)
+    &= \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h)
     + \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
     -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\[2.5ex]
-    \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
+    &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
     + \bigg\| \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
     -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\[2.5ex]
-    = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
+    &= \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
     + \int_{t_k +h}^{t_k + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
     -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg\| d\tau \\[2.5ex]
-    \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
+    &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
     + L_{g_i} \int_{t_k +h}^{t_k + s} \bigg\| \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
     -  \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\[2.5ex]
-    = \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
+    &= \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \|
     + L_{g_i} \int_{h}^{s} \bigg\| \overline{\vect{e}}_i\big(t_k + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k + h) \big)
     -  \overline{\vect{e}}_i\big(t_k + \tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg\| d\tau \\[2.5ex]
     \label{eq:df_interim_es}
@@ -627,15 +628,15 @@ by application of the the Gr\"{o}nwall-Bellman inequality,
 \eqref{eq:df_interim_es} becomes:
 \begin{align}
   \bigg \| \overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k +h)\big)
-    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \| \\[2.5ex]
-    \leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| e^{L_{g_i}(s-h)} \\[2.5ex]
-    \leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)}
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \bigg \|
+    &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| e^{L_{g_i}(s-h)} \\[2.5ex]
+    &\leq \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)}
 \end{align}
 \end{gg_box}
 
 Given the above result, \eqref{eq:integrals_over_same_u_LV} becomes
 \begin{align}
-  &\int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+  \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s),& \vect{u}_{1,i} (s)\big) d s
     - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
   & \leq L_{F_i}\int_{h}^{T_p} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i}(s-h)} d s \\[2.5ex]
   &=  L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}h} - 1) \int_{h}^{T_p} e^{L_{g_i}(s-h)} d s \\[2.5ex]
@@ -662,37 +663,36 @@ the integral
 \end{align}
 \begin{gg_box}
   We discern that the range of the above integral has a length\footnote{$(t_{k+1} + T_p) - (t_k + T_p) = t_{k+1} - t_k = h$}
-  equal to the length of the interval where assumption (3b) (??) of theorem
+  equal to the length of the interval where assumption 2 of theorem
   \eqref{theorem:with_disturbances} holds.
   Integrating the expression found in the assumption over the
   interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
   in it we get
   \begin{align}
     \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
-    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds \leq 0 \\[2.5ex]\\[2.5ex]
+    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds &\leq 0 \\[2.5ex]
     \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\[2.5ex]\\[2.5ex]
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\[2.5ex]\\[2.5ex]
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
   \end{align}
 
   The left-hand side expression is the same as the first two terms in the
   right-hand side of equality \eqref{eq:convergence_4_integrals_2}. We can
   introduce the third one by subtracting it from both sides:
   \begin{align}
-    &V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    &+ \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\[2.5ex]
     &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
     - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\[2.5ex]
-    &\leq \Big\|V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big\| \text{, for } x \leq |x|, \forall x \in \mathbb{R} \\[2.5ex]
+    &\leq \Big|V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big| \\[2.5ex]
     &\leq L_{V_i}\bigg \|\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)
-    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\|
-    \text{ (for } V_i \text{ is Lipschitz continuous in } \mathcal{E}_i \text{)} \\[2.5ex]
-    &\leq L_{V_i} \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)} \text{ ( from \eqref{eq:from_DV_to_eq})}
+    - \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \big)\Big\| \\[2.5ex]
+    &\leq L_{V_i} \dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)} \text{ (from \eqref{eq:from_DV_to_eq})}
   \end{align}
 \end{gg_box}
 Hence, we discovered that
@@ -722,8 +722,8 @@ ranging from $t_k$ to $t_{k+1}$ to the left-hand side, becomes
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big)
     - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-    + \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
-    \leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
+    &+ \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s \\[2.5ex]
+    &\leq L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
   + L_{V_i}\dfrac{\overline{\delta}_i}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}
 \end{align}
 
