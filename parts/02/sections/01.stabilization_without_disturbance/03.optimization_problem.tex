@@ -15,11 +15,11 @@ optimization problem:
 \begin{align}
   \text{Find }& \\
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
-    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big)  \label{position_based_cost} \\
     \text{where}& \\
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
-      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost} \\
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \\
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
   & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\
@@ -47,6 +47,7 @@ sensing range $\mathcal{R}_i$. Regarding these, we make the following assumption
 \begin{gg_box}
   \begin{assumption} (\textit{Access to Predicted Information from an
     Inter-agent Perspective})
+    \label{ass:access_to_predicted_info_n}
 
 Considering the context of Receding Horizon Control, when
 at time $t_k$ agent $i$ solves a finite horizon optimization problem, he has
@@ -236,8 +237,8 @@ with $h \in (0,T_p)$:
   \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
  \label{eq:position_based_optimal_u}
 \end{align}
-At time $t_{k+1}$ a new optimal control problem is solved in the same manner,
-leading to a receding horizon approach.
+At time $t_{k+1}$ a new finite horizon optimal control problem is solved in the
+same manner, leading to a receding horizon approach.
 
 The control input $\vect{u}_i(\cdot)$ is of feedback form,
 since it is recalculated at each sampling instant based on the then-current
@@ -255,6 +256,7 @@ On the existence of solutions to \eqref{eq:position_based_error_model} we
 assume the following:
 \begin{bw_box}
 \begin{assumption}
+  \label{ass:existence_of_solutions_without_disturbance}
 
   The system \eqref{eq:position_based_error_model} has a
   \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$ and
@@ -279,7 +281,7 @@ $t_k$, $\vect{e}_i(t_k)$, by application of the control input
 
 The closed-loop system for which stability is to be guaranteed is
 \begin{align}
-  \vect{e}_i(\tau) = g_i\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \in [t_k, t_k + h)
+  \vect{e}_i(\tau) = g_i\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
   \label{eq:without_disturbances_closed_loop}
 \end{align}
 where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,

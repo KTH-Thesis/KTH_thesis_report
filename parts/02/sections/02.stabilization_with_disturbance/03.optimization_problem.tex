@@ -3,22 +3,23 @@
 Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
 sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
 that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
-optimal control problem (OCP) is solved at discrete sampling time instants $t_k$
-based on the then-current state error measurement $\vect{e}_i(t_k)$. The
-solution is an optimal control signal $\overline{\vect{u}}_i^{\star}(t)$, computed over
-$t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop system in
-between sampling times $t_k$ and $t_k + h$.
+optimal control problem (FHOCP) is solved at discrete sampling time instants
+$t_k$ based on the then-current state error measurement $\vect{e}_i(t_k)$. The
+solution is an optimal control signal $\overline{\vect{u}}_i^{\star}(t)$,
+computed over $t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop
+system in between sampling times $t_k$ and $t_k + h$.
 
-At a generic time $t_k$, agent $i$ solves the following optimization problem:
+At a generic time $t_k$ then, agent $i$ solves the following optimization
+problem:
 \begin{problem}
 \begin{align}
   \text{Find }& \\
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
-    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \label{position_based_cost_2} \\
     \text{where}& \\
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
-      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \label{position_based_cost_2} \\
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big)  \\
   \text{subject to:} & \nonumber \\
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\
                      & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\
@@ -40,77 +41,11 @@ optimization problem where information on the states of the neighbouring agents
 of agent $i$ are taken into account only in the constraints considered in the
 optimization problem. These constraints pertain to the set of its neighbours
 $\mathcal{N}_i$ and, in total, to the set of all agents within its sensing
-range $\mathcal{R}_i$. Regarding these, we make the following assumption:
+range $\mathcal{R}_i$. Regarding these, we assume assumption
+\eqref{ass:access_to_predicted_info_n}, i.e. at time $t_k$ when agent $i$
+solves the optimization problem, he has access to the measurements of the states
+and the values of the predicted states for all agents within its sensing range.
 
-\begin{gg_box}
-  \begin{assumption} (\textit{Access to Predicted Information from an
-    Inter-agent Perspective})
-
-Considering the context of Receding Horizon Control, when
-at time $t_k$ agent $i$ solves a finite horizon optimization problem, he has
-access to\footnote{Although
-  $\mathcal{N}_i \subseteq \mathcal{R}_i$, we make the distinction between
-  the two because all agents $j \in \mathcal{R}_i$ need to avoid collision
-  with agent $i$, but only agents $j' \in \mathcal{N}_i$ need to remain
-  within the sensing range of agent $i$.
-  %The distinction will prove the
-  %justification of its existence when considering the state constraints
-  %in the subsequent declaration of the optimization problem.
-}
-
-\begin{enumerate}
-  \item measurements of the states\footnote{as per assumption
-    \eqref{ass:measurements_access_2}}
-    \begin{itemize}
-      \item $\vect{z}_j(t_k)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range at time $t_k$
-      \item $\vect{z}_{j'}(t_k)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$ at time $t_k$
-      \end{itemize}
-    \item the \textit{predicted states}
-      \begin{itemize}
-        \item $\overline{\vect{z}}_j(\tau)$ of all agents $j \in \mathcal{R}_i(t_k)$ within its sensing range
-        \item $\overline{\vect{z}}_{j'}(\tau)$ of all of its neighbouring agents $j' \in \mathcal{N}_i$
-      \end{itemize}
-      across the entire horizon $\tau \in (t_k, t_k + T_p]$
-\end{enumerate}
-\end{assumption}
-\end{gg_box}
-In other words, each time an agent solves its own individual
-optimization problem, he knows the error predictions that have been generated
-by the solution of the optimization problem of all agents within
-its range at that time, for the next $T_p$ timesteps. This assumption is
-crucial to satisfying the constraints regarding collision aversion and
-connectivity maintenance between neighbouring agents.
-We assume that the above pieces of information are (a) always available and
-accurate, and (b) exchanged without delay. We encapsulate these pieces of
-information in four stacked vectors:
-\begin{subequations}
-\begin{align}
-  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\
-  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\
-  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\
-  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
-\end{align}
-\end{subequations}
-
-\begin{bw_box}
-\begin{remark}
-The justification for this assumption is the following: considering that
-$\mathcal{N}_i \subseteq \mathcal{R}_i$, that the state
-vectors $\vect{z}_j$ are comprised of 12 real numbers that are encoded by
-4 bytes, and that sampling occurs with a frequency $f$ for all agents, the
-overall downstream bandwidth required by each agent is
-$$BW_d = 12 \times 32\ \text{[bits]} \times |\mathcal{R}_i| \times \dfrac{T_p}{h} \times f\ [\text{sec}^{-1}]$$
-Given conservative constants $f = 100$ Hz, $\dfrac{T_p}{h} = 100$, the
-wireless protocol IEEE 802.11n-2009 (a standard for present-day devices)
-can accommodate up to
-
-$$|\mathcal{R}_i| = \dfrac{600\ [\text{Mbit}\cdot \text{sec}^{-1}] }{12\times32[\text{bit}]\times10^4 [\text{sec}^{-1}]} \approx
-16 \cdot 10^2 \text{ agents}$$ within the range of one agent.
-We deem this number to be large enough for practical applications
-for the approach of assuming access to the predicted states of agents
-within the range of one agent to be legal.
-\end{remark}
-\end{bw_box}
 
 \note{?? more on the actual $\mathcal{E}_i$}
 
@@ -204,33 +139,9 @@ Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
 \qedsymbol
 \end{gg_box}
 
-
-
-
-Before defining the terminal set
-$\Omega_i$ it is necessary to state the definition of a positively
-invariant set:
-\begin{bw_box}
-  \begin{definition} (\textit{Positively Invariant Set})
-
-    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
-    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
-    where $\vect{x}_0$ is the initial condition. The set
-    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
-    $\gamma$ is a valued function, is said to be \textit{positively invariant}
-    if the following holds:
-    \begin{align}
-      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
-    \end{align}
-
-    Intuitively, this means that the set $S$ is positively invariant if a
-    trajectory of the system does not exit it once it enters it.
-    \label{def:positively_invariant_2}
-  \end{definition}
-\end{bw_box}
-
 The terminal set $\Omega_i \subseteq \Psi_i$ is a subset of an admissible and
-positively invariant set $\Psi_i$, where $\Psi_i$ is defined as
+positively invariant set $\Psi_i$ as per definition
+\eqref{def:positively_invariant}, where $\Psi_i$ is defined as
 \begin{align}
   \Psi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
     \leq \varepsilon_{\Psi_i} \big\},\ \varepsilon_{\Psi_i} > 0
@@ -268,109 +179,41 @@ The terminal set $\Omega_i$ is defined as
 \end{figure}
 
 
-The functions
+For functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
-$V_i: \Phi_i \to \mathbb{R}_{\geq 0}$ are defined as
-\begin{align}
-  F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
-  &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\
-  V_i \big(\overline{\vect{e}}_i(t)\big) & \triangleq \overline{\vect{e}}_i(t)^{\top} \mat{P}_i \overline{\vect{e}}_i(t)
-\end{align}
-Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
-definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
-are symmetric and positive semi-definite. The running costs $F_i$ are
-upper- and lower-bounded:
-\begin{align}
-  \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
-  \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\
-      \vect{u}_i(t)
-    \end{bmatrix}\Bigg\|^2  \\
-    &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\
-    &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\
-      \vect{u}_i(t)
-    \end{bmatrix}\Bigg\|^2 \leq
-  \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
-\end{align}
-where $\lambda_{min}(\mat{Q}_i, \mat{R}_i)$ is the smallest eigenvalue between
-those of matrices $\mat{Q}_i$ and $\mat{R}_i$, and
-$\lambda_{max}(\mat{Q}_i, \mat{R}_i)$ the largest. Since the terms
-$\lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ and
-$\lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|$ are themselves
-class $\mathcal{K}$ functions according to definition \eqref{def:k_class_2},
-$F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions. As is
-obvious, $F_i(\vect{0}, \vect{0}) = 0$.
-
-
-With regard to the terminal penalty function $V_i$, the following lemma will
-prove to be useful in guaranteeing the convergence of the solution to the
-optimal control problem to the terminal region $\Omega_i$:
-
-\begin{bw_box}
-\begin{lemma} ($V_i$ is Lipschitz continuous in $\Phi_i$)
-
-  \textcolor{red}{UNFINISHED -- which set?}
-
-  The terminal penalty function $V_i$ is Lipschitz continuous in
-  $\Phi_i$
-  \begin{align}
-    \| V(\vect{a}) - V(\vect{b}) \| \leq L_{V_i} \|\vect{a} - \vect{b}\|
-  \end{align}
-  where $\vect{a}, \vect{b} \in \Phi_i$,
-  with Lipschitz constant $L_{V_i} = 2 \varepsilon_F \lambda_{max}(P_i)$\\
-
-\label{lemma:V_Lipschitz_e_0_2}
-\end{lemma}
-\end{bw_box}
-
-
-\begin{gg_box}
-\textbf{Proof} For every $\vect{e}_i \in \Omega_i$, it holds that
-\begin{align}
-  |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
-    &= |\vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{1,i} - \vect{e}_{2,i}^{\top} \mat{P}_i \vect{e}_{2,i} \pm \vect{e}_{1,i}^{\top} \mat{P}_i \vect{e}_{2,i}| \\
-    &= |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i}) - \vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| \\
-    &\leq |\vect{e}_{1,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})| + |\vect{e}_{2,i}^{\top} \mat{P}_i (\vect{e}_{1,i}-\vect{e}_{2,i})|
-\end{align}
-
-But for any $\vect{x}, \vect{y} \in \mathbb{R}^n$
-$$|\vect{x}^{\top} \mat{A} \vect{y}| \leq \lambda_{max}(A) \|\vect{x}\| \|\vect{y}\|$$
-where $\lambda_{max}(A)$ denotes the largest eigenvalue of matrix $\mat{A}$.
-Hence:
-\begin{align}
-  |V(\vect{e}_{1,i}) - V(\vect{e}_{2,i})| &\leq
-  \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| +
-  \lambda_{max}(\mat{P}_i) \|\vect{e}_{2,i}\| \|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-  &= \lambda_{max}(\mat{P}_i) (\|\vect{e}_{1,i}\| + \|\vect{e}_{2,i}\|)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-  & \leq \lambda_{max}(\mat{P}_i) (\varepsilon_F + \varepsilon_F)\|\vect{e}_{1,i} - \vect{e}_{2,i}\| \\
-  &= 2 \varepsilon_F \lambda_{max}(\mat{P}_i) \|\vect{e}_{1,i} - \vect{e}_{2,i}\|
-\end{align}
-\qedsymbol
-\end{gg_box}
+$V_i: \Phi_i \to \mathbb{R}_{\geq 0}$ and matrices
+$\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
+$\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$, the same things hold
+as in the disturbance-free case. With regard to the terminal penalty function $V_i$, we assume that it is
+Lipschitz continuous in $\Psi_i$ with Lipschitz constant
+$L_{V_i} = 2 \varepsilon_{\Psi_i} \lambda_{max}(P_i)$.
 
 
 The solution to the optimal control problem \eqref{position_based_cost_2}
 at time $t_k$ is an optimal control input, denoted by
 $\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
 is applied to the open-loop system until the next sampling instant $t_k + h$,
-with $h \in (0,T_p)$, at which time a new optimal control problem is solved in
-the same manner:
+with $h \in (0,T_p)$.
 \begin{align}
   %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\
   \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
  \label{eq:position_based_optimal_u_2}
 \end{align}
+At time $t_{k+1}$ a new finite horizon optimal control problem is solved in the
+same manner, leading to a receding horizon approach.
+
 The control input $\vect{u}_i(\cdot)$ is of feedback form,
 since it is recalculated at each sampling instant based on the then-current
 state. The solution to equation \eqref{eq:position_based_error_model_with_disturbance}, starting at time
-$t_1$, from an initial condition $\vect{e}_i(t_1)$, by application of the
-control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$ is denoted by
+$t_1$, from an initial condition $\vect{e}_i(t_1) = \overline{\vect{e}}_i(t_1)$,
+by application of the control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$
+is denoted by
 \begin{align}
   \vect{e}_i\big(t;\ \vect{u}_i(\cdot), \vect{e}_i(t_1)\big),\ t \in [t_1, t_2]
 \end{align}
 
-The \textit{predicted} state of the system \eqref{eq:position_based_error_model_with_disturbance}
+As before, the \textit{predicted} state of the system
+\eqref{eq:position_based_error_model_with_disturbance}
 at time $t_k + \tau$, based on the measurement of the state at time
 $t_k$, $\vect{e}_i(t_k)$, by application of the control input
 $\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big)$, for the time period $t \in [t_k, t_k + \tau]$
@@ -378,37 +221,42 @@ is denoted by
 \begin{align}
   \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0_2}
 \end{align}
-In contrast to the disturbance-free case:
-\begin{align}
-  \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) \not=
-  \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big)
-  \label{eq:error_now_to_predicted_error_2}
-\end{align}
-holds true here because \textit{there are} disturbances acting on the system.
+
+On the existence of solutions to
+\eqref{eq:position_based_error_model_with_disturbance} we assume the following:
+\begin{bw_box}
+\begin{assumption}
+  \label{ass:existence_of_solutions_with_disturbance}
+
+  The system \eqref{eq:position_based_error_model_with_disturbance} has a
+  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$,
+  any \textit{piecewise continuous} input
+  $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$, and any
+  \textit{exogenous disturbance} $\delta_i(\cdot) : [0,T_p] \to \Delta_i$.
+\end{assumption}
+\end{bw_box}
+
+
+In contrast to the disturbance-free case where the predicted state coincided
+with the state of the actual system, due to the existence of disturbances
+this equality is void.
+
+\begin{bw_box}
+\begin{remark}
+  The following holds true here because \textit{there are} disturbances
+  acting on the system.
+  \begin{align}
+    \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) \not=
+    \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big)
+    \label{eq:error_now_to_predicted_error_2}
+  \end{align}
+\end{remark}
+\end{bw_box}
 
 The closed-loop system for which stability is to be guaranteed is
 \begin{align}
   \vect{e}_i(\tau) = g_i^R\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
-  \label{eq:without_disturbances_closed_loop_2}
+  \label{eq:with_disturbances_closed_loop}
 \end{align}
 where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,
 $\tau \in [t_k, t_k + h)$.
-
-We can now give the definition of an \textit{admissible input}:
-
-\begin{bw_box}
-\begin{definition} (Admissible input)\\
-
-  A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
-  $\vect{e}_i(t_k)$ is called \textit{admissible} if all the following hold:
-
-  \begin{enumerate}
-    \item $\vect{u}_i(\cdot)$ is piecewise continuous
-    \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
-  \end{enumerate}
-
-\label{definition:admissible_input}
-\end{definition}
-\end{bw_box}

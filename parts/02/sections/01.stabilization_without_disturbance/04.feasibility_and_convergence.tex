@@ -277,13 +277,14 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
 \label{eq:convergence_2_integrals}
 \end{align}
 
-During the course of arriving at the above result we have concluded that,
+During the course of arriving at the above result, we have concluded that,
 in the absence of disturbances, the remark \eqref{eq:error_now_to_predicted_error}
 holds.
 \begin{bw_box}
   \begin{remark}
   \label{eq:error_now_to_predicted_error}
-    For $t \in [t_k, t_k + T_p]$:
+    In the absence of disturbances, the following equality holds over
+    the entire horizon $t \in [t_k, t_k + T_p]$:
     \begin{align}
       \vect{e}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
         =\overline{\vect{e}}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
@@ -499,9 +500,11 @@ $$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| = 0$$
 which implies that
 $$\lim\limits_{t \to \infty}\vect{e}_i(t) \in \Omega_i$$
 Therefore, the closed-loop trajectory of the error state $\vect{e}_i$ converges
-to the terminal set $\Omega_i$ as $t \to \infty$.\\
+to the terminal set $\Omega_i$ as $t \to \infty$.
 
 In turn, this means that the system \eqref{eq:original_z_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to
-all constraints $\mathcal{Z}_i$, as $t \to \infty$.
+all constraints $\mathcal{Z}_i$, as $t \to \infty$. This conclusion holds
+for all $i \in \mathcal{V}$, and hence, the compound system of agents
+$\mathcal{V}$ is stable.
 \qedsymbol

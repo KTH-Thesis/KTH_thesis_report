@@ -1,68 +1,23 @@
-\begin{remark}
-For the sake of modularity, separability, and direct comparison to the
-disturbance-free case, this chapter will assume
-that the previous disturbance-free analysis has not been given.
-\end{remark}
+We are interested in steering each agent $i \in \mathcal{V}$ into
+a \textit{position} in 3D space, while conforming to the requirements
+posed by the problem. Here, the real system and its model are \textit{not}
+equivalent: we consider that additive disturbances act on the real
+system. \textcolor{red}{modify here ??}
 
-In this chapter we are interested in steering each agent $i \in \mathcal{V}$
-into a \textit{position} in 3D space, while conforming to the requirements
-of the problem; that is, all agents should avoid colliding with each other, all
-obstacles in the workspace, and the workspace boundary itself, while remaining
-in a non-singular configuration and sustaining the connectivity to their
-respective neighbours.
+At first, the model of system \eqref{eq:system} will be formalized.
+Next, the error model and \textit{its} constraints will be expressed.
+
+We will then pose the optimization problem to be solved periodically: it will
+equip us with the optimum feasible input that steers the system towards
+achieving its intended configuration regardless of the introduced uncertainty.
+This will lead to the proof of this statement, i.e. that the compound
+closed-loop system of agents $i \in \mathcal{V}$ is stable under the
+proposed control regime.
 
 %-------------------------------------------------------------------------------
-\subsection{Formalizing the model}
+\subsection{The perturbed model}
 
-We begin by rewriting the system equations \eqref{eq:system_1},
-\eqref{eq:system_2} for a generic agent $i \in \mathcal{V}$ in state-space form:
-\begin{subequations}
-\begin{align}
-  \dot{\vect{x}}_i(t) &= \mat{J}_i^{-1}(\vect{x}_i) \vect{v}_i(t) \\
-  \dot{\vect{v}}_i(t) &= -\mat{M}_i^{-1}(\vect{x}_i)\mat{C}_i(\vect{x}_i,\dot{\vect{x}}_i) \vect{v}_i(t)
-    - \mat{M}_i^{-1}(\vect{x}_i)\vect{g}_i(\vect{x}_i)
-    + \mat{M}_i^{-1}(\vect{x}_i)\vect{u}_i(t)
-\end{align}
-\label{eq:state_space_system_2}
-\end{subequations}
-where the inversion of $\mat{M}_i$ is possible due to it being
-positive-definite $\forall i \in \mathcal{V}$. Denoting by $\vect{z}_i(t)$
-\begin{align}
-  \vect{z}_i(t) =
-    \begin{bmatrix}
-      \vect{x}_i(t) \\
-      \vect{v}_i(t) \\
-    \end{bmatrix},\
-    \vect{z}_i(t) : \mathbb{R}_{\geq 0} \to \mathbb{R}^9 \times \mathbb{T}^3
-\end{align}
-and
-$\dot{\vect{x}}_i(t)$ and $\dot{\vect{v}}_i(t)$ by
-\begin{subequations}
-\begin{align}
-  \dot{\vect{x}}_i(t) &= f_{i,x}(\vect{z}_i, \vect{u}_i) \\
-  \dot{\vect{v}}_i(t) &= f_{i,v}(\vect{z}_i, \vect{u}_i)
-\end{align}
-\end{subequations}
-we get the compact representation of the system's model
-\begin{align}
-  \dot{\vect{z}}_i(t) =
-    \begin{bmatrix}
-      f_{i,x}(\vect{z}_i, \vect{u}_i) \\
-      f_{i,v}(\vect{z}_i, \vect{u}_i)
-    \end{bmatrix} =
- f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big)
-\end{align}
-The state evolution of agent $i$ is modeled by a system of non-linear
-continuous-time differential equations of the form
-\begin{align}
-  \dot{\vect{z}}_i(t) &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:non_perturbed_system_2}\\
-  \vect{z}_i(0) &= \vect{z}_{i,0} \\
-  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\
-  \vect{u}_i (t) & \subset \mathbb{R}^6
-\end{align}
-where state $\vect{z}_i$ is directly measurable. It should be noted that
-equation \eqref{eq:non_perturbed_system_2} does not consider model-plant
-mismatches or external disturbances. We assume that the real system is
+In the following, we assume that the real system is
 subject to bounded additive disturbances $\vect{\delta}_i$ such that
 $\vect{\delta}_i \in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3$, where
 $\Delta_i$ is a compact set containing the origin.
@@ -76,11 +31,14 @@ The real system is described by:
   \vect{\delta}_i(t) &\in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3,\ t \in \mathbb{R}_{\geq 0}\\
   \text{sup}\limits_{t \in \mathbb{R}_{\geq 0}} \|\vect{\delta}_i(t)\| &\leq \overline{\delta}_i
 \end{align}
+where state $\vect{z}_i$ is directly measurable as per assumption
+\eqref{ass:measurements_access}.
 
-We define the set $\mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3$
-as the set that captures all the state constraints of the system's dynamics
-posed by the problem \eqref{problem}, for $t \in \mathbb{R}_{\geq 0}$.
-Therefore $\mathcal{Z}_i$ is such that:
+The constraint set $\mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3$
+is unchanged: it is the set that captures all the state constraints of
+the system's dynamics posed by the problem \eqref{problem},
+for $t \in \mathbb{R}_{\geq 0}$. We include it again here for reference
+purposes.
 \begin{align}
   \mathcal{Z}_i = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1_2}\\

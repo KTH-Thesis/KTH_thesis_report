@@ -12,24 +12,29 @@ position which results in feasible displacements:\\
   Suppose that
 
   \begin{enumerate}
-    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
-      closed with $\vect{0} \in \Omega_i$
-    \item a solution to the optimal control problem \eqref{position_based_cost}
+    \item a solution to the optimal control problem \eqref{position_based_cost_2}
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item there exists an admissible control input of linear feedback form
-      $\vect{h}_i(\vect{e}_i) : [0, h] \to \mathcal{U}_i$ such that for all
-      $\vect{e}_i \in \Psi_i$ and $\forall \tau \in [0,h]$:
+      $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      such that for all $\vect{e}_i \in \Psi_i$ and $\forall \tau \in
+      [t_k + T_p, t_{k+1} + T_p]$:
       \begin{align}
         \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i)\big)
           + F_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i)\big) \leq 0
       \end{align}
+    \item the set $\Psi_i$ is such that
+      \begin{align}
+        \text{for all } \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i
+      \end{align}
+    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
+      closed with $\vect{0} \in \Omega_i$
 
   \end{enumerate}
 
-  then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
-  the control input \eqref{eq:position_based_optimal_u} converges to the set
+  then the closed loop system \eqref{eq:with_disturbances_closed_loop} under
+  the control input \eqref{eq:position_based_optimal_u_2} converges to the set
   $\Omega_i$ when $t \to \infty$.
   \label{theorem:with_disturbances}
 \end{theorem}
@@ -768,10 +773,15 @@ It is easy to verify that both right-hand side terms are class
 $\mathcal{K}_{\infty}$ functions, and therefore, according to definition
 \eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
 the closed-loop system is input-to-state stable. Inevitably then, the
-closed-loop trajectories converge to the terminal set $\Omega_i$.
+closed-loop trajectories for the error state of agent $i \in \mathcal{V}$
+converge to the terminal set $\Omega_i$.
 
-
-
+In turn, this means that the system \eqref{eq:original_z_system} converges
+to $\vect{z}_{i,des}$ while simultaneously conforming to
+all constraints $\mathcal{Z}_i$, as $t \to \infty$. This conclusion holds
+for all $i \in \mathcal{V}$, and hence, the compound system of agents
+$\mathcal{V}$ is stable.
+\qedsymbol
 
 
 % NOT NEEDED -- THIS CALCULATES THE EXACT BOUND FOR ΔJ
