@@ -75,7 +75,7 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 \end{bw_box}
 
 \begin{bw_box}
-  \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
+  \begin{lemma} \cite{Fontes2007} (\textit{A modification of Barbalat's lemma})
   \label{lemma:barbalat}
 
     Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
@@ -94,11 +94,11 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 \begin{definition}\cite{Sontag2008} (\textit{Input-to-State Stability})
 \label{def:ISS}
 
-  A nonlinear system $\dot{x} = f(x,u)$ with initial condition $x(t_0)$ is said
+A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$ with initial condition $\vect{x}(t_0)$ is said
   to be \textit{Input-to-State Stable (ISS)} if there exist functions
   $\sigma \in \mathcal{K}_{\infty}$ and $\beta \in \mathcal{KL}$ such that
   \begin{align}
-    \|x(t)\| \leq \beta\big(\|x(t_0)\|,t\big) + \sigma\big(\|u\|_{\infty}\big)
+      \|\vect{x}(t)\| \leq \beta\big(\|\vect{x}(t_0)\|,t\big) + \sigma\big(\|\vect{u}\|_{\infty}\big)
   \end{align}
 \end{definition}
 \end{bw_box}
@@ -107,11 +107,14 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 \begin{definition}\cite{Sontag2008} (\textit{ISS Lyapunov function})
 \label{def:ISS_Lyapunov}
 
-  A Lyapunov function $V(x,u)$ for the nonlinear system $\dot{x} = f(x,u)$
-  with initial condition $x(t_0)$ is said to be a \textit{ISS-Lyapunov function}
-  if there exist functions $\sigma, \alpha \in \mathcal{K}_{\infty}$ such that
+A continuous function $V(\vect{x}, \vect{u}) : X \times U \to \mathbb{R}$ for the
+nonlinear system $\dot{\vect{x}} = f(\vect{x}, \vect{u})$ is said to be a
+\textit{ISS Lyapunov function} if there exist functions
+$\lambda_1, \lambda_2 \in \mathcal{K}$ and
+$\sigma, \alpha \in \mathcal{K}_{\infty}$ such that
   \begin{align}
-    \dot{V}(x,u) \leq -\alpha\big(\|x\|\big) + \sigma\big(\|u\|\big),\ \forall x,u
+    \lambda_1(\|\vect{x}\|) \leq &V(\vect{x},\vect{u}) \leq \lambda_2(\|\vect{x}\|), \forall \vect{x} \in X \\
+     &\dot{V}(\vect{x},\vect{u}) \leq -\alpha\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{u}\|\big),\ \forall \vect{x} \in X, \vect{u} \in U
   \end{align}
 \end{definition}
 \end{bw_box}
@@ -120,8 +123,8 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 \begin{theorem}\cite{Sontag2008}
 \label{def:ISS_Lyapunov_admit_theorem}
 
-  A nonlinear system $\dot{x} = f(x,u)$ with initial condition $x(t_0)$ is said
+  A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$ is said
   to be \textit{Input-to-State Stable} if and only if it admits an
-  ISS-Lyapunov function.
+  ISS Lyapunov function.
 \end{theorem}
 \end{bw_box}

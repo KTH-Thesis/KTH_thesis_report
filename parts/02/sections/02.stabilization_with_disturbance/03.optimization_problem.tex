@@ -185,9 +185,10 @@ $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
 $V_i: \Psi_i \to \mathbb{R}_{\geq 0}$ and matrices
 $\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
 $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$, the same things hold
-as in the disturbance-free case. With regard to the terminal penalty function $V_i$, we assume that it is
-Lipschitz continuous in $\Psi_i$ with Lipschitz constant
-$L_{V_i} = 2 \varepsilon_{\Psi_i} \lambda_{max}(P_i)$.
+as in the disturbance-free case. The running costs $F_i$ are assumed to be
+Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$ with Lipschitz
+constant $L_{F_i}$ and the terminal penalty function $V_i$ is Lipschitz
+continuous in $\Psi_i$ with Lipschitz constant $L_{V_i}.$
 
 
 The solution to the optimal control problem \eqref{position_based_cost_2}

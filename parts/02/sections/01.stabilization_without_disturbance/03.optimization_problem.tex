@@ -134,12 +134,12 @@ upper- and lower-bounded:
 \begin{align}
   \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
   \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\[2.5ex]
+      \vect{e}_i(t) \\
       \vect{u}_i(t)
     \end{bmatrix}\Bigg\|^2  \\[2.5ex]
     &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\[2.5ex]
     &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-      \vect{e}_i(t) \\[2.5ex]
+      \vect{e}_i(t) \\
       \vect{u}_i(t)
     \end{bmatrix}\Bigg\|^2 \leq
   \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
@@ -151,6 +151,50 @@ $\lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2$ and
 $\lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2$ are themselves
 class $\mathcal{K}$ functions according to definition \eqref{def:k_class},
 $F_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions.
+
+\begin{bw_box}
+\begin{lemma} ($F_i$ is Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$)
+\label{lemma:F_Lipschitz}
+
+  Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$, and $\vect{u} \in \mathcal{U}_i$.
+  The running costs $F_i$ are Lipschitz continuous in
+  $\mathcal{E}_i \times \mathcal{U}_i$:
+  $$\big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big| \leq L_{F_i} \|\vect{e}_1 - \vect{e}_2\|$$
+  with Lipschitz constant $L_{F_i} = 2 \sigma_{max}(\mat{Q}_i) \overline{\varepsilon}_i $,
+  where $\overline{\varepsilon}_i = \text{sup}\limits_{\vect{e}_i \in \mathcal{E}_i} \|\vect{e}_i\|$
+
+\end{lemma}
+\end{bw_box}
+
+\begin{gg_box}
+\textbf{Proof} For every $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$,
+and $\vect{u}_i \in \mathcal{U}_i$ it holds that
+\begin{align}
+  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
+  &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 + \vect{u}_i^{\top} \mat{R}_i \vect{u}_i
+    -\vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 - \vect{u}_i^{\top} \mat{R}_i \vect{u}_i\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 \pm \vect{e}_1^{\top} \mat{Q}_i \vect{e}_2\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2) - \vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big| \\[2.5ex]
+    &\leq \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2)\big| + \big|\vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big|
+\end{align}
+
+But for any $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$
+$$|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_2| \leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_2\|$$
+where $\sigma_{max}(\mat{Q}_i)$ denotes the largest singular value of matrix
+$\mat{Q}_i$. Hence:
+\begin{align}
+  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
+    &\leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_1 - \vect{e}_2\| +
+    \sigma_{max}(\mat{Q}_i) \|\vect{e}_2\| \|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= \sigma_{max}(\mat{Q}_i) (\|\vect{e}_1\| + \|\vect{e}_2\|)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i}
+      \big(\|\vect{e}_1\| + \|\vect{e}_2\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= 2 \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_i \in \mathcal{E}_i}
+      \big(\|\vect{e}_i\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= 2 \sigma_{max}(\mat{Q}_i)\overline{\varepsilon}_i \|\vect{e}_1 - \vect{e}_2\|
+\end{align}
+\qedsymbol
+\end{gg_box}
 
 
 Before defining the terminal set
@@ -192,36 +236,36 @@ optimal control problem to the terminal region $\Omega_i$:
 \begin{lemma} ($V_i$ is Lipschitz continuous in $\Omega_i$)
 \label{lemma:V_Lipschitz_e_0}
 
+  Suppose that $\vect{e}_1, \vect{e}_2 \in \Omega_i$.
   The terminal penalty function $V_i$ is Lipschitz continuous in
   $\Omega_i$
-  $$|V(\vect{x}) - V(\vect{y})| \leq L_{V_i} \|\vect{x} - \vect{y}\|$$
-  where $\vect{x}, \vect{y} \in \Omega_i$,
-  with Lipschitz constant $L_{V_i} = 2 \varepsilon_{\Omega_i} \lambda_{max}(\mat{P}_i)$\\[2.5ex]
+  $$\big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| \leq L_{V_i} \|\vect{e}_1 - \vect{e}_2\|$$
+  with Lipschitz constant $L_{V_i} = 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} $\\
 
 \end{lemma}
 \end{bw_box}
 
 
 \begin{gg_box}
-\textbf{Proof} For every $\vect{x}, \vect{y} \in \Omega_i$, it holds that
+\textbf{Proof} For every $\vect{e}_1, \vect{e}_2 \in \Omega_i$, it holds that
 \begin{align}
-  |V(\vect{x}) - V(\vect{y})| &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y}| \\[2.5ex]
-    &= |\vect{x}^{\top} \mat{P}_i \vect{x} - \vect{y}^{\top} \mat{P}_i \vect{y} \pm \vect{x}^{\top} \mat{P}_i \vect{y}| \\[2.5ex]
-    &= |\vect{x}^{\top} \mat{P}_i (\vect{x} -\vect{y}) - \vect{y}^{\top} \mat{P}_i (\vect{x}-\vect{y})| \\[2.5ex]
-    &\leq |\vect{x}^{\top} \mat{P}_i (\vect{x} -\vect{y})| + |\vect{y}^{\top} \mat{P}_i (\vect{x}-\vect{y})|
+  \big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| &= \big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{P}_i \vect{e}_2\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{P}_i \vect{e}_2 \pm \vect{e}_1^{\top} \mat{P}_i \vect{e}_2\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{P}_i (\vect{e}_1 -\vect{e}_2) - \vect{e}_2^{\top} \mat{P}_i (\vect{e}_1-\vect{e}_2)\big| \\[2.5ex]
+    &\leq \big|\vect{e}_1^{\top} \mat{P}_i (\vect{e}_1 -\vect{e}_2)\big| + \big|\vect{e}_2^{\top} \mat{P}_i (\vect{e}_1-\vect{e}_2)\big|
 \end{align}
 
-But for any $\vect{x}, \vect{y} \in \mathbb{R}^n$
-$$|\vect{x}^{\top} \mat{P}_i \vect{y}| \leq \sigma_{max}(\mat{P}_i) \|\vect{x}\| \|\vect{y}\|$$
+But for any $\vect{e}_1, \vect{e}_2 \in \mathbb{R}^n$
+$$\big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_2\big| \leq \sigma_{max}(\mat{P}_i) \|\vect{e}_1\| \|\vect{e}_2\|$$
 where $\sigma_{max}(\mat{P}_i)$ denotes the largest singular value of matrix
 $\mat{P}_i$. Hence:
 \begin{align}
-  |V(\vect{x}) - V(\vect{y})| &\leq
-  \sigma_{max}(\mat{P}_i) \|\vect{x}\| \|\vect{x} - \vect{y}\| +
-  \sigma_{max}(\mat{P}_i) \|\vect{y}\| \|\vect{x} - \vect{y}\| \\[2.5ex]
-  &= \sigma_{max}(\mat{P}_i) (\|\vect{x}\| + \|\vect{y}\|)\|\vect{x} - \vect{y}\| \\[2.5ex]
-  & \leq \sigma_{max}(\mat{P}_i) (\varepsilon_{\Omega_i} + \varepsilon_{\Omega_i})\|\vect{x} - \vect{y}\| \\[2.5ex]
-  &= 2 \varepsilon_{\Omega_i} \sigma_{max}(\mat{P}_i) \|\vect{x} - \vect{y}\|
+\big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| &\leq
+  \sigma_{max}(\mat{P}_i) \|\vect{e}_1\| \|\vect{e}_1 - \vect{e}_2\| +
+  \sigma_{max}(\mat{P}_i) \|\vect{e}_2\| \|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+  &= \sigma_{max}(\mat{P}_i) (\|\vect{e}_1\| + \|\vect{e}_2\|)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+  & \leq \sigma_{max}(\mat{P}_i) (\varepsilon_{\Omega_i} + \varepsilon_{\Omega_i})\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+  &= 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} \|\vect{e}_1 - \vect{e}_2\|
 \end{align}
 \qedsymbol
 \end{gg_box}
