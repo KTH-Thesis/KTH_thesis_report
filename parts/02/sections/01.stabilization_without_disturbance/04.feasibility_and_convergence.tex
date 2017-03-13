@@ -469,23 +469,6 @@ Solving for the integral we get
 Both $J_i^{\star}\big(\vect{e}_i(0)\big)$ and $V_i\big(\vect{e}_i(t)\big)$
 are bounded, and therefore so is their difference, which means that the
 integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ is bounded as well.
-We make use of the following lemma to show that the error internal to the
-norm of the integral goes to zero in steady-state:
-
-\begin{bw_box}
-  \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
-  \label{lemma:barbalat}
-
-    Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
-    absolutely continuous function in $\mathbb{R}$. If the following hold:
-  \begin{itemize}
-    \item $\|\vect{x}(\cdot)\| < \infty$
-    \item $\|\dot{\vect{x}}(\cdot)\| < \infty$
-    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
-  \end{itemize}
-  then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
-  \end{lemma}
-\end{bw_box}
 Lemma \eqref{lemma:barbalat} assures us that under these conditions for the
 error and its dynamics, which are fulfilled in our case, the error
 \begin{align}

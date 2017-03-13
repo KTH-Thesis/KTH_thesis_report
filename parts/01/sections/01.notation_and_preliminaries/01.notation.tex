@@ -74,6 +74,21 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 \end{definition}
 \end{bw_box}
 
+\begin{bw_box}
+  \begin{lemma} (\textit{A modification of Barbalat's lemma}\cite{Fontes2007})
+  \label{lemma:barbalat}
+
+    Let $f$ be a continuous, positive-definite function, and $\vect{x}$ be an
+    absolutely continuous function in $\mathbb{R}$. If the following hold:
+  \begin{itemize}
+    \item $\|\vect{x}(\cdot)\| < \infty$
+    \item $\|\dot{\vect{x}}(\cdot)\| < \infty$
+    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
+  \end{itemize}
+  then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
+  \end{lemma}
+\end{bw_box}
+
 
 \begin{bw_box}
 \begin{definition}\cite{Sontag2008} (\textit{Input-to-State Stability})
