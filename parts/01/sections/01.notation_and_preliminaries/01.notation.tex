@@ -91,35 +91,39 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
 
 
 \begin{bw_box}
-\begin{definition}\cite{Sontag2008} (\textit{Input-to-State Stability})
+\begin{definition}\cite{marquez2003nonlinear} (\textit{Input-to-State Stability})
 \label{def:ISS}
 
-A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$ with initial condition $\vect{x}(t_0)$ is said
-  to be \textit{Input-to-State Stable (ISS)} if there exist functions
-  $\sigma \in \mathcal{K}_{\infty}$ and $\beta \in \mathcal{KL}$ such that
-  \begin{align}
-      \|\vect{x}(t)\| \leq \beta\big(\|\vect{x}(t_0)\|,t\big) + \sigma\big(\|\vect{u}\|_{\infty}\big)
-  \end{align}
+A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$, $\vect{x} \in X$,
+$\vect{u} \in U$ with initial condition $\vect{x}(t_0)$ is said
+to be \textit{locally Input-to-State Stable (ISS)} if there exist functions
+$\sigma \in \mathcal{K}$ and $\beta \in \mathcal{KL}$
+and constants $k_1, k_2 \in \mathbb{R}_{> 0}$ such that
+\begin{align}
+  \|\vect{x}(t)\| \leq \beta\big(\|\vect{x}(t_0)\|,t\big) + \sigma\big(\|\vect{u}\|_{\infty}\big),\ \forall t \geq 0
+\end{align}
+for all $\vect{x}(t_0) \in X$ and $\vect{u} \in U$ satisfying $\|\vect{x}(t_0)\| \leq k_1$
+and $\text{sup}\limits_{t > 0} \|\vect{u}(t)\| = \|\vect{u}\|_{\infty} \leq k_2$.
 \end{definition}
 \end{bw_box}
 
 \begin{bw_box}
-\begin{definition}\cite{Sontag2008} (\textit{ISS Lyapunov function})
+\begin{definition}\cite{marquez2003nonlinear} (\textit{ISS Lyapunov function})
 \label{def:ISS_Lyapunov}
 
-A continuous function $V(\vect{x}, \vect{u}) : X \times U \to \mathbb{R}$ for the
+A continuous function $V(\vect{x}, \vect{u}) : X \to \mathbb{R}$ for the
 nonlinear system $\dot{\vect{x}} = f(\vect{x}, \vect{u})$ is said to be a
 \textit{ISS Lyapunov function} on $X$ if there exist functions
-$\lambda_1, \lambda_2, \alpha, \sigma \in \mathcal{K}$ such that
+$\alpha_1, \alpha_2, \alpha_3, \sigma \in \mathcal{K}$ such that
   \begin{align}
-    \lambda_1(\|\vect{x}\|) \leq &V(\vect{x},\vect{u}) \leq \lambda_2(\|\vect{x}\|), \forall \vect{x} \in X \\
-     &\dot{V}(\vect{x},\vect{u}) \leq -\alpha\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{u}\|\big),\ \forall \vect{x} \in X, \vect{u} \in U
+    \alpha_1(\|\vect{x}\|) \leq &V(\vect{x},\vect{u}) \leq \alpha_2(\|\vect{x}\|), \forall \vect{x} \in X, t \in \mathbb{R}_{\geq 0} \\
+     &\dot{V}(\vect{x},\vect{u}) \leq -\alpha_3\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{u}\|\big),\ \forall \vect{x} \in X, \vect{u} \in U
   \end{align}
 \end{definition}
 \end{bw_box}
 
 \begin{bw_box}
-\begin{theorem}\cite{Sontag2008}
+\begin{theorem}\cite{marquez2003nonlinear}
 \label{def:ISS_Lyapunov_admit_theorem}
 
   A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$ is said

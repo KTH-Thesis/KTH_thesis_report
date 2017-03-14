@@ -3,47 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: document_root.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
-Warning--can't use both author and editor fields in Sontag2008
 Warning--can't use both author and editor fields in Fontes2007
-You've used 5 entries,
+Warning--can't use both author and editor fields in Sontag2008
+You've used 6 entries,
             1876 wiz_defined-function locations,
-            515 strings with 4559 characters,
-and the built_in function-call counts, 1531 in all, are:
-= -- 168
-> -- 31
+            520 strings with 4649 characters,
+and the built_in function-call counts, 1677 in all, are:
+= -- 182
+> -- 35
 < -- 0
-+ -- 13
-- -- 8
-* -- 89
-:= -- 196
-add.period$ -- 9
-call.type$ -- 5
++ -- 15
+- -- 9
+* -- 94
+:= -- 217
+add.period$ -- 11
+call.type$ -- 6
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 80
-empty$ -- 159
-format.name$ -- 8
-if$ -- 390
+cite$ -- 8
+duplicate$ -- 89
+empty$ -- 179
+format.name$ -- 9
+if$ -- 428
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 9
-newline$ -- 22
-num.names$ -- 5
-pop$ -- 21
+int.to.str$ -- 6
+missing$ -- 11
+newline$ -- 26
+num.names$ -- 6
+pop$ -- 27
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 59
+skip$ -- 60
 stack$ -- 0
 substring$ -- 128
-swap$ -- 39
+swap$ -- 40
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 17
-width$ -- 6
-write$ -- 53
+while$ -- 18
+width$ -- 7
+write$ -- 62
 (There were 2 warnings)
