@@ -459,18 +459,19 @@ means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
 \end{align}
 which, due to the fact that $\tau \leq t$, is equivalent to
 \begin{align}
-  V_i\big(\vect{e}_i(t)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{t\geq 0}
+  V_i\big(\vect{e}_i(t)\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
 \end{align}
 Solving for the integral we get
 \begin{align}
   \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq
-    \dfrac{1}{m}\Big(J_i^{\star}\big(\vect{e}_i(0)\big) - V_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{t\geq 0}
+    \dfrac{1}{m}\Big(J_i^{\star}\big(\vect{e}_i(0)\big) - V_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
 \end{align}
 Both $J_i^{\star}\big(\vect{e}_i(0)\big)$ and $V_i\big(\vect{e}_i(t)\big)$
 are bounded, and therefore so is their difference, which means that the
-integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ is bounded as well.
-Lemma \eqref{lemma:barbalat} assures us that under these conditions for the
-error and its dynamics, which are fulfilled in our case, the error
+integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ and its limit when
+$t \to \infty$ are bounded as well. Lemma \eqref{lemma:barbalat} assures us
+that under these conditions for the error and its dynamics, which are
+fulfilled in our case, the error
 \begin{align}
   \lim\limits_{t \to \infty}\|\vect{e}_{0,i}(t)\| &= 0 \Leftrightarrow \\[2.5ex]
   \lim\limits_{t \to \infty}

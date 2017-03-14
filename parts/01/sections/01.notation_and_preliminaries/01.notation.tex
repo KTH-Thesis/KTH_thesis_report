@@ -83,7 +83,7 @@ $\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^
   \begin{itemize}
     \item $\|\vect{x}(\cdot)\| < \infty$
     \item $\|\dot{\vect{x}}(\cdot)\| < \infty$
-    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big) < \infty$
+    \item $\lim\limits_{t \to \infty} \int\limits_0^t f\big(\vect{x}(s)\big)ds < \infty$
   \end{itemize}
   then $\lim\limits_{t \to \infty} \|\vect{x}(t)\| = 0$
   \end{lemma}
@@ -109,9 +109,8 @@ A nonlinear system $\dot{\vect{x}} = f(\vect{x},\vect{u})$ with initial conditio
 
 A continuous function $V(\vect{x}, \vect{u}) : X \times U \to \mathbb{R}$ for the
 nonlinear system $\dot{\vect{x}} = f(\vect{x}, \vect{u})$ is said to be a
-\textit{ISS Lyapunov function} if there exist functions
-$\lambda_1, \lambda_2 \in \mathcal{K}$ and
-$\sigma, \alpha \in \mathcal{K}_{\infty}$ such that
+\textit{ISS Lyapunov function} on $X$ if there exist functions
+$\lambda_1, \lambda_2, \alpha, \sigma \in \mathcal{K}$ such that
   \begin{align}
     \lambda_1(\|\vect{x}\|) \leq &V(\vect{x},\vect{u}) \leq \lambda_2(\|\vect{x}\|), \forall \vect{x} \in X \\
      &\dot{V}(\vect{x},\vect{u}) \leq -\alpha\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{u}\|\big),\ \forall \vect{x} \in X, \vect{u} \in U
