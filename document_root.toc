@@ -3,20 +3,20 @@
 \contentsline {part}{I\hspace {1em}The problem}{7}{part.1}
 \contentsline {section}{\numberline {2}Notation and Preliminaries}{9}{section.2}
 \contentsline {subsection}{\numberline {2.1}Notation}{9}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Model Predictive Control for non-linear continuous-time systems}{10}{subsection.2.2}
-\contentsline {section}{\numberline {3}Problem Formulation}{11}{section.3}
-\contentsline {subsection}{\numberline {3.1}System Model}{11}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Initial Conditions}{14}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Objective}{15}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Problem Statement}{17}{subsection.3.4}
-\contentsline {part}{II\hspace {1em}Advocated Solutions}{19}{part.2}
-\contentsline {section}{\numberline {4}Disturbance-free Stabililization}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Formalizing the system's model}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}The error model}{22}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}The optimization problem}{23}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Stabilization: Feasibility and Convergence}{30}{subsection.4.4}
-\contentsline {section}{\numberline {5}Stabilization in the face of Disturbances}{41}{section.5}
-\contentsline {subsection}{\numberline {5.1}The perturbed model}{41}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}The error model}{42}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}The optimization problem}{43}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Stabilization: Feasibility and Convergence}{48}{subsection.5.4}
+\contentsline {subsection}{\numberline {2.2}Model Predictive Control for non-linear continuous-time systems}{11}{subsection.2.2}
+\contentsline {section}{\numberline {3}Problem Formulation}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}System Model}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Initial Conditions}{16}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Objective}{17}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Problem Statement}{19}{subsection.3.4}
+\contentsline {part}{II\hspace {1em}Advocated Solutions}{21}{part.2}
+\contentsline {section}{\numberline {4}Disturbance-free Stabililization}{23}{section.4}
+\contentsline {subsection}{\numberline {4.1}Formalizing the system's model}{23}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}The error model}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}The optimization problem}{25}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Stabilization: Feasibility and Convergence}{32}{subsection.4.4}
+\contentsline {section}{\numberline {5}Stabilization in the face of Disturbances}{43}{section.5}
+\contentsline {subsection}{\numberline {5.1}The perturbed model}{43}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}The error model}{44}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}The optimization problem}{45}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Stabilization: Feasibility and Convergence}{50}{subsection.5.4}

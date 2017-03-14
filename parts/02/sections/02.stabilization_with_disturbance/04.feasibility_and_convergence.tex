@@ -26,7 +26,7 @@ position which results in feasible displacements:\\[2.5ex]
       \end{align}
     \item the set $\Psi_i$ is such that
       \begin{align}
-        \text{for all } \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i
+        \text{for all } \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i \subseteq \Psi_i
       \end{align}
     \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
       closed with $\vect{0} \in \Omega_i$
@@ -464,6 +464,13 @@ Therefore, overall
   \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i
 \end{align}
 \qedsymbol
+
+\begin{remark}
+  Since $\Omega_i \subseteq \Psi$, $\Psi$ is a robust positively-invariant
+  set according to definition \eqref{def:robust_positively_invariant_set},
+  as also implied by assumption 3 of theorem \eqref{theorem:with_disturbances}.
+  Therefore, $\Omega_i$ is also a robust positively invariant set.
+\end{remark}
 \end{gg_box}
 %---------- END Feasibility point 3 --------------------------------------------
 
@@ -738,7 +745,7 @@ By rearranging terms, the cost difference becomes bounded by
 where
 \begin{align}
   \xi_i = \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
-    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg)
+    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg) > 0
 \end{align}
 is the contribution of the bounded additive disturbance $\delta_i(t)$
 to the nominal cost difference (the case without disturbances).
@@ -774,11 +781,11 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
 \end{align}
 
 It is easy to verify that both right-hand side terms are class
-$\mathcal{K}_{\infty}$ functions, and therefore, according to definition
+$\mathcal{K}$ functions, and therefore, according to definition
 \eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
 the closed-loop system is input-to-state stable. Inevitably then, the
 closed-loop trajectories for the error state of agent $i \in \mathcal{V}$
-converge to the terminal set $\Omega_i$.
+converge to the terminal set $\Omega_i$ and are trapped there.
 
 In turn, this means that the system \eqref{eq:original_z_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to

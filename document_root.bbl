@@ -10,14 +10,14 @@ F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
   Robustness}, pp.~115--129.
 \newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2007.
 
-\bibitem{Sontag2008}
-E.~D. Sontag, {\em Input to State Stability: Basic Concepts and Results},
-  pp.~163--220.
-\newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2008.
-
 \bibitem{marquez2003nonlinear}
 H.~M{\'a}rquez, {\em Nonlinear Control Systems: Analysis and Design}.
 \newblock Wiley, 2003.
+
+\bibitem{ISS_SKATOLINI}
+L.~Magni, D.~M. Raimondo, and R.~Scattolini, ``Input-to-state stability for
+  nonlinear model predictive control,'' in {\em Proceedings of the 45th IEEE
+  Conference on Decision and Control}, pp.~4836--4841, Dec 2006.
 
 \bibitem{kolmanovsky}
 I.~Kolmanovsky and E.~G. Gilbert, ``Theory and computation of disturbance

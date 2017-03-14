@@ -4,46 +4,45 @@ The top-level auxiliary file: document_root.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
 Warning--can't use both author and editor fields in Fontes2007
-Warning--can't use both author and editor fields in Sontag2008
 You've used 6 entries,
             1876 wiz_defined-function locations,
-            520 strings with 4649 characters,
-and the built_in function-call counts, 1677 in all, are:
+            520 strings with 4604 characters,
+and the built_in function-call counts, 1732 in all, are:
 = -- 182
-> -- 35
+> -- 42
 < -- 0
-+ -- 15
-- -- 9
-* -- 94
-:= -- 217
-add.period$ -- 11
++ -- 17
+- -- 11
+* -- 101
+:= -- 225
+add.period$ -- 10
 call.type$ -- 6
-change.case$ -- 1
+change.case$ -- 2
 chr.to.int$ -- 0
-cite$ -- 8
-duplicate$ -- 89
-empty$ -- 179
-format.name$ -- 9
-if$ -- 428
+cite$ -- 7
+duplicate$ -- 94
+empty$ -- 183
+format.name$ -- 11
+if$ -- 441
 int.to.chr$ -- 0
 int.to.str$ -- 6
-missing$ -- 11
-newline$ -- 26
+missing$ -- 10
+newline$ -- 25
 num.names$ -- 6
-pop$ -- 27
+pop$ -- 29
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 60
+skip$ -- 64
 stack$ -- 0
-substring$ -- 128
-swap$ -- 40
+substring$ -- 132
+swap$ -- 41
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 2
-while$ -- 18
+warning$ -- 1
+while$ -- 17
 width$ -- 7
-write$ -- 62
-(There were 2 warnings)
+write$ -- 61
+(There was 1 warning)
