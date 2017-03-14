@@ -441,37 +441,37 @@ in non-increasing for all sampling times:
 \begin{align}
   J_i^{\star}\big(\vect{e}_i(t_{k})\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big),\ \forall t_k \in \mathbb{R}_{\geq0}
 \end{align}
-Let us now define the function $V_i(\vect{e}_i(t))$:
+Let us now define the function $\Xi_i\big(\vect{e}_i(t)\big)$:
 \begin{align}
-  V_i\big(\vect{e}(t)\big) \triangleq J_i^{\star}\big(\vect{e}_i(\tau)\big),\ t \in \mathbb{R}_{\geq0}
+  \Xi_i\big(\vect{e}(t)\big) \triangleq J_i^{\star}\big(\vect{e}_i(\tau)\big),\ t \in \mathbb{R}_{\geq0}
 \end{align}
 where $\tau = max\{t_k : t_k \leq t\}$ $-$ i.e. the immediately previous sampling
 time. Then the above inequality reforms into
 \begin{align}
-  V_i\big(\vect{e}(t)\big) \leq V_i\big(\vect{e}_i(0)\big),\ t \in \mathbb{R}_{\geq0}
+  \Xi_i\big(\vect{e}(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big),\ t \in \mathbb{R}_{\geq0}
 \end{align}
 
-Since $V_i^{\star}\big(\vect{e}_i(0)\big)$
+Since $\Xi_i\big(\vect{e}_i(0)\big)$
 is bounded (as composition of bounded parts), this implies
-that $V_i\big(\vect{e}(t)\big)$ is also bounded. The signals
+that $\Xi_i\big(\vect{e}(t)\big)$ is also bounded. The signals
 $\vect{e}_i(t) \in \mathcal{E}_i$ and $\vect{u}_i(t) \in \mathcal{U}_i$
 are also bounded. According to \eqref{eq:position_based_error_model}, this
 means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
 \eqref{eq:J_opt_between_k_and_0} we then have
 \begin{align}
-  V_i\big(\vect{e}_i(t)\big) \leq V_i\big(\vect{e}_i(0)\big)
+  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big)
     -m \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
 which, due to the fact that $\tau \leq t$, is equivalent to
 \begin{align}
-  V_i\big(\vect{e}_i(t)\big) \leq V_i\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
+  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
 \end{align}
 Solving for the integral we get
 \begin{align}
   \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq
-    \dfrac{1}{m}\Big(V_i\big(\vect{e}_i(0)\big) - V_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
+    \dfrac{1}{m}\Big(\Xi_i\big(\vect{e}_i(0)\big) - \Xi_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
 \end{align}
-Both $V_i\big(\vect{e}_i(0)\big)$ and $V_i\big(\vect{e}_i(t)\big)$
+Both $\Xi_i\big(\vect{e}_i(0)\big)$ and $\Xi_i\big(\vect{e}_i(t)\big)$
 are bounded, and therefore so is their difference, which means that the
 integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ and its limit when
 $t \to \infty$ are bounded as well. Lemma \eqref{lemma:barbalat} assures us

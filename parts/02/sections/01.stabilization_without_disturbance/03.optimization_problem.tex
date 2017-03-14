@@ -127,10 +127,9 @@ $V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
   &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\[2.5ex]
   V_i \big(\overline{\vect{e}}_i(t)\big) & \triangleq \overline{\vect{e}}_i(t)^{\top} \mat{P}_i \overline{\vect{e}}_i(t)
 \end{align}
-Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ are symmetric and positive
-definite, while matrices $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$
-are symmetric and positive semi-definite. The running costs $F_i$ are
-upper- and lower-bounded:
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ and
+$\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$ are symmetric and positive
+definite.  The running costs $F_i$ are upper- and lower-bounded:
 \begin{align}
   \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
   \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
@@ -268,6 +267,42 @@ $\mat{P}_i$. Hence:
   &= 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} \|\vect{e}_1 - \vect{e}_2\|
 \end{align}
 \qedsymbol
+\end{gg_box}
+
+Furthermore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions.
+
+\begin{bw_box}
+  \begin{lemma} (\textit{$V_i$ is lower- and upper-bounded by class
+    $\mathcal{K}$ functions})
+  \end{lemma}
+
+  The terminal penalty functions $V_i$ are lower- and upper-bounded by
+  class $\mathcal{K}$ functions $\alpha_1, \alpha_2 \in \mathcal{K}$:
+
+  \begin{align}
+    \alpha_1\big(\|\vect{e}_i\|\big) \leq V_i(\vect{e}_i) \leq \alpha_2\big(\| \vect{e}_i \|\big)
+  \end{align}
+
+\end{bw_box}
+
+\begin{gg_box}
+  $V_i$ is defined as
+  $V_i\big(\vect{e}_i\big) = \vect{e}_i^{\top} \mat{P}_i \vect{e}_i$.
+  Let us denote the minimum and maximum eigenvalues of matrix $\mat{P}_i$ by
+  $\lambda_{min}(\mat{P}_i)$ and $\lambda_{max}(\mat{P}_i)$ respectively.
+  Then, the following series of inequalities holds:
+\begin{align}
+  \lambda_{min}(\mat{P}_i) \|\vect{e}_i\|^2 \leq V_i(\vect{e}_i) \leq \lambda_{max}(\mat{P}_i) \|\vect{e}_i\|^2
+\end{align}
+
+Matrix $\mat{P}_i$ is positive definite, hence the functions
+$\alpha_1 = \lambda_{min}(\mat{P}_i) \|\vect{e}_i\|^2$ and
+$\alpha_2 = \lambda_{max}(\mat{P}_i) \|\vect{e}_i\|^2$ are
+class $\mathcal{K}$ functions according to definition \eqref{def:k_class}.
+Therefore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}$ functions:
+\begin{align}
+  \alpha_1\big(\|\vect{e}_i\|\big) \leq V_i(\vect{e}_i) \leq \alpha_2\big(\| \vect{e}_i \|\big)
+\end{align}
 \end{gg_box}
 
 
