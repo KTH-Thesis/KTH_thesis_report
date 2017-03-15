@@ -223,34 +223,12 @@ $\mat{Q}_i$. Hence:
 \end{gg_box}
 
 
-Before defining the terminal set
-$\Omega_i$ it is necessary to state the definition of a positively
-invariant set:
-
-\begin{bw_box}
-  \begin{definition} (\textit{Positively Invariant Set})
-    \label{def:positively_invariant}
-
-    Consider a dynamical system $\dot{\vect{x}} = f(\vect{x})$,
-    $\vect{x} \in \mathbb{R}^n$, and a trajectory $\vect{x}(t;\ \vect{x}_0)$,
-    where $\vect{x}_0$ is the initial condition. The set
-    $S = \{\vect{x} \in \mathbb{R}^n : \gamma(\vect{x}) = 0\}$, where
-    $\gamma$ is a valued function, is said to be \textit{positively invariant}
-    if the following holds:
-    \begin{align}
-      \vect{x}_0 \in S \Rightarrow \vect{x}(t;\ \vect{x}_0) \in S,\ \forall t \geq t_0
-    \end{align}
-
-    Intuitively, this means that the set $S$ is positively invariant if a
-    trajectory of the system does not exit it once it enters it.
-  \end{definition}
-\end{bw_box}
-
 The terminal set $\Omega_i \subseteq \mathcal{E}_i$ is an admissible
-positively invariant set for system \eqref{eq:position_based_error_model}
-such that
+positively invariant set according to definition
+\eqref{def:positively_invariant} for system
+\eqref{eq:position_based_error_model} such that
 \begin{align}
-  \Omega_i = \{\vect{e}_i \in \mathcal{E}_i : V(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
+  \Omega_i = \{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
 \end{align}
 where $\varepsilon_{\Omega_i}$ is an arbitrarily small but fixed positive real scalar.
 
@@ -398,7 +376,7 @@ $\tau \in [t_k, t_k + h)$ and $t_0 = 0$.
 We can now give the definition of an \textit{admissible input}:
 
 \begin{bw_box}
-\begin{definition} (Admissible input)\\[2.5ex]
+\begin{definition} (Admissible input)
   \label{definition:admissible_input}
 
   A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
