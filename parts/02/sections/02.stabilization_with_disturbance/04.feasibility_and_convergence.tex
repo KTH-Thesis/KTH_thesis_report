@@ -782,10 +782,13 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
 
 It is easy to verify that both right-hand side terms are class
 $\mathcal{K}$ functions, and therefore, according to definition
-\eqref{def:ISS_Lyapunov} and theorem \eqref{def:ISS_Lyapunov_admit_theorem},
-the closed-loop system is input-to-state stable. Inevitably then, the
-closed-loop trajectories for the error state of agent $i \in \mathcal{V}$
-converge to the terminal set $\Omega_i$ and are trapped there.
+\eqref{def:ISS_Lyapunov}, $J_i^{\star}\big(\vect{e}_i\big)$ is an ISS Lyapunov
+function in $\Psi_i$. Given this fact, theorem
+\eqref{def:ISS_Lyapunov_admit_theorem}, implies that the closed-loop
+system is input-to-state stable in $\Psi_i$. Inevitably then, given assumptions
+2 and 3 of theorem \eqref{theorem:with_disturbances}, the closed-loop
+trajectories for the error state of agent $i \in \mathcal{V}$ converge to
+the terminal set $\Omega_i$ and are trapped there.
 
 In turn, this means that the system \eqref{eq:original_z_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to
