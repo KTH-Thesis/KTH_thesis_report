@@ -766,6 +766,7 @@ inequality reforms into
     - \int_{t_k}^{t_{k+1}} m_i \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds \\[2.5ex]
   &\leq \int_{t_k}^{t_{k+1}} \bigg( \dfrac{\xi_i}{h} \|\vect{\delta}_i(s)\|
     -  m_i \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 \bigg) ds
+    \label{eq:check_for_ISS_here_main_branch}
 \end{align}
 
 The functions
@@ -778,14 +779,22 @@ $\Xi_i\big(\vect{e}_i\big)$ is an ISS Lyapunov function in $\Omega_i$. Given
 this fact, theorem \eqref{def:ISS_Lyapunov_admit_theorem}, implies that the
 closed-loop system is input-to-state stable in $\Omega_i$. Inevitably then,
 given assumptions \eqref{ass:phi_psi} and \eqref{ass:psi_omega}, the closed-loop
-trajectories for the error state of agent $i \in \mathcal{V}$ converge to
-the terminal set $\Omega_i$ and are trapped there for all $t \in \mathbb{R}_{\geq 0}$.
+trajectories for the error state of agent $i \in \mathcal{V}$ reach
+the terminal set $\Omega_i$ regardless of all
+$\vect{\delta}_i(t) : \|\vect{\delta}_i(t)\| \leq \overline{\delta}_i$, at
+some point\footnote{The difference with the scheme designed in
+\cite{ISS_SKATOLINI} is that in sections III, IV, the equivalent of assumption
+\eqref{ass:psi_omega} does not exist.} $t = t^{\star} \geq 0$. Once inside
+$\Omega_i$, the trajectory is trapped there because of the
+implications\footnote{For more details see the discussion after the
+declaration of theorem $7.6$ in \cite{marquez2003nonlinear}.} of
+\eqref{eq:check_for_ISS_here_main_branch} and assumption \eqref{ass:psi_omega}.
 
 In turn, this means that the system \eqref{eq:perturbed_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to
-all constraints $\mathcal{Z}_i$, as $t \to \infty$. This conclusion holds
-for all $i \in \mathcal{V}$, and hence, the compound system of agents
-$\mathcal{V}$ is stable.
+all constraints $\mathcal{Z}_i$, as $t \to \infty$ in general. This
+conclusion holds for all $i \in \mathcal{V}$, and hence, the compound
+system of agents $\mathcal{V}$ is stable.
 \qedsymbol
 
 
