@@ -27,10 +27,14 @@ position which results in feasible displacements:\\[2.5ex]
       \end{align}
     \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
       closed with $\vect{0} \in \Omega_i$
-    \item the upper bound $\overline{\delta}_i$ of the disturbance is in turn bounded by
+    \item the upper bound $\overline{\delta}_i$ of the disturbance
+      $\vect{\delta}_i(t)$,
+      $\overline{\delta}_i = \text{sup}\limits_{t \geq 0}\|\vect{\delta}_i(t)\| = \|\vect{\delta}_i\|_{\infty}$
+      is in turn bounded by
       \begin{align}
         \overline{\delta}_i \leq \dfrac{\varepsilon_{\Psi_i} - \varepsilon_{\Omega_i}}{\dfrac{L_{V_i}}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}}
       \end{align}
+      for all $t \in \mathbb{R}_{\geq 0}$
 
   \end{enumerate}
 
@@ -709,16 +713,17 @@ By rearranging terms, the cost difference becomes bounded by
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) &- J_i^{\star}\big(\vect{e}_i(t_k)\big) \\[2.5ex]
   &\leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
     + \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
-    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg) \\[2.5ex]
-  &= \xi_i -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) \big(e^{L_{g_i}(T_p-h)}-1\big) + L_{V_i} \bigg) \\[2.5ex]
+    &= \xi_i \overline{\delta}_i -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
 \end{align}
 where
 \begin{align}
-  \xi_i = \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
-    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) e^{L_{g_i}(T_p-h)}  - \dfrac{L_{F_i}}{\L_{g_i}}\bigg) > 0
+  \xi_i =\dfrac{1}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
+    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) \big(e^{L_{g_i}(T_p-h)}-1\big) + L_{V_i} \bigg) > 0
 \end{align}
-is the contribution of the bounded additive disturbance $\delta_i(t)$
-to the nominal cost difference (the case without disturbances).
+and $\xi_i \overline{\delta}_i$ is the contribution of the bounded additive
+disturbance $\delta_i(t)$ to the nominal cost difference
+(i.e. the case without disturbances).
 
 \begin{gg_box}
   $F_i$ is a positive-definite function as a sum of a positive-definite
@@ -740,19 +745,36 @@ to the nominal cost difference (the case without disturbances).
 This means that the cost difference is upper-bounded by
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-    &\leq \xi_i-m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
+  &\leq \xi_i \overline{\delta}_i -m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
 \end{align}
 and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
 \begin{align}
  J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-   \leq \xi_i-m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
+ \leq \xi_i \overline{\delta}_i - m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds
  \label{eq:J_opt_between_consecutive_k_2}
 \end{align}
 
-It is easy to verify that both right-hand side terms are class
-$\mathcal{K}$ functions, and therefore, according to definition
-\eqref{def:ISS_Lyapunov}, $J_i^{\star}\big(\vect{e}_i\big)$ is an ISS Lyapunov
+Let $\Xi_i(\vect{e}_i) \triangleq J_i^{\star}(\vect{e}_i)$. Then, between
+consecutive times $t_k$ and $t_{k+1}$ when the FHOCP is solved, the above
+inequality reforms into
+\begin{align}
+ \Xi_i\big(\vect{e}_i(t_{k+1})\big) - \Xi_i\big(\vect{e}_i(t_k)\big)
+  &\leq \xi_i \overline{\delta}_i
+  - m_i \int_{t_k}^{t_{k+1}} \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds \\[2.5ex]
+  &= \xi_i \|\vect{\delta}_i\|_{\infty}
+    - \int_{t_k}^{t_{k+1}} m_i \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 ds \\[2.5ex]
+  &\leq \int_{t_k}^{t_{k+1}} \bigg( \dfrac{\xi_i}{h} \|\vect{\delta}_i(s)\|
+    -  m_i \| \overline{\vect{e}}_i(s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)) \|^2 \bigg) ds
+\end{align}
+
+The functions
+$\sigma\big(\|\vect{\delta}_i\|\big) = \dfrac{\xi_i}{h} \|\vect{\delta}_i\|$
+and $\alpha_3\big(\|\vect{e}\|\big) = m_i \|\vect{e}\|^2$ are class
+$\mathcal{K}$ functions according to definition \eqref{def:k_class},
+and therefore, according to definition \eqref{def:ISS_Lyapunov},
+lemma \eqref{lemma:V_i_lower_upper_bounded} and remark
+\eqref{remark:ISS_Lyapunov}, $\Xi_i\big(\vect{e}_i\big)$ is an ISS Lyapunov
 function in $\Omega_i$. Given this fact, theorem
 \eqref{def:ISS_Lyapunov_admit_theorem}, implies that the closed-loop
 system is input-to-state stable in $\Omega_i$. Inevitably then, given assumptions
@@ -760,7 +782,7 @@ system is input-to-state stable in $\Omega_i$. Inevitably then, given assumption
 for the error state of agent $i \in \mathcal{V}$ converge to the terminal set
 $\Omega_i$ and are trapped there.
 
-In turn, this means that the system \eqref{eq:original_z_system} converges
+In turn, this means that the system \eqref{eq:perturbed_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to
 all constraints $\mathcal{Z}_i$, as $t \to \infty$. This conclusion holds
 for all $i \in \mathcal{V}$, and hence, the compound system of agents

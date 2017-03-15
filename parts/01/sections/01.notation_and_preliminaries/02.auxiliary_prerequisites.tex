@@ -129,7 +129,7 @@ $\sigma$ such that
 and
 \begin{align}
   \dfrac{d}{dt}V\big(\vect{x}\big)
-    \leq -\alpha_3\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{\delta}\|\big),\ \forall \vect{x} \in \Psi, \vect{\delta} \in \Delta
+    \leq \sigma\big(\|\vect{\delta}\|\big) - \alpha_3\big(\|\vect{x}\|\big),\ \forall \vect{x} \in \Psi, \vect{\delta} \in \Delta
 \end{align}
 \\[2.5ex]
 \end{definition}
@@ -140,16 +140,17 @@ and
 %===============================================================================
 %\begin{bw_box}
 \begin{remark}
+\label{remark:ISS_Lyapunov}
 
-The statement
+With regard to definition \eqref{def:ISS_Lyapunov}, the statement
 \begin{align}
   \dfrac{d}{dt}V\big(\vect{x}\big)
-    \leq -\alpha_3\big(\|\vect{x}\|\big) + \sigma\big(\|\vect{\delta}\|\big),\ \forall \vect{x} \in \Psi, \vect{\delta} \in \Delta
+    \leq \sigma\big(\|\vect{\delta}\|\big) - \alpha_3\big(\|\vect{x}\|\big),\ \forall \vect{x} \in \Psi, \vect{\delta} \in \Delta
 \end{align}
 is equivalent to
 \begin{align}
   V\big(\vect{x}(t_1)\big) - V\big(\vect{x}(t_0)\big)
-  \leq \int_{t_0}^{t_1}\Big(-\alpha_3\big(\|\vect{x}(t)\|\big) + \sigma\big(\|\vect{\delta}(t)\|\big)\Big)dt,\
+  \leq \int_{t_0}^{t_1}\Big(\sigma\big(\|\vect{\delta}(t)\|\big) - \alpha_3\big(\|\vect{x}(t)\|\big)\Big)dt,\
     \forall \vect{x} \in \Psi,\ \vect{\delta} \in \Delta,\ t \in [t_0, t_1]
 \end{align}
 \\[2.5ex]
