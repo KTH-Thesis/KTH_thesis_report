@@ -124,8 +124,9 @@ $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
 $V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
   F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
-  &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t) + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t)\\[2.5ex]
-  V_i \big(\overline{\vect{e}}_i(t)\big) & \triangleq \overline{\vect{e}}_i(t)^{\top} \mat{P}_i \overline{\vect{e}}_i(t)
+    &\triangleq \overline{\vect{e}}_i(t)^{\top} \mat{Q}_i \overline{\vect{e}}_i(t)
+  + \overline{\vect{u}}_i(t)^{\top} \mat{R}_i \overline{\vect{u}}_i(t) \label{eq:F_i_def} \\[2.5ex]
+  V_i \big(\overline{\vect{e}}_i(t)\big) & \triangleq \overline{\vect{e}}_i(t)^{\top} \mat{P}_i \overline{\vect{e}}_i(t) \label{eq:V_i_def}
 \end{align}
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ and
 $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$ are symmetric and positive
@@ -136,7 +137,8 @@ $\mathcal{K}_{\infty}$ functions:
   \begin{lemma} (\textit{$F_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions})
     \label{lemma:F_i_bounded_K_class}
 
-    Let functions $\alpha_1, \alpha_2 \in \mathcal{K}_{\infty}$. Then
+    Let functions $\alpha_1, \alpha_2 \in \mathcal{K}_{\infty}$ and $F_i$
+    be defined by \eqref{eq:F_i_def}. Then
     \begin{align}
       \alpha_1\big(\|\vect{e}_i\|\big) \leq F_i\big(\vect{e}_i, \vect{u}_i\big) \leq \alpha_2\big(\| \vect{e}_i \|\big)
     \end{align}
@@ -175,14 +177,12 @@ $\mathcal{K}_{\infty}$ functions:
 \end{gg_box}
 
 
-
-
-
 \begin{bw_box}
 \begin{lemma} ($F_i$ is Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$)
 \label{lemma:F_Lipschitz}
 
-  Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$, and $\vect{u}_i \in \mathcal{U}_i$.
+  Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$,
+  $\vect{u}_i \in \mathcal{U}_i$ and that $F_i$ is defined by \eqref{eq:F_i_def}.
   The running costs $F_i$ are Lipschitz continuous in
   $\mathcal{E}_i \times \mathcal{U}_i$:
   $$\big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big| \leq L_{F_i} \|\vect{e}_1 - \vect{e}_2\|$$
@@ -240,9 +240,9 @@ optimal control problem to the terminal region $\Omega_i$:
 \begin{lemma} ($V_i$ is Lipschitz continuous in $\Omega_i$)
 \label{lemma:V_Lipschitz_e_0}
 
-  Suppose that $\vect{e}_1, \vect{e}_2 \in \Omega_i$.
-  The terminal penalty function $V_i$ is Lipschitz continuous in
-  $\Omega_i$
+  Suppose that $\vect{e}_1, \vect{e}_2 \in \Omega_i$, and that
+  $V_i$ is defined by \eqref{eq:V_i_def}. The terminal penalty function
+  $V_i$ is Lipschitz continuous in $\Omega_i$
   $$\big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| \leq L_{V_i} \|\vect{e}_1 - \vect{e}_2\|$$
   with Lipschitz constant $L_{V_i} = 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} $\\
 
@@ -282,7 +282,8 @@ Furthermore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ f
     $\mathcal{K}_{\infty}$ functions})
   \end{lemma}
 
-  Let $\alpha_1, \alpha_2 \in \mathcal{K}_{\infty}$. Then
+  Let $\alpha_1, \alpha_2 \in \mathcal{K}_{\infty}$ and let
+  $V_i$ be define by \eqref{eq:V_i_def}. Then
   \begin{align}
     \alpha_1\big(\|\vect{e}_i\|\big) \leq V_i(\vect{e}_i) \leq \alpha_2\big(\| \vect{e}_i \|\big)
   \end{align}

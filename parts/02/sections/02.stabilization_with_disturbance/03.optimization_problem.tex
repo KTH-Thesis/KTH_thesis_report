@@ -192,17 +192,21 @@ The terminal set $\Omega_i$ is defined as
 \end{figure}
 
 
-For functions
+Functions
 $F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
-$V_i: \Psi_i \to \mathbb{R}_{\geq 0}$ and matrices
-$\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
-$\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$, the same things hold
-as in the disturbance-free case. The running costs $F_i$ are
-Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$ with Lipschitz
-constant $L_{F_i}$ and they are lower- and upper-bounded by class
-$\mathcal{K}_{\infty}$ functions. The terminal penalty functions $V_i$ are
-Lipschitz continuous in $\Psi_i$ with Lipschitz constant $L_{V_i}$, and they are
-lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions.
+$V_i: \Psi_i \to \mathbb{R}_{\geq 0}$ are defined by \eqref{eq:F_i_def}
+and \eqref{eq:V_i_def} respectively, as in the disturbance-free case.
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
+$\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$ are positive definite.
+Consequently, lemmas \eqref{lemma:F_i_bounded_K_class},
+\eqref{lemma:F_Lipschitz}, \eqref{lemma:V_Lipschitz_e_0} and
+\eqref{lemma:V_i_lower_upper_bounded} hold true here, as in the
+disturbance-free case: the running costs $F_i$ are Lipschitz continuous in
+$\mathcal{E}_i \times \mathcal{U}_i$ with Lipschitz constant $L_{F_i}$ and
+they are lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions;
+the terminal penalty functions $V_i$ are Lipschitz continuous in $\Psi_i$
+with Lipschitz constant $L_{V_i}$, and they are lower- and upper-bounded
+by class $\mathcal{K}_{\infty}$ functions.
 
 
 The solution to the optimal control problem \eqref{position_based_cost_2}
