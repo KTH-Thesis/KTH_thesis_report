@@ -16,17 +16,14 @@ position which results in feasible displacements:\\[2.5ex]
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
+    \item assumption \eqref{ass:phi_psi_omega} holds
     \item there exists an admissible control input of linear feedback form
       $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Psi_i$ and $\forall \tau \in
       [t_k + T_p, t_{k+1} + T_p]$:
       \begin{align}
-        \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i)\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i)\big) \leq 0
-      \end{align}
-    \item the set $\Psi_i$ is such that
-      \begin{align}
-        \text{for all } \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i \subseteq \Psi_i
+        \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i(\tau))\big)
+          + F_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i(\tau))\big) \leq 0
       \end{align}
     \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
       closed with $\vect{0} \in \Omega_i$
@@ -785,10 +782,10 @@ $\mathcal{K}$ functions, and therefore, according to definition
 \eqref{def:ISS_Lyapunov}, $J_i^{\star}\big(\vect{e}_i\big)$ is an ISS Lyapunov
 function in $\Psi_i$. Given this fact, theorem
 \eqref{def:ISS_Lyapunov_admit_theorem}, implies that the closed-loop
-system is input-to-state stable in $\Psi_i$. Inevitably then, given assumptions
-2 and 3 of theorem \eqref{theorem:with_disturbances}, the closed-loop
-trajectories for the error state of agent $i \in \mathcal{V}$ converge to
-the terminal set $\Omega_i$ and are trapped there.
+system is input-to-state stable in $\Psi_i$. Inevitably then, given assumption
+\eqref{ass:phi_psi_omega}, the closed-loop trajectories for the error
+state of agent $i \in \mathcal{V}$ converge to the terminal set $\Omega_i$
+and are trapped there.
 
 In turn, this means that the system \eqref{eq:original_z_system} converges
 to $\vect{z}_{i,des}$ while simultaneously conforming to
