@@ -30,10 +30,16 @@ as the set that captures all constraints on the error state with dynamics
 
 On functions $g_i$ we make the following assumption:
 \begin{bw_box}
-  \begin{assumption}
+  \begin{assumption} (\textit{$g_i$ is Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$})
+  \label{ass:g_i_Lipschitz}
 
-    Functions $g_i$ are Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz
-    constants $L_{g_i}$.
+    Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$ and
+    $\vect{u} \in \mathcal{U}_i$. Functions $g_i$ are Lipschitz continuous in
+    $\mathcal{E}_i \times \mathcal{U}_i$ with Lipschitz constants $L_{g_i}$:
+    \begin{align}
+      \big\|g_i\big(\vect{e}_1, \vect{u} \big) - g_i\big(\vect{e}_2, \vect{u} \big)\big\|
+        \leq L_{g_i} \big\|\vect{e}_1 - \vect{e}_2\big\|
+    \end{align}
 
 \end{assumption}
 \end{bw_box}
