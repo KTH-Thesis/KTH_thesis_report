@@ -12,6 +12,7 @@ system in between sampling times $t_k$ and $t_k + h$.
 At a generic time $t_k$ then, agent $i$ solves the following optimization
 problem:
 \begin{problem}
+\label{problem:opt_with_disturbances}
 \begin{align}
   \text{Find }& \\[2.5ex]
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
@@ -25,7 +26,6 @@ problem:
                      & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\[2.5ex]
                      & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i
 \end{align}
-\label{problem:opt_with_disturbances}
 \end{problem}
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
 are internal to the controller, as opposed to their actual values, because,
@@ -48,6 +48,7 @@ and the values of the predicted states for all agents within its sensing range.
 
 
 \note{?? more on the actual $\mathcal{E}_i$}
+
 
 \begin{figure}[ht!]
   \centering
@@ -92,6 +93,7 @@ $\mathcal{E}_i$. We formalize this statement in property
 
 \begin{bw_box}
   \begin{property}
+  \label{property:restricted_constraint_set}
 
   For every $s \in [t, t + T_p]$
   \begin{align}
@@ -100,7 +102,6 @@ $\mathcal{E}_i$. We formalize this statement in property
     \vect{e}_i(s) \in \mathcal{E}_i
   \end{align}
   where $\mathcal{B}_{i,s-t}$ is given by \eqref{eq:b_restricted_constraint_set}.
-\label{property:restricted_constraint_set}
 \end{property}
 \end{bw_box}
 
@@ -280,3 +281,30 @@ The closed-loop system for which stability is to be guaranteed is
 \end{align}
 where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,
 $\tau \in [t_k, t_k + h)$.
+
+We can now give the definition of an \textit{admissible input} for the FHOCP
+\eqref{problem:opt_with_disturbances}:
+
+\begin{bw_box}
+  \begin{definition} (\textit{Admissible input for the FHOCP
+    \eqref{problem:opt_with_disturbances}})
+  \label{definition:admissible_input_with_disturbance}
+
+  A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
+  $\vect{e}_i(t_k)$ is called \textit{admissible} for the problem
+  \eqref{problem:opt_with_disturbances} if all the following hold:
+
+  \begin{enumerate}
+    \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,\tau},\ \forall \tau \in [0, T_p]$
+    \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
+  \end{enumerate}
+
+  In other words, $\vect{u}_i$ is admissible if it conforms to the constraints
+  on the input and its application yields states that conform to the
+  prescribed state constraints of problem \eqref{problem:opt_with_disturbances}
+  along the entire horizon $[t_k, t_k + T_p]$, and the terminal predicted
+  state conforms to the terminal constraint.
+
+\end{definition}
+\end{bw_box}

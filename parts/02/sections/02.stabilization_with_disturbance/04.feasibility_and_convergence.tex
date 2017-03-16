@@ -146,7 +146,7 @@ By applying the Gr\"{o}nwall-Bellman inequality we get:
 \textbf{Feasibility analysis}
 In this section we will show that there can be constructed an admissible
 but not necessarily optimal control input according to definition
-\eqref{definition:admissible_input}.
+\eqref{definition:admissible_input_with_disturbance}.
 Consider a sampling instant $t_k$ for which a
 solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 problem \eqref{problem:opt_with_disturbances} exists.
@@ -318,9 +318,17 @@ Using implication\footnote{$(A \oplus B) \ominus B \subset A$}
 \begin{align}
   \overline{\vect{e}}_{i,1} \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
 \end{align}
-Translating back to our native language, we get the desired result:
+Translating back to our native language
 \begin{align}
   \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+  \label{eq:feasibility_2}
+\end{align}
+Consulting with property \eqref{property:restricted_constraint_set}
+\begin{align}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}\
+    \Rightarrow\
+    \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i
+    \label{eq:feasibility_with_disturbance_second_point}
 \end{align}
 \qedsymbol
 \end{gg_box}
@@ -403,7 +411,7 @@ Hence \eqref{eq:from_DV_to_De} becomes
 Since the solution to the optimization problem is assumed to be feasible
 at time $t_k$, all states abide by their respective constraints, and in
 particular, the predicted state
-$\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k) \in \Omega_i$.
+$\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 This means that
 $V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \leq \varepsilon_{\Omega_i}$.
 Hence \eqref{eq:from_DV_to_eq} becomes
@@ -436,6 +444,7 @@ such that
 Therefore, overall
 \begin{align}
   \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i
+  \label{eq:feasibility_3}
 \end{align}
 \qedsymbol
 
@@ -448,15 +457,16 @@ Therefore, overall
 \end{gg_box}
 %---------- END Feasibility point 3 --------------------------------------------
 
-Piecing the two last statements together, and consulting with property
-\eqref{property:restricted_constraint_set}, we conclude that the application of
-the control input $\widetilde{\vect{u}}_i(\cdot)$ at time $t_{k+1}$ results in
+
+Piecing the admissibility of $\widetilde{\vect{u}}_i(\cdot)$ from
+\eqref{eq:optimal_input_t_plus_one}, and conclusions \eqref{eq:feasibility_2} and
+\eqref{eq:feasibility_3}, we conclude that the application of the control input
+$\widetilde{\vect{u}}_i(\cdot)$ at time $t_{k+1}$ results in
 the states of the real system abiding by their intended state constraints
 across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$.
-
 Therefore, overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdot)$
 is admissible at time $t_{k+1}$ according to definition
-\eqref{definition:admissible_input}, which means that feasibility of a solution
+\eqref{definition:admissible_input_with_disturbance}, which means that feasibility of a solution
 to the optimization problem at time $t_k$ implies feasibility at time
 $t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to be
 feasible, a solution to the optimal control problem is feasible for

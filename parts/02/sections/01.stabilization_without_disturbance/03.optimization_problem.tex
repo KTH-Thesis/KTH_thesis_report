@@ -12,6 +12,7 @@ between sampling times $t_k$ and $t_{k+1}$.
 At a generic time $t_k$ then, agent $i$ solves the following
 optimization problem:
 \begin{problem}
+\label{problem:opt_without_disturbances}
 \begin{align}
   \text{Find }& \\[2.5ex]
               &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
@@ -25,7 +26,6 @@ optimization problem:
   & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\[2.5ex]
   & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i \subseteq \mathcal{E}_i
 \end{align}
-\label{problem:opt_without_disturbances}
 \end{problem}
 
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
@@ -376,21 +376,30 @@ where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;
 $\tau \in [t_k, t_k + h)$ and $t_0 = 0$.
 
 
-We can now give the definition of an \textit{admissible input}:
+We can now give the definition of an \textit{admissible input} for the FHOCP
+\eqref{problem:opt_without_disturbances}:
 
 \begin{bw_box}
-\begin{definition} (Admissible input)
+  \begin{definition} (\textit{Admissible input for the FHOCP
+\eqref{problem:opt_without_disturbances}})
   \label{definition:admissible_input}
 
   A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
-  $\vect{e}_i(t_k)$ is called \textit{admissible} if all the following hold:
+  $\vect{e}_i(t_k)$ is called \textit{admissible} for the problem
+  \eqref{problem:opt_without_disturbances} if all the following hold:
 
   \begin{enumerate}
-    \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\vect{e}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\vect{e}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
+    \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
   \end{enumerate}
+
+  In other words, $\vect{u}_i$ is admissible if it conforms to the constraints
+  on the input and its application yields states that conform to the
+  prescribed state constraints of problem
+  \eqref{problem:opt_without_disturbances} along the entire horizon
+  $[t_k, t_k + T_p]$, and the terminal predicted state conforms to the
+  terminal constraint.
 
 \end{definition}
 \end{bw_box}
