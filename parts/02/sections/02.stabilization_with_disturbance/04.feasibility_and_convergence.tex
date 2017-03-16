@@ -494,18 +494,17 @@ feasible, a solution to the optimal control problem is feasible for
 all $t \geq 0$.\\[2.5ex]
 
 \textbf{Convergence analysis}
-The second part of the proof involves demonstrating the convergence of the
-state $\vect{e}_i$ to the terminal set $\Omega_i$. In order for this
-to be proved, it must be shown that a proper value function decreases along
-the solution trajectories starting at some initial time $t_k$. We consider the
-\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
-Lyapunov function:
+The second part of the proof involves demonstrating that the
+state $\vect{e}_i$ is ultimately bounded in $\Omega_i$. We will show that the
+\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ is an
+ISS Lyapunov function for the closed loop system
+\eqref{eq:with_disturbances_closed_loop} according to definition
+\eqref{def:ISS_Lyapunov}, with
 $$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
-and, in particular, our goal is to show that that this cost decreases over
-consecutive sampling instants $t_{k+1} = t_k + h$, i.e.
-$J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq 0$.\\[2.5ex]
+by way of remark \eqref{remark:ISS_Lyapunov}.
 
-In order not to wreak notational havoc, let us define the following terms:
+In order not to wreak notational havoc, let us as  before define the following
+terms:
 \begin{gg_box}
 \begin{itemize}
   \item $\vect{u}_{0,i}(\tau) \triangleq \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$
@@ -800,13 +799,14 @@ inequality reforms into
 
 The functions
 $\sigma\big(\|\vect{\delta}_i\|\big) = \dfrac{\xi_i}{h} \|\vect{\delta}_i\|$
-and $\alpha_3\big(\|\vect{e}\|\big) = m_i \|\vect{e}\|^2$ are class
+and $\alpha_3\big(\|\vect{e}_i\|\big) = m_i \|\vect{e}_i\|^2$ are class
 $\mathcal{K}$ functions according to definition \eqref{def:k_class},
 and therefore, according to lemma \eqref{lemma:V_i_lower_upper_bounded},
 remark \eqref{remark:ISS_Lyapunov} and definition \eqref{def:ISS_Lyapunov},
-$\Xi_i\big(\vect{e}_i\big)$ is an ISS Lyapunov function in $\Omega_i$. Given
-this fact, theorem \eqref{def:ISS_Lyapunov_admit_theorem}, implies that the
-closed-loop system is input-to-state stable in $\Omega_i$. Inevitably then,
+$\Xi_i\big(\vect{e}_i\big)$ is an ISS Lyapunov function in $\Omega_i$.
+
+Given this fact, theorem \eqref{def:ISS_Lyapunov_admit_theorem}, implies that
+the closed-loop system is input-to-state stable in $\Omega_i$. Inevitably then,
 given assumptions \eqref{ass:phi_psi} and \eqref{ass:psi_omega}, the closed-loop
 trajectories for the error state of agent $i \in \mathcal{V}$ reach
 the terminal set $\Omega_i$ regardless of all
