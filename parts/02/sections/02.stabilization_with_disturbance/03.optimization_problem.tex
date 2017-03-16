@@ -153,11 +153,11 @@ positively invariant set $\Psi_i$ as per definition
   \begin{assumption}
   \label{ass:phi_psi}
   The set $\Psi_i$ belongs to the set $\Phi_i$, $\Psi_i \subseteq \Phi_i$,
-  which is the set of states within $\mathcal{E}_{i,T_p}$ for which there is an
+  which is the set of states within $\mathcal{E}_{i,T_p-h}$ for which there is an
   admissible control input whose form is of linear feedback with regard to the
   state:
   \begin{align}
-    \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p} : \vect{h}_i(\vect{e}_i) \in \mathcal{U}_i \big\}
+    \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p-h} : \vect{h}_i(\vect{e}_i) \in \mathcal{U}_i \big\}
   \end{align}
   \end{assumption}
 \end{bw_box}
@@ -184,7 +184,7 @@ The terminal set $\Omega_i$ is defined as
   \centering
   \input{figures/terminal_set_restricted.tex}
   \caption{The hierarchy of sets
-  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p}$,
+  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p-h}$,
   in bold, dash-dotted, dash-dotted, and dashed, respectively.
   For every state in $\Phi_i$ there is a linear state feedback control
   $\vect{h}_i(\vect{e}_i)$ which, when applied to a state

@@ -16,7 +16,9 @@ position which results in feasible displacements:\\[2.5ex]
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
-    \item assumptions \eqref{ass:phi_psi} and \eqref{ass:psi_omega} hold true
+    \item assumptions \eqref{ass:g_i_g_R_Lipschitz},  \eqref{ass:phi_psi},
+      \eqref{ass:psi_omega} and \eqref{ass:existence_of_solutions_with_disturbance}
+      hold true
     \item there exists an admissible control input of linear feedback form
       $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Psi_i$ and $\forall \tau \in
@@ -147,6 +149,7 @@ By applying the Gr\"{o}nwall-Bellman inequality we get:
 In this section we will show that there can be constructed an admissible
 but not necessarily optimal control input according to definition
 \eqref{definition:admissible_input_with_disturbance}.
+
 Consider a sampling instant $t_k$ for which a
 solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 problem \eqref{problem:opt_with_disturbances} exists.
@@ -173,11 +176,15 @@ portions:
 Both portions are admissible since the calculated optimal control input is
 admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
-crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
+crucially:
+\begin{align}
+  \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i
+  \label{eq:predicted_t_k_T_p_from_t_k_in_omega}
+\end{align}
 Furthermore, according to assumption (3) of the theorem, there exists an
 admissible (and certainly not guaranteed optimal) input
-$\vect{h}_i \in \mathcal{U}_i$ that renders $\Psi_i$ invariant
-over $[t_k + T_p, t_k + T_p + h]$.
+$\vect{h}_i \in \mathcal{U}_i$ that renders $\Psi_i$
+(and consequently $\Omega_i$) invariant over $[t_k + T_p, t_k + T_p + h]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
@@ -188,7 +195,7 @@ $\vect{h}_i(\cdot)$:
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\[2.5ex]
-        \vect{h}_i\big(\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k))\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        \vect{h}_i\big(\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}
@@ -202,7 +209,7 @@ all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
 
 %-------- START Feasibility point 2 --------------------------------------------
 Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{s}$,
-for all $s \in [0,  T_p]$
+for all $s \in [0, T_p]$
 
 
 \begin{gg_box}
@@ -320,16 +327,21 @@ Using implication\footnote{$(A \oplus B) \ominus B \subset A$}
 \end{align}
 Translating back to our native language
 \begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}
+  \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s},\
+  \forall s \in [0,T_p]
   \label{eq:feasibility_2}
 \end{align}
-Consulting with property \eqref{property:restricted_constraint_set}
+\begin{remark}
+Consulting with property \eqref{property:restricted_constraint_set}, this means
+that the state of the ``true" system does not violate the constraints $\mathcal{E}_i$
+over the horizon $[t_{k+1}, t_{k+1} + T_p]$:
 \begin{align}
   \overline{\vect{e}}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s}\
     \Rightarrow\
-    \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i
+    \vect{e}_i\big(t_{k+1} + s;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i,\ \forall s \in [0,T_p]
     \label{eq:feasibility_with_disturbance_second_point}
 \end{align}
+\end{remark}
 \qedsymbol
 \end{gg_box}
 %---------- END Feasibility point 2 --------------------------------------------
@@ -410,7 +422,8 @@ Hence \eqref{eq:from_DV_to_De} becomes
 
 Since the solution to the optimization problem is assumed to be feasible
 at time $t_k$, all states abide by their respective constraints, and in
-particular, the predicted state
+particular, from \eqref{eq:predicted_t_k_T_p_from_t_k_in_omega},
+the predicted state
 $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 This means that
 $V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \leq \varepsilon_{\Omega_i}$.
@@ -432,14 +445,18 @@ Therefore
   V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
   \leq  \varepsilon_{\Omega_i} - \varepsilon_{\Omega_i} + \varepsilon_{\Psi_i} = \varepsilon_{\Psi_i}
 \end{align}
+or, expressing the above in terms of $t_{k+1}$
+\begin{align}
+  V_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \leq \varepsilon_{\Psi_i}
+\end{align}
 which means that the state
-$\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
+$\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
 From assumption 2 of theorem \eqref{theorem:with_disturbances},
 and since $\Psi_i \subseteq \Phi_i$, there is an admissible control signal
-$\vect{h}_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
+$\vect{h}_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
 such that
 \begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \vect{h}_i(\cdot), \overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \in \Omega_i
+  \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \vect{h}_i(\cdot), \overline{\vect{e}}_i\big(t_{k+1} + T_p - h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \in \Omega_i
 \end{align}
 Therefore, overall
 \begin{align}
@@ -468,7 +485,7 @@ Therefore, overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdo
 is admissible at time $t_{k+1}$ according to definition
 \eqref{definition:admissible_input_with_disturbance}, which means that feasibility of a solution
 to the optimization problem at time $t_k$ implies feasibility at time
-$t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to be
+$t_{k+1} > t_k$. Thus, since at time $t=0$ a solution is assumed to be
 feasible, a solution to the optimal control problem is feasible for
 all $t \geq 0$.\\[2.5ex]
 
