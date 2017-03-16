@@ -16,7 +16,8 @@ position which results in feasible displacements:\\[2.5ex]
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
-    \item assumptions \eqref{ass:g_i_g_R_Lipschitz},  \eqref{ass:phi_psi},
+    \item assumptions \eqref{ass:access_to_predicted_info_n},
+      \eqref{ass:g_i_g_R_Lipschitz},  \eqref{ass:phi_psi},
       \eqref{ass:psi_omega} and \eqref{ass:existence_of_solutions_with_disturbance}
       hold true
     \item there exists an admissible control input of linear feedback form
@@ -449,7 +450,7 @@ or, expressing the above in terms of $t_{k+1}$
 \begin{align}
   V_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \leq \varepsilon_{\Psi_i}
 \end{align}
-which means that the state
+This means that the state
 $\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
 From assumption 2 of theorem \eqref{theorem:with_disturbances},
 and since $\Psi_i \subseteq \Phi_i$, there is an admissible control signal
@@ -651,8 +652,6 @@ Given the above result, \eqref{eq:integrals_over_same_u_LV} becomes
   & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i} h} - 1) \dfrac{1}{L_{g_i}}(e^{L_{g_i}(T_p-h)} - 1) \\[2.5ex]
   & = L_{F_i} \dfrac{\overline{\delta}_i}{\L_{g_i}^2} (e^{L_{g_i} h} - 1) (e^{L_{g_i}(T_p-h)} - 1)
 \end{align}
-
-
 Hence we discovered that
 \begin{bw_box}
 \begin{align}
@@ -813,7 +812,7 @@ some point\footnote{The difference with the scheme designed in
 \cite{ISS_SKATOLINI} is that in sections III, IV, the equivalent of assumption
 \eqref{ass:psi_omega} does not exist.} $t = t^{\star} \geq 0$. Once inside
 $\Omega_i$, the trajectory is trapped there because of the
-implications\footnote{For more details see the discussion after the
+implications\footnote{For more details, refer to the discussion after the
 declaration of theorem $7.6$ in \cite{marquez2003nonlinear}.} of
 \eqref{eq:check_for_ISS_here_main_branch} and assumption \eqref{ass:psi_omega}.
 
