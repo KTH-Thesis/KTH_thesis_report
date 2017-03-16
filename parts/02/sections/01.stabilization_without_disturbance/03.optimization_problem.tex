@@ -44,7 +44,7 @@ in the optimization problem. These constraints pertain to the set of its
 neighbours $\mathcal{N}_i$ and, in total, to the set of all agents within its
 sensing range $\mathcal{R}_i$. Regarding these, we make the following assumption:
 
-\begin{gg_box}
+\begin{bw_box}
   \begin{assumption} (\textit{Access to Predicted Information from an
     Inter-agent Perspective})
     \label{ass:access_to_predicted_info_n}
@@ -76,7 +76,8 @@ access to\footnote{Although
       across the entire horizon $\tau \in (t_k, t_k + T_p]$
 \end{enumerate}
 \end{assumption}
-\end{gg_box}
+\end{bw_box}
+
 In other words, each time an agent solves its own individual
 optimization problem, he knows the error predictions that have been generated
 by the solution of the optimization problem of all agents within
@@ -389,6 +390,7 @@ We can now give the definition of an \textit{admissible input} for the FHOCP
   \eqref{problem:opt_without_disturbances} if all the following hold:
 
   \begin{enumerate}
+    \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$

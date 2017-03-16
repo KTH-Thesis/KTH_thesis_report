@@ -140,14 +140,18 @@ Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
 \qedsymbol
 \end{gg_box}
 
-
-The terminal set $\Omega_i \subseteq \Psi_i$ is a subset of an admissible and
-positively invariant set $\Psi_i$ as per definition
-\eqref{def:positively_invariant}, where $\Psi_i$ is defined as
-\begin{align}
-  \Psi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
-    \leq \varepsilon_{\Psi_i} \big\},\ \varepsilon_{\Psi_i} > 0
-\end{align}
+\begin{bw_box}
+  \begin{assumption}
+  \label{ass:psi}
+  The terminal set $\Omega_i \subseteq \Psi_i$ is a subset of an admissible and
+  positively invariant set $\Psi_i$ as per definition
+  \eqref{def:positively_invariant}, where $\Psi_i$ is defined as
+  \begin{align}
+    \Psi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+      \leq \varepsilon_{\Psi_i} \big\},\ \varepsilon_{\Psi_i} > 0
+  \end{align}
+  \end{assumption}
+\end{bw_box}
 
 \begin{bw_box}
   \begin{assumption}
@@ -173,12 +177,16 @@ positively invariant set $\Psi_i$ as per definition
   \end{assumption}
 \end{bw_box}
 
-The terminal set $\Omega_i$ is defined as
-\begin{align}
-  \Omega_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
-    \leq \varepsilon_{\Omega_i}\big\}\ \text{, where } \varepsilon_{\Omega_i} \in (0, \varepsilon_{\Psi_i})
-\end{align}
-
+\begin{bw_box}
+  \begin{assumption}
+  \label{ass:omega}
+  The terminal set $\Omega_i$ is defined as
+  \begin{align}
+    \Omega_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+      \leq \varepsilon_{\Omega_i}\big\}\ \text{, where } \varepsilon_{\Omega_i} \in (0, \varepsilon_{\Psi_i})
+  \end{align}
+  \end{assumption}
+\end{bw_box}
 
 \begin{figure}[ht!]
   \centering
@@ -295,6 +303,7 @@ We can now give the definition of an \textit{admissible input} for the FHOCP
   \eqref{problem:opt_with_disturbances} if all the following hold:
 
   \begin{enumerate}
+    \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,\tau},\ \forall \tau \in [0, T_p]$
     \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$

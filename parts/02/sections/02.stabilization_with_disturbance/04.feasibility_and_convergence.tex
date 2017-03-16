@@ -17,9 +17,12 @@ position which results in feasible displacements:\\[2.5ex]
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
       \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
     \item assumptions \eqref{ass:access_to_predicted_info_n},
-      \eqref{ass:g_i_g_R_Lipschitz},  \eqref{ass:phi_psi},
-      \eqref{ass:psi_omega} and \eqref{ass:existence_of_solutions_with_disturbance}
-      hold true
+      \eqref{ass:g_i_g_R_Lipschitz} $-$%,
+      %\eqref{ass:psi},
+      %\eqref{ass:phi_psi},
+      %\eqref{ass:psi_omega},
+      %\eqref{ass:omega} and
+      \eqref{ass:existence_of_solutions_with_disturbance} hold true
     \item there exists an admissible control input of linear feedback form
       $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Psi_i$ and $\forall \tau \in
@@ -43,15 +46,15 @@ position which results in feasible displacements:\\[2.5ex]
 
   then the closed loop system \eqref{eq:with_disturbances_closed_loop} under
   the control input \eqref{eq:position_based_optimal_u_2} converges to the set
-  $\Omega_i$ when $t \to \infty$.
+  $\Omega_i$ and is ultimately bounded there.
 \end{theorem}
 \end{bw_box}
 
 \textbf{Proof}. The proof of the above theorem consists of two parts:
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
-on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
-to the terminal set $\Omega_i$.
+on the first part, it is shown that the error state $\vect{e}_i(t)$ reaches
+the terminal set $\Omega_i$ and is trapped there.
 
 
 \begin{bw_box}

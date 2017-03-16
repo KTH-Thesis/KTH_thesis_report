@@ -14,6 +14,12 @@ F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
 H.~M{\'a}rquez, {\em Nonlinear Control Systems: Analysis and Design}.
 \newblock Wiley, 2003.
 
+\bibitem{1185106}
+D.~L. Marruedo, T.~Alamo, and E.~F. Camacho, ``Input-to-state stable mpc for
+  constrained discrete-time nonlinear systems with bounded additive
+  uncertainties,'' in {\em Proceedings of the 41st IEEE Conference on Decision
+  and Control, 2002.}, vol.~4, pp.~4619--4624 vol.4, Dec 2002.
+
 \bibitem{ISS_SKATOLINI}
 L.~Magni, D.~M. Raimondo, and R.~Scattolini, ``Input-to-state stability for
   nonlinear model predictive control,'' in {\em Proceedings of the 45th IEEE
