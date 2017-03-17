@@ -1,4 +1,9 @@
-\usepackage[left=1.0in, right=1.0in, top=1.0in, bottom=1.0in]{geometry}
+\usepackage[top=30mm, bottom=30mm, inner=36mm, outer=18mm, footskip = 15mm]{geometry}
+%\usepackage[paperwidth=169mm, paperheight=239mm, top=30mm, bottom=30mm, voffset=-1in + 15mm, inner=36mm, outer=18mm, footskip = 15mm]{geometry}
+
+% Use this to show margins
+%\usepackage{showframe}
+%\usepackage{layouts}
 
 \usepackage[toc,page]{appendix}
 \usepackage{amsmath}
@@ -39,9 +44,26 @@
 \usepackage{pspicture}
 \usepackage{tikz}
 \usetikzlibrary{calc,positioning,shapes,shadows,arrows,fit}
+\usepackage{fancyhdr}
+%\pagestyle{fancy}
+
+% CHAPTERS
+\usepackage{fix-cm}
+\usepackage{titlesec}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{0pt}}
+\titleformat{\chapter}[hang]{\flushright
+\fontseries{b}\fontsize{80}{100}\selectfont}{\fontseries{b}\fontsize{100}{130}\selectfont \textcolor{gray75}\thechapter\hsp}{0pt}{\\ \Huge\bfseries}[]
 
 \widowpenalty=1000
 \clubpenalty=1000
+
+
+\usepackage[all,defaultlines=3]{nowidow}
+
+% Inline equations do not split with this
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen
 
 \usepackage{environ}
 \NewEnviron{gg_box}{%
@@ -126,5 +148,18 @@
 
 %\mathtoolsset{showonlyrefs=true}
 
-\binoppenalty=\maxdimen
-\relpenalty=\maxdimen
+
+% Redefines cleardoublepage so as to remove headers/footers
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\begin{center}
+This page intentionally left
+\end{center}
+\vspace{\fill}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
