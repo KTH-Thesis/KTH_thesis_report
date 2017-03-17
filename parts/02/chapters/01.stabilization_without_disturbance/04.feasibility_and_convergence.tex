@@ -369,17 +369,17 @@ Hence, the cost difference becomes bounded by
   $F_i$ is a positive-definite function as a sum of a positive-definite
   $\|\vect{u}_i\|^2_{\mat{R}_i}$ and a positive semi-definite function
   $\|\vect{e}_i\|^2_{\mat{Q}_i}$. If we denote by
-  $m = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \geq 0$ the minimum eigenvalue
+  $m_i = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \geq 0$ the minimum eigenvalue
   between those of matrices $\mat{R}_i, \mat{Q}_i$, this means that
   \begin{align}
-    F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m \|\vect{e}_{0,i}(s)\|^2
+    F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m_i \|\vect{e}_{0,i}(s)\|^2
   \end{align}
 
   By integrating the above between our interval of interest $[t_k, t_{k+1}]$ we get
   \begin{align}
-    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m \|\vect{e}_{0,i}(s)\|^2 ds \\[2.5ex]
+    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m_i \|\vect{e}_{0,i}(s)\|^2 ds \\[2.5ex]
     \text{or}\\[2.5ex]
-    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
 \end{gg_box}
 
@@ -387,12 +387,12 @@ This means that the cost difference is upper-bounded by a class $\mathcal{K}$
 function
 \begin{align}
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
-  &\leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+  &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
 and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
 \begin{align}
- J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+ J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
  \label{eq:J_opt_between_consecutive_k}
 \end{align}
 With this milestone result established, we need to trace the time $t_k$ back
@@ -414,13 +414,13 @@ times $t \in \mathbb{R}_{\geq 0}$.
   $t_k$ and $t_{k+1}$ in \eqref{eq:J_opt_between_consecutive_k}
   \begin{align}
     J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
-      -m \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds +m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+      -m_i \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds +m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
   Similarly, the optimal cost difference between the sampling times $t_{k-1}$
   and $t_{k}$ is
   \begin{align}
     J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_{k-1})\big) \leq
-      -m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds +m \int_{t_0}^{t_{k-1}} \|\vect{e}_{0,i}(s)\|^2 ds
+      -m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds +m_i \int_{t_0}^{t_{k-1}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
   and we can apply this rationale all the way back to the cost difference
   between $t_0$ and $t_1$. Summing all the inequalities between the pairs of
@@ -428,14 +428,14 @@ times $t \in \mathbb{R}_{\geq 0}$.
   $(t_{k-1}, t_k)$, we get
   \begin{align}
     J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_0)\big) \leq
-      -m \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+      -m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
   \end{align}
 \end{gg_box}
 
 Hence, for $t_0 = 0$
 \begin{align}
   J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(0)\big) \leq
-    -m \int_{0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+    -m_i \int_{0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \label{eq:J_opt_between_k_and_0}
 \end{align}
 which implies that the value function $J_i^{\star}\big(\vect{e}_i(t_{k})\big)$
@@ -462,16 +462,16 @@ means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
 \eqref{eq:J_opt_between_k_and_0} we then have
 \begin{align}
   \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big)
-    -m \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+    -m_i \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
 which, due to the fact that $\tau \leq t$, is equivalent to
 \begin{align}
-  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big) -m \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
+  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big) -m_i \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
 \end{align}
 Solving for the integral we get
 \begin{align}
   \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq
-    \dfrac{1}{m}\Big(\Xi_i\big(\vect{e}_i(0)\big) - \Xi_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
+    \dfrac{1}{m_i}\Big(\Xi_i\big(\vect{e}_i(0)\big) - \Xi_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
 \end{align}
 Both $\Xi_i\big(\vect{e}_i(0)\big)$ and $\Xi_i\big(\vect{e}_i(t)\big)$
 are bounded, and therefore so is their difference, which means that the

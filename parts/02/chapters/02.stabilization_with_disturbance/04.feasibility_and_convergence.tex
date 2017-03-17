@@ -31,8 +31,6 @@ position which results in feasible displacements:\\[2.5ex]
         \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), h_i(\vect{e}_i(\tau))\big)
           + F_i\big(\vect{e}_i(\tau), h_i(\vect{e}_i(\tau))\big) \leq 0
       \end{align}
-    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
-      closed with $\vect{0} \in \Omega_i$
     \item the upper bound $\overline{\delta}_i$ of the disturbance
       $\vect{\delta}_i(t)$,
       $\overline{\delta}_i = \text{sup}\limits_{t \geq 0}\|\vect{\delta}_i(t)\| = \|\vect{\delta}_i\|_{\infty}$
@@ -385,7 +383,7 @@ Hence \eqref{eq:from_DV_to_eq} becomes
 \label{eq:from_DV_to_eq_2}
 \end{align}
 
-From assumption 5 of theorem \eqref{theorem:with_disturbances},
+From assumption 4 of theorem \eqref{theorem:with_disturbances},
 the upper bound of the disturbance is in turn bounded by
 \begin{align}
   \overline{\delta}_i \leq \dfrac{\varepsilon_{\Psi_i} - \varepsilon_{\Omega_i}}{\dfrac{L_{V_i}}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}}
@@ -419,18 +417,18 @@ Therefore, overall
 
 
 Piecing the admissibility of $\widetilde{\vect{u}}_i(\cdot)$ from
-\eqref{eq:optimal_input_t_plus_one}, and conclusions \eqref{eq:feasibility_2} and
-\eqref{eq:feasibility_3}, we conclude that the application of the control input
-$\widetilde{\vect{u}}_i(\cdot)$ at time $t_{k+1}$ results in
-the states of the real system abiding by their intended state and terminal
-constraints across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$.
-Therefore, overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdot)$
-is admissible at time $t_{k+1}$ according to definition
-\eqref{definition:admissible_input_with_disturbance}, which means that feasibility of a solution
-to the optimization problem at time $t_k$ implies feasibility at time
-$t_{k+1} > t_k$. Thus, since at time $t=0$ a solution is assumed to be
-feasible, a solution to the optimal control problem is feasible for
-all $t \geq 0$.\\[2.5ex]
+\eqref{eq:optimal_input_t_plus_one} together with conclusions
+\eqref{eq:feasibility_2} and \eqref{eq:feasibility_3}, we conclude that the
+application of the control input $\widetilde{\vect{u}}_i(\cdot)$ at time
+$t_{k+1}$ results in the states of the real system abiding by their intended
+state and terminal constraints across the entire horizon
+$[t_{k+1}, t_{k+1} + T_p]$. Therefore, overall, the (sub-optimal) control input
+$\widetilde{\vect{u}}_i(\cdot)$ is admissible at time $t_{k+1}$ according to
+definition \eqref{definition:admissible_input_with_disturbance}, which means
+that feasibility of a solution to the optimization problem at time $t_k$ implies
+feasibility at time $t_{k+1} > t_k$. Thus, since at time $t=0$ a solution is
+assumed to be feasible, a solution to the optimal control problem is feasible
+for all $t \geq 0$.\\[2.5ex]
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating that the
