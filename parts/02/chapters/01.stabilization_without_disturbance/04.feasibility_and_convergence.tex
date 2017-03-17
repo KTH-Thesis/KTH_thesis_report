@@ -21,15 +21,15 @@ position which results in feasible displacements:\\[2.5ex]
     \item assumptions \eqref{ass:g_i_Lipschitz}, \eqref{ass:access_to_predicted_info_n},
       and \eqref{ass:existence_of_solutions_without_disturbance} hold
     \item there exists an admissible control input
-      $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      $h_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Omega_i$ and
       $\forall \tau \in [t_k + T_p, t_{k+1} + T_p]$:
 
       \begin{enumerate}
         \item $\vect{e}_i(\tau) \in \Omega_i$
         \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau),
-        \vect{h}_i\big(\vect{e}_i(\tau)\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{h}_i\big(\vect{e}_i(\tau)\big)\big) \leq 0$
+        h_i\big(\vect{e}_i(\tau)\big)
+          + F_i\big(\vect{e}_i(\tau), h_i\big(\vect{e}_i(\tau)\big)\big) \leq 0$
       \end{enumerate}
 
   \end{enumerate}
@@ -76,19 +76,19 @@ admissible, and hence they both conform to the input constraints.
 As for the resulting predicted states, they satisfy the state constraints, and,
 crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
 Furthermore, according to assumption (3) of the theorem, there exists an
-admissible (and certainly not guaranteed optimal) input $\vect{h}_i(\vect{e}_i)$ that
+admissible (and certainly not guaranteed optimal) input $h_i(\vect{e}_i)$ that
 renders $\Omega_i$ invariant over $[t_k + T_p, t_{k+1} + T_p]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  starting at time $t_{k+1}$ by sewing together
 the second portion of \eqref{eq:optimal_input_portions} and the input
-$\vect{h}_i(\vect{e}_i)$:
+$h_i(\vect{e}_i)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\[2.5ex]
-        \vect{h}_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        h_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}

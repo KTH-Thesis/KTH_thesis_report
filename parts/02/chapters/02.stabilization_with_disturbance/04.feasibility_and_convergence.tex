@@ -24,12 +24,12 @@ position which results in feasible displacements:\\[2.5ex]
       %\eqref{ass:omega} and
       \eqref{ass:existence_of_solutions_with_disturbance} hold true
     \item there exists an admissible control input of linear feedback form
-      $\vect{h}_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      $h_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
       such that for all $\vect{e}_i \in \Psi_i$ and $\forall \tau \in
       [t_k + T_p, t_{k+1} + T_p]$:
       \begin{align}
-        \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i(\tau))\big)
-          + F_i\big(\vect{e}_i(\tau), \vect{h}_i(\vect{e}_i(\tau))\big) \leq 0
+        \dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau), h_i(\vect{e}_i(\tau))\big)
+          + F_i\big(\vect{e}_i(\tau), h_i(\vect{e}_i(\tau))\big) \leq 0
       \end{align}
     \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
       closed with $\vect{0} \in \Omega_i$
@@ -187,19 +187,19 @@ crucially:
 \end{align}
 Furthermore, according to assumption (3) of the theorem, there exists an
 admissible (and certainly not guaranteed optimal) input
-$\vect{h}_i \in \mathcal{U}_i$ that renders $\Psi_i$
+$h_i \in \mathcal{U}_i$ that renders $\Psi_i$
 (and consequently $\Omega_i$) invariant over $[t_k + T_p, t_k + T_p + h]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
 portion of \eqref{eq:optimal_input_portions} and the admissible input
-$\vect{h}_i(\cdot)$:
+$h_i(\cdot)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\[2.5ex]
-        \vect{h}_i\big(\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        h_i\big(\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one}
@@ -457,10 +457,10 @@ This means that the state
 $\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
 From assumption 2 of theorem \eqref{theorem:with_disturbances},
 and since $\Psi_i \subseteq \Phi_i$, there is an admissible control signal
-$\vect{h}_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
+$h_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
 such that
 \begin{align}
-  \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \vect{h}_i(\cdot), \overline{\vect{e}}_i\big(t_{k+1} + T_p - h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \in \Omega_i
+  \overline{\vect{e}}_i\big(t_{k+1} + T_p;\ h_i(\cdot), \overline{\vect{e}}_i\big(t_{k+1} + T_p - h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \in \Omega_i
 \end{align}
 Therefore, overall
 \begin{align}
@@ -483,8 +483,8 @@ Piecing the admissibility of $\widetilde{\vect{u}}_i(\cdot)$ from
 \eqref{eq:optimal_input_t_plus_one}, and conclusions \eqref{eq:feasibility_2} and
 \eqref{eq:feasibility_3}, we conclude that the application of the control input
 $\widetilde{\vect{u}}_i(\cdot)$ at time $t_{k+1}$ results in
-the states of the real system abiding by their intended state constraints
-across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$.
+the states of the real system abiding by their intended state and terminal
+constraints across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$.
 Therefore, overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdot)$
 is admissible at time $t_{k+1}$ according to definition
 \eqref{definition:admissible_input_with_disturbance}, which means that feasibility of a solution

@@ -25,6 +25,12 @@ L.~Magni, D.~M. Raimondo, and R.~Scattolini, ``Input-to-state stability for
   nonlinear model predictive control,'' in {\em Proceedings of the 45th IEEE
   Conference on Decision and Control}, pp.~4836--4841, Dec 2006.
 
+\bibitem{1024831}
+D.~L. Marruedo, T.~Alamo, and E.~F. Camacho, ``Stability analysis of systems
+  with bounded additive uncertainties based on invariant sets: Stability and
+  feasibility of mpc,'' in {\em Proceedings of the 2002 American Control
+  Conference (IEEE Cat. No.CH37301)}, vol.~1, pp.~364--369 vol.1, May 2002.
+
 \bibitem{kolmanovsky}
 I.~Kolmanovsky and E.~G. Gilbert, ``Theory and computation of disturbance
   invariant sets for discrete-time linear systems,'' {\em Mathematical Problems

@@ -225,3 +225,21 @@ $\vect{\delta} \in \Delta$.
 \\[2.5ex]
 \end{definition}
 %\end{bw_box}
+
+
+% Robust control invariant set
+%===============================================================================
+%\begin{bw_box}
+\begin{definition}\cite{1024831} (\textit{Robust control invariant set})
+\label{def:robust_control_invariant_set}
+
+A set $\Psi \in \mathbb{R}^n$ is a robust control invariant set for the
+nonlinear system $\dot{\vect{x}} = f(\vect{x}, \vect{u}) + \vect{\delta}$,
+$\vect{x} \in X, \vect{u} \in U, \vect{\delta} \in \Delta$, if
+$\Psi \subseteq X$ and for all $\vect{x} \in \Omega$ there is an admissible
+control action $\vect{u} = \vect{h}(\vect{u}) \in U$ such that
+$f(\vect{x}, \vect{u}) + \vect{\delta} \in \Omega$ for all
+$\vect{\delta} \in \Delta$.
+\\[2.5ex]
+\end{definition}
+%\end{bw_box}

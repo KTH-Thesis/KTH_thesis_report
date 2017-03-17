@@ -157,11 +157,11 @@ Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
   \begin{assumption}
   \label{ass:phi_psi}
   The set $\Psi_i$ belongs to the set $\Phi_i$, $\Psi_i \subseteq \Phi_i$,
-  which is the set of states within $\mathcal{E}_{i,T_p-h}$ for which there is an
+  which is the set of states within $\mathcal{E}_{i,T_p}$ for which there is an
   admissible control input whose form is of linear feedback with regard to the
   state:
   \begin{align}
-    \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p-h} : \vect{h}_i(\vect{e}_i) \in \mathcal{U}_i \big\}
+    \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p} : h_i(\vect{e}_i) \in \mathcal{U}_i \big\}
   \end{align}
   \end{assumption}
 \end{bw_box}
@@ -172,7 +172,7 @@ Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
   \label{ass:psi_omega}
   The admissible and positively invariant set $\Psi_i$ is such that
   \begin{align}
-    \forall \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, \vect{h}_i(\vect{e}_i)) \in \Omega_i \subseteq \Psi_i
+    \forall \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, h_i(\vect{e}_i)) \in \Omega_i \subseteq \Psi_i
   \end{align}
   \end{assumption}
 \end{bw_box}
@@ -192,10 +192,10 @@ Utilizing Theorem 2.1 (ii) from \cite{kolmanovsky} yields
   \centering
   \input{figures/terminal_set_restricted.tex}
   \caption{The hierarchy of sets
-  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p-h}$,
+  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p}$,
   in bold, dash-dotted, dash-dotted, and dashed, respectively.
   For every state in $\Phi_i$ there is a linear state feedback control
-  $\vect{h}_i(\vect{e}_i)$ which, when applied to a state
+  $h_i(\vect{e}_i)$ which, when applied to a state
   $\vect{e}_i \in \Psi_i$, causes the trajectory of the state of the system to
   fall into the terminal set $\Omega_i$.}
 \end{figure}
