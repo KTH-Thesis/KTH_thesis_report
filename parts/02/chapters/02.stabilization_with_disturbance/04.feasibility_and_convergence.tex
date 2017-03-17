@@ -75,6 +75,7 @@ the terminal set $\Omega_i$ and is trapped there.
 % --- START diff real_vs_predicted at t_(k+1) from t_k -------------------------
 \begin{bw_box}
   \begin{lemma}
+    \label{lemma:diff_state_from_same_conditions}
     Suppose that the real system, which is under the existence of bounded
     additive disturbances, and the model are both at time $t$ at state
     $\vect{e}_i(t)$. Applying at time $t$ a control law $\vect{u}(\cdot)$
@@ -89,63 +90,8 @@ the terminal set $\Omega_i$ and is trapped there.
     \end{align}
     where $\overline{\delta}_i$ is the upper bound of the disturbance,
     and $L_{g_i}$ the Lipschitz constant of both models.
-    \label{lemma:diff_state_from_same_conditions}
   \end{lemma}
 \end{bw_box}
-
-\begin{gg_box}
-\textbf{Proof of lemma \eqref{lemma:diff_state_from_same_conditions}}
-
-Since there are disturbances present, consulting remark
-\eqref{remark:predicted_actual_equations_with_disturbance} and substituting
-for $\tau_0 = t$ and $\tau_1 = t + \tau$ yields:
-\begin{align}
-  \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &=
-    \vect{e}_i(t)
-    + \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t}^{t + \tau}\delta_i(s)ds\\[2.5ex]
-  \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &=
-    \vect{e}_i(t) + \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-\end{align}
-Subtracting the latter from the former and taking norms on either side yields:
-\begin{align}
-  \bigg\| \vect{e}_i\big(&t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
-  \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
-  &=\bigg\| \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-    + \int_{t}^{t + \tau}\delta_i(s)ds \bigg\| \\[2.5ex]
-  & \leq \bigg\| \int_{t}^{t + \tau} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds
-     - \int_{t}^{t + \tau} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) ds \bigg\|
-     + (t + \tau - t)\overline{\delta}_i \\[2.5ex]
-  &=
-     \int_{t}^{t + \tau} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big)s
-     - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds + \tau \overline{\delta}_i\\[2.5ex]
-  &\leq L_{g_i} \int_{t}^{t + \tau} \bigg\| \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
-  \overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| ds + \tau \overline{\delta}_i  \\[2.5ex]
-\end{align}
-since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
-$L_{g_i}$. Reformulation yields
-\begin{align}
-  \bigg\| \vect{e}_i\big(t+\tau;&\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
-  \overline{\vect{e}}_i\big(t+\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
-  &\leq \tau \overline{\delta}_i
-  + L_{g_i} \int_{0}^{\tau} \bigg\| \vect{e}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) -
-  \overline{\vect{e}}_i\big(t + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| ds \\[2.5ex]
-\end{align}
-By applying the Gr\"{o}nwall-Bellman inequality we get:
-\begin{align}
-  \bigg\| \vect{e}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) &-
-    \overline{\vect{e}}_i\big(t + \tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big), \vect{e}_i(t)\big) \bigg\| \\[2.5ex]
-  &\leq \tau \overline{\delta}_i +  L_{g_i} \int_{0}^{\tau} s \overline{\delta}_i e^{L_{g_i}(\tau - s)} ds \\[2.5ex]
-  &= \tau \overline{\delta}_i - \overline{\delta}_i \int_{0}^{\tau} s  \big(e^{L_{g_i}(\tau - s)}\big)' ds \\[2.5ex]
-  &= \tau \overline{\delta}_i -
-    \overline{\delta}_i \bigg( \big[s e^{L_{g_i}(\tau - s)}\big]_0^{\tau}
-      - \int_{0}^{\tau} e^{L_{g_i}(\tau - s)}ds\bigg) \\[2.5ex]
-  &= \tau \overline{\delta}_i - \overline{\delta}_i \bigg( \tau + \dfrac{1}{L_{g_i}} (1- e^{L_{g_i}\tau})\bigg) \\[2.5ex]
-  &= \dfrac{\overline{\delta}_i}{\L_{g_i}} (e^{L_{g_i}\tau} - 1)
-\end{align}
-\qedsymbol
-\end{gg_box}
 
 % --- END diff real_vs_predicted at t_(k+1) from t_k ---------------------------
 
@@ -455,7 +401,7 @@ or, expressing the above in terms of $t_{k+1}$
 \end{align}
 This means that the state
 $\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big) \in \Psi_i$.
-From assumption 2 of theorem \eqref{theorem:with_disturbances},
+From assumption \eqref{ass:psi_omega},
 and since $\Psi_i \subseteq \Phi_i$, there is an admissible control signal
 $h_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)$
 such that
@@ -468,13 +414,6 @@ Therefore, overall
   \label{eq:feasibility_3}
 \end{align}
 \qedsymbol
-
-\begin{remark}
-  Since $\Omega_i \subseteq \Psi$, $\Psi$ is a robust positively-invariant
-  set according to definition \eqref{def:robust_positively_invariant_set},
-  as also implied by assumption 3 of theorem \eqref{theorem:with_disturbances}.
-  Therefore, $\Omega_i$ is also a robust positively invariant set.
-\end{remark}
 \end{gg_box}
 %---------- END Feasibility point 3 --------------------------------------------
 
@@ -679,13 +618,13 @@ the integral
   in it we get
   \begin{align}
     \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
-    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds &\leq 0 \\[2.5ex]
+    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds \leq 0 \\[2.5ex]
     \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\[2.5ex]
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq 0 \\[2.5ex]
     V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
-    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds \leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
   \end{align}
 
   The left-hand side expression is the same as the first two terms in the
@@ -738,11 +677,8 @@ ranging from $t_k$ to $t_{k+1}$ to the left-hand side, becomes
 
 By rearranging terms, the cost difference becomes bounded by
 \begin{align}
-  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) &- J_i^{\star}\big(\vect{e}_i(t_k)\big) \\[2.5ex]
-  &\leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
-    + \dfrac{\overline{\delta}_i}{L_{g_i}} \bigg(e^{L_{g_i}h} - 1\bigg)
-    \bigg(\big(L_{V_i} + \dfrac{L_{F_i}}{\L_{g_i}}\big) \big(e^{L_{g_i}(T_p-h)}-1\big) + L_{V_i} \bigg) \\[2.5ex]
-    &= \xi_i \overline{\delta}_i -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
+    = \xi_i \overline{\delta}_i -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
 \end{align}
 where
 \begin{align}

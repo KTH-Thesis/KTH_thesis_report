@@ -147,37 +147,6 @@ $\mathcal{K}_{\infty}$ functions:
   \end{lemma}
 \end{bw_box}
 
-\begin{gg_box}
-  \textbf{Proof}
-    Let $\lambda_{min}(\mat{Q}_i, \mat{R}_i)$ denote the smallest eigenvalue
-    between those of matrices $\mat{Q}_i$ and $\mat{R}_i$, and let
-    $\lambda_{max}(\mat{Q}_i, \mat{R}_i)$ denote the largest. Then
-    \begin{align}
-      \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
-      \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-          \vect{e}_i(t) \\
-          \vect{u}_i(t)
-        \end{bmatrix}\Bigg\|^2  \\[2.5ex]
-        &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\[2.5ex]
-        &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
-          \vect{e}_i(t) \\
-          \vect{u}_i(t)
-        \end{bmatrix}\Bigg\|^2 \leq
-      \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
-    \end{align}
-
-    Matrices $\mat{Q}_i, \mat{R}_i$ are positive definite, hence the functions
-    $\alpha_1 \big(\|\vect{e}_i\|\big) = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i\|^2$ and
-    $\alpha_2 \big(\|\vect{e}_i\|\big)= \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i\|^2$ are
-    class $\mathcal{K}_{\infty}$ functions according to definition \eqref{def:k_class}.
-    Therefore, $F_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$
-    functions:
-    \begin{align}
-      \alpha_1\big(\|\vect{e}_i\|\big) \leq F_i\big(\vect{e}_i, \vect{u}_i\big) \leq \alpha_2\big(\| \vect{e}_i \|\big)
-    \end{align}
-    \qedsymbol
-\end{gg_box}
-
 
 \begin{bw_box}
 \begin{lemma} ($F_i$ is Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$)
@@ -193,36 +162,6 @@ $\mathcal{K}_{\infty}$ functions:
 
 \end{lemma}
 \end{bw_box}
-
-\begin{gg_box}
-\textbf{Proof} For every $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$,
-and $\vect{u}_i \in \mathcal{U}_i$ it holds that
-\begin{align}
-  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
-  &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 + \vect{u}_i^{\top} \mat{R}_i \vect{u}_i
-    -\vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 - \vect{u}_i^{\top} \mat{R}_i \vect{u}_i\big| \\[2.5ex]
-    &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 \pm \vect{e}_1^{\top} \mat{Q}_i \vect{e}_2\big| \\[2.5ex]
-    &= \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2) - \vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big| \\[2.5ex]
-    &\leq \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2)\big| + \big|\vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big|
-\end{align}
-
-But for any $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$
-$$|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_2| \leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_2\|$$
-where $\sigma_{max}(\mat{Q}_i)$ denotes the largest singular value of matrix
-$\mat{Q}_i$. Hence:
-\begin{align}
-  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
-    &\leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_1 - \vect{e}_2\| +
-    \sigma_{max}(\mat{Q}_i) \|\vect{e}_2\| \|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-    &= \sigma_{max}(\mat{Q}_i) (\|\vect{e}_1\| + \|\vect{e}_2\|)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-    &= \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i}
-      \big(\|\vect{e}_1\| + \|\vect{e}_2\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-    &= 2 \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_i \in \mathcal{E}_i}
-      \big(\|\vect{e}_i\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-    &= 2 \sigma_{max}(\mat{Q}_i)\overline{\varepsilon}_i \|\vect{e}_1 - \vect{e}_2\|
-\end{align}
-\qedsymbol
-\end{gg_box}
 
 
 The terminal set $\Omega_i \subseteq \mathcal{E}_i$ is an admissible
@@ -252,30 +191,6 @@ optimal control problem to the terminal region $\Omega_i$:
 \end{bw_box}
 
 
-\begin{gg_box}
-\textbf{Proof} For every $\vect{e}_1, \vect{e}_2 \in \Omega_i$, it holds that
-\begin{align}
-  \big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| &= \big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{P}_i \vect{e}_2\big| \\[2.5ex]
-    &= \big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{P}_i \vect{e}_2 \pm \vect{e}_1^{\top} \mat{P}_i \vect{e}_2\big| \\[2.5ex]
-    &= \big|\vect{e}_1^{\top} \mat{P}_i (\vect{e}_1 -\vect{e}_2) - \vect{e}_2^{\top} \mat{P}_i (\vect{e}_1-\vect{e}_2)\big| \\[2.5ex]
-    &\leq \big|\vect{e}_1^{\top} \mat{P}_i (\vect{e}_1 -\vect{e}_2)\big| + \big|\vect{e}_2^{\top} \mat{P}_i (\vect{e}_1-\vect{e}_2)\big|
-\end{align}
-
-But for any $\vect{e}_1, \vect{e}_2 \in \mathbb{R}^n$
-$$\big|\vect{e}_1^{\top} \mat{P}_i \vect{e}_2\big| \leq \sigma_{max}(\mat{P}_i) \|\vect{e}_1\| \|\vect{e}_2\|$$
-where $\sigma_{max}(\mat{P}_i)$ denotes the largest singular value of matrix
-$\mat{P}_i$. Hence:
-\begin{align}
-\big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| &\leq
-  \sigma_{max}(\mat{P}_i) \|\vect{e}_1\| \|\vect{e}_1 - \vect{e}_2\| +
-  \sigma_{max}(\mat{P}_i) \|\vect{e}_2\| \|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-  &= \sigma_{max}(\mat{P}_i) (\|\vect{e}_1\| + \|\vect{e}_2\|)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-  & \leq \sigma_{max}(\mat{P}_i) (\varepsilon_{\Omega_i} + \varepsilon_{\Omega_i})\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
-  &= 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} \|\vect{e}_1 - \vect{e}_2\|
-\end{align}
-\qedsymbol
-\end{gg_box}
-
 Furthermore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions.
 
 \begin{bw_box}
@@ -291,29 +206,6 @@ Furthermore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ f
   \end{align}
 
 \end{bw_box}
-
-\begin{gg_box}
-  \textbf{Proof}
-  $V_i$ is defined as
-  $V_i\big(\vect{e}_i\big) = \vect{e}_i^{\top} \mat{P}_i \vect{e}_i$.
-  Let us denote the minimum and maximum eigenvalues of matrix $\mat{P}_i$ by
-  $\lambda_{min}(\mat{P}_i)$ and $\lambda_{max}(\mat{P}_i)$ respectively.
-  Then, the following series of inequalities holds:
-\begin{align}
-  \lambda_{min}(\mat{P}_i) \|\vect{e}_i\|^2 \leq V_i(\vect{e}_i) \leq \lambda_{max}(\mat{P}_i) \|\vect{e}_i\|^2
-\end{align}
-
-Matrix $\mat{P}_i$ is positive definite, hence the functions
-$\alpha_1 = \lambda_{min}(\mat{P}_i) \|\vect{e}_i\|^2$ and
-$\alpha_2 = \lambda_{max}(\mat{P}_i) \|\vect{e}_i\|^2$ are
-class $\mathcal{K}_{\infty}$ functions according to definition \eqref{def:k_class}.
-Therefore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$
-functions:
-\begin{align}
-  \alpha_1\big(\|\vect{e}_i\|\big) \leq V_i(\vect{e}_i) \leq \alpha_2\big(\| \vect{e}_i \|\big)
-\end{align}
-\qedsymbol
-\end{gg_box}
 
 
 The solution to the optimal control problem \eqref{position_based_cost}
