@@ -73,7 +73,6 @@ the terminal set $\Omega_i$ and is trapped there.
 % --- START diff real_vs_predicted at t_(k+1) from t_k -------------------------
 \begin{bw_box}
   \begin{lemma}
-    \label{lemma:diff_state_from_same_conditions}
     Suppose that the real system, which is under the existence of bounded
     additive disturbances, and the model are both at time $t$ at state
     $\vect{e}_i(t)$. Applying at time $t$ a control law $\vect{u}(\cdot)$
@@ -88,6 +87,7 @@ the terminal set $\Omega_i$ and is trapped there.
     \end{align}
     where $\overline{\delta}_i$ is the upper bound of the disturbance,
     and $L_{g_i}$ the Lipschitz constant of both models.
+  \label{lemma:diff_state_from_same_conditions}
   \end{lemma}
 \end{bw_box}
 
@@ -118,7 +118,7 @@ portions:
         \overline{\vect{u}}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
       \end{array}
       \right.
-  \label{eq:optimal_input_portions}
+  \label{eq:optimal_input_portions_with_disturbances}
 \end{equation}
 
 Both portions are admissible since the calculated optimal control input is
@@ -136,8 +136,8 @@ $h_i \in \mathcal{U}_i$ that renders $\Psi_i$
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  for time $t_{k+1}$ by sewing together the second
-portion of \eqref{eq:optimal_input_portions} and the admissible input
-$h_i(\cdot)$:
+portion of \eqref{eq:optimal_input_portions_with_disturbances} and the
+admissible input $h_i(\cdot)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
@@ -146,7 +146,7 @@ $h_i(\cdot)$:
         h_i\big(\overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
-\label{eq:optimal_input_t_plus_one}
+\label{eq:optimal_input_t_plus_one_with_disturbances}
 \end{equation}
 
 Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\tau)$
@@ -161,7 +161,6 @@ for all $s \in [0, T_p]$
 
 
 \begin{gg_box}
-
 By applying lemma \eqref{lemma:diff_state_from_same_conditions} for
 $t=t_{k+1} + s$ and $\tau=t_k$ we get
 \begin{align}
@@ -417,7 +416,7 @@ Therefore, overall
 
 
 Piecing the admissibility of $\widetilde{\vect{u}}_i(\cdot)$ from
-\eqref{eq:optimal_input_t_plus_one} together with conclusions
+\eqref{eq:optimal_input_t_plus_one_with_disturbances} together with conclusions
 \eqref{eq:feasibility_2} and \eqref{eq:feasibility_3}, we conclude that the
 application of the control input $\widetilde{\vect{u}}_i(\cdot)$ at time
 $t_{k+1}$ results in the states of the real system abiding by their intended
@@ -454,7 +453,8 @@ terms:
     $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to the
     state $\vect{e}_i(t_k)$, at time $\tau$
   \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i(\tau)$
-    as the \textit{admissible} input at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one})
+    as the \textit{admissible} input at $\tau \geq t_{k+1}$
+    (see eq. \eqref{eq:optimal_input_t_plus_one_with_disturbances})
   \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big)$
     as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
     the state that results from the application of the above input

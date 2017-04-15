@@ -68,7 +68,7 @@ portions:
         \overline{\vect{u}}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
       \end{array}
       \right.
-  \label{eq:optimal_input_portions}
+  \label{eq:optimal_input_portions_without_disturbances}
 \end{equation}
 
 Both portions are admissible since the calculated optimal control input is
@@ -81,8 +81,8 @@ renders $\Omega_i$ invariant over $[t_k + T_p, t_{k+1} + T_p]$.
 
 Given the above facts, we can construct an admissible input
 $\widetilde{\vect{u}}_i(\cdot)$  starting at time $t_{k+1}$ by sewing together
-the second portion of \eqref{eq:optimal_input_portions} and the input
-$h_i(\vect{e}_i)$:
+the second portion of \eqref{eq:optimal_input_portions_without_disturbances}
+and the input $h_i(\vect{e}_i)$:
 
 \begin{equation}
   \widetilde{\vect{u}}_i(\tau) = \left\{
@@ -91,7 +91,7 @@ $h_i(\vect{e}_i)$:
         h_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
       \end{array}
       \right.
-\label{eq:optimal_input_t_plus_one}
+\label{eq:optimal_input_t_plus_one_without_disturbances}
 \end{equation}
 
 The control input $\widetilde{\vect{u}}_i(\cdot)$ is admissible as a
@@ -126,7 +126,8 @@ In order not to wreak notational havoc, let us define the following terms:
     $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to the
     state $\vect{e}_i(t_k)$, at time $\tau$
   \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i(\tau)$
-    as the \textit{admissible} input at $\tau \geq t_{k+1}$ (see eq. \eqref{eq:optimal_input_t_plus_one})
+    as the \textit{admissible} input at $\tau \geq t_{k+1}$
+    (see eq. \eqref{eq:optimal_input_t_plus_one_without_disturbances})
   \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big)$
     as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
     the state that results from the application of the above input
@@ -244,10 +245,11 @@ which means that
 In between times $t_{k+1}$ and $t_k + T_p$, the constructed admissible input
 $\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
 input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
-(see eq. \ref{eq:optimal_input_t_plus_one}), which means that
-$\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval $\tau \in [t_{k+1}, t_k + T_p]$.
-Since the initial conditions at $t=t_{k+1}$ are equal and the control laws
-are also equal, so will the predicted states over the same interval:
+(see eq. \ref{eq:optimal_input_t_plus_one_without_disturbances}), which means
+that $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval
+$\tau \in [t_{k+1}, t_k + T_p]$. Since the initial conditions at $t=t_{k+1}$ are
+equal and the control laws are also equal, so will the predicted states over the
+same interval:
 \begin{align}
   \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) =
   \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
