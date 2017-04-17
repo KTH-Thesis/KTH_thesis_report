@@ -22,8 +22,9 @@ optimization problem:
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \\[2.5ex]
   \text{subject to:} & \nonumber \\[2.5ex]
-                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
-                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i,s},\ s \in [t_k, t_k + T_p]\\[2.5ex]
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\quad
+                       \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i, \quad \overline{\vect{e}}_i (s) \in \mathcal{E}_{i,s}, \quad s \in [t_k, t_k + T_p]\\[2.5ex]
                      & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i %\subseteq \mathcal{E}_{i,s}
 \end{align}
 \end{problem}
@@ -116,8 +117,8 @@ information in four stacked vectors:
 \end{subequations}
 These are taken into consideration during the solution to the optimization
 problem as follows: when agent $i$ solves his own optimization problem,
-his predicted configuration at times $\tau \in [t_k, t_k + T_p]$ is
-constrained by the predicted configuration of its neighbouring or
+his predicted configuration at time $\tau \in [t_k, t_k + T_p]$ is
+constrained by the predicted configuration of its neighbouring and
 perceivable\footnote{agents within its sensing range} agents at the same
 time instant $\tau$. The form of the constraint regime is necessary to be
 such, as each agent is constrained not by constant values, but by
@@ -150,6 +151,9 @@ serve as to point to the column vectors $\vect{z}_{\mathcal{R}_i}(t_k)$,
 $\vect{z}_{\mathcal{N}_i}(t_k)$, $\overline{\vect{z}}_{\mathcal{R}_i}(s)$, and
 $\overline{\vect{z}}_{\mathcal{N}_i}(s)$ respectively, of which they are
 components, and whose notation they abide by.
+
+
+
 
 The functions
 $F_i : \mathcal{E}_{i,s} \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and

@@ -6,7 +6,7 @@ real system. At first, the model of system \eqref{eq:system} will be formalized.
 Next, the error model and \textit{its} constraints will be expressed. Then, the
 optimization problem to be solved periodically will be posed;
 it will equip us with the optimum feasible input that steers the system towards
-achieving its intended collision-free steady-state configuration, while avoiding
+achieving its intended collision-free steady-state configuration while avoiding
 the pitfall of violating its constraints. This will lead to the proof of
 stability of the compound closed-loop system of agents $i \in \mathcal{V}$
 under the proposed control regime.
@@ -79,6 +79,5 @@ Therefore $\mathcal{Z}_{i,t}$ is such that:
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
       & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
       & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\[2.5ex]
-      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5}, \\[2.5ex]
-      &\forall t \in \mathbb{R}_{\geq 0}\big\}
+      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5}\big\}
 \end{align}

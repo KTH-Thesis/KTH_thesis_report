@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {4.2}The error model}{51}{section.4.2}
 \contentsline {section}{\numberline {4.3}The optimization problem}{52}{section.4.3}
 \contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{57}{section.4.4}
-\contentsline {chapter}{Appendices}{77}{section*.5}
+\contentsline {chapter}{Appendices}{77}{section*.6}
 \contentsline {chapter}{\numberline {A}Proofs of lemmas}{79}{Appendix.a.A}
 \contentsline {section}{\numberline {A.1}Proof of lemma 3.3.1}{79}{section.a.A.1}
 \contentsline {section}{\numberline {A.2}Proof of lemma 3.3.2}{80}{section.a.A.2}
