@@ -1,15 +1,15 @@
-We are interested in steering each agent $i \in \mathcal{V}$ into
-a \textit{position} in 3D space, while conforming to the requirements
-posed by the problem. Here, the real system and its model are equivalent:
-no model-reality mismatches exist, and neither do disturbances act on the real
-system. At first, the model of system \eqref{eq:system} will be formalized.
-Next, the error model and \textit{its} constraints will be expressed. We will
-then pose the optimization problem to be solved periodically: it will equip us
-with the optimum feasible input that steers the system towards achieving
-its intended collision-free steady-state configuration, while avoiding the
-pitfall of violating the satisfaction of its constraints. This will lead to
-the proof of this statement, i.e. that the compound closed-loop system of
-agents $i \in \mathcal{V}$ is stable under the proposed control regime.
+The purpose to be saught in this chapter is the steering of each agent
+$i \in \mathcal{V}$ into a \textit{position} in 3D space while conforming to
+the requirements posed by the problem. Here, the real system and its model are
+equivalent: no model-reality mismatches exist, and no disturbances act on the
+real system. At first, the model of system \eqref{eq:system} will be formalized.
+Next, the error model and \textit{its} constraints will be expressed. Then, the
+optimization problem to be solved periodically will be posed;
+it will equip us with the optimum feasible input that steers the system towards
+achieving its intended collision-free steady-state configuration, while avoiding
+the pitfall of violating its constraints. This will lead to the proof of
+stability of the compound closed-loop system of agents $i \in \mathcal{V}$
+under the proposed control regime.
 
 %; that is, all agents should avoid colliding with each other, all
 %obstacles in the workspace, and the workspace boundary itself, while remaining
@@ -33,7 +33,7 @@ We begin by rewriting the system equations \eqref{eq:system_1},
 where the inversion of $\mat{M}_i$ is possible due to it being
 positive-definite $\forall i \in \mathcal{V}$. Denoting by $\vect{z}_i(t)$
 \begin{align}
-  \vect{z}_i(t) =
+  \vect{z}_i(t) \triangleq
     \begin{bmatrix}
       \vect{x}_i(t) \\
       \vect{v}_i(t)
@@ -69,12 +69,12 @@ continuous-time differential equations of the form
 where state $\vect{z}_i$ is directly measurable as per assumption
 \eqref{ass:measurements_access}.
 
-We define the set $\mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3$
+We define the set $\mathcal{Z}_{i,t} \subset \mathbb{R}^{9} \times \mathbb{T}^3$
 as the set that captures all the \textit{state} constraints on the system
-posed by the problem \eqref{problem}, for $t \in \mathbb{R}_{\geq 0}$.
-Therefore $\mathcal{Z}_i$ is such that:
+posed by the problem \eqref{problem} at $t \in \mathbb{R}_{\geq 0}$.
+Therefore $\mathcal{Z}_{i,t}$ is such that:
 \begin{align}
-  \mathcal{Z}_i = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+  \mathcal{Z}_{i,t} \triangleq \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1}\\[2.5ex]
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
       & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]

@@ -8,24 +8,24 @@
 \contentsline {chapter}{\numberline {2}Problem Formulation}{13}{chapter.2}
 \contentsline {section}{\numberline {2.1}System Model}{13}{section.2.1}
 \contentsline {section}{\numberline {2.2}Initial Conditions}{17}{section.2.2}
-\contentsline {section}{\numberline {2.3}Objective}{19}{section.2.3}
+\contentsline {section}{\numberline {2.3}Objective}{18}{section.2.3}
 \contentsline {section}{\numberline {2.4}Problem Statement}{21}{section.2.4}
 \contentsline {part}{II\hspace {1em}Advocated Solutions}{25}{part.2}
 \contentsline {chapter}{\numberline {3}Disturbance-free Stabililization}{27}{chapter.3}
 \contentsline {section}{\numberline {3.1}Formalizing the system's model}{28}{section.3.1}
 \contentsline {section}{\numberline {3.2}The error model}{29}{section.3.2}
 \contentsline {section}{\numberline {3.3}The optimization problem}{30}{section.3.3}
-\contentsline {section}{\numberline {3.4}Stabilization: Feasibility and Convergence}{36}{section.3.4}
+\contentsline {section}{\numberline {3.4}Stabilization: Feasibility and Convergence}{37}{section.3.4}
 \contentsline {chapter}{\numberline {4}Stabilization in the face of Disturbances}{49}{chapter.4}
 \contentsline {section}{\numberline {4.1}The perturbed model}{50}{section.4.1}
 \contentsline {section}{\numberline {4.2}The error model}{51}{section.4.2}
 \contentsline {section}{\numberline {4.3}The optimization problem}{52}{section.4.3}
-\contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{58}{section.4.4}
-\contentsline {chapter}{Appendices}{79}{section*.5}
-\contentsline {chapter}{\numberline {A}Proofs of lemmas}{81}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Proof of lemma 3.3.1}{81}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Proof of lemma 3.3.2}{82}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Proof of lemma 3.3.3}{83}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Proof of lemma 3.3.4}{83}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Proof of property 4.3.1}{84}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Proof of lemma 4.4.1}{85}{section.a.A.6}
+\contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{57}{section.4.4}
+\contentsline {chapter}{Appendices}{77}{section*.5}
+\contentsline {chapter}{\numberline {A}Proofs of lemmas}{79}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Proof of lemma 3.3.1}{79}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Proof of lemma 3.3.2}{80}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Proof of lemma 3.3.3}{81}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Proof of lemma 3.3.4}{81}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Proof of property 4.3.1}{82}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Proof of lemma 4.4.1}{83}{section.a.A.6}

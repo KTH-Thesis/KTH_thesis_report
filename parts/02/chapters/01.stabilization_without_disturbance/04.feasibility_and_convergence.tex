@@ -12,7 +12,7 @@ position which results in feasible displacements:\\[2.5ex]
   Suppose that
 
   \begin{enumerate}
-    \item the terminal region $\Omega_i \subseteq \mathcal{E}_i$ is
+    \item the terminal region $\Omega_i \subseteq \mathcal{E}_{i,s}$ is
       closed with $\vect{0} \in \Omega_i$
     \item a solution to the optimal control problem \eqref{position_based_cost}
       is feasible at time $t=0$, that is, assumptions
@@ -220,7 +220,7 @@ Taking norms on either side yields
     \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
     -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds
 \end{align}
-since $g_i$ is Lipschitz continuous in $\mathcal{E}_i$ with Lipschitz constant
+since $g_i$ is Lipschitz continuous in $\mathcal{E}_{i,s}$ with Lipschitz constant
 $L_{g_i}$. Reformulation yields
 \begin{align}
   \bigg\|\vect{e}_i\big(t_k&+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
@@ -458,7 +458,7 @@ $t$ sampling time. Then the above inequality reforms into
 Since $\Xi_i\big(\vect{e}_i(0)\big)$
 is bounded (as composition of bounded parts), this implies
 that $\Xi_i\big(\vect{e}(t)\big)$ is also bounded. The signals
-$\vect{e}_i(t) \in \mathcal{E}_i$ and $\vect{u}_i(t) \in \mathcal{U}_i$
+$\vect{e}_i(t) \in \mathcal{E}_{i,s}$ and $\vect{u}_i(t) \in \mathcal{U}_i$
 are also bounded. According to \eqref{eq:position_based_error_model}, this
 means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
 \eqref{eq:J_opt_between_k_and_0} we then have

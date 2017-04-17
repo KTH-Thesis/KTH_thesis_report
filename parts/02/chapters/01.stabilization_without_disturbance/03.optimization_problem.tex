@@ -23,23 +23,22 @@ optimization problem:
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big) \\[2.5ex]
   \text{subject to:} & \nonumber \\[2.5ex]
                      & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
-  & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_i,\ s \in [t_k, t_k + T_p]\\[2.5ex]
-  & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i \subseteq \mathcal{E}_i
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i,s},\ s \in [t_k, t_k + T_p]\\[2.5ex]
+                     & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i %\subseteq \mathcal{E}_{i,s}
 \end{align}
 \end{problem}
 
 The notation $\overline{\cdot}$ is used to distinguish predicted states which
-are internal to the controller, as opposed to their actual values, because,
-even in the nominal case, the predicted values will not be equal to the
-actual closed-loop values. This means
-that $\overline{\vect{e}}_i(\cdot)$ is the solution to
+are internal to the controller, as opposed to their actual values, because
+the predicted values will not be equal to the actual closed-loop values. This
+means that $\overline{\vect{e}}_i(\cdot)$ is the solution to
 \eqref{eq:internal_error_model} driven by the control input
 $\overline{\vect{u}}_i(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
 initial condition $\vect{e}_i(t_k)$.
 
 The applied input signal is a portion of the optimal solution to an
-optimization problem where the information on the states of the neighbouring
-agents of agent $i$ are taken into account only in the constraints considered
+optimization problem where information on the states of the neighbouring
+agents of agent $i$ is taken into account only in the constraints considered
 in the optimization problem. These constraints pertain to the set of its
 neighbours $\mathcal{N}_i$ and, in total, to the set of all agents within its
 sensing range $\mathcal{R}_i$. Regarding these, we make the following assumption:
@@ -78,24 +77,6 @@ access to\footnote{Although
 \end{assumption}
 \end{bw_box}
 
-In other words, each time an agent solves its own individual
-optimization problem, he knows the error predictions that have been generated
-by the solution of the optimization problem of all agents within
-its range at that time, for the next $T_p$ timesteps. This assumption is
-crucial to satisfying the constraints regarding collision aversion and
-connectivity maintenance between neighbouring agents.
-We assume that the above pieces of information are (a) always available and
-accurate, and (b) exchanged without delay. We encapsulate these pieces of
-information in four stacked vectors:
-\begin{subequations}
-\begin{align}
-  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\[2.5ex]
-  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\[2.5ex]
-  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(t_k), \tau \in [t_k, t_k + T_p] \\[2.5ex]
-  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
-\end{align}
-\end{subequations}
-
 \begin{bw_box}
 \begin{remark}
 The justification for this assumption is the following: considering that
@@ -116,12 +97,62 @@ within the range of one agent to be legal.
 \end{remark}
 \end{bw_box}
 
-\note{?? more on the actual $\mathcal{E}_i$}
+In other words, each time an agent solves its own individual
+optimization problem, he knows the state predictions that have been generated
+by the solution of the optimization problem of all agents within
+its range at that time, for the next $T_p$ timesteps. This assumption is
+crucial to satisfying the constraints regarding collision aversion and
+connectivity maintenance between neighbouring agents.
+We assume that the above pieces of information are (a) always available and
+accurate, and (b) exchanged without delay. We encapsulate these pieces of
+information in four stacked vectors:
+\begin{subequations}
+\begin{align}
+  \vect{z}_{\mathcal{R}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{R}_i(t_k) \\[2.5ex]
+  \vect{z}_{\mathcal{N}_i}(t_k) &\triangleq col[\vect{z}_j(t_k)], \forall j \in \mathcal{N}_i \\[2.5ex]
+  \overline{\vect{z}}_{\mathcal{R}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{R}_i(\tau), \tau \in [t_k, t_k + T_p] \\[2.5ex]
+  \overline{\vect{z}}_{\mathcal{N}_i}(\tau) &\triangleq col[\overline{\vect{z}}_j(\tau)], \forall j \in \mathcal{N}_i, \tau \in [t_k, t_k + T_p]
+\end{align}
+\end{subequations}
+These are taken into consideration during the solution to the optimization
+problem as follows: when agent $i$ solves his own optimization problem,
+his predicted configuration at times $\tau \in [t_k, t_k + T_p]$ is
+constrained by the predicted configuration of its neighbouring or
+perceivable\footnote{agents within its sensing range} agents at the same
+time instant $\tau$. The form of the constraint regime is necessary to be
+such, as each agent is constrained not by constant values, but by
+the trajectories of its associated agents, which are time-varying in nature.
 
+Formally then, $\mathcal{E}_{i,s} = \{ \vect{e}_i(s): \vect{e}_i(s) \in \mathcal{Z}_{i,s} \ominus \vect{z}_{i,des}\}$,
+for $s \in [t_k, t_k + T_p]$, where, for $s = t_k$:
+\begin{align}
+  \mathcal{Z}_{i,t_k} = \big\{\vect{z}_i(t_k) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+      & \|\vect{p}_i(t_k) - \vect{p}_{\mathcal{R}_i}(t_k)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t_k)\\[2.5ex]
+      & \|\vect{p}_i(t_k) - \vect{p}_{\mathcal{N}_i}(t_k)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
+      & \|\vect{p}_i(t_k) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
+      & \|\vect{p}_W - \vect{p}_i(t_k)\| < \overline{d}_{i,W}, \\[2.5ex]
+      & - \frac{\pi}{2} < \theta_i(t_k) < \frac{\pi}{2} \big\}
+\end{align}
 
+and, for $s \in (t_k, t_k + T_p]$:
+\begin{align}
+  \mathcal{Z}_{i,s} = \big\{\vect{z}_i(s) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+      & \|\overline{\vect{p}}_i(s) - \overline{\vect{p}}_{\mathcal{R}_i}(s)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(s)\\[2.5ex]
+      & \|\overline{\vect{p}}_i(s) - \overline{\vect{p}}_{\mathcal{N}_i}(s)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
+      & \|\overline{\vect{p}}_i(s) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
+      & \|\vect{p}_W - \overline{\vect{p}}_i(s)\| < \overline{d}_{i,W}, \\[2.5ex]
+      & - \frac{\pi}{2} < \overline{\theta}_i(s) < \frac{\pi}{2} \big\}
+\end{align}
+
+The denotations $\vect{p}_{\mathcal{R}_i}(t_k)$, $\vect{p}_{\mathcal{N}_i}(t_k)$,
+$\overline{\vect{p}}_{\mathcal{R}_i}(s)$, and $\overline{\vect{p}}_{\mathcal{N}_i}(s)$
+serve as to point to the column vectors $\vect{z}_{\mathcal{R}_i}(t_k)$,
+$\vect{z}_{\mathcal{N}_i}(t_k)$, $\overline{\vect{z}}_{\mathcal{R}_i}(s)$, and
+$\overline{\vect{z}}_{\mathcal{N}_i}(s)$ respectively, of which they are
+components, and whose notation they abide by.
 
 The functions
-$F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
+$F_i : \mathcal{E}_{i,s} \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
 $V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
 \begin{align}
   F_i \big(\overline{\vect{e}}_i(t), \overline{\vect{u}}_i(t)\big)
@@ -140,7 +171,7 @@ $\mathcal{K}_{\infty}$ functions:
 
     Let functions $\alpha_1, \alpha_2 \in \mathcal{K}_{\infty}$ and $F_i$
     be defined by \eqref{eq:F_i_def}. Then, for all
-    $\vect{e}_i \in \mathcal{E}_i$
+    $\vect{e}_i \in \mathcal{E}_{i,s}$
     \begin{align}
       \alpha_1\big(\|\vect{e}_i\|\big) \leq F_i\big(\vect{e}_i, \vect{u}_i\big) \leq \alpha_2\big(\| \vect{e}_i \|\big)
     \end{align}
@@ -149,27 +180,27 @@ $\mathcal{K}_{\infty}$ functions:
 
 
 \begin{bw_box}
-\begin{lemma} ($F_i$ is Lipschitz continuous in $\mathcal{E}_i \times \mathcal{U}_i$)
+  \begin{lemma} ($F_i$ is Lipschitz continuous in $\mathcal{E}_{i,s} \times \mathcal{U}_i$)
 \label{lemma:F_Lipschitz}
 
-  Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$,
+  Suppose that $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_{i,s}$,
   $\vect{u}_i \in \mathcal{U}_i$ and that $F_i$ is defined by \eqref{eq:F_i_def}.
   The running costs $F_i$ are Lipschitz continuous in
-  $\mathcal{E}_i \times \mathcal{U}_i$:
+  $\mathcal{E}_{i,s} \times \mathcal{U}_i$:
   $$\big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big| \leq L_{F_i} \|\vect{e}_1 - \vect{e}_2\|$$
   with Lipschitz constant $L_{F_i} = 2 \sigma_{max}(\mat{Q}_i) \overline{\varepsilon}_i $,
-  where $\overline{\varepsilon}_i = \text{sup}\limits_{\vect{e}_i \in \mathcal{E}_i} \|\vect{e}_i\|$
+  where $\overline{\varepsilon}_i = \text{sup}\limits_{\vect{e}_i \in \mathcal{E}_{i,s}} \|\vect{e}_i\|$
 
 \end{lemma}
 \end{bw_box}
 
 
-The terminal set $\Omega_i \subseteq \mathcal{E}_i$ is an admissible
+The terminal set $\Omega_i \subseteq \mathcal{E}_{i,s}$ is an admissible
 positively invariant set according to definition
 \eqref{def:positively_invariant} for system
 \eqref{eq:position_based_error_model} such that
 \begin{align}
-  \Omega_i = \{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
+  \Omega_i = \{\vect{e}_i \in \mathcal{E}_{i,s} : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
 \end{align}
 where $\varepsilon_{\Omega_i}$ is an arbitrarily small but fixed positive real scalar.
 
@@ -223,8 +254,8 @@ same manner, leading to a receding horizon approach.
 
 The control input $\vect{u}_i(\cdot)$ is of feedback form,
 since it is recalculated at each sampling instant based on the then-current
-state. The solution to equation \eqref{eq:position_based_error_model}(the model
-of the real system), starting at time $t_1$, from an initial condition
+state. The solution to equation \eqref{eq:position_based_error_model} $-$ the
+model of the real system, starting at time $t_1$, from an initial condition
 $\vect{e}_i(t_1) = \overline{\vect{e}}_i(t_1)$,
 by application of the control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$
 is denoted by
@@ -240,7 +271,7 @@ assume the following:
   \label{ass:existence_of_solutions_without_disturbance}
 
   The system \eqref{eq:position_based_error_model} has a
-  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$ and
+  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_{i,s}$ and
   any \textit{piecewise continuous} input
   $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$.
 \end{assumption}
@@ -284,7 +315,7 @@ We can now give the definition of an \textit{admissible input} for the FHOCP
   \begin{enumerate}
     \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,s},\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
   \end{enumerate}
 
