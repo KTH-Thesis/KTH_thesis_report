@@ -1,7 +1,7 @@
-We are interested in steering each agent $i \in \mathcal{V}$ into
-a \textit{position} in 3D space, while conforming to the requirements
-posed by the problem. Here, the real system and its model are \textit{not}
-equivalent: we consider that additive disturbances act on the real
+The purpose to be saught in this chapter is the steering of each agent
+$i \in \mathcal{V}$ into a \textit{position} in 3D space while conforming to
+the requirements posed by the problem. Here, the real system and its model are
+\textit{not} equivalent: we consider that additive disturbances act on the real
 system. At first, the model of the perturbed system \eqref{eq:system} will
 be formalized. Next, the error model and \textit{its} constraints will be
 expressed. We will then pose the optimization problem to be solved periodically:
@@ -32,17 +32,16 @@ The real system is described by:
 where state $\vect{z}_i$ is directly measurable as per assumption
 \eqref{ass:measurements_access}.
 
-The constraint set $\mathcal{Z}_i \subset \mathbb{R}^{9} \times \mathbb{T}^3$
+The constraint set $\mathcal{Z}_{i,t} \subset \mathbb{R}^{9} \times \mathbb{T}^3$
 is unchanged: it is the set that captures all the state constraints of
 the system's dynamics posed by the problem \eqref{problem},
-for $t \in \mathbb{R}_{\geq 0}$. We include it again here for reference
+at $t \in \mathbb{R}_{\geq 0}$. We include it again here for reference
 purposes.
 \begin{align}
-  \mathcal{Z}_i = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+  \mathcal{Z}_{i,t} = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1_2}\\[2.5ex]
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
       & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
       & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\[2.5ex]
-      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5_2}, \\[2.5ex]
-      &\forall t \in \mathbb{R}_{\geq 0}\big\}
+      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5_2}\big\}
 \end{align}

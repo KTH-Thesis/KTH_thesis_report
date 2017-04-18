@@ -22,8 +22,11 @@ problem:
       \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
       V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big)  \\[2.5ex]
   \text{subject to:} & \nonumber \\[2.5ex]
-                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},\ \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
-                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,\ \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},\ s \in [t_k, t_k + T_p]\\[2.5ex]
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},
+                       \quad \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,
+                       \quad \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},
+                       \quad s \in [t_k, t_k + T_p]\\[2.5ex]
                      & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i
 \end{align}
 \end{problem}
@@ -45,10 +48,14 @@ range $\mathcal{R}_i$. Regarding these, we assume assumption
 \eqref{ass:access_to_predicted_info_n}, i.e. at time $t_k$ when agent $i$
 solves the optimization problem, he has access to the measurements of the states
 and the values of the predicted states for all agents within its sensing range.
-
-
-\note{?? more on the actual $\mathcal{E}_i$}
-
+Naturally, the inter-agent and intra-horizon constraint regime adopted is
+identical\footnote{In what follows, we will drop the subscript $t$ from
+$\mathcal{E}_{i,t}$ to avoid confusion with the restricted constraint set
+notation and for notational economy. The reader should be able to discern that
+the set $\mathcal{E}_i$ is time-varying without it being explicitly expressed as
+such. The form of the set is deduced from context.} to the one used in the case
+without disturbances acting on the system (see figure
+\eqref{fig:constraint_regime_horizon} and the discussion preceding it).
 
 \begin{figure}[ht!]
   \centering
@@ -71,6 +78,7 @@ where
     \|\vect{e}_i(s)\| \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big( e^{L_{g_i}(s - t)} - 1\big),\ \forall s \in [t, t + T_p] \big\}
 \label{eq:b_restricted_constraint_set}
 \end{align}
+
 The reason for this substitution lies in the following. Consider that there
 are no disturbances affecting the states of the plant; the state evolution of
 the plant and its model considered in the solution to the optimization problem

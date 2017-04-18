@@ -176,8 +176,8 @@
 \newlabel{ass:access_to_predicted_info_n@cref}{{[assumption][1][3,3]3.3.1}{31}}
 \csxdef {autonum@ass:measurements_accessReferenced}{}
 \csxdef {autonum@fig:constraint_regime_horizonReferenced}{}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The constraint regime for two agents, $i,j$. Fully outlined circles denote measured configurations, while partly outlined circles denote predicted configurations. During the solution to the individual optimization problems, the predicted configuration of each agent at each timestep is constrained by the predicted configuration of the other agent at the same timestep (hence the identical colours at each discrete timestep).\relax }}{34}{figure.caption.3}}
-\newlabel{fig:constraint_regime_horizon}{{3.1}{34}{The constraint regime for two agents, $i,j$. Fully outlined circles denote measured configurations, while partly outlined circles denote predicted configurations. During the solution to the individual optimization problems, the predicted configuration of each agent at each timestep is constrained by the predicted configuration of the other agent at the same timestep (hence the identical colours at each discrete timestep).\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The inter-agent constraint regime for two agents, $i,j$. Fully outlined circles denote measured configurations, while partly outlined circles denote predicted configurations. During the solution to the individual optimization problems, the predicted configuration of each agent at each timestep is constrained by the predicted configuration of the other agent at the same timestep (hence the identical colours at each discrete timestep).\relax }}{34}{figure.caption.3}}
+\newlabel{fig:constraint_regime_horizon}{{3.1}{34}{The inter-agent constraint regime for two agents, $i,j$. Fully outlined circles denote measured configurations, while partly outlined circles denote predicted configurations. During the solution to the individual optimization problems, the predicted configuration of each agent at each timestep is constrained by the predicted configuration of the other agent at the same timestep (hence the identical colours at each discrete timestep).\relax }{figure.caption.3}{}}
 \newlabel{fig:constraint_regime_horizon@cref}{{[figure][1][3]3.1}{34}}
 \newlabel{eq:F_i_def}{{3.8}{34}{The optimization problem}{equation.3.0.8}{}}
 \newlabel{eq:F_i_def@cref}{{[equation][8][3]3.8}{34}}
@@ -271,12 +271,13 @@
 \newlabel{sec:stabilization_with_disturbance}{{4}{49}{Stabilization in the face of Disturbances}{chapter.4}{}}
 \newlabel{sec:stabilization_with_disturbance@cref}{{[chapter][4][]4}{49}}
 \csxdef {autonum@eq:systemReferenced}{}
+\BKM@entry{id=20,dest={73656374696F6E2E342E32},srcline={2},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{5468655C3034306572726F725C3034306D6F64656C}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}The perturbed model}{50}{section.4.1}}
 \newlabel{eq:perturbed_system}{{4.1}{50}{The perturbed model}{equation.4.0.1}{}}
 \newlabel{eq:perturbed_system@cref}{{[equation][1][4]4.1}{50}}
 \csxdef {autonum@ass:measurements_accessReferenced}{}
 \csxdef {autonum@problemReferenced}{}
-\BKM@entry{id=20,dest={73656374696F6E2E342E32},srcline={2},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{5468655C3034306572726F725C3034306D6F64656C}
+\BKM@entry{id=21,dest={73656374696F6E2E342E33},srcline={2},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{5468655C3034306F7074696D697A6174696F6E5C30343070726F626C656D}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}The error model}{51}{section.4.2}}
 \newlabel{eq:position_based_error_model_with_disturbance}{{4.2}{51}{The error model}{equation.4.0.2}{}}
 \newlabel{eq:position_based_error_model_with_disturbance@cref}{{[equation][2][4]4.2}{51}}
@@ -286,7 +287,6 @@
 \newlabel{ass:g_i_g_R_Lipschitz@cref}{{[assumption][1][4,2]4.2.1}{51}}
 \csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
 \csxdef {autonum@problemReferenced}{}
-\BKM@entry{id=21,dest={73656374696F6E2E342E33},srcline={2},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{5468655C3034306F7074696D697A6174696F6E5C30343070726F626C656D}
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}The optimization problem}{52}{section.4.3}}
 \newlabel{problem:opt_with_disturbances}{{4.3.1}{52}{}{problem.4.3.1}{}}
 \newlabel{problem:opt_with_disturbances@cref}{{[problem][1][4,3]4.3.1}{52}}
@@ -295,14 +295,15 @@
 \newlabel{eq:internal_error_model_2}{{4.4}{52}{}{equation.4.0.4}{}}
 \newlabel{eq:internal_error_model_2@cref}{{[equation][4][4]4.4}{52}}
 \csxdef {autonum@eq:internal_error_model_2Referenced}{}
-\citation{Fontes2007}
 \csxdef {autonum@ass:access_to_predicted_info_nReferenced}{}
+\csxdef {autonum@fig:constraint_regime_horizonReferenced}{}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces The nominal constraint set $\mathcal  {E}_i$ in bold and the consecutive restricted constraint sets $\mathcal  {E}_i \ominus \mathcal  {B}_{i, s-t_k}$, $s \in [t_k, t_k + T_p]$, dashed.\relax }}{53}{figure.caption.4}}
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
 \newlabel{eq:restricted_constraint_set}{{4.5}{53}{The optimization problem}{equation.4.0.5}{}}
 \newlabel{eq:restricted_constraint_set@cref}{{[equation][5][4]4.5}{53}}
-\newlabel{eq:b_restricted_constraint_set}{{4.6}{53}{The optimization problem}{equation.4.0.6}{}}
-\newlabel{eq:b_restricted_constraint_set@cref}{{[equation][6][4]4.6}{53}}
+\citation{Fontes2007}
+\newlabel{eq:b_restricted_constraint_set}{{4.6}{54}{The optimization problem}{equation.4.0.6}{}}
+\newlabel{eq:b_restricted_constraint_set@cref}{{[equation][6][4]4.6}{54}}
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
 \csxdef {autonum@eq:restricted_constraint_setReferenced}{}
 \csxdef {autonum@property:restricted_constraint_setReferenced}{}
@@ -312,8 +313,6 @@
 \newlabel{ass:psi}{{4.3.1}{54}{}{assumption.4.3.1}{}}
 \newlabel{ass:psi@cref}{{[assumption][1][4,3]4.3.1}{54}}
 \csxdef {autonum@def:positively_invariantReferenced}{}
-\newlabel{ass:phi_psi}{{4.3.2}{54}{}{assumption.4.3.2}{}}
-\newlabel{ass:phi_psi@cref}{{[assumption][2][4,3]4.3.2}{54}}
 \newlabel{ass:psi_omega}{{4.3.3}{55}{}{assumption.4.3.3}{}}
 \newlabel{ass:psi_omega@cref}{{[assumption][3][4,3]4.3.3}{55}}
 \newlabel{ass:omega}{{4.3.4}{55}{}{assumption.4.3.4}{}}
@@ -331,10 +330,8 @@
 \csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
 \csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
 \csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
-\newlabel{ass:existence_of_solutions_with_disturbance}{{4.3.5}{56}{}{assumption.4.3.5}{}}
-\newlabel{ass:existence_of_solutions_with_disturbance@cref}{{[assumption][5][4,3]4.3.5}{56}}
-\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
 \BKM@entry{id=22,dest={73656374696F6E2E342E34},srcline={2},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{53746162696C697A6174696F6E3A5C303430466561736962696C6974795C303430616E645C303430436F6E76657267656E6365}
+\csxdef {autonum@eq:position_based_error_model_with_disturbanceReferenced}{}
 \newlabel{eq:with_disturbances_closed_loop}{{4.8}{57}{The optimization problem}{equation.4.0.8}{}}
 \newlabel{eq:with_disturbances_closed_loop@cref}{{[equation][8][4]4.8}{57}}
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
@@ -343,7 +340,7 @@
 \newlabel{definition:admissible_input_with_disturbance@cref}{{[definition][1][4,3]4.3.1}{57}}
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{57}{section.4.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{58}{section.4.4}}
 \newlabel{theorem:with_disturbances}{{4.4.1}{58}{}{theorem.4.4.1}{}}
 \newlabel{theorem:with_disturbances@cref}{{[theorem][1][4,4]4.4.1}{58}}
 \csxdef {autonum@position_based_cost_2Referenced}{}
@@ -363,10 +360,10 @@
 \csxdef {autonum@problem:opt_with_disturbancesReferenced}{}
 \newlabel{eq:optimal_input_portions_with_disturbances}{{4.9}{59}{Stabilization: Feasibility and Convergence}{equation.4.0.9}{}}
 \newlabel{eq:optimal_input_portions_with_disturbances@cref}{{[equation][9][4]4.9}{59}}
-\newlabel{eq:predicted_t_k_T_p_from_t_k_in_omega}{{4.10}{59}{Stabilization: Feasibility and Convergence}{equation.4.0.10}{}}
-\newlabel{eq:predicted_t_k_T_p_from_t_k_in_omega@cref}{{[equation][10][4]4.10}{59}}
 \citation{kolmanovsky}
 \citation{schneider_2013}
+\newlabel{eq:predicted_t_k_T_p_from_t_k_in_omega}{{4.10}{60}{Stabilization: Feasibility and Convergence}{equation.4.0.10}{}}
+\newlabel{eq:predicted_t_k_T_p_from_t_k_in_omega@cref}{{[equation][10][4]4.10}{60}}
 \csxdef {autonum@eq:optimal_input_portions_with_disturbancesReferenced}{}
 \newlabel{eq:optimal_input_t_plus_one_with_disturbances}{{4.11}{60}{Stabilization: Feasibility and Convergence}{equation.4.0.11}{}}
 \newlabel{eq:optimal_input_t_plus_one_with_disturbances@cref}{{[equation][11][4]4.11}{60}}
@@ -386,8 +383,8 @@
 \csxdef {autonum@eq:from_DV_to_eqReferenced}{}
 \csxdef {autonum@theorem:with_disturbancesReferenced}{}
 \csxdef {autonum@ass:psi_omegaReferenced}{}
-\newlabel{eq:feasibility_3}{{4.15}{66}{Stabilization: Feasibility and Convergence}{equation.4.0.15}{}}
-\newlabel{eq:feasibility_3@cref}{{[equation][15][4]4.15}{66}}
+\newlabel{eq:feasibility_3}{{4.15}{67}{Stabilization: Feasibility and Convergence}{equation.4.0.15}{}}
+\newlabel{eq:feasibility_3@cref}{{[equation][15][4]4.15}{67}}
 \csxdef {autonum@eq:optimal_input_t_plus_one_with_disturbancesReferenced}{}
 \csxdef {autonum@eq:feasibility_2Referenced}{}
 \csxdef {autonum@eq:feasibility_3Referenced}{}
@@ -415,15 +412,15 @@
 \csxdef {autonum@theorem:with_disturbancesReferenced}{}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
 \csxdef {autonum@eq:from_DV_to_eqReferenced}{}
-\newlabel{eq:end_result_diff_V_plus_int}{{4.20}{72}{Stabilization: Feasibility and Convergence}{equation.4.0.20}{}}
-\newlabel{eq:end_result_diff_V_plus_int@cref}{{[equation][20][4]4.20}{72}}
+\newlabel{eq:end_result_diff_V_plus_int}{{4.20}{73}{Stabilization: Feasibility and Convergence}{equation.4.0.20}{}}
+\newlabel{eq:end_result_diff_V_plus_int@cref}{{[equation][20][4]4.20}{73}}
 \csxdef {autonum@eq:end_result_two_integralsReferenced}{}
 \csxdef {autonum@eq:end_result_diff_V_plus_intReferenced}{}
 \csxdef {autonum@eq:convergence_4_integrals_2Referenced}{}
-\citation{ISS_SKATOLINI}
-\citation{marquez2003nonlinear}
 \newlabel{eq:check_for_ISS_here_main_branch}{{4.21}{74}{Stabilization: Feasibility and Convergence}{equation.4.0.21}{}}
 \newlabel{eq:check_for_ISS_here_main_branch@cref}{{[equation][21][4]4.21}{74}}
+\citation{ISS_SKATOLINI}
+\citation{marquez2003nonlinear}
 \csxdef {autonum@def:k_classReferenced}{}
 \csxdef {autonum@lemma:V_i_lower_upper_boundedReferenced}{}
 \csxdef {autonum@remark:ISS_LyapunovReferenced}{}
@@ -433,8 +430,8 @@
 \csxdef {autonum@ass:psi_omegaReferenced}{}
 \csxdef {autonum@eq:check_for_ISS_here_main_branchReferenced}{}
 \csxdef {autonum@ass:psi_omegaReferenced}{}
-\csxdef {autonum@ass:psi_omegaReferenced}{}
 \csxdef {autonum@eq:perturbed_systemReferenced}{}
+\csxdef {autonum@ass:psi_omegaReferenced}{}
 \BKM@entry{id=23,dest={73656374696F6E2A2E36},srcline={93},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{417070656E6469636573}
 \@writefile{toc}{\contentsline {chapter}{Appendices}{77}{section*.6}}
 \BKM@entry{id=24,dest={417070656E6469782E612E41},srcline={96},srcfile={2E2F646F63756D656E745F726F6F742E746578}}{50726F6F66735C3034306F665C3034306C656D6D6173}

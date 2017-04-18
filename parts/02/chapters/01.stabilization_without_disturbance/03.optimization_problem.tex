@@ -120,8 +120,8 @@ problem as follows: when agent $i$ solves his own optimization problem,
 his predicted configuration at time $\tau \in [t_k, t_k + T_p]$ is
 constrained by the predicted configuration of its neighbouring and
 perceivable\footnote{agents within its sensing range} agents at the same
-time instant $\tau$. The form of the constraint regime is necessary to be
-such, as each agent is constrained not by constant values, but by
+time instant $\tau$. The form of the inter-agent constraint regime is necessary
+to be such, as each agent is constrained not by constant values, but by
 the trajectories of its associated agents, which are time-varying in nature.
 
 Formally then, $\mathcal{E}_{i,s} = \{ \vect{e}_i(s): \vect{e}_i(s) \in \mathcal{Z}_{i,s} \ominus \vect{z}_{i,des}\}$,
@@ -151,18 +151,19 @@ serve as to point to the column vectors $\vect{z}_{\mathcal{R}_i}(t_k)$,
 $\vect{z}_{\mathcal{N}_i}(t_k)$, $\overline{\vect{z}}_{\mathcal{R}_i}(s)$, and
 $\overline{\vect{z}}_{\mathcal{N}_i}(s)$ respectively, of which they are
 components, and whose notation they abide by.
-Figure \eqref{fig:constraint_regime_horizon} depicts the designed constraint
-regime.\\[2.5ex]
+Figure \eqref{fig:constraint_regime_horizon} depicts the designed inter-agent
+(and intra-horizon) constraint regime.\\[2.5ex]
 
 \begin{figure}[ht!]
   \centering
   \input{figures/constraint_regime_horizon.tex}
-  \caption{The constraint regime for two agents, $i,j$. Fully outlined circles
-    denote measured configurations, while partly outlined circles denote
-    predicted configurations. During the solution to the individual optimization
-    problems, the predicted configuration of each agent at each
-    timestep is constrained by the predicted configuration of the other agent
-    at the same timestep (hence the identical colours at each discrete timestep).}
+  \caption{The inter-agent constraint regime for two agents, $i,j$. Fully
+    outlined circles denote measured configurations, while partly outlined
+    circles denote predicted configurations. During the solution to the
+    individual optimization problems, the predicted configuration of each agent
+    at each timestep is constrained by the predicted configuration of the other
+    agent at the same timestep (hence the identical colours at each discrete
+    timestep).}
   \label{fig:constraint_regime_horizon}
 \end{figure}
 
@@ -211,12 +212,12 @@ $\mathcal{K}_{\infty}$ functions:
 \end{bw_box}
 
 
-The terminal set $\Omega_i \subseteq \mathcal{E}_{i,s}$ is an admissible
+The terminal set $\Omega_i \subseteq \mathcal{E}_{i,T_p}$ is an admissible
 positively invariant set according to definition
 \eqref{def:positively_invariant} for system
 \eqref{eq:position_based_error_model} such that
 \begin{align}
-  \Omega_i = \{\vect{e}_i \in \mathcal{E}_{i,s} : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
+  \Omega_i = \{\vect{e}_i \in \mathcal{E}_{i,T_p} : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
 \end{align}
 where $\varepsilon_{\Omega_i}$ is an arbitrarily small but fixed positive real scalar.
 
@@ -287,7 +288,7 @@ assume the following:
   \label{ass:existence_of_solutions_without_disturbance}
 
   The system \eqref{eq:position_based_error_model} has a
-  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_{i,s}$ and
+  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_{i,0}$ and
   any \textit{piecewise continuous} input
   $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$.
 \end{assumption}
@@ -331,7 +332,7 @@ We can now give the definition of an \textit{admissible input} for the FHOCP
   \begin{enumerate}
     \item $\vect{u}_i(\cdot)$ is piecewise continuous
     \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
-    \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,s},\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\overline{\vect{e}}_i\big(\tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_{i,\tau},\ \forall \tau \in [t_k, t_k + T_p]$
     \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
   \end{enumerate}
 

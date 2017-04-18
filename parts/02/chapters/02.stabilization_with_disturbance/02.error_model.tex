@@ -21,18 +21,18 @@ they are denoted by $g_i^R(\vect{e}_i, \vect{u}_i)$:
 with $\vect{e}_i(0) = \vect{z}_i(0) - \vect{z}_{i,des}$.
 The error-wise translated constraints that are required on the state
 $\vect{z}_i(t)$ are unchanged:
-$$\mathcal{E}_i = \big\{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
-\vect{e}_i(t) \in \mathcal{Z}_i \ominus \vect{z}_{i,des} \big\}$$
-Again, $\mathcal{E}_i $ is the set that captures all constraints for the error
-dynamics \eqref{eq:position_based_error_model_with_disturbance} dictated
-by the problem \eqref{problem}.
+$$\mathcal{E}_{i,t} = \big\{\vect{e}_i(t) \in \mathbb{R}^9 \times \mathbb{T}^3 :
+\vect{e}_i(t) \in \mathcal{Z}_{i,t} \ominus \vect{z}_{i,des} \big\}$$
+Again, $\mathcal{E}_{i,t} $ is the set that captures all constraints for the
+error dynamics \eqref{eq:position_based_error_model_with_disturbance} dictated
+by the problem \eqref{problem} at time $t > \mathbb{R}_{\geq 0}$.
 
 On functions $g_i, g^R_i$ we make the following assumption:
 \begin{bw_box}
   \begin{assumption}
   \label{ass:g_i_g_R_Lipschitz}
 
-    Functions $g_i, g^R_i$ are Lipschitz continuous in $\mathcal{E}_i$
+    Functions $g_i, g^R_i$ are Lipschitz continuous in $\mathcal{E}_{i,t}$
     with Lipschitz constants $L_{g_i}$.
 
 \end{assumption}
@@ -41,7 +41,7 @@ On functions $g_i, g^R_i$ we make the following assumption:
 If we design control laws $\vect{u}_i \in \mathcal{U}_i$,
 $\forall i \in \mathcal{V}$ such that the error signal $\vect{e}_i(t)$ with
 dynamics given in \eqref{eq:position_based_error_model_with_disturbance}, constrained under
-$\vect{e}_i(t) \in \mathcal{E}_i$, satisfies
+$\vect{e}_i(t) \in \mathcal{E}_{i,t}$, satisfies
 $\lim\limits_{t \to \infty} \|\vect{e}_i(t)\| = 0$, while all system related
 signals remain bounded in their respective regions,$-$ if all of the above are
 achieved, then problem \eqref{problem} has been solved.
