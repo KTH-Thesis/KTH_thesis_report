@@ -151,8 +151,20 @@ serve as to point to the column vectors $\vect{z}_{\mathcal{R}_i}(t_k)$,
 $\vect{z}_{\mathcal{N}_i}(t_k)$, $\overline{\vect{z}}_{\mathcal{R}_i}(s)$, and
 $\overline{\vect{z}}_{\mathcal{N}_i}(s)$ respectively, of which they are
 components, and whose notation they abide by.
+Figure \eqref{fig:constraint_regime_horizon} depicts the designed constraint
+regime.\\[2.5ex]
 
-
+\begin{figure}[ht!]
+  \centering
+  \input{figures/constraint_regime_horizon.tex}
+  \caption{The constraint regime for two agents, $i,j$. Fully outlined circles
+    denote measured configurations, while partly outlined circles denote
+    predicted configurations. During the solution to the individual optimization
+    problems, the predicted configuration of each agent at each
+    timestep is constrained by the predicted configuration of the other agent
+    at the same timestep (hence the identical colours at each discrete timestep).}
+  \label{fig:constraint_regime_horizon}
+\end{figure}
 
 
 The functions
