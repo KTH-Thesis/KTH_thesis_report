@@ -162,8 +162,8 @@ Figure \eqref{fig:constraint_regime_horizon} depicts the designed inter-agent
     circles denote predicted configurations. During the solution to the
     individual optimization problems, the predicted configuration of each agent
     at each timestep is constrained by the predicted configuration of the other
-    agent at the same timestep (hence the identical colours at each discrete
-    timestep).}
+    agent at the same timestep (hence the homologously identical colours at
+    each discrete timestep).}
   \label{fig:constraint_regime_horizon}
 \end{figure}
 
@@ -212,12 +212,12 @@ $\mathcal{K}_{\infty}$ functions:
 \end{bw_box}
 
 
-The terminal set $\Omega_i \subseteq \mathcal{E}_{i,T_p}$ is an admissible
+The terminal set $\Omega_i \subseteq \mathcal{E}_{i,t_k + T_p}$ is an admissible
 positively invariant set according to definition
 \eqref{def:positively_invariant} for system
 \eqref{eq:position_based_error_model} such that
 \begin{align}
-  \Omega_i = \{\vect{e}_i \in \mathcal{E}_{i,T_p} : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
+  \Omega_i = \{\vect{e}_i \in \mathcal{E}_{i,t_k + T_p} : V_i(\vect{e}_i) \leq \varepsilon_{\Omega_i} \}
 \end{align}
 where $\varepsilon_{\Omega_i}$ is an arbitrarily small but fixed positive real scalar.
 
