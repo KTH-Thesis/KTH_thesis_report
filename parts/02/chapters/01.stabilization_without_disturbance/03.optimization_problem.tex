@@ -233,7 +233,10 @@ optimal control problem to the terminal region $\Omega_i$:
   $V_i$ is defined by \eqref{eq:V_i_def}. The terminal penalty function
   $V_i$ is Lipschitz continuous in $\Omega_i$
   $$\big|V_i(\vect{e}_1) - V_i(\vect{e}_2)\big| \leq L_{V_i} \|\vect{e}_1 - \vect{e}_2\|$$
-  with Lipschitz constant $L_{V_i} = 2 \sigma_{max}(\mat{P}_i) \varepsilon_{\Omega_i} $\\
+  with Lipschitz constant $L_{V_i} = 2 \sigma_{max}(\mat{P}_i) \overline{\varepsilon}_{i,\Omega_i} $\\
+
+  where $\overline{\varepsilon}_{i,\Omega_i} = \text{sup}\limits_{\vect{e}_i \in \Omega_i} \|\vect{e}_i\|$
+
 
 \end{lemma}
 \end{bw_box}
