@@ -1,0 +1,28 @@
+\section{The operational model}
+
+The simulacrum used for all agents in the following chapters shall be the
+three-dimensional model of the unicycle; its motion shall be expressed by the
+nonlinear continuous-time kinematic equations
+
+\begin{align}
+\label{eq:unicycle_kinematic}
+  \dot{x}       &= v \cos\theta \\
+  \dot{y}       &= v \sin\theta \\
+  \dot{\theta}  &= \omega
+\end{align}
+
+with $\vect{z} = [x,y,\theta]^{\top}$ the vector of states,
+$\vect{u} = [v, \omega]^{\top}$ the vector of inputs, and $\vect{\dot{z}} =
+f(\vect{z}, \vect{u})$ the (model) system's equation. In this 2D environment,
+the obstacles of the workspace along with the workspace boundary itself
+assume an appropriately reformed form: that of a circle. The labeled space in
+which an arbitrary agent $i$ moves, along with the
+spherical-obstacles-transformed to circles, is depicted in figure
+\eqref{fig:unicycle_figure}.
+
+\begin{figure}[H]\centering
+  \input{figures/unicycle_figure.tex}
+  \caption{The 2D plane, agent $i$, whose orientation relative to the $x$
+    axis is $\theta$ and two obstacles.}
+  \label{fig:unicycle_figure}
+\end{figure}

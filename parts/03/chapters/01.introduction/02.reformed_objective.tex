@@ -1,0 +1,50 @@
+\section{The problem reformed}
+
+Considering the conditions of the motivational problem as stated by problem
+\eqref{sec:problem_statement}, the reformed problem assumes the following form:
+
+\begin{problem}
+Assuming that
+\begin{itemize}
+  \item all agents $i \in \mathcal{V}$ have access to their own state and
+    input vectors
+  \item all agents $in \in \mathcal{V}$ have a (upper-bounded) sensing range
+   $d_i$ such that
+   $$d_i > \text{max}\{r_i + r_j: \forall i,j \in \mathcal{V}, i \neq j\}$$
+  \item at time $t=0$ the sets $\mathcal{N}_i$ are known for all
+    $i \in \mathcal{V}$ and $\sum\limits_i |\mathcal{N}_i| > 0$
+  \item at time $t=0$ all agents are in a collision-free configuration with
+    each other and the obstacles $\ell \in \mathcal{L}$
+  \item All obstacles $\ell \in \mathcal{L}$ are situated
+    in such a way that the distance between the two least distant obstacles
+    is larger than the diameter of one agent
+\end{itemize}
+the problem lies in procuring feasible controls for each agent $i \in \mathcal{V}$
+such that for all agents and for all obstacles $\ell \in \mathcal{L}$ the
+following hold
+\begin{enumerate}
+  \item Position and orientation configuration is achieved in steady-state
+    $\vect{z}_{i,des}$
+    $$\lim_{t \to \infty} \|\vect{z}_i(t) - \vect{z}_{i,des}\| = 0$$
+
+  \item Inter-agent collision is avoided
+    $$\|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a}(t) > \underline{d}_{ij,a},
+    \forall j \in \mathcal{V} \backslash \{i\}$$
+    where $\vect{p}(t) = [x(t), y(t)]^{\top}$
+
+  \item Inter-agent connectivity loss between neighbouring agents is avoided
+    $$ \|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a} (t) < d_i,
+    \forall j \in \mathcal{N}_i, \forall i : |\mathcal{N}_i| \not= 0$$
+
+  \item Agent-with-obstacle collision is avoided
+    $$ \|\vect{p}_i(t) - \vect{p}_{\ell}(t)\| = d_{i\ell,o} (t) > \underline{d}_{i\ell,o},
+    \forall \ell \in \mathcal{L}$$
+
+  \item The control laws $\vect{u}_i(t)$ abide by their respective input constraints
+    $$\vect{u}_i(t) \in \mathcal{U}_i$$
+\end{enumerate}
+
+for appropriate choice of constants
+$\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,underline{d}_{i\ell,o}$ and
+sets $\mathcal{N}_i$.
+\end{problem}
