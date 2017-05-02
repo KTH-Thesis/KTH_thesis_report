@@ -6,8 +6,8 @@ Considering the conditions of the motivational problem as stated by problem
 \begin{problem}
 Assuming that
 \begin{itemize}
-  \item all agents $i \in \mathcal{V}$ have access to their own state and
-    input vectors
+  \item all agents $i \in \mathcal{V}$ have access to their own and their
+    neighbours' state and input vectors
   \item all agents $in \in \mathcal{V}$ have a (upper-bounded) sensing range
    $d_i$ such that
    $$d_i > \text{max}\{r_i + r_j: \forall i,j \in \mathcal{V}, i \neq j\}$$
@@ -17,7 +17,7 @@ Assuming that
     each other and the obstacles $\ell \in \mathcal{L}$
   \item All obstacles $\ell \in \mathcal{L}$ are situated
     in such a way that the distance between the two least distant obstacles
-    is larger than the diameter of one agent
+    is larger than the diameter of one agent with the largest diameter
 \end{itemize}
 the problem lies in procuring feasible controls for each agent $i \in \mathcal{V}$
 such that for all agents and for all obstacles $\ell \in \mathcal{L}$ the
@@ -45,6 +45,14 @@ following hold
 \end{enumerate}
 
 for appropriate choice of constants
-$\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,underline{d}_{i\ell,o}$ and
-sets $\mathcal{N}_i$.
+$\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,\underline{d}_{i\ell,o}$ and
+neighbour sets $\mathcal{N}_i$.
 \end{problem}
+
+The content of chapters \ref{chapter:simulations_without_disturbances} and
+\ref{chapter:simulations_with_disturbances} will demonstrate that agents
+$i \in \mathcal{V}$ can be stabilized when disturbances are absent, as
+demonstrated in chapter \ref{chapter:stabilization_without_disturbance}, and,
+in the case where disturbances are present, that the magnitude of their errors
+about the equilibrium does not exceed a certain ceiling, as demonstrated in
+chapter \ref{chapter:stabilization_with_disturbance}.

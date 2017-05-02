@@ -12,17 +12,32 @@ nonlinear continuous-time kinematic equations
 \end{align}
 
 with $\vect{z} = [x,y,\theta]^{\top}$ the vector of states,
-$\vect{u} = [v, \omega]^{\top}$ the vector of inputs, and $\vect{\dot{z}} =
-f(\vect{z}, \vect{u})$ the (model) system's equation. In this 2D environment,
-the obstacles of the workspace along with the workspace boundary itself
-assume an appropriately reformed form: that of a circle. The labeled space in
-which an arbitrary agent $i$ moves, along with the
+$\vect{u} = [v, \omega]^{\top}$ the vector of inputs, and $\dot{\vect{z}} =
+f(\vect{z}, \vect{u})$ the (model) system's equation. We consider that
+$\vect{x} \in X, \vect{y} \in Y$ where $X \equiv Y \equiv \mathbb{R}$,
+$\theta \in \Theta \equiv (-\pi, \pi]$ and $\vect{u} \in \mathcal{U}$.
+In this 2D spatial environment, the obstacles of the workspace along with the
+workspace boundary itself assume an appropriately reformed form: that of a
+circle. The labeled space in which an arbitrary agent $i$ moves, along with the
 spherical-obstacles-transformed to circles, is depicted in figure
 \eqref{fig:unicycle_figure}.
 
 \begin{figure}[H]\centering
   \input{figures/unicycle_figure.tex}
   \caption{The 2D plane, agent $i$, whose orientation relative to the $x$
-    axis is $\theta$ and two obstacles.}
+    axis is $\theta$, and two obstacles.}
   \label{fig:unicycle_figure}
 \end{figure}
+
+The desired configuration shall be denoted by $\vect{z}_{des}$,
+the error dynamics by $\dot{\vect{e}} = g(\vect{e}, \vect{u})$
+where $\vect{e} = \vect{z} - \vect{z}_{des}$ and
+$\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta$.
+
+\begin{lemma}
+  \label{lemma:lipschitz_unicycle}
+  Function $g$ is Lipschitz continuous in $\mathcal{E} \times \mathcal{U}$ with
+  a Lipschitz constant $$L_g = v \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}}$$
+  where $\mat{Q} = Q_{\mu\nu}$ is the $3 \times 3$ matrix used to weigh the
+  norms involved.
+\end{lemma}
