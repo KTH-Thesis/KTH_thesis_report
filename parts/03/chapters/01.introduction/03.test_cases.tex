@@ -76,10 +76,10 @@ to be stabilized in that position.
 }\\[2.5ex]
 
 All configurations are as follows: the radius of all agents
-$i,j \in \mathcal{V}$ is $r_i = 0.5$, the radius of all obstacles is
-$r_{\ell} = 1.0$, the sensing range of all agents has a radius of
-$d_i = 4r_i + \epsilon = 2.0 + \epsilon$, the minimum distance between agents
-is $\underline{d}_{ij,a} = 2r_i + \epsilon = 1 + \epsilon$ and the minimum
+$i,j \in \mathcal{V}$ is $r_i = 0.5$; the radius of all obstacles is
+$r_{\ell} = 1.0$; the sensing range of all agents has a radius of
+$d_i = 4r_i + \epsilon = 2.0 + \epsilon$; the minimum distance between agents
+is $\underline{d}_{ij,a} = 2r_i + \epsilon = 1 + \epsilon$, and the minimum
 distance between agents and obstacles is
 $\underline{d}_{i\ell,o} = r_i + r_{\ell} + \epsilon = 1.5 + \epsilon$.
 $\epsilon$ was set to $\epsilon = 0.1$ in the disturbance-free cases and
@@ -95,5 +95,6 @@ the obstacle(s) from the same side, as they are prohibited from overtaking it
 lower than the sum of the diameter of one obstacle and the radii of any two
 agents.
 
-The initial and terminal configurations of each agent shall be reported
-in the appropriate sections.
+The individual initial and terminal configurations of each agent, the positions
+of the obstacles and various other parameters $-$ such as the penalty matrices
+$\mat{Q}, \mat{R}, \mat{P}$ $-$ shall be reported in the appropriate sections.
