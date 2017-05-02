@@ -8,17 +8,23 @@ Assuming that
 \begin{itemize}
   \item all agents $i \in \mathcal{V}$ have access to their own and their
     neighbours' state and input vectors
-  \item all agents $in \in \mathcal{V}$ have a (upper-bounded) sensing range
+
+  \item all agents $i \in \mathcal{V}$ have a (upper-bounded) sensing range
    $d_i$ such that
    $$d_i > \text{max}\{r_i + r_j: \forall i,j \in \mathcal{V}, i \neq j\}$$
+
   \item at time $t=0$ the sets $\mathcal{N}_i$ are known for all
     $i \in \mathcal{V}$ and $\sum\limits_i |\mathcal{N}_i| > 0$
+
   \item at time $t=0$ all agents are in a collision-free configuration with
     each other and the obstacles $\ell \in \mathcal{L}$
+
   \item All obstacles $\ell \in \mathcal{L}$ are situated
     in such a way that the distance between the two least distant obstacles
-    is larger than the diameter of one agent with the largest diameter
+    is larger than the diameter of the agent with the largest diameter
+
 \end{itemize}
+
 the problem lies in procuring feasible controls for each agent $i \in \mathcal{V}$
 such that for all agents and for all obstacles $\ell \in \mathcal{L}$ the
 following hold
@@ -45,8 +51,8 @@ following hold
 \end{enumerate}
 
 for appropriate choice of constants
-$\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,\underline{d}_{i\ell,o}$ and
-neighbour sets $\mathcal{N}_i$.
+$r_i,\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,\underline{d}_{i\ell,o}$ and
+neighbour sets $\mathcal{N}_i$, where $i \in \mathcal{V}$.
 \end{problem}
 
 The content of chapters \ref{chapter:simulations_without_disturbances} and

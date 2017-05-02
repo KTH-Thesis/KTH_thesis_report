@@ -14,7 +14,7 @@ nonlinear continuous-time kinematic equations
 with $\vect{z} = [x,y,\theta]^{\top}$ the vector of states,
 $\vect{u} = [v, \omega]^{\top}$ the vector of inputs, and $\dot{\vect{z}} =
 f(\vect{z}, \vect{u})$ the (model) system's equation. We consider that
-$\vect{x} \in X, \vect{y} \in Y$ where $X \equiv Y \equiv \mathbb{R}$,
+$\vect{x} \in X$, $\vect{y} \in Y$ where $X \equiv Y \equiv \mathbb{R}$,
 $\theta \in \Theta \equiv (-\pi, \pi]$ and $\vect{u} \in \mathcal{U}$.
 In this 2D spatial environment, the obstacles of the workspace along with the
 workspace boundary itself assume an appropriately reformed form: that of a
@@ -31,8 +31,8 @@ spherical-obstacles-transformed to circles, is depicted in figure
 
 The desired configuration shall be denoted by $\vect{z}_{des}$,
 the error dynamics by $\dot{\vect{e}} = g(\vect{e}, \vect{u})$
-where $\vect{e} = \vect{z} - \vect{z}_{des}$ and
-$\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta$.
+where $\vect{e}(t) = \vect{z}(t) - \vect{z}_{des}$ and
+$\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}$.
 
 \begin{lemma}
   \label{lemma:lipschitz_unicycle}
