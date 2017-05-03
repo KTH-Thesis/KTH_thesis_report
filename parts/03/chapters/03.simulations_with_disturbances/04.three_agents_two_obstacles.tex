@@ -1,0 +1,217 @@
+\section{Test case four: three agents $-$ two obstacles}
+
+CHANGE
+
+In this case, the initial configurations of the two agents are
+$\vect{z}_1 = $ and
+$\vect{z}_2 = $.
+Their desired configurations in steady-state are
+$\vect{z}_{1,des} = $ and
+$\vect{z}_{2,des} = $.
+The obstacle is placed between the two, at $[0, 2.9]^{\top}$. The time-horizon
+length was set to $T_p = 0.5$ sec. The penalty matrices $\mat{Q}$, $\mat{R}$,
+$\mat{P}$ were set to $\mat{Q} = 0.5 (I_3 + 0.1 \dagger_3)$,
+$\mat{R} = 0.005 I_2$ and $\mat{P} = 0.5 I_3$, where $\dagger_N$ is a
+$N \times N$ matrix whose elements are chosen at random between the values $0.0$
+and $1.0$.
+
+Trajectory, errors, etc (intro)
+
+
+%-------------------------------------------------------------------------------
+\subsection{Trajectories in 2D}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_1.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_3.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_6.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_8.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_10.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_13.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_17.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/01.trajectories/frame_29.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+%-------------------------------------------------------------------------------
+\subsection{State errors}
+
+\begin{figure}[H]
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/02.errors/errors_agent_1.tex}}
+  \caption{}
+  \label{}
+\end{figure}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/02.errors/errors_agent_2.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/02.errors/errors_agent_3.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Distances between actors}
+
+\begin{figure}[H]
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_agents_12.tex}}
+  \caption{}
+  \label{}
+\end{figure}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_agents_13.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_agents_23.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_obstacle_1_agents.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_obstacle_2_agents.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+
+%-------------------------------------------------------------------------------
+\subsection{Input signals}
+
+\begin{figure}[H]
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/04.inputs/inputs_agent_1.tex}}
+  \caption{}
+  \label{}
+\end{figure}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/04.inputs/inputs_agent_2.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/04.inputs/inputs_agent_3.tex}}
+      \caption{}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
