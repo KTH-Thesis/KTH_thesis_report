@@ -1,59 +1,36 @@
 \providecommand \autonum@processReference [2]{}
-\contentsline {section}{\numberline {0.1}Introduction}{5}{section.0.1}
-\contentsline {part}{I\hspace {1em}The problem}{7}{part.1}
-\contentsline {chapter}{\numberline {1}Notation and Preliminaries}{9}{chapter.1}
-\contentsline {section}{\numberline {1.1}Notation}{9}{section.1.1}
-\contentsline {section}{\numberline {1.2}Auxiliary Prerequisites}{10}{section.1.2}
-\contentsline {section}{\numberline {1.3}Model Predictive Control for non-linear continuous-time systems}{14}{section.1.3}
-\contentsline {chapter}{\numberline {2}Problem Formulation}{15}{chapter.2}
-\contentsline {section}{\numberline {2.1}System Model}{15}{section.2.1}
-\contentsline {section}{\numberline {2.2}Initial Conditions}{19}{section.2.2}
-\contentsline {section}{\numberline {2.3}Objective}{20}{section.2.3}
-\contentsline {section}{\numberline {2.4}Problem Statement}{23}{section.2.4}
-\contentsline {part}{II\hspace {1em}Advocated Solutions}{27}{part.2}
-\contentsline {chapter}{\numberline {3}Disturbance-free Stabililization}{29}{chapter.3}
-\contentsline {section}{\numberline {3.1}Formalizing the system's model}{30}{section.3.1}
-\contentsline {section}{\numberline {3.2}The error model}{31}{section.3.2}
-\contentsline {section}{\numberline {3.3}The optimization problem}{32}{section.3.3}
-\contentsline {section}{\numberline {3.4}Stabilization: Feasibility and Convergence}{39}{section.3.4}
-\contentsline {chapter}{\numberline {4}Stabilization in the face of Disturbances}{51}{chapter.4}
-\contentsline {section}{\numberline {4.1}The perturbed model}{52}{section.4.1}
-\contentsline {section}{\numberline {4.2}The error model}{53}{section.4.2}
-\contentsline {section}{\numberline {4.3}The optimization problem}{54}{section.4.3}
-\contentsline {section}{\numberline {4.4}Stabilization: Feasibility and Convergence}{60}{section.4.4}
-\contentsline {part}{III\hspace {1em}Simulations}{79}{part.3}
-\contentsline {chapter}{\numberline {5}Introduction}{81}{chapter.5}
-\contentsline {section}{\numberline {5.1}The operational model}{81}{section.5.1}
-\contentsline {section}{\numberline {5.2}The problem reformed}{83}{section.5.2}
-\contentsline {section}{\numberline {5.3}Simulation scenarios}{85}{section.5.3}
-\contentsline {chapter}{\numberline {6}Simulations of Disturbance-free Stabililization}{89}{chapter.6}
-\contentsline {section}{\numberline {6.1}Test case one: two agents $-$ one obstacle}{89}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Trajectories in 2D}{90}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}State errors}{91}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Distances between actors}{92}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Input signals}{92}{subsection.6.1.4}
-\contentsline {section}{\numberline {6.2}Test case two: two agents $-$ two obstacles}{92}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Trajectories in 2D}{93}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}State errors}{95}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Distances between actors}{95}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Input signals}{96}{subsection.6.2.4}
-\contentsline {section}{\numberline {6.3}Test case three: three agents $-$ one obstacle}{96}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Trajectories in 2D}{97}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}State errors}{99}{subsection.6.3.2}
-\contentsline {subsection}{\numberline {6.3.3}Distances between actors}{100}{subsection.6.3.3}
-\contentsline {subsection}{\numberline {6.3.4}Input signals}{101}{subsection.6.3.4}
-\contentsline {section}{\numberline {6.4}Test case four: three agents $-$ two obstacles}{102}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Trajectories in 2D}{103}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}State errors}{104}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Distances between actors}{105}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Input signals}{107}{subsection.6.4.4}
-\contentsline {chapter}{\numberline {7}Simulations of Stabilization in the face of Disturbances}{109}{chapter.7}
-\contentsline {chapter}{Appendices}{111}{section*.77}
-\contentsline {chapter}{\numberline {A}Proofs of lemmas}{113}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Proof of lemma 3.3.1}{113}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Proof of lemma 3.3.2}{114}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Proof of lemma 3.3.3}{115}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Proof of lemma 3.3.4}{115}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Proof of property 4.3.1}{116}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Proof of lemma 4.4.1}{117}{section.a.A.6}
-\contentsline {section}{\numberline {A.7}Proof of lemma 5.1.1}{118}{section.a.A.7}
+\contentsline {part}{I\hspace {1em}Simulations}{3}{part.1}
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}The operational model}{5}{section.1.1}
+\contentsline {section}{\numberline {1.2}The problem reformed}{7}{section.1.2}
+\contentsline {section}{\numberline {1.3}Simulation scenarios}{9}{section.1.3}
+\contentsline {chapter}{\numberline {2}Simulations of Disturbance-free Stabililization}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Test case one: two agents $-$ one obstacle}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Trajectories in 2D}{14}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}State errors}{15}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Distances between actors}{15}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}Input signals}{16}{subsection.2.1.4}
+\contentsline {section}{\numberline {2.2}Test case two: two agents $-$ two obstacles}{16}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Trajectories in 2D}{17}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}State errors}{18}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Distances between actors}{18}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Input signals}{19}{subsection.2.2.4}
+\contentsline {section}{\numberline {2.3}Test case three: three agents $-$ one obstacle}{19}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Trajectories in 2D}{20}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}State errors}{21}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Distances between actors}{22}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Input signals}{23}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.4}Test case four: three agents $-$ two obstacles}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Trajectories in 2D}{25}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}State errors}{26}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Distances between actors}{27}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Input signals}{28}{subsection.2.4.4}
+\contentsline {chapter}{Appendices}{29}{section*.45}
+\contentsline {chapter}{\numberline {A}Proofs of lemmas}{31}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Proof of lemma 0}{31}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Proof of lemma 0}{32}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Proof of lemma 0}{33}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Proof of lemma 0}{33}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Proof of property 0}{34}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Proof of lemma 0}{35}{section.a.A.6}
+\contentsline {section}{\numberline {A.7}Proof of lemma 1.1.1}{36}{section.a.A.7}

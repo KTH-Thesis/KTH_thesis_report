@@ -6,6 +6,7 @@
 %
 \definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
 \definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.00000,1.00000,1.00000}%
 %
 \begin{tikzpicture}
 
@@ -14,15 +15,16 @@ width=4.133in,
 height=3.26in,
 at={(0.693in,0.44in)},
 scale only axis,
-xmin=1,
+xmin=0,
 xmax=30,
 xmajorgrids,
-ymin=1,
-ymax=6.5,
+ymin=1.2,
+ymax=7,
 ymajorgrids,
-axis background/.style={fill=white}
+axis background/.style={fill=white},
+legend style={at={(0.517,0.512)},anchor=south west,legend cell align=left,align=left,draw=white!15!black}
 ]
-\addplot [color=mycolor1,solid,forget plot]
+\addplot [color=mycolor1,solid]
   table[row sep=crcr]{%
 1	6.02992537267253\\
 2	5.04046321855403\\
@@ -55,7 +57,9 @@ axis background/.style={fill=white}
 29	6.03001632652362\\
 30	6.02999420433031\\
 };
-\addplot [color=mycolor2,solid,forget plot]
+\addlegendentry{$\text{d}_{\text{1,o}}$};
+
+\addplot [color=mycolor2,solid]
   table[row sep=crcr]{%
 1	6.02992537267253\\
 2	5.03148302473864\\
@@ -88,5 +92,14 @@ axis background/.style={fill=white}
 29	6.02972907062529\\
 30	6.02970391694226\\
 };
+\addlegendentry{$\text{d}_{\text{2,o}}$};
+
+\addplot [color=mycolor3,solid]
+  table[row sep=crcr]{%
+0	1.51\\
+30	1.51\\
+};
+\addlegendentry{$\text{d}_{\text{min}}$};
+
 \end{axis}
 \end{tikzpicture}%
