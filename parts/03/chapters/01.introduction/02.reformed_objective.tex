@@ -65,10 +65,12 @@ agent $i \in \mathcal{V}$ is
       & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
       & - \pi < \theta_i(t) \leq \pi \big\}
 \end{align}
-and the constraint set that corresponds to each agent is given by the
-Minkowski difference
-$\mathcal{E}_{i,t} = \mathcal{Z}_{i,t} \ominus \vect{z}_{i,des}$ for all
-$i \in \mathcal{V}$.
+and the constraint set that corresponds to each agent for all
+$i \in \mathcal{V}$  is given by the Minkowski difference
+\begin{align}
+  \mathcal{E}_{i,t} = \mathcal{Z}_{i,t} \ominus \vect{z}_{i,des}
+  \label{eq:error_constraint_set_unicycle}
+\end{align}
 
 The content of chapters \ref{chapter:simulations_without_disturbances} and
 \ref{chapter:simulations_with_disturbances} will demonstrate that agents

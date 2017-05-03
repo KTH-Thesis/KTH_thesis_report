@@ -6,6 +6,10 @@
 %
 \begin{tikzpicture}
 
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+
 \begin{axis}[%
 width=3.096in,
 height=1.094in,
@@ -22,15 +26,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -219,7 +223,7 @@ axis y line*=left
 -5.5	3.5\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -5.5	3.5\\
 -5.50030458649045	3.51744974835125\\
@@ -589,7 +593,7 @@ nan	nan\\
 -5.5	2.3\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -5.5	2.3\\
 -5.50030458649045	2.31744974835125\\
@@ -959,7 +963,7 @@ nan	nan\\
 -5.5	4.7\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -5.5	4.7\\
 -5.50030458649045	4.71744974835125\\
@@ -1533,15 +1537,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -1730,7 +1734,7 @@ axis y line*=left
 -2.65640740479144	3.64053935223849\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -2.65640740479144	3.64053935223849\\
 -2.65671199128189	3.65798910058974\\
@@ -2100,7 +2104,7 @@ nan	nan\\
 -2.54782819039047	2.54591130848565\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -2.54782819039047	2.54591130848565\\
 -2.54813277688092	2.5633610568369\\
@@ -2470,7 +2474,7 @@ nan	nan\\
 -2.57540049856288	5.32833392595393\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -2.57540049856288	5.32833392595393\\
 -2.57570508505334	5.34578367430518\\
@@ -3043,15 +3047,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -3240,7 +3244,7 @@ axis y line*=left
 -2.65640740479465	3.64053935225182\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -2.65640740479465	3.64053935225182\\
 -2.65671199128511	3.65798910060307\\
@@ -3610,7 +3614,7 @@ nan	nan\\
 -1.56877523767258	2.34890480008072\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -1.56877523767258	2.34890480008072\\
 -1.56907982416304	2.36635454843197\\
@@ -3980,7 +3984,7 @@ nan	nan\\
 -1.58457110014008	5.44640948490933\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -1.58457110014008	5.44640948490933\\
 -1.58487568663053	5.46385923326058\\
@@ -4554,15 +4558,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -4751,7 +4755,7 @@ axis y line*=left
 -1.08553726964379	3.93571674789681\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -1.08553726964379	3.93571674789681\\
 -1.08584185613424	3.95316649624806\\
@@ -5121,7 +5125,7 @@ nan	nan\\
 -0.958900653726882	2.84303053148771\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -0.958900653726882	2.84303053148771\\
 -0.959205240217334	2.86048027983896\\
@@ -5491,7 +5495,7 @@ nan	nan\\
 -0.535822686189015	5.28027011781862\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -0.535822686189015	5.28027011781862\\
 -0.536127272679467	5.29771986616987\\
@@ -6064,15 +6068,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -6261,7 +6265,7 @@ axis y line*=left
 1.44370343409876	5.03134064349713\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 1.44370343409876	5.03134064349713\\
 1.44339884760831	5.04879039184838\\
@@ -6631,7 +6635,7 @@ nan	nan\\
 0.293262589623614	5.08658742058106\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 0.293262589623614	5.08658742058106\\
 0.292958003133162	5.10403716893231\\
@@ -7001,7 +7005,7 @@ nan	nan\\
 3.42318975930697	5.68805288226454\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 3.42318975930697	5.68805288226454\\
 3.42288517281652	5.70550263061579\\
@@ -7575,15 +7579,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -7772,7 +7776,7 @@ axis y line*=left
 5.27553853132999	4.21587238093314\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 5.27553853132999	4.21587238093314\\
 5.27523394483953	4.23332212928439\\
@@ -8142,7 +8146,7 @@ nan	nan\\
 4.13450094831144	4.0651198814814\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 4.13450094831144	4.0651198814814\\
 4.13419636182099	4.08256962983265\\
@@ -8512,7 +8516,7 @@ nan	nan\\
 6.58845493326078	4.70267984165032\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.58845493326078	4.70267984165032\\
 6.58815034677033	4.72012959000157\\
@@ -9085,15 +9089,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -9282,7 +9286,7 @@ axis y line*=left
 6.54595254297958	3.50702971506441\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.54595254297958	3.50702971506441\\
 6.54564795648913	3.52447946341566\\
@@ -9652,7 +9656,7 @@ nan	nan\\
 5.51569255598026	3.12158924074541\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 5.51569255598026	3.12158924074541\\
 5.51538796948981	3.13903898909666\\
@@ -10022,7 +10026,7 @@ nan	nan\\
 6.54823072799553	4.70156717222511\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.54823072799553	4.70156717222511\\
 6.54792614150508	4.71901692057636\\
@@ -10596,15 +10600,15 @@ axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	3.5\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.3\\
 };
-\addplot [color=green,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor3,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.7\\
 };
@@ -10793,7 +10797,7 @@ axis y line*=left
 6.49988341563912	3.5007145274633\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.49988341563912	3.5007145274633\\
 6.49957882914867	3.51816427581455\\
@@ -11163,7 +11167,7 @@ nan	nan\\
 6.49967086075295	2.30100004695362\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.49967086075295	2.30100004695362\\
 6.49936627426249	2.31844979530487\\
@@ -11533,7 +11537,7 @@ nan	nan\\
 6.49963831453516	4.70100119634074\\
 nan	nan\\
 };
-\addplot [color=green,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor3,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 6.49963831453516	4.70100119634074\\
 6.49933372804471	4.71845094469199\\

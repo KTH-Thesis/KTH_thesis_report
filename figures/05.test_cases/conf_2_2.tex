@@ -6,6 +6,10 @@
 %
 \begin{tikzpicture}
 
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+
 \begin{axis}[%
 width=4.133in,
 height=2.583in,
@@ -14,19 +18,19 @@ scale only axis,
 unbounded coords=jump,
 xmin=-8,
 xmax=8,
-xmajorgrids,
+%xmajorgrids,
 ymin=-1.5,
 ymax=8.5,
-ymajorgrids,
+%ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=blue,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor1,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	4.25\\
 };
-\addplot [color=red,only marks,mark=x,mark options={solid},forget plot]
+\addplot [color=mycolor2,only marks,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 6	2.75\\
 };
@@ -215,7 +219,7 @@ axis y line*=left
 -5.5	4.25\\
 nan	nan\\
 };
-\addplot [color=blue,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor1,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -5.5	4.25\\
 -5.50030458649045	4.26744974835125\\
@@ -585,7 +589,7 @@ nan	nan\\
 -5.5	2.75\\
 nan	nan\\
 };
-\addplot [color=red,solid,line width=2.0pt,forget plot]
+\addplot [color=mycolor2,solid,line width=2.0pt,forget plot]
   table[row sep=crcr]{%
 -5.5	2.75\\
 -5.50030458649045	2.76744974835125\\
