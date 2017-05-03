@@ -18,14 +18,15 @@ scale only axis,
 xmin=1,
 xmax=30,
 xmajorgrids,
-ymin=-2,
+ymin=-1,
 ymax=0.5,
 ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
-axis y line*=left
+axis y line*=left,
+legend style={legend cell align=left,align=left,draw=white!15!black}
 ]
-\addplot [color=mycolor1,solid,forget plot]
+\addplot [color=mycolor1,solid]
   table[row sep=crcr]{%
 1	-12\\
 2	-11.0022326190636\\
@@ -58,7 +59,9 @@ axis y line*=left
 29	5.91371910553997e-05\\
 30	5.71445098028399e-05\\
 };
-\addplot [color=mycolor2,solid,forget plot]
+\addlegendentry{$\text{e}_{\text{1,1}}$};
+
+\addplot [color=mycolor2,solid]
   table[row sep=crcr]{%
 1	0\\
 2	0.057824688181757\\
@@ -91,7 +94,9 @@ axis y line*=left
 29	-0.000999995837834379\\
 30	-0.000999995977520773\\
 };
-\addplot [color=mycolor3,solid,forget plot]
+\addlegendentry{$\text{e}_{\text{1,2}}$};
+
+\addplot [color=mycolor3,solid]
   table[row sep=crcr]{%
 1	0\\
 2	0.115778650054471\\
@@ -124,5 +129,7 @@ axis y line*=left
 29	7.74259655242939e-05\\
 30	6.27734701031367e-05\\
 };
+\addlegendentry{$\text{e}_{\text{1,3}}$};
+
 \end{axis}
 \end{tikzpicture}%

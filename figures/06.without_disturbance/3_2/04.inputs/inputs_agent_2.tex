@@ -4,8 +4,9 @@
 %  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
 %where you can also make suggestions and rate matlab2tikz.
 %
-\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
-\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor1}{rgb}{0.00000,1.00000,1.00000}%
+\definecolor{mycolor2}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor3}{rgb}{0.85000,0.32500,0.09800}%
 %
 \begin{tikzpicture}
 
@@ -23,9 +24,23 @@ ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left,
-legend style={legend cell align=left,align=left,draw=white!15!black}
+legend style={at={(0.711,0.649)},anchor=south west,legend cell align=left,align=left,draw=white!15!black}
 ]
 \addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+0	-10\\
+30	-10\\
+};
+\addlegendentry{$\text{u}_{\text{max}}$};
+
+\addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+0	10\\
+30	10\\
+};
+\addlegendentry{$\text{u}_{\text{min}}$};
+
+\addplot [color=mycolor2,solid]
   table[row sep=crcr]{%
 1	4.84782928416019\\
 2	3.30630684529896\\
@@ -58,9 +73,9 @@ legend style={legend cell align=left,align=left,draw=white!15!black}
 29	-0.000553245894451151\\
 30	-0.00028506444145373\\
 };
-\addlegendentry{$\text{u}_\text{1}$};
+\addlegendentry{$\text{u}_{\text{2,1}}$};
 
-\addplot [color=mycolor2,solid]
+\addplot [color=mycolor3,solid]
   table[row sep=crcr]{%
 1	-2.12419956018247\\
 2	-6.46027574035826\\
@@ -93,7 +108,7 @@ legend style={legend cell align=left,align=left,draw=white!15!black}
 29	0.000218634833252239\\
 30	0.000174370589618473\\
 };
-\addlegendentry{$\text{u}_\text{2}$};
+\addlegendentry{$\text{u}_{\text{2,2}}$};
 
 \end{axis}
 \end{tikzpicture}%

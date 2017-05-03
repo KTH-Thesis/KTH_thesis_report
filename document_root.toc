@@ -25,12 +25,12 @@
 \contentsline {subsection}{\numberline {2.4.2}State errors}{26}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Distances between actors}{27}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}Input signals}{28}{subsection.2.4.4}
-\contentsline {chapter}{Appendices}{29}{section*.45}
-\contentsline {chapter}{\numberline {A}Proofs of lemmas}{31}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Proof of lemma 0}{31}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Proof of lemma 0}{32}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Proof of lemma 0}{33}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Proof of lemma 0}{33}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Proof of property 0}{34}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Proof of lemma 0}{35}{section.a.A.6}
-\contentsline {section}{\numberline {A.7}Proof of lemma 1.1.1}{36}{section.a.A.7}
+\contentsline {chapter}{Appendices}{31}{section*.45}
+\contentsline {chapter}{\numberline {A}Proofs of lemmas}{33}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Proof of lemma 0}{33}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Proof of lemma 0}{34}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Proof of lemma 0}{35}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Proof of lemma 0}{35}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Proof of property 0}{36}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Proof of lemma 0}{37}{section.a.A.6}
+\contentsline {section}{\numberline {A.7}Proof of lemma 1.1.1}{38}{section.a.A.7}
