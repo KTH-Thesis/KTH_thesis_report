@@ -5,9 +5,9 @@ three-dimensional model of the unicycle; its motion shall be expressed by the
 nonlinear continuous-time kinematic equations
 
 \begin{align}
-  \dot{x}       &= v \cos\theta \\
-  \dot{y}       &= v \sin\theta \\
-  \dot{\theta}  &= \omega
+  \dot{x}(t)       &= v(t) \cos\theta(t) \\
+  \dot{y}(t)       &= v(t) \sin\theta(t) \\
+  \dot{\theta}(t)  &= \omega(t)
 \label{eq:unicycle_kinematic}
 \end{align}
 
@@ -28,9 +28,21 @@ spherical-obstacles-transformed to circles, is depicted in figure
     axis is $\theta$, and two obstacles.}
   \label{fig:unicycle_figure}
 \end{figure}
-
 The desired configuration shall be denoted by $\vect{z}_{des}$,
 the error dynamics by $\dot{\vect{e}} = g(\vect{e}, \vect{u})$
+where $\vect{e}(t) = \vect{z}(t) - \vect{z}_{des}$ and
+$\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}$.
+
+In the case were additive disturbances are considered, system
+\eqref{eq:unicycle_kinematic} is expressed by
+
+\begin{align}
+  \dot{x}(t)       &= v(t) \cos\theta(t) + \delta(t) \\
+  \dot{y}(t)       &= v(t) \sin\theta(t) + \delta(t) \\
+  \dot{\theta}(t)  &= \omega(t) + \delta(t)
+\label{eq:unicycle_kinematic_with_disturbances}
+\end{align}
+and its error dynamics are noted $\dot{\vect{e}} = g^R(\vect{e}, \vect{u})$
 where $\vect{e}(t) = \vect{z}(t) - \vect{z}_{des}$ and
 $\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}$.
 

@@ -1,62 +1,59 @@
 \providecommand \autonum@processReference [2]{}
-\contentsline {part}{I\hspace {1em}Simulations}{3}{part.1}
-\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}
-\contentsline {section}{\numberline {1.1}The operational model}{5}{section.1.1}
-\contentsline {section}{\numberline {1.2}The problem reformed}{7}{section.1.2}
-\contentsline {section}{\numberline {1.3}Simulation scenarios}{9}{section.1.3}
-\contentsline {chapter}{\numberline {2}Simulations of Disturbance-free Stabililization}{13}{chapter.2}
-\contentsline {chapter}{\numberline {3}Simulations of Stabilization in the face of Disturbances}{15}{chapter.3}
-\contentsline {chapter}{Appendices}{17}{section*.7}
-\contentsline {chapter}{\numberline {A}Proofs of lemmas}{19}{Appendix.a.A}
-\contentsline {section}{\numberline {A.1}Proof of lemma 0}{19}{section.a.A.1}
-\contentsline {section}{\numberline {A.2}Proof of lemma 0}{20}{section.a.A.2}
-\contentsline {section}{\numberline {A.3}Proof of lemma 0}{21}{section.a.A.3}
-\contentsline {section}{\numberline {A.4}Proof of lemma 0}{21}{section.a.A.4}
-\contentsline {section}{\numberline {A.5}Proof of property 0}{22}{section.a.A.5}
-\contentsline {section}{\numberline {A.6}Proof of lemma 0}{23}{section.a.A.6}
-\contentsline {section}{\numberline {A.7}Proof of lemma 1.1.1}{24}{section.a.A.7}
-\contentsline {chapter}{\numberline {B}Simulation figures $-$ disturbances absent}{27}{Appendix.a.B}
-\contentsline {section}{\numberline {B.1}Test case one: two agents $-$ one obstacle}{27}{section.a.B.1}
-\contentsline {subsection}{\numberline {B.1.1}Trajectories in 2D}{28}{subsection.a.B.1.1}
-\contentsline {subsection}{\numberline {B.1.2}State errors}{29}{subsection.a.B.1.2}
-\contentsline {subsection}{\numberline {B.1.3}Distances between actors}{29}{subsection.a.B.1.3}
-\contentsline {subsection}{\numberline {B.1.4}Input signals}{30}{subsection.a.B.1.4}
-\contentsline {section}{\numberline {B.2}Test case two: two agents $-$ two obstacles}{30}{section.a.B.2}
-\contentsline {subsection}{\numberline {B.2.1}Trajectories in 2D}{31}{subsection.a.B.2.1}
-\contentsline {subsection}{\numberline {B.2.2}State errors}{32}{subsection.a.B.2.2}
-\contentsline {subsection}{\numberline {B.2.3}Distances between actors}{32}{subsection.a.B.2.3}
-\contentsline {subsection}{\numberline {B.2.4}Input signals}{33}{subsection.a.B.2.4}
-\contentsline {section}{\numberline {B.3}Test case three: three agents $-$ one obstacle}{33}{section.a.B.3}
-\contentsline {subsection}{\numberline {B.3.1}Trajectories in 2D}{35}{subsection.a.B.3.1}
-\contentsline {subsection}{\numberline {B.3.2}State errors}{36}{subsection.a.B.3.2}
-\contentsline {subsection}{\numberline {B.3.3}Distances between actors}{37}{subsection.a.B.3.3}
-\contentsline {subsection}{\numberline {B.3.4}Input signals}{38}{subsection.a.B.3.4}
-\contentsline {section}{\numberline {B.4}Test case four: three agents $-$ two obstacles}{38}{section.a.B.4}
-\contentsline {subsection}{\numberline {B.4.1}Trajectories in 2D}{40}{subsection.a.B.4.1}
-\contentsline {subsection}{\numberline {B.4.2}State errors}{41}{subsection.a.B.4.2}
-\contentsline {subsection}{\numberline {B.4.3}Distances between actors}{42}{subsection.a.B.4.3}
-\contentsline {subsection}{\numberline {B.4.4}Input signals}{43}{subsection.a.B.4.4}
-\contentsline {chapter}{\numberline {C}Simulation figures $-$ disturbances present}{45}{Appendix.a.C}
-\contentsline {section}{\numberline {C.1}Test case one: two agents $-$ one obstacle}{46}{section.a.C.1}
-\contentsline {subsection}{\numberline {C.1.1}State errors}{46}{subsection.a.C.1.1}
-\contentsline {subsection}{\numberline {C.1.2}Distances between actors}{47}{subsection.a.C.1.2}
-\contentsline {subsection}{\numberline {C.1.3}Input signals}{47}{subsection.a.C.1.3}
-\contentsline {subsection}{\numberline {C.1.4}Energy of the system}{48}{subsection.a.C.1.4}
-\contentsline {section}{\numberline {C.2}Test case two: two agents $-$ two obstacles}{48}{section.a.C.2}
-\contentsline {subsection}{\numberline {C.2.1}Trajectories in 2D}{49}{subsection.a.C.2.1}
-\contentsline {subsection}{\numberline {C.2.2}State errors}{49}{subsection.a.C.2.2}
-\contentsline {subsection}{\numberline {C.2.3}Distances between actors}{49}{subsection.a.C.2.3}
-\contentsline {subsection}{\numberline {C.2.4}Input signals}{50}{subsection.a.C.2.4}
-\contentsline {subsection}{\numberline {C.2.5}Energy of the system}{51}{subsection.a.C.2.5}
-\contentsline {section}{\numberline {C.3}Test case three: three agents $-$ one obstacle}{51}{section.a.C.3}
-\contentsline {subsection}{\numberline {C.3.1}Trajectories in 2D}{52}{subsection.a.C.3.1}
-\contentsline {subsection}{\numberline {C.3.2}State errors}{52}{subsection.a.C.3.2}
-\contentsline {subsection}{\numberline {C.3.3}Distances between actors}{53}{subsection.a.C.3.3}
-\contentsline {subsection}{\numberline {C.3.4}Input signals}{54}{subsection.a.C.3.4}
-\contentsline {subsection}{\numberline {C.3.5}Energy of the system}{55}{subsection.a.C.3.5}
-\contentsline {section}{\numberline {C.4}Test case four: three agents $-$ two obstacles}{55}{section.a.C.4}
-\contentsline {subsection}{\numberline {C.4.1}Trajectories in 2D}{56}{subsection.a.C.4.1}
-\contentsline {subsection}{\numberline {C.4.2}State errors}{56}{subsection.a.C.4.2}
-\contentsline {subsection}{\numberline {C.4.3}Distances between actors}{57}{subsection.a.C.4.3}
-\contentsline {subsection}{\numberline {C.4.4}Input signals}{58}{subsection.a.C.4.4}
-\contentsline {subsection}{\numberline {C.4.5}Energy of the system}{59}{subsection.a.C.4.5}
+\contentsline {part}{I\hspace {1em}Simulations}{5}{part.1}
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}The operational model}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}The problem reformed}{9}{section.1.2}
+\contentsline {section}{\numberline {1.3}Simulation scenarios}{11}{section.1.3}
+\contentsline {chapter}{\numberline {2}Simulations of Disturbance-free Stabililization}{15}{chapter.2}
+\contentsline {chapter}{\numberline {3}Simulations of Stabilization in the face of Disturbances}{17}{chapter.3}
+\contentsline {chapter}{Appendices}{19}{section*.7}
+\contentsline {chapter}{\numberline {A}Proofs of lemmas}{21}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Proof of lemma 0}{21}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Proof of lemma 0}{22}{section.a.A.2}
+\contentsline {section}{\numberline {A.3}Proof of lemma 0}{23}{section.a.A.3}
+\contentsline {section}{\numberline {A.4}Proof of lemma 0}{23}{section.a.A.4}
+\contentsline {section}{\numberline {A.5}Proof of property 0}{24}{section.a.A.5}
+\contentsline {section}{\numberline {A.6}Proof of lemma 0}{25}{section.a.A.6}
+\contentsline {section}{\numberline {A.7}Proof of lemma 1.1.1}{26}{section.a.A.7}
+\contentsline {chapter}{\numberline {B}Simulation figures $-$ disturbances absent}{29}{Appendix.a.B}
+\contentsline {section}{\numberline {B.1}Test case one: two agents $-$ one obstacle}{29}{section.a.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Trajectories in 2D}{30}{subsection.a.B.1.1}
+\contentsline {subsection}{\numberline {B.1.2}State errors}{31}{subsection.a.B.1.2}
+\contentsline {subsection}{\numberline {B.1.3}Distances between actors}{31}{subsection.a.B.1.3}
+\contentsline {subsection}{\numberline {B.1.4}Input signals}{32}{subsection.a.B.1.4}
+\contentsline {section}{\numberline {B.2}Test case two: two agents $-$ two obstacles}{32}{section.a.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Trajectories in 2D}{33}{subsection.a.B.2.1}
+\contentsline {subsection}{\numberline {B.2.2}State errors}{34}{subsection.a.B.2.2}
+\contentsline {subsection}{\numberline {B.2.3}Distances between actors}{34}{subsection.a.B.2.3}
+\contentsline {subsection}{\numberline {B.2.4}Input signals}{35}{subsection.a.B.2.4}
+\contentsline {section}{\numberline {B.3}Test case three: three agents $-$ one obstacle}{35}{section.a.B.3}
+\contentsline {subsection}{\numberline {B.3.1}Trajectories in 2D}{37}{subsection.a.B.3.1}
+\contentsline {subsection}{\numberline {B.3.2}State errors}{38}{subsection.a.B.3.2}
+\contentsline {subsection}{\numberline {B.3.3}Distances between actors}{39}{subsection.a.B.3.3}
+\contentsline {subsection}{\numberline {B.3.4}Input signals}{40}{subsection.a.B.3.4}
+\contentsline {section}{\numberline {B.4}Test case four: three agents $-$ two obstacles}{40}{section.a.B.4}
+\contentsline {subsection}{\numberline {B.4.1}Trajectories in 2D}{42}{subsection.a.B.4.1}
+\contentsline {subsection}{\numberline {B.4.2}State errors}{43}{subsection.a.B.4.2}
+\contentsline {subsection}{\numberline {B.4.3}Distances between actors}{44}{subsection.a.B.4.3}
+\contentsline {subsection}{\numberline {B.4.4}Input signals}{45}{subsection.a.B.4.4}
+\contentsline {chapter}{\numberline {C}Simulation figures $-$ disturbances present}{47}{Appendix.a.C}
+\contentsline {section}{\numberline {C.1}Test case one: two agents $-$ one obstacle}{47}{section.a.C.1}
+\contentsline {subsection}{\numberline {C.1.1}State errors}{48}{subsection.a.C.1.1}
+\contentsline {subsection}{\numberline {C.1.2}Distances between actors}{49}{subsection.a.C.1.2}
+\contentsline {subsection}{\numberline {C.1.3}Input signals}{49}{subsection.a.C.1.3}
+\contentsline {subsection}{\numberline {C.1.4}Energy of the system}{50}{subsection.a.C.1.4}
+\contentsline {section}{\numberline {C.2}Test case two: two agents $-$ two obstacles}{50}{section.a.C.2}
+\contentsline {subsection}{\numberline {C.2.1}State errors}{51}{subsection.a.C.2.1}
+\contentsline {subsection}{\numberline {C.2.2}Distances between actors}{51}{subsection.a.C.2.2}
+\contentsline {subsection}{\numberline {C.2.3}Input signals}{52}{subsection.a.C.2.3}
+\contentsline {subsection}{\numberline {C.2.4}Energy of the system}{53}{subsection.a.C.2.4}
+\contentsline {section}{\numberline {C.3}Test case three: three agents $-$ one obstacle}{53}{section.a.C.3}
+\contentsline {subsection}{\numberline {C.3.1}State errors}{54}{subsection.a.C.3.1}
+\contentsline {subsection}{\numberline {C.3.2}Distances between actors}{55}{subsection.a.C.3.2}
+\contentsline {subsection}{\numberline {C.3.3}Input signals}{56}{subsection.a.C.3.3}
+\contentsline {subsection}{\numberline {C.3.4}Energy of the system}{57}{subsection.a.C.3.4}
+\contentsline {section}{\numberline {C.4}Test case four: three agents $-$ two obstacles}{57}{section.a.C.4}
+\contentsline {subsection}{\numberline {C.4.1}State errors}{58}{subsection.a.C.4.1}
+\contentsline {subsection}{\numberline {C.4.2}Distances between actors}{59}{subsection.a.C.4.2}
+\contentsline {subsection}{\numberline {C.4.3}Input signals}{60}{subsection.a.C.4.3}
+\contentsline {subsection}{\numberline {C.4.4}Energy of the system}{61}{subsection.a.C.4.4}
