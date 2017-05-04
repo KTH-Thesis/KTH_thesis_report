@@ -12,7 +12,7 @@ configuration, and $\mat{Q} = Q_{\mu\nu}$ a $3 \times 3$ matrix. Then
     v \sin\theta_1 - v \sin\theta_2 \\
     \omega - \omega
   \end{bmatrix}
-  \Bigg\|_Q \\
+  \Bigg\|_Q \\[2.5ex]
   &=\sqrt{v^2
    \begin{bmatrix}
      \cos\theta_1 - \cos\theta_2 & \sin\theta_1 - \sin\theta_2 & 0
@@ -23,21 +23,22 @@ configuration, and $\mat{Q} = Q_{\mu\nu}$ a $3 \times 3$ matrix. Then
      \sin\theta_1 - \sin\theta_2 \\
      0
    \end{bmatrix}
-  }\\
+  \\[2.5ex]}
   &= \sqrt{v^2 (\cos\theta_1 - \cos\theta_2)\Big( (Q_{11}+Q_{12})(\cos\theta_1 - \cos\theta_2) +
                     (Q_{21}+Q_{22})(\sin\theta_1 - \sin\theta_2)\Big)}
 \end{align}
 
 From the mean value theorem we derive the following
 \begin{align}
-  \cos\theta_1 - \cos\theta_2 = -\sin\gamma (\theta_1 - \theta_2) \leq |\theta_1 - \theta_2| \\
+  \cos\theta_1 - \cos\theta_2 = -\sin\gamma (\theta_1 - \theta_2) \leq |\theta_1 - \theta_2 \\[2.5ex]|
   \sin\theta_1 - \sin\theta_2 = \cos\gamma (\theta_1 - \theta_2) \leq |\theta_1 - \theta_2|
 \end{align}
 where $\theta_1 \leq \gamma \leq \theta_2$. Hence
 \begin{align}
   \|g(\vect{e}_1, \vect{u}) - g(\vect{e}_2, \vect{u})\|_{Q} &\leq
     \sqrt{v^2 |\theta_1 - \theta_2|
-      \Big( (Q_{11}+Q_{12}) |\theta_1 - \theta_2|+ (Q_{21}+Q_{22}) |\theta_1 - \theta_2|\Big)} \\
-      &= \sqrt{v^2 |\theta_1 - \theta_2|^2 (Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2})} \\
-      &= v \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}} \cdot |\theta_1 - \theta_2|
+      \Big( (Q_{11}+Q_{12}) |\theta_1 - \theta_2|+ (Q_{21}+Q_{22}) |\theta_1 - \theta_2|\Big) \\[2.5ex]}
+      &= \sqrt{v^2 |\theta_1 - \theta_2|^2 (Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}) \\[2.5ex]}
+      &= v \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}} \cdot |\theta_1 - \theta_2 \\[2.5ex]|
+      &\leq v_{max} \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}} \cdot |\theta_1 - \theta_2|
 \end{align}

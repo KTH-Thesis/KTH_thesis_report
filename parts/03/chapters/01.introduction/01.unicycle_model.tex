@@ -35,7 +35,6 @@ $\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}
 
 In the case were additive disturbances are considered, system
 \eqref{eq:unicycle_kinematic} is expressed by
-
 \begin{align}
   \dot{x}(t)       &= v(t) \cos\theta(t) + \delta(t) \\
   \dot{y}(t)       &= v(t) \sin\theta(t) + \delta(t) \\
@@ -49,7 +48,7 @@ $\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}
 \begin{lemma}
   \label{lemma:lipschitz_unicycle}
   Function $g$ is Lipschitz continuous in $\mathcal{E} \times \mathcal{U}$ with
-  a Lipschitz constant $$L_g = v \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}}$$
+  a Lipschitz constant $$L_g = v_{max} \sqrt{Q_{1,1}+Q_{1,2}+Q_{2,1}+Q_{2,2}}$$
   where $\mat{Q} = Q_{\mu\nu}$ is the $3 \times 3$ matrix used to weigh the
   norms involved.
 \end{lemma}

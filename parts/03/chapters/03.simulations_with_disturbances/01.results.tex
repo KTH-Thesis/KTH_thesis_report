@@ -1,15 +1,5 @@
 \section{Simulation results}
 
-For compatibility with real situations, we assume that in the case
-of disturbances, the signals affecting the agents are of the same nature
-(consider for instance the case of UAV's affected by wind); the disturbance
-signal considered was $\delta(t) = 0.1 * \sin 2t$. Therefore,
-$\overline{\delta} = 0.1$
-
-
-
-
-
 In this case the initial configurations of the three agents are
 $\vect{z}_1$ $=$ $[-6, 3.5, 0]^{\top}$,
 $\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$ and
@@ -27,21 +17,53 @@ matrix whose elements are chosen at random between the values $0.0$ and $1.0$.
 The sampling time is $h = 0.1$ sec, the time-horizon is $T_p = 0.5$ sec, and
 the total execution time given was $10$ sec.
 
-Figure \eqref{fig:d_ON_res_3_2_errors_agent_1} depicts the evolution of the
-error states of agent 1 through time.
-Figures \eqref{fig:d_ON_res_3_2_distance_agents_13} and
+For compatibility with real situations, we assume that the disturbance signals
+affecting the agents are of the same nature (consider for instance the case
+of UAV's affected by wind); the disturbance signal considered was
+$\delta_i(t) = 0.1 * \sin 2t$ for all $i \in \mathcal{V} = \{1,2,3\}$.
+Therefore, $\overline{\delta}_i = 0.1$.
+
+The evolution of the trajectories of the agents in the
+$x-y$ plane are omitted; they are (with minor variations) equivalent to those
+in the case where disturbances are absent. Figures
+\eqref{fig:d_ON_res_3_2_distance_agents_13} and
 \eqref{fig:d_ON_res_3_2_distance_obstacle_1_agents} show the evolution of the
 distance between agents 1 and 3 through time, and the evolution of the
 distance between all agents and obstacle $o_1$ respectively.
 Figure \eqref{fig:d_ON_res_3_2_inputs_agent_2} shows the input signals
-directing agent 2 through time. Last but not at all least, figures
+directing agent 2 through time. Just as in the case of absent disturbances,
+the compound system manages to clear the narrow between the two obstacles without
+agents colliding with each other or the obstacles, and in general, without
+violating any constraint present.
+
+Figure \eqref{fig:d_ON_res_3_2_errors_agent_1} depicts the evolution of the
+error states of agent 1 through time. In contrast to the disturbance-free
+case, the error states do not converge to 0 at steady-state; rather, they
+oscillate periodically in accordance with the periodic nature of the disturbance,
+and in this case, with different amplitudes. Component-wise,
+the $y-$component exhibits the largest amplitude (the compound system oscillates
+in the vertical direction), however the largest effect of the disturbance
+is still being attenuated by a factor of 2: the peak-to-peak values of the
+$y-$component are approximately 0.1, which is half of the peak-to-peak value
+of the disturbance signal. For the $x-$ and $\theta-$components, the
+disturbance is attenuated by a factor of approximately 4.
+
+Last but not at all least, figures
 \eqref{fig:d_ON_res_3_2_V} and \eqref{fig:d_ON_res_3_2_V_zoom} depict
 the evolution of the quadratic Lyapunov function
 $\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
 Boundary values for the inputs and distances are portrayed in the colour
-\textcolor{cyan}{cyan}. The evolution of the trajectories of the agents in the
-$x-y$ plane are omitted; they are (with minor variations) equivalent to those
-in the case where disturbances are absent.
+\textcolor{cyan}{cyan}. The related constants concerned with the execution
+of this simulation are as follows: $L_{g_i} = 10.7354$, $L_{V_i} = 0.0471$,
+$\varepsilon_{\Psi_i} = 0.0654$ and $\varepsilon_{\Omega_i} = 0.0035$ for
+all $i \in \mathcal{V}$. The zoom-in'ed version of figure
+\eqref{fig:d_ON_res_3_2_V}, figure \eqref{fig:d_ON_res_3_2_V_zoom},
+illustrates that once the energy measure of each agent (as measured by
+the Lyapunov function $V = \vect{e}^{\top} \mat{P} \vect{e}$) becomes lower than
+$\varepsilon_{\Psi}$ (alternatively $-$ when each system's trajectory enters
+set $\Psi$), it gets trapped below the value $\varepsilon_{\Omega}$ (and
+hence each system's trajectory is in turn trapped inside the terminal
+set $\Omega$) in finite time, and does not exit it.
 
 
 \noindent\makebox[\linewidth][c]{%
@@ -66,7 +88,6 @@ in the case where disturbances are absent.
 \end{minipage}
 }
 
-
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}
   \begin{minipage}{0.45\linewidth}
@@ -88,8 +109,6 @@ in the case where disturbances are absent.
   \end{minipage}
 \end{minipage}
 }
-
-
 
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}

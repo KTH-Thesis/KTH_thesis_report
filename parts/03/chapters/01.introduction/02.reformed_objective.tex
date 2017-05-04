@@ -57,7 +57,6 @@ neighbour sets $\mathcal{N}_i$, where $i \in \mathcal{V}$.
 
 From the above we conclude that the constraint set $\mathcal{Z}_i$ for
 agent $i \in \mathcal{V}$ is
-
 \begin{align}
   \mathcal{Z}_{i,t} = \big\{\vect{z}_i(t) \in X \times Y \times \Theta : \
       & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \\[2.5ex]
@@ -71,6 +70,11 @@ $i \in \mathcal{V}$  is given by the Minkowski difference
   \mathcal{E}_{i,t} = \mathcal{Z}_{i,t} \ominus \vect{z}_{i,des}
   \label{eq:error_constraint_set_unicycle}
 \end{align}
+
+In the case of additive disturbances being considered, when each agent solves
+its own FHOCP, its constraint set $\mathcal{E}_i$ is replaced by a
+restricted constraint set that follows the same structure as
+\eqref{eq:restricted_constraint_set}.
 
 The content of chapters \ref{chapter:simulations_without_disturbances} and
 \ref{chapter:simulations_with_disturbances} will demonstrate that agents

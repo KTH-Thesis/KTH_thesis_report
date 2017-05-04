@@ -40,7 +40,7 @@ colour \textcolor{cyan}{cyan}.
 
 Figure \eqref{fig:d_OFF_res_3_2_distance_obstacle_2_agents} shows the
 evolution of the distance between all agents and obstacle $o_2$ respectively,
-and, most crucially, it illustrates the fact that all agents avoid collision
+and, most crucially, it illustrates the fact that all agents avoid colliding
 with it. Figure \eqref{fig:d_OFF_res_3_2_inputs_agent_1} shows the input signals
 directing agent 1 through time. The minimum allowed distance between the agents
 and the obstacle, as well as the minimum and maximum allowed input sizes are
@@ -52,10 +52,11 @@ the agent is stabilized at its desired 3D configuration.
 
 
 \begin{figure}[H]
-  \input{./figures/06.without_disturbance/3_2/01.trajectories/trajectory_d_OFF_3_2.tex}
+  \scalebox{0.9}{\input{./figures/06.without_disturbance/3_2/01.trajectories/trajectory_d_OFF_3_2.tex}}
   \caption{The trajectories of the three agents in the $x-y$ plane. Agent 1 is with
-    blue, agent 2 with red and agent 3 with yellow. The obstacles are black.
-    Mark O denotes equilibrium configurations. Mark X marks desired configurations.}
+    blue, agent 2 with red and agent 3 with yellow. A faint green line connects
+    agents deemed neighbours. The obstacles are black. Mark O denotes
+    equilibrium configurations. Mark X marks desired configurations.}
   \label{fig:d_OFF_res_trajectory_3_2}
 \end{figure}
 
