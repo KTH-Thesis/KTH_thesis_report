@@ -130,7 +130,6 @@ $\mathcal{E}_i$. We formalize this statement in property
 
 \begin{bw_box}
   \begin{assumption}
-  \label{ass:phi_psi}
   The set $\Psi_i$ belongs to the set $\Phi_i$, $\Psi_i \subseteq \Phi_i$,
   which is the set of states within $\mathcal{E}_{i,T_p}$ for which there is an
   admissible control input whose form is of linear feedback with regard to the
@@ -138,6 +137,7 @@ $\mathcal{E}_i$. We formalize this statement in property
   \begin{align}
     \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p} : h_i(\vect{e}_i) \in \mathcal{U}_i \big\}
   \end{align}
+  \label{ass:phi_psi}
   \end{assumption}
 \end{bw_box}
 
@@ -232,13 +232,13 @@ On the existence of solutions to
 \eqref{eq:position_based_error_model_with_disturbance} we assume the following:
 \begin{bw_box}
 \begin{assumption}
-  \label{ass:existence_of_solutions_with_disturbance}
-
   The system \eqref{eq:position_based_error_model_with_disturbance} has a
   \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$,
   any \textit{piecewise continuous} input
   $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$, and any
   \textit{exogenous disturbance} $\delta_i(\cdot) : [0,T_p] \to \Delta_i$.
+
+  \label{ass:existence_of_solutions_with_disturbance}
 \end{assumption}
 \end{bw_box}
 
