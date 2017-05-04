@@ -1,10 +1,10 @@
 \providecommand \autonum@processReference [2]{}
 \contentsline {part}{I\hspace {1em}Simulations}{3}{part.1}
 \contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}
-\contentsline {section}{\numberline {1.1}The operational model}{5}{section.1.1}
-\contentsline {section}{\numberline {1.2}The problem reformed}{7}{section.1.2}
-\contentsline {section}{\numberline {1.3}Simulation scenarios}{9}{section.1.3}
+\contentsline {section}{\numberline {1.1}The operational model}{6}{section.1.1}
+\contentsline {section}{\numberline {1.2}The problem reformed}{8}{section.1.2}
+\contentsline {section}{\numberline {1.3}Simulation scenarios}{10}{section.1.3}
 \contentsline {chapter}{\numberline {2}Simulations of Disturbance-free Stabililization}{13}{chapter.2}
 \contentsline {section}{\numberline {2.1}Simulation results}{14}{section.2.1}
 \contentsline {chapter}{\numberline {3}Simulations of Stabilization in the face of Disturbances}{17}{chapter.3}
-\contentsline {section}{\numberline {3.1}Simulation results}{17}{section.3.1}
+\contentsline {section}{\numberline {3.1}Simulation results}{18}{section.3.1}
