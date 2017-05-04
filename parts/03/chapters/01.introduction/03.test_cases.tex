@@ -7,11 +7,11 @@ agents-obstacles configurations:
   \item Two agents will have to avoid one obstacle on their way to their
     steady-state configurations, without colliding with each other and without
     being separated by the obstacle (we demand that their distance is always
-    smaller than the obstacle's diameter for the sake of cooperation).
+    smaller than the obstacle's diameter for the aim of cooperation).
   \item Two agents will have to pass through the space between two obstacles
     on their way to their steady-state configurations $-$ again, the maximum
     allowed distance between the two agents is smaller than the diameter
-    of the obstacle with the smallest diameter.
+    of the obstacle with the smallest radius.
   \item Three agents will have to avoid one obstacle on their way to their
     steady-state configurations, without colliding with each other and without
     being separated by the obstacle. In this case, two agents are
@@ -81,9 +81,11 @@ $\underline{d}_{i\ell,o} = r_i + r_{\ell} + \epsilon = 1.5 + \epsilon$.
 $\epsilon$ was set to $\epsilon = 0.1$ in the disturbance-free cases and
 $\epsilon = 0.01$ in the cases where disturbances are present.
 
-In the case of two agents, the neighbouring sets are $\mathcal{N}_1 = \{2\}$
+In the case of two agents, $\mathcal{V} = \{1,2\}$,
+the neighbouring sets are $\mathcal{N}_1 = \{2\}$
 and $\mathcal{N}_2 = \{1\}$, while in the case of three agents,
-$\mathcal{N}_1 = \{2,3\}$, $\mathcal{N}_2 = \{1\}$ and $\mathcal{N}_3 = \{1\}$.
+$\mathcal{V} = \{1,2,3\}$, $\mathcal{N}_1 = \{2,3\}$,
+$\mathcal{N}_2 = \{1\}$ and $\mathcal{N}_3 = \{1\}$.
 
 Under the above configuration regime, all agents are constrained in bypassing
 the obstacle(s) from the same side, as they are prohibited from overtaking it
