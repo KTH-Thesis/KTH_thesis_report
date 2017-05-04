@@ -17,18 +17,38 @@ matrix whose elements are chosen at random between the values $0.0$ and $1.0$.
 The sampling time is $h = 0.1$ sec, the time-horizon is $T_p = 0.5$ sec, and
 the total execution time given was $3$ sec.
 
-Frames of the evolution of the trajectories of the three agents are depicted in
-figure \eqref{fig:d_OFF_res_trajectory_3_2}.
-Figure \eqref{fig:d_OFF_res_3_2_errors_agent_1} depicts the evolution of the
-error states of agent 1 through time.
-Figures \eqref{fig:d_OFF_res_3_2_distance_agents_13} and
-\eqref{fig:d_OFF_res_3_2_distance_obstacle_2_agents} show the evolution of the
-distance between agents 1 and 3 through time, and the evolution of the
-distance between all agents and obstacle $o_2$ respectively.
-Figure \eqref{fig:d_OFF_res_3_2_inputs_agent_1} shows the input signals
-directing agent 1 through time. Boundary values for the inputs and
-distances are portrayed in the colour \textcolor{cyan}{cyan}.
+Frames of the evolution of the trajectories of the three agents in the $x-y$
+plane are depicted in figure \eqref{fig:d_OFF_res_trajectory_3_2}. Here, the
+compound system avoids the pitfall of coming to a dead-end by having agent 1
+act as a kind of mediator between the agents at the extremes as regards their
+trajectories: a too strict terminal penalty matrix $\mat{P}$, or an insufficient
+time-horizon length in relation to the maximum allowed input values, or a
+strongly diagonal structure for the penalty matrix $\mat{Q}$ could result in
+a situation where agent 1 is trapped between the two obstacles, with agents 2
+and 3 following behind him, halted by the insufficient space between the two
+obstacles, and the geometry of the compound system resembling an isosceles
+triangle.
 
+Once agent 3 clears the narrow, it is held up by agent 1, since their
+maximum allowed distance is tightly constrained. Agent 1 in turn has to make
+sure that its distance to agent 2 is within the allowed bounds as well. Figure
+\eqref{fig:d_OFF_res_3_2_distance_agents_13} shows the evolution of the
+distance between agents 1 and 3 through time, and their abiding by the
+maximum-allowed-distance-between-agents constraint. The minimum and maximum
+allowed distances between the two agents are portrayed in the
+colour \textcolor{cyan}{cyan}.
+
+Figure \eqref{fig:d_OFF_res_3_2_distance_obstacle_2_agents} shows the
+evolution of the distance between all agents and obstacle $o_2$ respectively,
+and, most crucially, it illustrates the fact that all agents avoid collision
+with it. Figure \eqref{fig:d_OFF_res_3_2_inputs_agent_1} shows the input signals
+directing agent 1 through time. The minimum allowed distance between the agents
+and the obstacle, as well as the minimum and maximum allowed input sizes are
+portrayed in the colour \textcolor{cyan}{cyan}.
+
+Figure \eqref{fig:d_OFF_res_3_2_errors_agent_1} depicts the evolution of the
+error states of agent 1 through time. As the three error states converge to zero,
+the agent is stabilized at its desired 3D configuration.
 
 
 \begin{figure}[H]
@@ -83,5 +103,3 @@ distances are portrayed in the colour \textcolor{cyan}{cyan}.
   \end{minipage}
 \end{minipage}
 }
-
-
