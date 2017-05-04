@@ -1,0 +1,83 @@
+\section{Simulation results}
+
+The initial configurations of the three agents are
+$\vect{z}_1$ $=$ $[-6, 3.5, 0]^{\top}$,
+$\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$ and
+$\vect{z}_3$ $=$ $[-6, 4.7, 0]^{\top}$.
+Their desired configurations in steady-state are
+$\vect{z}_{1,des}$ $=$ $[6, 3.5, 0]^{\top}$,
+$\vect{z}_{2,des}$ $=$ $[6, 2.3, 0]^{\top}$ and
+$\vect{z}_{3,des}$ $=$ $[6, 4.7, 0]^{\top}$.
+Obstacles $o_1$ and $o_2$ are placed between the two at $[0, 2.0]^{\top}$
+and $[0, 5.5]^{\top}$ respectively. The penalty
+matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
+$\mat{Q} = 0.5 (I_3 + 0.05\dagger_3)$, $\mat{R} = 0.005 I_2$ and
+$\mat{P} = 0.5 (I_3 + 0.05\dagger_3)$, where $\dagger_N$ is a $N \times N$
+matrix whose elements are chosen at random between the values $0.0$ and $1.0$.
+The sampling time is $h = 0.1$ sec, the time-horizon is $T_p = 0.5$ sec, and
+the total execution time given was $3$ sec.
+
+Frames of the evolution of the trajectories of the three agents are depicted in
+figure \eqref{fig:d_OFF_res_trajectory_3_2}.
+Figure \eqref{fig:d_OFF_res_3_2_errors_agent_1} depicts the evolution of the
+error states of agent 1 through time.
+Figures \eqref{fig:d_OFF_res_3_2_distance_agents_13} and
+\eqref{fig:d_OFF_res_3_2_distance_obstacle_2_agents} show the evolution of the
+distance between agents 1 and 3 through time, and the evolution of the
+distance between all agents and obstacle $o_2$ respectively.
+Figure \eqref{fig:d_OFF_res_3_2_inputs_agent_1} shows the input signals
+directing agent 1 through time. Boundary values for the inputs and
+distances are portrayed in the colour \textcolor{cyan}{cyan}.
+
+
+
+\begin{figure}[H]
+  \input{./figures/06.without_disturbance/3_2/01.trajectories/trajectory_d_OFF_3_2.tex}
+  \caption{The trajectories of the three agents in the $x-y$ plane.}
+  \label{fig:d_OFF_res_trajectory_3_2}
+\end{figure}
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/06.without_disturbance/3_2/02.errors/errors_agent_1.tex}}
+      \caption{The evolution of the error states of agent 1 over time.}
+      \label{fig:d_OFF_res_3_2_errors_agent_1}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/06.without_disturbance/3_2/03.distances/distance_agents_13.tex}}
+      \caption{The distance between agents 1 and 3 over time. The maximum allowed
+        distance has a value of $2.1$ and the minimum allowed distance a value
+        of $1.1$.}
+  \label{fig:d_OFF_res_3_2_distance_agents_13}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/06.without_disturbance/3_2/03.distances/distance_obstacle_2_agents.tex}}
+      \caption{The distance between each agent and obstacle 2 over time. The
+        minimum allowed distance has a value of $1.6$.}
+      \label{fig:d_OFF_res_3_2_distance_obstacle_2_agents}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/06.without_disturbance/3_2/04.inputs/inputs_agent_1.tex}}
+      \caption{The inputs signals directing agent 1 over time. Their value is
+        constrained between $-10$ and $10$.}
+      \label{fig:d_OFF_res_3_2_inputs_agent_1}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}

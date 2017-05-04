@@ -1,0 +1,114 @@
+\section{Simulation results}
+
+For compatibility with real situations, we assume that in the case
+of disturbances, the signals affecting the agents are of the same nature
+(consider for instance the case of UAV's affected by wind); the disturbance
+signal considered was $\delta(t) = 0.1 * \sin 2t$. Therefore,
+$\overline{\delta} = 0.1$
+
+
+
+
+
+In this case the initial configurations of the three agents are
+$\vect{z}_1$ $=$ $[-6, 3.5, 0]^{\top}$,
+$\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$ and
+$\vect{z}_3$ $=$ $[-6, 4.7, 0]^{\top}$.
+Their desired configurations in steady-state are
+$\vect{z}_{1,des}$ $=$ $[6, 3.5, 0]^{\top}$,
+$\vect{z}_{2,des}$ $=$ $[6, 2.3, 0]^{\top}$ and
+$\vect{z}_{3,des}$ $=$ $[6, 4.7, 0]^{\top}$.
+Obstacles $o_1$ and $o_2$ are placed between the two at $[0, 2.0]^{\top}$
+and $[0, 5.5]^{\top}$ respectively. The penalty
+matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
+$\mat{Q} = 0.7 (I_3 + 0.5\dagger_3)$, $\mat{R} = 0.005 I_2$ and
+$\mat{P} = 0.5 (I_3 + 0.5\dagger_3)$, where $\dagger_N$ is a $N \times N$
+matrix whose elements are chosen at random between the values $0.0$ and $1.0$.
+The sampling time is $h = 0.1$ sec, the time-horizon is $T_p = 0.5$ sec, and
+the total execution time given was $10$ sec.
+
+Figure \eqref{fig:d_ON_res_3_2_errors_agent_1} depicts the evolution of the
+error states of agent 1 through time.
+Figures \eqref{fig:d_ON_res_3_2_distance_agents_13} and
+\eqref{fig:d_ON_res_3_2_distance_obstacle_1_agents} show the evolution of the
+distance between agents 1 and 3 through time, and the evolution of the
+distance between all agents and obstacle $o_1$ respectively.
+Figure \eqref{fig:d_ON_res_3_2_inputs_agent_2} shows the input signals
+directing agent 2 through time. Last but not at all least, figures
+\eqref{fig:d_ON_res_3_2_V} and \eqref{fig:d_ON_res_3_2_V_zoom} depict
+the evolution of the quadratic Lyapunov function
+$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
+Boundary values for the inputs and distances are portrayed in the colour
+\textcolor{cyan}{cyan}. The evolution of the trajectories of the agents in the
+$x-y$ plane are omitted; they are (with minor variations) equivalent to those
+in the case where disturbances are absent.
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/02.errors/errors_agent_1.tex}}
+      \caption{The evolution of the error states of agent 1 over time.}
+      \label{fig:d_ON_res_3_2_errors_agent_1}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_agents_13.tex}}
+      \caption{The distance between agents 1 and 3 over time. The maximum allowed
+        distance has a value of $2.01$ and the minimum allowed distance a value
+        of $1.01$.}
+      \label{fig:d_ON_res_3_2_distance_agents_13}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/03.distances/distance_obstacle_1_agents.tex}}
+      \caption{The distance between each agent and obstacle 1 over time. The
+        minimum allowed distance has a value of $1.51$.}
+      \label{fig:d_ON_res_3_2_distance_obstacle_1_agents}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/04.inputs/inputs_agent_2.tex}}
+      \caption{The inputs signals directing agent 2 over time. Their value is
+        constrained between $-10$ and $10$.}
+      \label{fig:d_ON_res_3_2_inputs_agent_2}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/05.V/V.tex}}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time.}
+      \label{fig:d_ON_res_3_2_V}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/05.V/V_zoom.tex}}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+        focused. The colour magenta is used to illustrate the threshold
+        $\mathcal{E}_{\Psi}$, while cyan is used for $\mathcal{E}_{\Omega}$.}
+      \label{fig:d_ON_res_3_2_V_zoom}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
