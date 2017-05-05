@@ -24,7 +24,7 @@ $\delta_i(t) = 0.1 * \sin 2t$ for all $i \in \mathcal{V} = \{1,2,3\}$.
 Therefore, $\overline{\delta}_i = 0.1$.
 
 The evolution of the trajectories of the agents in the
-$x-y$ plane are omitted; they are (with minor variations) equivalent to those
+$x-y$ plane is omitted; they are (with minor variations) equivalent to those
 in the case where disturbances are absent. Figures
 \eqref{fig:d_ON_res_3_2_distance_agents_13} and
 \eqref{fig:d_ON_res_3_2_distance_obstacle_1_agents} show the evolution of the
@@ -47,23 +47,8 @@ is still being attenuated by a factor of 2: the peak-to-peak values of the
 $y-$component are approximately 0.1, which is half of the peak-to-peak value
 of the disturbance signal. For the $x-$ and $\theta-$components, the
 disturbance is attenuated by a factor of approximately 4.
-
-Last but not at all least, figures
-\eqref{fig:d_ON_res_3_2_V} and \eqref{fig:d_ON_res_3_2_V_zoom} depict
-the evolution of the quadratic Lyapunov function
-$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
 Boundary values for the inputs and distances are portrayed in the colour
-\textcolor{cyan}{cyan}. The related constants concerned with the execution
-of this simulation are as follows: $L_{g_i} = 10.7354$, $L_{V_i} = 0.0471$,
-$\varepsilon_{\Psi_i} = 0.0654$ and $\varepsilon_{\Omega_i} = 0.0035$ for
-all $i \in \mathcal{V}$. The zoom-in'ed version of figure
-\eqref{fig:d_ON_res_3_2_V}, figure \eqref{fig:d_ON_res_3_2_V_zoom},
-illustrates that once the energy measure of each agent (as measured by
-the Lyapunov function $V = \vect{e}^{\top} \mat{P} \vect{e}$) becomes lower than
-$\varepsilon_{\Psi}$ (alternatively $-$ when each system's trajectory enters
-set $\Psi$), it gets trapped below the value $\varepsilon_{\Omega}$ (and
-hence each system's trajectory is in turn trapped inside the terminal
-set $\Omega$) in finite time, and does not exit it.
+\textcolor{cyan}{cyan}.
 
 
 \noindent\makebox[\linewidth][c]{%
@@ -86,7 +71,7 @@ set $\Omega$) in finite time, and does not exit it.
     \end{figure}
   \end{minipage}
 \end{minipage}
-}
+} \\[2.5ex]
 
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}
@@ -108,7 +93,25 @@ set $\Omega$) in finite time, and does not exit it.
     \end{figure}
   \end{minipage}
 \end{minipage}
-}
+}\\[2.5ex]
+
+Last but not at all least, figures
+\eqref{fig:d_ON_res_3_2_V}, \eqref{fig:d_ON_res_3_2_V_zoom} and
+\eqref{fig:d_ON_res_3_2_V_zoom_zoom} depict
+the evolution of the quadratic Lyapunov function
+$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
+The related constants concerned with the execution
+of this simulation are as follows: $L_{g_i} = 10.7354$, $L_{V_i} = 0.0471$,
+$\varepsilon_{\Psi_i} = 0.0654$ and $\varepsilon_{\Omega_i} = 0.0035$ for
+all $i \in \mathcal{V}$. The zoom-in'ed version of figure
+\eqref{fig:d_ON_res_3_2_V}, figure \eqref{fig:d_ON_res_3_2_V_zoom},
+illustrates that once the energy measure of each agent (as measured by
+the Lyapunov function $V = \vect{e}^{\top} \mat{P} \vect{e}$) becomes lower than
+$\varepsilon_{\Psi}$ (alternatively $-$ when each system's trajectory enters
+set $\Psi$), it gets trapped below the value $\varepsilon_{\Omega}$ (and
+hence each system's trajectory is in turn trapped inside the terminal
+set $\Omega$) in finite time, and does not exit it.
+
 
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}
@@ -125,9 +128,28 @@ set $\Omega$) in finite time, and does not exit it.
       \scalebox{0.6}{\input{./figures/07.with_disturbances/3_2/05.V/V_zoom.tex}}
       \caption{The $\mat{P}-$norms of the errors of the three agents through time,
         focused. The colour magenta is used to illustrate the threshold
-        $\mathcal{E}_{\Psi}$, while cyan is used for $\mathcal{E}_{\Omega}$.}
+        $\varepsilon_{\Psi}$, while cyan is used for $\varepsilon_{\Omega}$.}
       \label{fig:d_ON_res_3_2_V_zoom}
     \end{figure}
   \end{minipage}
 \end{minipage}
-}
+}\\[2.5ex]
+
+\begin{figure}[H]\centering
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/05.V/V_zoom_zoom.tex}}
+  \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+    in greater detail. The colour cyan is used to depict their
+    ceiling $\varepsilon_{\Omega}$}
+  \label{fig:d_ON_res_3_2_V_zoom_zoom}
+\end{figure}
+
+Due to the interconstrained nature of the compound system, it is advisable that
+once the trajectories of \textit{all} agents reach set $\Psi$ $-$ in other
+words, once they all reach the vicinity of their desired configurations as
+measured by $\varepsilon_{\Psi}$ $-$ it is advisable that they disable their
+interconnectedness: since they have all reached the intended feasible
+desired configurations it is already guaranteed that they will not collide with
+each other or violate the connectivity constraints. If their interconnectedness
+is not disabled, then the disturbance affecting each agent could propagate
+from one agent to the rest due the fact that the trajectory of each agent
+is regulated indirectly by the predicted states of its neighbours.
