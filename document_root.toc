@@ -39,6 +39,7 @@
 \contentsline {section}{\numberline {A.5}Proof of property 4.3.1}{104}{section.a.A.5}
 \contentsline {section}{\numberline {A.6}Proof of lemma 4.4.1}{105}{section.a.A.6}
 \contentsline {section}{\numberline {A.7}Proof of lemma 5.1.1}{106}{section.a.A.7}
+\contentsline {section}{\numberline {A.8}Stabilizability of the unicycle model}{107}{section.a.A.8}
 \contentsline {chapter}{\numberline {B}Simulation figures $-$ disturbances absent}{109}{Appendix.a.B}
 \contentsline {section}{\numberline {B.1}Test case one: two agents $-$ one obstacle}{110}{section.a.B.1}
 \contentsline {subsection}{\numberline {B.1.1}Trajectories in 2D}{111}{subsection.a.B.1.1}

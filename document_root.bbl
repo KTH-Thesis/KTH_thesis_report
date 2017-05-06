@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{khalil_nonlinear_systems}
 H.~Khalil, {\em {N}oninear {S}ystems}.
@@ -24,6 +24,16 @@ D.~L. Marruedo, T.~Alamo, and E.~F. Camacho, ``Input-to-state stable mpc for
 L.~Magni, D.~M. Raimondo, and R.~Scattolini, ``Input-to-state stability for
   nonlinear model predictive control,'' in {\em Proceedings of the 45th IEEE
   Conference on Decision and Control}, pp.~4836--4841, Dec 2006.
+
+\bibitem{262032}
+H.~Michalska and D.~Q. Mayne, ``Robust receding horizon control of constrained
+  nonlinear systems,'' {\em IEEE Transactions on Automatic Control}, vol.~38,
+  pp.~1623--1633, Nov 1993.
+
+\bibitem{FINDEISEN2003190}
+R.~Findeisen, L.~Imsland, F.~Allgower, and B.~A. Foss, ``State and output
+  feedback nonlinear model predictive control: An overview,'' {\em European
+  Journal of Control}, vol.~9, no.~2, pp.~190 -- 206, 2003.
 
 \bibitem{kolmanovsky}
 I.~Kolmanovsky and E.~G. Gilbert, ``Theory and computation of disturbance
