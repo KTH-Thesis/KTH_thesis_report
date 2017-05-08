@@ -4,14 +4,14 @@
 Suppose that $\vect{x} = [x_1, x_2, x_3]^{\top} \in X$.
 The equations that express the kinematic model of the unicycle are
 \begin{align}
-  \dot{x}_1(t)       &= u_1(t) \cos x_3 \\
-  \dot{x}_2(t)       &= u_1(t) \sin x_3 \\
-  \dot{x}_3(t)       &= u_2(t)
+  \dot{x}_1       &= u_1 \cos x_3 \\
+  \dot{x}_2       &= u_1 \sin x_3 \\
+  \dot{x}_3       &= u_2
 \end{align}
 Linearizing around $\vect{x}^0 = [x_1^0, x_2^0, x_3^0]^{\top}$ and
 $\vect{u}^0 = [u_1^0, u_2^0]$, the equivalent linear system becomes
 \begin{align}
-  \dot{\vect{x}}(t)= A \vect{x} + B \vect{u}
+  \dot{\vect{x}}= A \vect{x} + B \vect{u}
   \label{eq:linearized_unicycle_proof}
 \end{align}
 where
@@ -21,7 +21,7 @@ where
     0 & 0 & -u_1^0 \sin x_3^0 \\
     0 & 0 & u_1^0 \cos x_3^0 \\
     0 & 0 & 0\\
-  \end{bmatrix},
+  \end{bmatrix},\
   B =
   \begin{bmatrix}
     \cos x_3^0 & 0 \\
@@ -31,11 +31,11 @@ where
 \end{equation}
 The controllability matrix of \eqref{eq:linearized_unicycle_proof} is
 \begin{align}
-  C_3 = [B\ AB] =
+  C_3 = [B\ AB\ A^2B] =
   \begin{bmatrix}
-    \cos x_3^0 & 0 & 0 & -u_1^0 \sin x_3^0 \\
-    \sin x_3^0 & 0 & 0 & u_1^0 \cos x_3^0 \\
-    0 & 1 & 0 & 0\\
+    \cos x_3^0 & 0 & 0 & -u_1^0 \sin x_3^0 & 0 & 0\\
+    \sin x_3^0 & 0 & 0 & u_1^0 \cos x_3^0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0
   \end{bmatrix}
 \end{align}
 and its rank is 3 if $u_1 \neq 0$. Hence
