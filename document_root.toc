@@ -1,10 +1,10 @@
 \providecommand \autonum@processReference [2]{}
-\contentsline {section}{\numberline {0.1}Introduction}{5}{section.0.1}
-\contentsline {part}{I\hspace {1em}The problem}{7}{part.1}
-\contentsline {chapter}{\numberline {1}Notation and Preliminaries}{9}{chapter.1}
-\contentsline {section}{\numberline {1.1}Notation}{9}{section.1.1}
-\contentsline {section}{\numberline {1.2}Auxiliary Prerequisites}{10}{section.1.2}
-\contentsline {section}{\numberline {1.3}Model Predictive Control for non-linear continuous-time systems}{14}{section.1.3}
+\contentsline {section}{\numberline {0.1}Introduction}{3}{section.0.1}
+\contentsline {part}{I\hspace {1em}The problem}{5}{part.1}
+\contentsline {chapter}{\numberline {1}Preliminaries}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}Notation}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}Auxiliary Prerequisites}{8}{section.1.2}
+\contentsline {section}{\numberline {1.3}Model Predictive control for non-linear continuous-time systems}{12}{section.1.3}
 \contentsline {chapter}{\numberline {2}Problem Formulation}{15}{chapter.2}
 \contentsline {section}{\numberline {2.1}System Model}{15}{section.2.1}
 \contentsline {section}{\numberline {2.2}Initial Conditions}{19}{section.2.2}

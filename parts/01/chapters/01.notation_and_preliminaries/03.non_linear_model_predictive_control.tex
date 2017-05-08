@@ -1,1 +1,45 @@
-\section{Model Predictive Control for non-linear continuous-time systems}
+\section{Model Predictive control for non-linear continuous-time systems}
+
+The equations describing a model of a system are doubly powerful: they
+are \textit{expressive} inasmuch as they are a collection of properties of the
+system, and they are \textit{predictive}: they provide the ability to predict
+future values of relevant variables. A natural use for a model for control
+design purposes is the calculation of expected future values of the controlled
+variables as a function of possible control actions. This way, it is possible
+to choose a control action which is the optimal according to a given criterion,
+possibly while satisfying constraints on the controlled variables and control
+inputs. It is reasonable for a closed-form solution of the state-feedback law
+to be sought. Although this is possible when the system is linear and constraints
+are absent, it is impossible or infeasible in the general case. Fortunately,
+the problem can be bybassed altogether by solving an open-loop optimization
+problem periodically (or even aperiodically), applying a fragment of
+the resulting control input to the system, and repeating the process ad
+infinitum. Control approaches using this strategy (with variations) are referred
+to as \textit{Model Predictive Control} (MPC), or \textit{Receding Horizon Control}.
+In this context, the term horizon refers to the period of time or timesteps
+considered during the solution of the optimization problem.
+
+In greater detail, in its pure form, the MPC strategy assumes the following
+form: at an initial sampling time $t$, the controller, having measurements of
+the states to be controlled, predicts the dynamic behaviour of the system over a
+prediction horizon $T_p$, that is until $t+T_p$, and determines the appropriate
+control input that minimizes a predetermined open-loop objective, typically
+under constraints involving the states and the inputs. The calculated input
+is then applied to the system until the next sampling time, at which time
+the above process is repeated. Hence the term ``receding horizon".
+
+When the system's dynamics are linear and there are is no system uncertainty
+(disturbances affecting the states of the system or model-plant mismatch)
+and no constraints are enforced, the input can be determined off-line by
+solving the optimization problem over an infinite horizon. In this case the
+input is applied to the open loop once, and the process is not repeated from
+then on. However, in general, systems may be non-linear, subject to disturbances,
+partially descriptive, under constraints, while an infinite horizon approach
+may be practically infeasible. Hence, the optimization problem must be solved
+on-line.
+
+In its general form, nonlinear MPC (NMPC) possesses a unique usefulness
+in that it can directly incorporate nonlinear models for prediction,
+nonlinear constraints, and explicit constraints on the states of the system
+and its calculated/implemented inputs. Detailed descriptions and analyses of the
+NMPC strategy can be found in the notable \cite{262032} and \cite{FINDEISEN2003190}.
