@@ -3,46 +3,52 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: document_root.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
+Warning--empty author in iswarm
+Warning--empty journal in iswarm
+Warning--empty year in iswarm
+Warning--empty author in micron
+Warning--empty journal in micron
+Warning--empty year in micron
 Warning--can't use both author and editor fields in Fontes2007
-You've used 10 entries,
+You've used 20 entries,
             1876 wiz_defined-function locations,
-            548 strings with 5399 characters,
-and the built_in function-call counts, 3088 in all, are:
-= -- 322
-> -- 83
+            605 strings with 6998 characters,
+and the built_in function-call counts, 6120 in all, are:
+= -- 626
+> -- 169
 < -- 0
-+ -- 32
-- -- 22
-* -- 196
-:= -- 400
-add.period$ -- 15
-call.type$ -- 10
-change.case$ -- 5
++ -- 65
+- -- 45
+* -- 418
+:= -- 783
+add.period$ -- 25
+call.type$ -- 20
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 162
-empty$ -- 313
-format.name$ -- 22
-if$ -- 784
+cite$ -- 27
+duplicate$ -- 321
+empty$ -- 612
+format.name$ -- 45
+if$ -- 1545
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 15
-newline$ -- 38
-num.names$ -- 10
-pop$ -- 41
+int.to.str$ -- 20
+missing$ -- 26
+newline$ -- 70
+num.names$ -- 18
+pop$ -- 80
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 121
+skip$ -- 245
 stack$ -- 0
-substring$ -- 258
-swap$ -- 75
+substring$ -- 525
+swap$ -- 147
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
-while$ -- 27
-width$ -- 12
-write$ -- 102
-(There was 1 warning)
+warning$ -- 7
+while$ -- 49
+width$ -- 22
+write$ -- 195
+(There were 7 warnings)

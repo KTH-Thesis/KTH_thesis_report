@@ -1,0 +1,45 @@
+Research into decentralized control of interacting systems has been well
+underway for the past three decades by academic, industrial or commercial
+parties. Decentralized Control schemes and strategies are now used in such areas
+as those concerned with controlling the trajectory and formation of mobile
+agents, the area of jurisdiction of an air traffic controller\cite{4459797}, or
+in the field of micro-robotics \cite{iswarm}\cite{micron}. Focus has been given
+on research regarding unmanned autonomous vehicles $-$ as in unmanned ground,
+underground and air vehicles, better known as UGV's, UUV's and
+UAV's \cite{1429425}\cite{Dunbar2006549}\cite{4389042}\cite{1470732}.
+In principle, all above areas are concerned with controlling a network of
+mobile agents under certain conditions, such as avoiding collisions with their
+environment or with one-another, and with the actuation forces applied to each
+agent having to satisfy certain constraints.
+
+The nature of such problems is suitable for approach by the strategy of
+Model Predictive / Receding Horizon - Control since it can directly incorporate
+the consideration of such limitations, while being able to handle linear and
+non-linear, continuous-time or discrete-time underlying systems
+\cite{FINDEISEN2003190}\cite{262032}\cite{grune2016nonlinear}.
+In principle, under this method each agent solves a finite horizon optimal
+control problem (FHOCP) on-line given information on its configuration and that
+of its neighbours and, in general, information pertaining to its environment.
+The optimization problem is posed in such a way such that all relevant and
+necessary constraints are explicitly included. In decentralized approaches,
+the dynamics of each system may not be directly influencing the dynamics of
+other neighbouring systems (as a direct source of uncertainty for instance), but
+only indirectly, as information on their state is incorporated in the cost
+function used, or in the constraints considered (such as in the case of
+maintaining a set distance between agents), or in both.
+
+The literature on approaching the problem of decentralized stabilization of a
+compound system of neighbouring agents is large and continuing to soar in volume.
+In \cite{1470732} (\cite{00207170600867123}), the authors consider agents modeled
+as discs whose sensing range is not unlimited, and whose dynamics are in
+continuous time and are described by the single (double) integrator. In this case
+all agents are assigned a desired configuration that need not be known to
+any other agent than the one assigned to. The problem is approached by
+designing and utilizing decentralized navigation functions \cite{Lav06}. In
+\cite{Gustavi2010133}, the assignation regime is altered to a leader-follower
+configuration, leading to the added benefit of limiting the overall required
+sensor load, as resources are freed by having only leading/anchor agents
+being able to discern global positions or relative positions to landmarks.
+In this case the dynamics of both leaders and followers are based on the
+Laplacian consensus equation, and they directly include the state of
+neighbouring agents.
