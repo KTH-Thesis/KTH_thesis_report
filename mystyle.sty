@@ -177,3 +177,14 @@
 
 
 \urldef{\githuburl}\url{https://github.com/li9i/KTH_thesis_simulations}
+
+% insert blank page . . .
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+%. . . by calling \afterpage{\blankpage}
