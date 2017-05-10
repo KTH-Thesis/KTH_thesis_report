@@ -10,45 +10,45 @@ Warning--empty author in micron
 Warning--empty journal in micron
 Warning--empty year in micron
 Warning--can't use both author and editor fields in Fontes2007
-You've used 20 entries,
+You've used 22 entries,
             1876 wiz_defined-function locations,
-            605 strings with 6998 characters,
-and the built_in function-call counts, 6120 in all, are:
-= -- 626
-> -- 169
+            617 strings with 7373 characters,
+and the built_in function-call counts, 6941 in all, are:
+= -- 711
+> -- 191
 < -- 0
-+ -- 65
-- -- 45
-* -- 418
-:= -- 783
-add.period$ -- 25
-call.type$ -- 20
-change.case$ -- 14
++ -- 73
+- -- 51
+* -- 478
+:= -- 884
+add.period$ -- 27
+call.type$ -- 22
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 321
-empty$ -- 612
-format.name$ -- 45
-if$ -- 1545
+cite$ -- 29
+duplicate$ -- 362
+empty$ -- 691
+format.name$ -- 51
+if$ -- 1753
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 26
-newline$ -- 70
-num.names$ -- 18
-pop$ -- 80
+int.to.str$ -- 22
+missing$ -- 28
+newline$ -- 76
+num.names$ -- 20
+pop$ -- 87
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 245
+skip$ -- 282
 stack$ -- 0
-substring$ -- 525
-swap$ -- 147
+substring$ -- 615
+swap$ -- 169
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 7
-while$ -- 49
-width$ -- 22
-write$ -- 195
+while$ -- 55
+width$ -- 24
+write$ -- 216
 (There were 7 warnings)
