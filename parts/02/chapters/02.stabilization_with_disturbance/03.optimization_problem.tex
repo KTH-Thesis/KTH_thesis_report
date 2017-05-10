@@ -63,6 +63,7 @@ without disturbances acting on the system (see figure
   \caption{The nominal constraint set $\mathcal{E}_i$ in bold and the
     consecutive restricted constraint sets $\mathcal{E}_i \ominus \mathcal{B}_{i, s-t_k}$,
     $s \in [t_k, t_k + T_p]$, dashed.}
+  \label{fig:tightening_high_level}
 \end{figure}
 
 While in the disturbance-free case the constraint set is $\mathcal{E}_i$,
@@ -184,7 +185,19 @@ $\mathcal{E}_i$. We formalize this statement in property
   $h_i(\vect{e}_i)$ which, when applied to a state
   $\vect{e}_i \in \Psi_i$, causes the trajectory of the state of the system to
   fall into the terminal set $\Omega_i$.}
+  \label{fig:tightening_low_level}
 \end{figure}
+
+\begin{bw_box}
+  \begin{remark}
+    It may be the case that the length of the time-horizon $T_p$ is large enough
+    that $\mathcal{E}_{i,T_p} \subset \Phi_i$ instead of the desired opposite.
+    The length of the time-horizon should hence be designed so that the above
+    violation does not occur.
+    \label{remark:E_T_P_limit}
+  \end{remark}
+\end{bw_box}
+
 
 
 Functions

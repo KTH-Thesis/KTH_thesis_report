@@ -386,6 +386,7 @@ From assumption 4 of theorem \eqref{theorem:with_disturbances},
 the upper bound of the disturbance is in turn bounded by
 \begin{align}
   \overline{\delta}_i \leq \dfrac{\varepsilon_{\Psi_i} - \varepsilon_{\Omega_i}}{\dfrac{L_{V_i}}{L_{g_i}} (e^{L_{g_i}h} - 1) e^{L_{g_i} (T_p - h)}}
+  \label{eq:delta_inequality}
 \end{align}
 Therefore
 \begin{align}
@@ -428,6 +429,26 @@ that feasibility of a solution to the optimization problem at time $t_k$ implies
 feasibility at time $t_{k+1} > t_k$. Thus, since at time $t=0$ a solution is
 assumed to be feasible, a solution to the optimal control problem is feasible
 for all $t \geq 0$.\\[2.5ex]
+
+\begin{bw_box}
+  \begin{remark}
+    In consistence with remark \eqref{remark:E_T_P_limit}, the length of the
+    time horizon $T_p$ should be designed in such a way that, given the
+    bound of the disturbance and the size $\varepsilon_{\Omega_i}$ of the
+    desired terminal set $\Omega_i$, the size $\varepsilon_{\Psi_i}$ of set
+    $\Psi_i$ is smaller than that of set $\Phi$\footnote{Consider for instance
+    the case where $T_p$ is large: the denominator of inequality
+    \eqref{eq:delta_inequality} may become large enough to limit the size of
+    accommodated disturbances.}. In general, $T_p$ should have such a value that
+    the hierarchy of sets $\mathcal{E}_{i,T_p}$, $\Phi_i$, $\Psi_i$ and
+    $\Omega_i$ abides by the intended one
+    (see fig.\eqref{fig:tightening_low_level}). Furthermore, $T_p$ should be
+    such that there is a successful trade-off between feasibility and
+    disturbance attenuation: the lower the value of $T_p$, the larger the
+    disturbances that can be accommodated; however a low enough value can make
+    the problem infeasible in practice. \\[2.5ex]
+  \end{remark}
+\end{bw_box}
 
 \textbf{Convergence analysis}
 The second part of the proof involves demonstrating that the

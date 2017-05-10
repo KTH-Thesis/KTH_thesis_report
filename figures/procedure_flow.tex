@@ -4,21 +4,21 @@
 \tikzstyle{block} = [rectangle, draw, %fill=blue!20,
     text width=7em, text centered, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,f %ill=red!20,
-    node distance=3cm, minimum height=2em]
+\tikzstyle{cloud} = [draw, ellipse, %fill=red!20,
+    node distance=3cm, minimum height=4em, minimum width=4em]
 
 \begin{tikzpicture}[node distance = 2cm, auto]
     % Place nodes
     \node [decision] (decide) {Current configuration feasible?};
-    \node [block, below of=decide, node distance=5.5cm] (stop) {stop};
+    \node [cloud, below of=decide, node distance=5.5cm] (stop) {stop};
 
-    \node [block, right of=decide, node distance=5cm] (solve_1) {Agent 1: solve FHOCP};
-    \node [block, below of=solve_1, node distance=2.5cm] (solve_2) {Agent 2: solve FHOCP};
-    \node [block, below of=solve_2, node distance=3cm] (solve_N) {Agent N: solve FHOCP};
+    \node [block, right of=decide, node distance=5cm] (solve_1) {Agent 1: solve FHOCP and apply control input};
+    \node [block, below of=solve_1, node distance=2.5cm] (solve_2) {Agent 2: solve FHOCP and apply control input};
+    \node [block, below of=solve_2, node distance=3cm] (solve_N) {Agent N: solve FHOCP and apply control input};
 
-    \node [block, right of=solve_1, node distance=5cm] (solve_1_) {Agent 1: solve FHOCP};
-    \node [block, below of=solve_1_, node distance=2.5cm] (solve_2_) {Agent 2: solve FHOCP};
-    \node [block, below of=solve_2_, node distance=3cm] (solve_N_) {Agent N: solve FHOCP};
+    \node [block, right of=solve_1, node distance=5cm] (solve_1_) {Agent 1: solve FHOCP and apply control input};
+    \node [block, below of=solve_1_, node distance=2.5cm] (solve_2_) {Agent 2: solve FHOCP and apply control input};
+    \node [block, below of=solve_2_, node distance=3cm] (solve_N_) {Agent N: solve FHOCP and apply control input};
 
 
     \node [above of=decide, node distance=3cm] (step_0) {STEP 0};
@@ -34,8 +34,8 @@
     \node[right of=solve_1_, node distance=3.5cm] (solve_1_inv) {$\dots$};
 
 
-    \path [line]        (decide)  -- node {no}(stop);
-    \path [line]        (decide)  -- node {yes}(solve_1);
+    \path [line]        (decide)  -- node {NO}(stop);
+    \path [line]        (decide)  -- node {YES}(solve_1);
     \path [line]        (solve_1) -- node {}(solve_2);
     \path [line,dashed] (solve_2) -- node {}(solve_N);
     \path [line]        (solve_1_) -- node {}(solve_2_);

@@ -25,14 +25,15 @@
 \contentsline {section}{\numberline {5.1}The operational model}{82}{section.5.1}
 \contentsline {section}{\numberline {5.2}The problem reformed}{84}{section.5.2}
 \contentsline {section}{\numberline {5.3}Simulation scenarios}{86}{section.5.3}
-\contentsline {chapter}{\numberline {6}Simulations of Disturbance-free Stabililization}{89}{chapter.6}
-\contentsline {section}{\numberline {6.1}Simulation results}{90}{section.6.1}
+\contentsline {section}{\numberline {5.4}Process flow}{88}{section.5.4}
+\contentsline {chapter}{\numberline {6}Simulations of Disturbance-free Stabililization}{91}{chapter.6}
+\contentsline {section}{\numberline {6.1}Simulation results}{92}{section.6.1}
 \contentsline {chapter}{\numberline {7}Simulations of Stabilization in the face of Disturbances}{95}{chapter.7}
 \contentsline {section}{\numberline {7.1}Simulation results}{96}{section.7.1}
 \contentsline {part}{IV\hspace {1em}Conclusions \& future work}{101}{part.4}
 \contentsline {chapter}{\numberline {8}Future work}{103}{chapter.8}
 \contentsline {chapter}{\numberline {9}Conclusions}{105}{chapter.9}
-\contentsline {chapter}{Appendices}{107}{section*.26}
+\contentsline {chapter}{Appendices}{107}{section*.27}
 \contentsline {chapter}{\numberline {A}Proofs of lemmas}{109}{Appendix.a.A}
 \contentsline {section}{\numberline {A.1}Proof of lemma 3.3.1}{109}{section.a.A.1}
 \contentsline {section}{\numberline {A.2}Proof of lemma 3.3.2}{110}{section.a.A.2}
