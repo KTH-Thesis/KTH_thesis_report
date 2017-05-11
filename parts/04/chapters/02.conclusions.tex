@@ -29,4 +29,24 @@ simulations (chapters \ref{chapter:simulations_without_disturbances} and
 posed $12-D$ one, the problem of a multi-unicycle system having to avoid
 collisions altogether, while agents are obliged to keep within certain distance
 bounds between them, and the obstacles littered in their environment, $-$ and
-state and input constraints. This is the conclusion of this work.
+state and input constraints.
+
+In terms of pros over cons, the designed regime: (a) addresses in full the
+objective sought (as captured in sections \eqref{sec:objective} and
+\eqref{sec:problem_statement}) in terms of solution to the problem of
+stabilization in the face of disturbances and in their absence; (b) is favored
+over the equivalent centralized regime due to its reduced complexity and the
+increased autonomy of the inner system; (c) is not difficult to be implemented;
+(d) does not require the transmission and reception of more than the current and
+predicted trajectories of each agent to others within its sensing range;
+(e) is system-agnostic in terms of dynamics.
+On the other hand, (x) it requires the continuous and unobstructed transmission
+and reception of such a volume of information that could potentially require
+much resources if the communication protocols cannot accommodate such a demand;
+(y) it requires the tuning of penalty matrices, which, in all probability,
+requires carefulness, caution, and patience. Intuition helps. (z) If for any
+reason the configuration of the compound system becomes infeasible, the
+control regime is not designed to overcome it, irrespective of whether it will
+or not.
+
+This is the conclusion of this work.
