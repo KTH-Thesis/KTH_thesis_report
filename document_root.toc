@@ -23,9 +23,9 @@
 \contentsline {part}{III\hspace {1em}Simulations}{79}{part.3}
 \contentsline {chapter}{\numberline {5}Introduction}{81}{chapter.5}
 \contentsline {section}{\numberline {5.1}The operational model}{82}{section.5.1}
-\contentsline {section}{\numberline {5.2}The problem reformed}{84}{section.5.2}
-\contentsline {section}{\numberline {5.3}Simulation scenarios}{86}{section.5.3}
-\contentsline {section}{\numberline {5.4}Process \& information flow}{88}{section.5.4}
+\contentsline {section}{\numberline {5.2}The problem reformed}{83}{section.5.2}
+\contentsline {section}{\numberline {5.3}Simulation scenarios}{85}{section.5.3}
+\contentsline {section}{\numberline {5.4}Process \& information flow}{87}{section.5.4}
 \contentsline {chapter}{\numberline {6}Simulations of Disturbance-free Stabililization}{91}{chapter.6}
 \contentsline {section}{\numberline {6.1}Simulation results}{92}{section.6.1}
 \contentsline {chapter}{\numberline {7}Simulations of Stabilization in the face of Disturbances}{95}{chapter.7}

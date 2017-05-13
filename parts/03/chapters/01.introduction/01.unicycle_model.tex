@@ -17,21 +17,21 @@ $\theta \in \Theta \equiv (-\pi, \pi]$ and $\vect{u} \in \mathcal{U}$.
 In this 2D spatial environment, the obstacles of the workspace along with the
 workspace boundary itself assume an appropriately reformed form: that of a
 circle. The labeled space in which an arbitrary agent $i$ moves, along with the
-spherical-obstacles-transformed to circles, is depicted in figure
+spherical-obstacles-transformed-to-circles, is depicted in figure
 \eqref{fig:unicycle_figure}.
 
 \begin{figure}[H]\centering
-  \input{figures/unicycle_figure.tex}
+  \scalebox{0.9}{\input{figures/unicycle_figure.tex}}
   \caption{The 2D plane, agent $i$, whose orientation relative to the $x$
     axis is $\theta$, and two obstacles.}
   \label{fig:unicycle_figure}
 \end{figure}
 The desired configuration shall be denoted by $\vect{z}_{des}$,
-the error dynamics by $\dot{\vect{e}} = g(\vect{e}, \vect{u})$
+the error dynamics by $\dot{\vect{e}} = g(\vect{e}, \vect{u})$,
 where $\vect{e}(t) = \vect{z}(t) - \vect{z}_{des}$ and
 $\vect{e} \in \mathcal{E} \equiv X \times Y \times \Theta \ominus \vect{z}_{des}$.
 
-In the case were additive disturbances are considered, system
+In the case where additive disturbances are considered, system
 \eqref{eq:unicycle_kinematic} is expressed by
 \begin{align}
   \dot{x}(t)       &= v(t) \cos\theta(t) + \delta(t) \\
