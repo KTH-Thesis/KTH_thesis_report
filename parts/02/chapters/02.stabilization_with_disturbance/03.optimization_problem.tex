@@ -15,7 +15,7 @@ problem:
 \label{problem:opt_with_disturbances}
 \begin{align}
   \text{Find }& \\[2.5ex]
-              &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
+              &\overline{\vect{u}_i}^{\star} (\cdot;\ \vect{e}_i(t_k)) \triangleq \text{argmin }\limits_{\overline{\vect{u}}_i (\cdot)}\
     J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \label{position_based_cost_2} \\[2.5ex]
     \text{where}& \\[2.5ex]
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
@@ -83,7 +83,7 @@ where
 The reason for this substitution lies in the following. Consider that there
 are no disturbances affecting the states of the plant; the state evolution of
 the plant and its model considered in the solution to the optimization problem
-abide both by the state constraints since the two models are identical. Consider
+both abide by the state constraints since the two models are identical. Consider
 now that there are disturbances affecting the states of the plant $-$
 disturbances that are unknown to the model considered in the solution to the
 optimization problem. If the state constraint set was left unchanged during the
@@ -98,7 +98,7 @@ problem \eqref{problem:opt_with_disturbances} is equal to
 \eqref{eq:restricted_constraint_set}, then the state of the real system,
 the plant, is guaranteed to abide by the original state constraint set
 $\mathcal{E}_i$. We formalize this statement in property
-\eqref{property:restricted_constraint_set}.
+\eqref{property:restricted_constraint_set}.\\[1ex]
 
 \begin{bw_box}
   \begin{property}
@@ -251,14 +251,14 @@ is denoted by
 \end{align}
 
 On the existence of solutions to
-\eqref{eq:position_based_error_model_with_disturbance} we assume the following:
+\eqref{eq:position_based_error_model_with_disturbance} we assume the following:\\[1ex]
 \begin{bw_box}
 \begin{assumption}
   The system \eqref{eq:position_based_error_model_with_disturbance} has a
   \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$,
   any \textit{piecewise continuous} input
   $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$, and any
-  \textit{exogenous disturbance} $\delta_i(\cdot) : [0,T_p] \to \Delta_i$.
+  \textit{exogenous disturbance} $\vect{\delta}_i(\cdot) : [0,T_p] \to \Delta_i$.
 
   \label{ass:existence_of_solutions_with_disturbance}
 \end{assumption}
@@ -267,7 +267,7 @@ On the existence of solutions to
 
 In contrast to the disturbance-free case where the predicted state coincided
 with the state of the actual system, due to the existence of disturbances
-this equality is void.
+this equality is void.\\[1ex]
 
 \begin{bw_box}
 \begin{remark}
@@ -290,7 +290,7 @@ where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;
 $\tau \in [t_k, t_k + h)$.
 
 We can now give the definition of an \textit{admissible input} for the FHOCP
-\eqref{problem:opt_with_disturbances}:
+\eqref{problem:opt_with_disturbances}:\\[1ex]
 
 \begin{bw_box}
   \begin{definition} (\textit{Admissible input for the FHOCP

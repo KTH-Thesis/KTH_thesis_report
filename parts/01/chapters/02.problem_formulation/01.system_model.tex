@@ -19,9 +19,9 @@ inertial frame $\{\mathcal{O}\}$,
 with $\vect{q}_i \triangleq [\phi_i,\theta_i,\psi_i]^{\top}$, where
 $\phi_i, \psi_i \in [-\pi, \pi]$ and
 $\theta_i \in [-\frac{\pi}{2}, \frac{\pi}{2}]$. We define
-$$\vect{x}_i (t)\triangleq [\vect{p}_i(t)^{\top},\vect{q}_i(t)^{\top}]^{\top},
+$$\vect{x}_i (t)\triangleq [\vect{p}_i(t)^{\top},\vect{q}_i(t)^{\top}]^{\top},\
 \vect{x}_i(t):\mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{T}^3 \equiv \mathbb{M}$$
-$$\vect{v}_i(t) \triangleq [\dot{\vect{p}}_i(t)^{\top}, \vect{\omega}_i(t)^{\top}]^{\top},
+$$\vect{v}_i(t) \triangleq [\dot{\vect{p}}_i(t)^{\top}, \vect{\omega}_i(t)^{\top}]^{\top},\
 \vect{v}_i(t) : \mathbb{R}_{\geq 0} \to \mathbb{R}^3\times \mathbb{R}^3 \equiv \mathbb{R}^6$$
 and model the motion of agent $i$ under continuous second order dynamics:
 \begin{subequations}
@@ -92,7 +92,7 @@ the $6$D generalized \textit{actuation force} acting on the agent.
 
 However, access to measurements of, or knowledge about these matrices and
 vectors was not hitherto considered. At this point we make the following
-assumption:
+assumption:\\[1ex]
 
 \begin{gg_box}
   \begin{assumption} (\textit{Measurements and Access to Information
@@ -171,7 +171,7 @@ $d_{i,W}(t)$, with $d_{ij,a}, d_{i\ell,o}, d_{i,W} : \mathbb{R}^3 \to \mathbb{R}
 \begin{subequations}
 	\begin{align}
     d_{ij,a}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_j(t) \| \\[2.5ex]
-    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell(t) \| \\[2.5ex]
+    d_{i\ell,o}(t) &\triangleq \| \vect{p}_i(t) - \vect{p}_\ell \| \\[2.5ex]
     d_{i,W}(t) &\triangleq \| \vect{p}_W - \vect{p}_i(t) \|
 	\end{align}
 \end{subequations}
@@ -191,10 +191,12 @@ workspace, respectively. They arise spatially as physical limitations and will
 be utilized in forming collision-avoidance constraints.
 
 Based on these definitions, we will now define the concept of a
-\textit{collision-free configuration}:
+\textit{collision-free configuration}:\\
+
 \begin{bw_box}
 \begin{definition} (\textit{Collision-free Configuration})
 \label{definition:collision_free_conf}
+
   A collision-free configuration between
   \begin{itemize}
     \item any two agents $i,j \in \mathcal{V}$ is when $d_{ij,a}(t) > \underline{d}_{ij,a}$

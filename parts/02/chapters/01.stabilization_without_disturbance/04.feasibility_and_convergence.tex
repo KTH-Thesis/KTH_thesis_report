@@ -13,7 +13,7 @@ position which results in feasible displacements:\\[2.5ex]
 
   \begin{enumerate}
     \item the terminal region $\Omega_i \subseteq \mathcal{E}_{i,s}$ is
-      closed with $\vect{0} \in \Omega_i$
+      closed with $\vect{0} \in \Omega_i$ $\forall s \in \mathbb{R}_{\geq 0}$
     \item a solution to the optimal control problem \eqref{position_based_cost}
       is feasible at time $t=0$, that is, assumptions
       \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
@@ -43,8 +43,8 @@ position which results in feasible displacements:\\[2.5ex]
 
 \textbf{Proof}. The proof of the above theorem consists of two parts:
 in the first, recursive feasibility is established, that is, initial
-feasibility is shown to imply subsequent feasibility; in the second, and based
-on the first part, it is shown that the error state $\vect{e}_i(t)$ converges
+feasibility is shown to imply subsequent feasibility; in the second part, and
+based on the first , it is shown that the error state $\vect{e}_i(t)$ converges
 to the terminal set $\Omega_i$.\\[2.5ex]
 
 \textbf{Feasibility analysis}
@@ -55,11 +55,11 @@ solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
 %where $h$ is the sampling time, the optimal control signal
 %$\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ is applied to the open-loop
 %system.
-Suppose now a time instant $t_{k+1}$ such that\footnote{It is not strictly necessary
-that $t_{k+1} = t_k + h$ here, however it is necessary for the following that
-$t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider that the
-optimal control signal calculated at $t_k$ is comprised by the following two
-portions:
+Suppose now a time instant $t_{k+1}$ such that\footnote{It is not strictly
+necessary that $t_{k+1} = t_k + h$ here, however it is necessary for the
+following that $t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider
+that the optimal control signal calculated at $t_k$ is comprised of the
+following two portions:
 
 \begin{equation}
   \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
@@ -88,7 +88,7 @@ and the input $h_i(\vect{e}_i)$:
   \widetilde{\vect{u}}_i(\tau) = \left\{
       \begin{array}{ll}
         \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\[2.5ex]
-        h_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]
+        h_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]\\[1ex]
       \end{array}
       \right.
 \label{eq:optimal_input_t_plus_one_without_disturbances}
@@ -214,7 +214,7 @@ Taking norms on either side yields
     -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\[2.5ex]
   &=\bigg\|\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
   - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \bigg\|\\[2.5ex]
-  &=\int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
+  &\leq \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
   - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds\\[2.5ex]
   &\leq L_{g_i}\int_{t_k}^{t_{k+1}} \bigg\|
     \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
@@ -255,7 +255,7 @@ same interval:
   \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
   \label{eq:equal_predicted_without_disturbance}
 \end{align}
-Using our notation then, in the same interval:
+Using our notation then, in the same interval $[[t_{k+1}, t_k + T_p]$:
 $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$. Coupled with the fact that
 in the same interval $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$, the following
 equality holds over $[t_{k+1}, t_k + T_p]$:
@@ -283,7 +283,8 @@ $[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
 
 During the course of arriving at the above result, we have concluded that,
 in the absence of disturbances, the remark \eqref{eq:error_now_to_predicted_error}
-holds.
+holds.\\[1ex]
+
 \begin{bw_box}
   \begin{remark}
   \label{eq:error_now_to_predicted_error}
@@ -291,7 +292,7 @@ holds.
     the entire horizon $t \in [t_k, t_k + T_p]$:
     \begin{align}
       \vect{e}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
-        =\overline{\vect{e}}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+        =\overline{\vect{e}}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)\\[1ex]
     \end{align}
   \end{remark}
 \end{bw_box}
@@ -300,7 +301,7 @@ holds.
   We turn our attention to the first integral in the above expression, and we
   note that $[t_{k+1} + T_p, t_k + T_p]$, is exactly the
   the interval where assumption (3b) of the theorem holds. Hence,
-  we decide to integrate the expression found in the assumption over the
+  we integrate the expression found in the assumption over the
   interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
   in it:
   \begin{align}
@@ -391,7 +392,7 @@ function
   \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
   &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
 \end{align}
-and since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is, in general,
+and, since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is (in general)
 sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
 \begin{align}
  J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
@@ -399,7 +400,7 @@ sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vec
 \end{align}
 With this milestone result established, we need to trace the time $t_k$ back
 to $t_0 = 0$ in order to prove that the closed-loop system is stable at all
-times $t \in \mathbb{R}_{\geq 0}$.
+times $t \in \mathbb{R}_{\geq 0}$.\\[1ex]
 
 \begin{gg_box}
   The integral of $\|\vect{e}_{0,i}(\tau)\|^2$ over the interval $[t_0, t_{k+1}]$,

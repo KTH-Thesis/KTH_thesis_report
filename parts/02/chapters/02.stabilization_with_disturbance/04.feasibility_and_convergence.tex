@@ -52,7 +52,7 @@ position which results in feasible displacements:\\[2.5ex]
 in the first, recursive feasibility is established, that is, initial
 feasibility is shown to imply subsequent feasibility; in the second, and based
 on the first part, it is shown that the error state $\vect{e}_i(t)$ reaches
-the terminal set $\Omega_i$ and is trapped there.
+the terminal set $\Omega_i$ and is trapped there.\\[1ex]
 
 
 \begin{bw_box}
@@ -152,12 +152,12 @@ admissible input $h_i(\cdot)$:
 Applied at time $t_{k+1}$, $\widetilde{\vect{u}}_i(\tau)$
 is an admissible control input with regard to the input constraints as
 a composition of admissible control inputs, for
-all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.
+all $\tau \in [t_{k+1}, t_{k+1} + T_p]$.\\[1ex]
 
 
 %-------- START Feasibility point 2 --------------------------------------------
 Furthermore, $\overline{\vect{e}}_i\big(t_{k+1} + s;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) \in \mathcal{E}_i \ominus \mathcal{B}_{s}$,
-for all $s \in [0, T_p]$
+for all $s \in [0, T_p]$.\\[1ex]
 
 
 \begin{gg_box}
@@ -177,7 +177,8 @@ or, in set language
       \in \mathcal{B}_{i, h+s}
 \end{align}
 
-By applying a reasoning identical to the proof of lemma
+By applying a reasoning identical to the proof
+(see \eqref{proof:lemma_diff_state_from_same_conditions}) of lemma
 \eqref{lemma:diff_state_from_same_conditions} for $t=t_{k+1}$ (in the model
 equation) and $t = t_k$ (in the real model equation), and $\tau = s$ we get
 \begin{align}
@@ -294,7 +295,7 @@ over the horizon $[t_{k+1}, t_{k+1} + T_p]$:
 %---------- END Feasibility point 2 --------------------------------------------
 
 %-------- START Feasibility point 3 --------------------------------------------
-Finally, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i$.
+Finally, $\overline{\vect{e}}_i\big(t_{k+1} + T_p;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1}) \big) \in \Omega_i$.\\[1ex]
 \begin{gg_box}
 To prove this statement we begin with
 \begin{align}
@@ -333,7 +334,7 @@ Subtracting the latter from the former and taking norms on either side we get
   &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
   &+ \bigg \| \int_{t_{k+1}}^{t_k + T_p} \bigg( g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
   -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg) ds \bigg \| \\[2.5ex]
-  &= \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
+  &\leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
   &+  \int_{t_{k+1}}^{t_k + T_p} \bigg\| g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_{k+1})), \overline{\vect{u}}_i^{\star}(s) \big)
   -  g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s) \big) \bigg\| ds \\[2.5ex]
   &\leq \bigg \| \vect{e}_i(t_{k+1}) - \overline{\vect{e}}_i(t_{k+1}) \bigg\| \\[2.5ex]
@@ -393,7 +394,7 @@ Therefore
   V_i\big(\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big)
   \leq  \varepsilon_{\Omega_i} - \varepsilon_{\Omega_i} + \varepsilon_{\Psi_i} = \varepsilon_{\Psi_i}
 \end{align}
-or, expressing the above in terms of $t_{k+1}$
+or, expressing the above in terms of $t_{k+1}$ instead of $t_k$
 \begin{align}
   V_i\big(\overline{\vect{e}}_i\big(t_{k+1} + T_p-h;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_{k+1})\big)\big) \leq \varepsilon_{\Psi_i}
 \end{align}
@@ -421,10 +422,10 @@ Piecing the admissibility of $\widetilde{\vect{u}}_i(\cdot)$ from
 \eqref{eq:feasibility_2} and \eqref{eq:feasibility_3}, we conclude that the
 application of the control input $\widetilde{\vect{u}}_i(\cdot)$ at time
 $t_{k+1}$ results in the states of the real system abiding by their intended
-state and terminal constraints across the entire horizon
-$[t_{k+1}, t_{k+1} + T_p]$. Therefore, overall, the (sub-optimal) control input
-$\widetilde{\vect{u}}_i(\cdot)$ is admissible at time $t_{k+1}$ according to
-definition \eqref{definition:admissible_input_with_disturbance}, which means
+constraints across the entire horizon $[t_{k+1}, t_{k+1} + T_p]$. Therefore,
+overall, the (sub-optimal) control input $\widetilde{\vect{u}}_i(\cdot)$ is
+admissible at time $t_{k+1}$ according to definition
+\eqref{definition:admissible_input_with_disturbance}, which means
 that feasibility of a solution to the optimization problem at time $t_k$ implies
 feasibility at time $t_{k+1} > t_k$. Thus, since at time $t=0$ a solution is
 assumed to be feasible, a solution to the optimal control problem is feasible
@@ -446,7 +447,7 @@ for all $t \geq 0$.\\[2.5ex]
     such that there is a successful trade-off between feasibility and
     disturbance attenuation: the lower the value of $T_p$, the larger the
     disturbances that can be accommodated; however a low enough value can make
-    the problem infeasible in practice. \\[2.5ex]
+    the problem infeasible. \\[2.5ex]
   \end{remark}
 \end{bw_box}
 
@@ -579,7 +580,7 @@ Subtracting the latter from the former and taking norms on either side yields
     &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| \\[2.5ex]
     &+ \bigg\| \int_{t_k +h}^{t_k + s} \bigg( g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
     -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg) d\tau \bigg\| \\[2.5ex]
-    &= \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| \\[2.5ex]
+    &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| \\[2.5ex]
     &+ \int_{t_k +h}^{t_k + s} \bigg\| g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k + h)), \overline{\vect{u}}_i^{\star}(\tau)\big)
     -  g_i\big(\overline{\vect{e}}_i(\tau;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(\tau)\big) \bigg\| d\tau \\[2.5ex]
     &\leq \bigg\| \vect{e}_i(t_k +h) - \overline{\vect{e}}_i(t_k + h) \bigg \| \\[2.5ex]
@@ -707,7 +708,7 @@ where
 \end{align}
 and $\xi_i \overline{\delta}_i$ is the contribution of the bounded additive
 disturbance $\vect{\delta}_i(t)$ to the nominal cost difference
-(i.e. the case without disturbances).
+(i.e. the case without disturbances).\\[1ex]
 
 \begin{gg_box}
   $F_i$ is a positive-definite function as a sum of a positive-definite

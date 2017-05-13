@@ -23,10 +23,10 @@ In greater detail, in its pure form, the MPC strategy assumes the following
 form: at an initial sampling time $t$, the controller, having measurements of
 the states to be controlled, predicts the dynamic behaviour of the system over a
 prediction horizon $T_p$, that is until $t+T_p$, and determines the appropriate
-control input that minimizes a predetermined open-loop objective, typically
+control input that minimizes a predetermined (open-loop) objective, typically
 under constraints involving the states and the inputs. The calculated input
 is then applied to the system until the next sampling time, at which time
-the above process is repeated. Hence the term ``receding horizon".
+the above process is repeated. Hence the term ``receding horizon" control.
 
 When the system's dynamics are linear and there are is no system uncertainty
 (disturbances affecting the states of the system or model-plant mismatch)
@@ -35,8 +35,8 @@ solving the optimization problem over an infinite horizon. In this case the
 input is applied to the open loop once, and the process is not repeated from
 then on. However, in general, systems may be non-linear, subject to disturbances,
 partially descriptive, under constraints, while an infinite horizon approach
-may be practically infeasible. Hence, the optimization problem must be solved
-on-line under a finite time-horizon.
+may be practically infeasible. Hence, there are occasions when the optimization
+problem must be solved on-line under a finite time-horizon.
 
 In its general form, nonlinear MPC (NMPC) possesses a unique usefulness
 in that it can directly incorporate nonlinear models for prediction,

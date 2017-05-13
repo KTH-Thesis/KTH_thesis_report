@@ -15,7 +15,7 @@ optimization problem:
 \label{problem:opt_without_disturbances}
 \begin{align}
   \text{Find }& \\[2.5ex]
-              &J_i^{\star} \big(\vect{e}_i(t_k)\big) \triangleq \text{min }\limits_{\overline{\vect{u}}_i (\cdot)}\
+              &\overline{\vect{u}_i}^{\star} (\cdot;\ \vect{e}_i(t_k)) \triangleq \text{argmin }\limits_{\overline{\vect{u}}_i (\cdot)}\
     J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big)  \label{position_based_cost} \\[2.5ex]
     \text{where}& \\[2.5ex]
     &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
@@ -42,7 +42,7 @@ optimization problem where information on the states of the neighbouring
 agents of agent $i$ is taken into account only in the constraints considered
 in the optimization problem. These constraints pertain to the set of its
 neighbours $\mathcal{N}_i$ and, in total, to the set of all agents within its
-sensing range $\mathcal{R}_i$. Regarding these, we make the following assumption:
+sensing range $\mathcal{R}_i$. Regarding these, we make the following assumption:\\[1ex]
 
 \begin{bw_box}
   \begin{assumption} (\textit{Access to Predicted Information from an
@@ -98,8 +98,8 @@ within the range of one agent to be legal.
 \end{remark}
 \end{bw_box}
 
-In other words, each time an agent solves its own individual
-optimization problem, he knows the state predictions that have been generated
+In other words, each time an agent solves its own individual optimization
+problem, he knows the (open-loop) state predictions that have been generated
 by the solution of the optimization problem of all agents within
 its range at that time, for the next $T_p$ timesteps. This assumption is
 crucial to satisfying the constraints regarding collision aversion and
@@ -117,10 +117,10 @@ information in four stacked vectors:
 \end{subequations}
 These are taken into consideration during the solution to the optimization
 problem as follows: when agent $i$ solves his own optimization problem,
-his predicted configuration at time $\tau \in [t_k, t_k + T_p]$ is
+\textit{his predicted configuration at time $\tau \in [t_k, t_k + T_p]$ is
 constrained by the predicted configuration of its neighbouring and
 perceivable\footnote{agents within its sensing range} agents at the same
-time instant $\tau$. The form of the inter-agent constraint regime is necessary
+time instant $\tau$}. The form of the inter-agent constraint regime is necessary
 to be such, as each agent is constrained not by constant values, but by
 the trajectories of its associated agents, which are time-varying in nature.
 
@@ -180,7 +180,7 @@ $V_i: \Omega_i \to \mathbb{R}_{\geq 0}$ are defined as
 Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$ and
 $\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$ are symmetric and positive
 definite.  The running costs $F_i$ are upper- and lower-bounded by class
-$\mathcal{K}_{\infty}$ functions:
+$\mathcal{K}_{\infty}$ functions:\\[1ex]
 
 \begin{bw_box}
   \begin{lemma} (\textit{$F_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions})
@@ -212,7 +212,7 @@ $\mathcal{K}_{\infty}$ functions:
 \end{bw_box}
 
 
-The terminal set $\Omega_i \subseteq \mathcal{E}_{i,t_k + T_p}$ is an admissible
+The terminal set $\Omega_i \subseteq \mathcal{E}_{i,t_k + T_p}$ is an admissible,
 positively invariant set according to definition
 \eqref{def:positively_invariant} for system
 \eqref{eq:position_based_error_model} such that
@@ -223,7 +223,7 @@ where $\varepsilon_{\Omega_i}$ is an arbitrarily small but fixed positive real s
 
 With regard to the terminal penalty function $V_i$, the following lemma will
 prove to be useful in guaranteeing the convergence of the solution to the
-optimal control problem to the terminal region $\Omega_i$:
+optimal control problem to the terminal region $\Omega_i$:\\[1ex]
 
 \begin{bw_box}
 \begin{lemma} ($V_i$ is Lipschitz continuous in $\Omega_i$)
@@ -242,7 +242,8 @@ optimal control problem to the terminal region $\Omega_i$:
 \end{bw_box}
 
 
-Furthermore, $V_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions.
+Furthermore, $V_i$ is lower- and upper-bounded by class
+$\mathcal{K}_{\infty}$ functions.\\[1ex]
 
 \begin{bw_box}
   \begin{lemma} (\textit{$V_i$ is lower- and upper-bounded by class
@@ -285,7 +286,7 @@ is denoted by
 
 
 On the existence of solutions to \eqref{eq:position_based_error_model} we
-assume the following:
+assume the following:\\[1ex]
 \begin{bw_box}
 \begin{assumption}
   \label{ass:existence_of_solutions_without_disturbance}
@@ -298,7 +299,7 @@ assume the following:
 \end{bw_box}
 
 The states of the open-loop system \eqref{eq:internal_error_model} $-$ the
-predicted states obey the following notation:
+predicted states obey the following notation:\\[1ex]
 \begin{bw_box}
 \begin{remark}
 The \textit{predicted} state of the system \eqref{eq:position_based_error_model}
@@ -321,7 +322,7 @@ $\tau \in [t_k, t_k + h)$ and $t_0 = 0$.
 
 
 We can now give the definition of an \textit{admissible input} for the FHOCP
-\eqref{problem:opt_without_disturbances}:
+\eqref{problem:opt_without_disturbances}:\\[1ex]
 
 \begin{bw_box}
   \begin{definition} (\textit{Admissible input for the FHOCP

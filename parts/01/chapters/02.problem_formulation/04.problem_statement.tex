@@ -15,15 +15,15 @@ Furthermore, for all agents $i \in \mathcal{V}$, obstacles $\ell \in \mathcal{L}
 and the workspace boundary $W$, it should guarantee for all
 $t\in\mathbb{R}_{\geq 0}$ that:
 \begin{enumerate}
-  \item all agents avoid collision with each other
-  \item all agents avoid collision with all obstacles
-  \item all agents avoid collision with the workspace boundary
+  \item all agents avoid collisions with each other
+  \item all agents avoid collisions with all obstacles
+  \item all agents avoid collisions with the workspace boundary
   \item singularity of the Jacobian matrices $\mat{J}_i$ is avoided
   \item all input control signals are bounded in their respective regions
 \end{enumerate}
 
 Therefore, all neighboring agents of agent $i$ must remain within a distance
-less than $d_i$ to him, for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
+less than $d_i$ to him for all $i \in \mathcal{V}: |\mathcal{N}_i| \not= 0$,
 and all agents $i, j\in \mathcal{V}, i \neq j$ must remain within distance
 greater than $\underline{d}_{ij,a}$ with one another.
 
@@ -55,7 +55,7 @@ formulated as follows:\\
     \item Position and orientation configuration is achieved in steady-state
       $$\lim_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$$
 
-    \item Inter-agent collision is avoided
+    \item Inter-agent collisions are avoided
       $$\|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a}(t) > \underline{d}_{ij,a},
       \forall j \in \mathcal{V} \backslash \{i\}$$
 
@@ -63,11 +63,11 @@ formulated as follows:\\
       $$ \|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a} (t) < d_i,
       \forall j \in \mathcal{N}_i, \forall i : |\mathcal{N}_i| \not= 0$$
 
-    \item Agent-with-obstacle collision is avoided
+    \item Agent-with-obstacle collisions are avoided
       $$ \|\vect{p}_i(t) - \vect{p}_{\ell}(t)\| = d_{i\ell,o} (t) > \underline{d}_{i\ell,o},
       \forall \ell \in \mathcal{L}$$
 
-    \item Agent-with-workspace-boundary collision is avoided
+    \item Agent-with-workspace-boundary collisions are avoided
       $$ \|\vect{p}_W - \vect{p}_i(t)\| = d_{i,W} (t) < \overline{d}_{i,W}$$
 
     \item All maps $\mat{J}_i$ are well defined

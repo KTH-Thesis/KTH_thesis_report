@@ -7,14 +7,14 @@
 \contentsline {chapter}{\numberline {2}Problem Formulation}{15}{chapter.2}
 \contentsline {section}{\numberline {2.1}System Model}{15}{section.2.1}
 \contentsline {section}{\numberline {2.2}Initial Conditions}{19}{section.2.2}
-\contentsline {section}{\numberline {2.3}Objective}{20}{section.2.3}
+\contentsline {section}{\numberline {2.3}Objective}{21}{section.2.3}
 \contentsline {section}{\numberline {2.4}Problem Statement}{23}{section.2.4}
 \contentsline {part}{II\hspace {1em}Advocated Solutions}{27}{part.2}
 \contentsline {chapter}{\numberline {3}Disturbance-free Stabililization}{29}{chapter.3}
 \contentsline {section}{\numberline {3.1}Formalizing the system's model}{30}{section.3.1}
 \contentsline {section}{\numberline {3.2}The error model}{31}{section.3.2}
 \contentsline {section}{\numberline {3.3}The optimization problem}{32}{section.3.3}
-\contentsline {section}{\numberline {3.4}Stabilization: Feasibility and Convergence}{39}{section.3.4}
+\contentsline {section}{\numberline {3.4}Stabilization: Feasibility and Convergence}{40}{section.3.4}
 \contentsline {chapter}{\numberline {4}Stabilization in the face of Disturbances}{51}{chapter.4}
 \contentsline {section}{\numberline {4.1}The perturbed model}{52}{section.4.1}
 \contentsline {section}{\numberline {4.2}The error model}{53}{section.4.2}
