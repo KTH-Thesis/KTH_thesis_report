@@ -111,6 +111,11 @@ $\varepsilon_{\Psi}$ (alternatively $-$ when each system's trajectory enters
 set $\Psi$), it gets trapped below the value $\varepsilon_{\Omega}$ (and
 hence each system's trajectory is in turn trapped inside the terminal
 set $\Omega$) in finite time, and does not exit it.
+Figure \eqref{fig:d_ON_res_3_2_V_zoom_zoom_unattenuated} illustrates the
+effect of the disturbance on the quadratic measure
+$\vect{e}^{\top} \mat{P} \vect{e}$ \textit{in the case where the disturbance is
+left unaddressed}. It is included for comparison purposes to figure
+\eqref{fig:d_ON_res_3_2_V_zoom_zoom}.
 
 
 \noindent\makebox[\linewidth][c]{%
@@ -139,11 +144,21 @@ set $\Omega$) in finite time, and does not exit it.
   \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/05.V/V_zoom_zoom_zoom.tex}}
   \caption{The $\mat{P}-$norms of the errors of the three agents through time,
     in greater detail and for a longer time-period of execution. The colour
-    cyan is used to depict their ceiling $\varepsilon_{\Omega}$}
+    cyan is used to depict their ceiling $\varepsilon_{\Omega}$.}
   \label{fig:d_ON_res_3_2_V_zoom_zoom}
 \end{figure}
 
-Due to the interconstrained nature of the compound system, it is advisable that
+\begin{figure}[H]\centering
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_2/05.V/V_zoom_zoom_zoom_unattenuated.tex}}
+  \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+    \textit{if the disturbance is left unaddressed}. In direct comparison with figure
+    \eqref{fig:d_ON_res_3_2_V_zoom_zoom}, it is clear that the energy of the
+    system, as measured by the $\mat{P}-$norms of the agents' errors, oscillates
+    with a larger magnitude than that under the proposed control regime.}
+  \label{fig:d_ON_res_3_2_V_zoom_zoom_unattenuated}
+\end{figure}
+
+Due to the inter-constrained nature of the compound system, it is advisable that
 once the trajectories of \textit{all} agents reach set $\Psi$ $-$ in other
 words, once they all reach the vicinity of their desired configurations as
 measured by $\varepsilon_{\Psi}$ $-$ it is advisable that they disable their
