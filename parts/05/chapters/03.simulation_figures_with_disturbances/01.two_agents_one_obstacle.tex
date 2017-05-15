@@ -10,6 +10,10 @@ $\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$.
 Their desired configurations in steady-state are
 $\vect{z}_{1,des} = [6, 3.5, 0]^{\top}$ and
 $\vect{z}_{2,des} = [6, 2.3, 0]^{\top}$.
+The related constants concerned with the execution
+of this simulation are as follows: $L_{g_i} = 9.073$, $L_{V_i} = 0.0942$,
+$\varepsilon_{\Psi_i} = 0.0649$ and $\varepsilon_{\Omega_i} = 0.0071$ for
+all $i \in \mathcal{V}$.
 The obstacle is placed between the two, at $[0, 2.9]^{\top}$. The penalty
 matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
 $\mat{Q} = 0.5 (I_3 + 0.5 \dagger_3)$, $\mat{R} = 0.005 I_2$ and
@@ -20,7 +24,9 @@ Subsections \ref{subsection:d_ON_errors_2_1} and \ref{subsection:d_ON_inputs_2_1
 illustrate the evolution of the error states and the input signals of the two agents
 respectively. Subsection \ref{subsection:d_ON_distances_2_1} features the
 figures relating to the evolution of the distance between the two agents
-along with that between them and the obstacle.
+along with that between them and the obstacle. Subsection
+\ref{subsection:d_ON_V_2_1} features the evolution of the quadratic function
+$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
 
 %-------------------------------------------------------------------------------
 \subsection{State errors}
@@ -104,13 +110,14 @@ along with that between them and the obstacle.
 
 %-------------------------------------------------------------------------------
 \subsection{Energy of the system}
+\label{subsection:d_ON_V_2_1}
 
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}
   \begin{minipage}{0.45\linewidth}
     \begin{figure}[H]
       \scalebox{0.6}{\input{./figures/07.with_disturbances/2_1/05.V/V.tex}}
-      \caption{}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time.}
       \label{}
     \end{figure}
   \end{minipage}
@@ -118,7 +125,9 @@ along with that between them and the obstacle.
   \begin{minipage}{0.45\linewidth}
     \begin{figure}[H]
       \scalebox{0.6}{\input{./figures/07.with_disturbances/2_1/05.V/V_zoom.tex}}
-      \caption{}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+        focused. The colour magenta is used to illustrate the threshold
+        $\varepsilon_{\Psi}$, while cyan is used for $\varepsilon_{\Omega}$.}
       \label{}
     \end{figure}
   \end{minipage}

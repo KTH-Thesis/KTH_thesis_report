@@ -13,13 +13,19 @@ matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
 $\mat{Q} = 0.5 (I_3 + \dagger_3)$, $\mat{R} = 0.005 I_2$ and
 $\mat{P} = 0.5 (I_3 + \dagger_3)$, where $\dagger_N$ is a $N \times N$ matrix
 whose elements are chosen at random between the values $0.0$ and $1.0$.
+The related constants concerned with the execution
+of this simulation are as follows: $L_{g_i} = 12.7758$, $L_{V_i} = 0.1401$,
+$\varepsilon_{\Psi_i} = 0.4809$ and $\varepsilon_{\Omega_i} = 0.0105$ for
+all $i \in \mathcal{V}$.
 
 Subsections \ref{subsection:d_ON_errors_3_1} and
 \ref{subsection:d_ON_inputs_3_1} illustrate the evolution of the error states
 and the input signals of the three agents respectively. Subsection
 \ref{subsection:d_ON_distances_3_1} features the figures relating to the
 evolution of the distance between the three agents along with that between
-them and the obstacle.
+them and the obstacle. Subsection \ref{subsection:d_ON_V_3_1}
+features the evolution of the quadratic function
+$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
 
 %-------------------------------------------------------------------------------
 \subsection{State errors}
@@ -92,7 +98,7 @@ them and the obstacle.
   \hfill
   \begin{minipage}{0.45\linewidth}
     \begin{figure}[H]
-      \scalebox{0.7}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_obstacle_agents.tex}}
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_obstacle_agents.tex}}
       \caption{The distance between each agent and the obstacle over time. The
         minimum allowed distance has a value of $1.51$.}
       \label{fig:d_ON_3_1_distance_obstacle_agents}
@@ -139,13 +145,14 @@ them and the obstacle.
 
 %-------------------------------------------------------------------------------
 \subsection{Energy of the system}
+\label{subsection:d_ON_V_3_1}
 
 \noindent\makebox[\linewidth][c]{%
 \begin{minipage}{\linewidth}
   \begin{minipage}{0.45\linewidth}
     \begin{figure}[H]
       \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/05.V/V.tex}}
-      \caption{}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time.}
       \label{}
     \end{figure}
   \end{minipage}
@@ -153,7 +160,9 @@ them and the obstacle.
   \begin{minipage}{0.45\linewidth}
     \begin{figure}[H]
       \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/05.V/V_zoom.tex}}
-      \caption{}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+        focused. The colour cyan is used to illustrate the threshold
+        $\varepsilon_{\Omega}$.}
       \label{}
     \end{figure}
   \end{minipage}
