@@ -138,9 +138,8 @@ disturbance.
 A continuous function $V(\vect{x}) : \Psi \to \mathbb{R}_{\geq 0}$ for the
 nonlinear system $\dot{\vect{x}} = f(\vect{x}, \vect{\delta})$ is said to be a
 \textit{ISS Lyapunov function} in $\Psi$ if there are class
-$\mathcal{K}_{\infty}$ functions
-$\alpha_1, \alpha_2, \alpha_3$, and a class $\mathcal{K}$ function
-$\sigma$ such that
+$\mathcal{K}$ functions
+$\alpha_1$, $\alpha_2$, $\alpha_3$ and $\sigma$, such that
 \begin{align}
   \alpha_1\big(\|\vect{x}\|\big) \leq V\big(\vect{x}\big) \leq \alpha_2\big(\|\vect{x}\|\big),\ \forall \vect{x} \in \Psi
 \end{align}
@@ -150,6 +149,8 @@ and
     \leq \sigma\big(\|\vect{\delta}\|\big) - \alpha_3\big(\|\vect{x}\|\big),\ \forall \vect{x} \in \Psi, \vect{\delta} \in \Delta
 \end{align}
 \\[2.5ex]
+$V$ is an ISS Lyapunov function if $\Psi = \mathbb{R}^n$, $\Delta = \mathbb{R}^m$,
+and $\alpha_1$, $\alpha_2$, $\alpha_3$, $\sigma$ $\in \mathcal{K}_{\infty}$.
 \end{definition}
 %\end{bw_box}
 
