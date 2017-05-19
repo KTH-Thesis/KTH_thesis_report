@@ -134,9 +134,9 @@ $\mathcal{E}_i$. We formalize this statement in property
   The set $\Psi_i$ belongs to the set $\Phi_i$, $\Psi_i \subseteq \Phi_i$,
   which is the set of states within $\mathcal{E}_{i,T_p}$ for which there is an
   admissible control input whose form is of linear feedback with regard to the
-  state:
+  state\footnote{This is equivalent to requiring that $\mathcal{i,T_p} \neq \varnothing$}:
   \begin{align}
-    \Phi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_{i,T_p} : h_i(\vect{e}_i) \in \mathcal{U}_i \big\}
+    \exists \Phi_i \triangleq \big\{\overline{\vect{e}}_i \in \mathcal{E}_{i,T_p} : h_i(\overline{\vect{e}}_i) \in \mathcal{U}_i \big\}
   \end{align}
   \label{ass:phi_psi}
   \end{assumption}
