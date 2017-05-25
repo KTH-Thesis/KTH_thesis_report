@@ -1,0 +1,212 @@
+\documentclass[a4paper,11pt,twoside]{book}
+
+\usepackage[eng,exjobb]{KTHEEtitlepage}
+\usepackage[cp1252]{inputenc}
+
+\usepackage{mystyle}
+
+% Show layout variables
+%\printinunitsof{mm}{\pagevalues}
+%\verb|\marginparwidth|: \printinunitsof{mm}\prntlen{\marginparwidth}
+%\pagediagram
+
+
+
+\begin{document}
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+
+
+\includepdf[pages={1}]{figures/cover_front.pdf}
+
+%\ititle{Robust Decentralized
+  %Control of Cooperative Multi-robot Systems}
+%\isubtitle{An inter-constraint Receding Horizon approach} % Optional
+%\idate{June 2017}
+%\irefnr{TRITA-EE 2017:055}
+%\iauthor{Alexandros Filotheou}
+%\makeititle
+\newpage
+
+
+\cleardoublepage
+\cleardoublepage
+\input{parts/00/00.titlepage.tex}
+\cleardoublepage
+\cleardoublepage
+\input{parts/00/02.abstract.tex}
+\cleardoublepage
+\cleardoublepage
+
+%\newgeometry{paperwidth=169mm, paperheight=239mm, top=50mm, bottom=30mm, inner=36mm, outer=18mm, voffset=-1in + 15mm, footskip = 15mm}
+\newgeometry{top=50mm, bottom=30mm, inner=36mm, outer=18mm, footskip = 15mm}
+
+\pagenumbering{roman}
+\tableofcontents
+\restoregeometry
+\pagenumbering{arabic}
+
+\clearpage
+
+\afterpage{\blankpage}
+
+%\begin{comment} %----------------------
+
+
+
+\chapter*{Introduction}
+
+  %\pagenumbering{arabic}
+  \input{parts/00/03.introduction.tex}
+  \clearpage
+
+%===============================================================================
+\part{The problem}
+\clearpage
+
+%-------------------------------------------------------------------------------
+  \chapter{Preliminaries}
+    \label{chapter:notation_reliminaries}
+
+    \input{parts/01/chapters/01.notation_and_preliminaries/01.notation.tex}
+    \input{parts/01/chapters/01.notation_and_preliminaries/02.auxiliary_prerequisites.tex}
+    \input{parts/01/chapters/01.notation_and_preliminaries/03.non_linear_model_predictive_control.tex}
+    \clearpage
+
+
+%-------------------------------------------------------------------------------
+  \chapter{Problem Formulation}
+    \label{chapter:prob_formulation}
+
+    \input{parts/01/chapters/02.problem_formulation/01.system_model.tex}
+    \input{parts/01/chapters/02.problem_formulation/02.initial_conditions.tex}
+    \input{parts/01/chapters/02.problem_formulation/03.objective.tex}
+    \input{parts/01/chapters/02.problem_formulation/04.problem_statement.tex}
+    \clearpage
+
+
+%===============================================================================
+\part{Advocated Solutions}
+\label{part:advocated_solutions}
+    \clearpage
+
+%-------------------------------------------------------------------------------
+  \chapter{Disturbance-free Stabililization}
+    \label{chapter:stabilization_without_disturbance}
+
+    \input{parts/02/chapters/01.stabilization_without_disturbance/01.model.tex}
+    \input{parts/02/chapters/01.stabilization_without_disturbance/02.error_model.tex}
+    \input{parts/02/chapters/01.stabilization_without_disturbance/03.optimization_problem.tex}
+    \input{parts/02/chapters/01.stabilization_without_disturbance/04.feasibility_and_convergence.tex}
+    \clearpage
+
+%-------------------------------------------------------------------------------
+  \chapter{Stabilization in the face of Disturbances}
+    \label{chapter:stabilization_with_disturbance}
+
+    \input{parts/02/chapters/02.stabilization_with_disturbance/01.model.tex}
+    \input{parts/02/chapters/02.stabilization_with_disturbance/02.error_model.tex}
+    \input{parts/02/chapters/02.stabilization_with_disturbance/03.optimization_problem.tex}
+    \input{parts/02/chapters/02.stabilization_with_disturbance/04.feasibility_and_convergence.tex}
+    \clearpage
+
+
+%===============================================================================
+\part{Simulations}
+\label{part:simulations}
+
+%\end{comment} %----------------------
+%-------------------------------------------------------------------------------
+  \chapter{Introduction}
+    \label{chapter:simulations_introduction}
+
+    \input{parts/03/chapters/01.introduction/00.introduction.tex}
+    \input{parts/03/chapters/01.introduction/01.unicycle_model.tex}
+    \input{parts/03/chapters/01.introduction/02.reformed_objective.tex}
+    \input{parts/03/chapters/01.introduction/03.test_cases.tex}
+    \input{parts/03/chapters/01.introduction/04.process_flow.tex}
+    \clearpage
+%\begin{comment} %----------------------
+
+%-------------------------------------------------------------------------------
+  \chapter{Simulations of Disturbance-free Stabililization}
+    \label{chapter:simulations_without_disturbances}
+
+    \input{parts/03/chapters/02.simulations_without_disturbances/00.introduction.tex}
+    \input{parts/03/chapters/02.simulations_without_disturbances/01.results.tex}
+    \clearpage
+
+%-------------------------------------------------------------------------------
+  \chapter{Simulations of Stabilization in the face of Disturbances}
+    \label{chapter:simulations_with_disturbances}
+
+    \input{parts/03/chapters/03.simulations_with_disturbances/00.introduction.tex}
+    \input{parts/03/chapters/03.simulations_with_disturbances/01.results.tex}
+    \clearpage
+
+
+%===============================================================================
+\part{Conclusions \& future work}
+    \label{chapter:conclusions_future_work}
+
+    \input{parts/04/chapters/01.future_work.tex}
+    \input{parts/04/chapters/02.conclusions.tex}
+    \clearpage
+
+
+\afterpage{\null\newpage}
+\afterpage{\null\newpage}
+
+
+
+%===============================================================================
+\begin{appendices}
+  \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+%-------------------------------------------------------------------------------
+  \chapter{Proofs of lemmas}
+    \label{chapter:proofs_of_lemmas}
+
+    \input{parts/05/chapters/01.proofs_of_lemmas/01.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/02.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/03.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/04.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/05.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/06.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/07.tex}
+    \input{parts/05/chapters/01.proofs_of_lemmas/08.tex}
+    \clearpage
+
+%-------------------------------------------------------------------------------
+  \chapter{Simulation figures $-$ disturbances absent}
+    \label{chapter:simulation_figures_without_disturbances}
+
+    \input{parts/05/chapters/02.simulation_figures_without_disturbances/01.two_agents_one_obstacle.tex}
+    \input{parts/05/chapters/02.simulation_figures_without_disturbances/02.two_agents_two_obstacles.tex}
+    \input{parts/05/chapters/02.simulation_figures_without_disturbances/03.three_agents_one_obstacle.tex}
+    \input{parts/05/chapters/02.simulation_figures_without_disturbances/04.three_agents_two_obstacles.tex}
+    \clearpage
+
+
+%-------------------------------------------------------------------------------
+  \chapter{Simulation figures $-$ disturbances present}
+    \label{chapter:simulation_figures_with_disturbances}
+
+    \input{parts/05/chapters/03.simulation_figures_with_disturbances/01.two_agents_one_obstacle.tex}
+    \input{parts/05/chapters/03.simulation_figures_with_disturbances/02.two_agents_two_obstacles.tex}
+    \input{parts/05/chapters/03.simulation_figures_with_disturbances/03.three_agents_one_obstacle.tex}
+    \input{parts/05/chapters/03.simulation_figures_with_disturbances/04.three_agents_two_obstacles.tex}
+    \clearpage
+\end{appendices}
+
+
+\bibliography{references}
+\bibliographystyle{ieeetr}
+
+\input{parts/00/01.acknowledgements.tex}
+
+%\end{comment} %----------------------
+
+
+\includepdf[pages={1}]{figures/cover_back.pdf}
+
+\end{document}

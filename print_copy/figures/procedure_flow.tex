@@ -1,0 +1,52 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, %fill=blue!20,
+    text width=7.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, %fill=blue!20,
+    text width=7em, text centered, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse, %fill=red!20,
+    node distance=3cm, minimum height=4em, minimum width=4em]
+
+\begin{tikzpicture}[node distance = 2cm, auto]
+    % Place nodes
+    \node [decision] (decide) {Current configuration feasible?};
+    \node [cloud, below of=decide, node distance=5.5cm] (stop) {stop};
+
+    \node [block, right of=decide, node distance=5cm] (solve_1) {Agent 1: solve FHOCP and apply control input};
+    \node [block, below of=solve_1, node distance=2.5cm] (solve_2) {Agent 2: solve FHOCP and apply control input};
+    \node [block, below of=solve_2, node distance=3cm] (solve_N) {Agent N: solve FHOCP and apply control input};
+
+    \node [block, right of=solve_1, node distance=5cm] (solve_1_) {Agent 1: solve FHOCP and apply control input};
+    \node [block, below of=solve_1_, node distance=2.5cm] (solve_2_) {Agent 2: solve FHOCP and apply control input};
+    \node [block, below of=solve_2_, node distance=3cm] (solve_N_) {Agent N: solve FHOCP and apply control input};
+
+
+    \node [above of=decide, node distance=3cm] (step_0) {STEP 0};
+    \node [above of=solve_1, node distance=3cm] (step_1) {STEP 1};
+    \node [above of=solve_1_, node distance=3cm] (step_1_) {STEP 2};
+
+
+    % invisible nodes
+    \node[inner sep=0,minimum size=0,right of=solve_N, node distance=2.5cm] (sN) {};
+    \node[inner sep=0,minimum size=0,left of=solve_1_, node distance=2.5cm] (s1_) {};
+    \node[inner sep=0,minimum size=0,right of=solve_N_, node distance=2.5cm] (sN_) {};
+    \node[inner sep=0,minimum size=0,right of=solve_1_, node distance=2.5cm] (s1_inv) {};
+    \node[right of=solve_1_, node distance=3.5cm] (solve_1_inv) {$\dots$};
+
+
+    \path [line]        (decide)  -- node {NO}(stop);
+    \path [line]        (decide)  -- node {YES}(solve_1);
+    \path [line]        (solve_1) -- node {}(solve_2);
+    \path [line,dashed] (solve_2) -- node {}(solve_N);
+    \path [line]        (solve_1_) -- node {}(solve_2_);
+    \path [line,dashed] (solve_2_) -- node {}(solve_N_);
+
+    \path [line] (solve_N) -- (sN);
+    \path [line] (sN) -- (s1_);
+    \path [line] (s1_) -- (solve_1_);
+
+    \path [line] (solve_N_) -- (sN_);
+    \path [line] (sN_) -- (s1_inv);
+    \path [line] (s1_inv) -- (solve_1_inv);
+
+\end{tikzpicture}

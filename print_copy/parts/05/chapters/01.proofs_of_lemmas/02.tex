@@ -1,0 +1,28 @@
+\section{Proof of lemma \getrefnumber{lemma:F_Lipschitz}}
+
+For every $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$,
+and $\vect{u}_i \in \mathcal{U}_i$ it holds that
+\begin{align}
+  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
+  &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 + \vect{u}_i^{\top} \mat{R}_i \vect{u}_i
+    -\vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 - \vect{u}_i^{\top} \mat{R}_i \vect{u}_i\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_1 - \vect{e}_2^{\top} \mat{Q}_i \vect{e}_2 \pm \vect{e}_1^{\top} \mat{Q}_i \vect{e}_2\big| \\[2.5ex]
+    &= \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2) - \vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big| \\[2.5ex]
+    &\leq \big|\vect{e}_1^{\top} \mat{Q}_i (\vect{e}_1 -\vect{e}_2)\big| + \big|\vect{e}_2^{\top} \mat{Q}_i (\vect{e}_1-\vect{e}_2)\big|
+\end{align}
+
+But for any $\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i$
+$$|\vect{e}_1^{\top} \mat{Q}_i \vect{e}_2| \leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_2\|$$
+where $\sigma_{max}(\mat{Q}_i)$ denotes the largest singular value of matrix
+$\mat{Q}_i$. Hence:
+\begin{align}
+  \big|F_i(\vect{e}_1, \vect{u}_i) - F_i(\vect{e}_2, \vect{u}_i)\big|
+    &\leq \sigma_{max}(\mat{Q}_i) \|\vect{e}_1\| \|\vect{e}_1 - \vect{e}_2\| +
+    \sigma_{max}(\mat{Q}_i) \|\vect{e}_2\| \|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= \sigma_{max}(\mat{Q}_i) (\|\vect{e}_1\| + \|\vect{e}_2\|)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_1, \vect{e}_2 \in \mathcal{E}_i}
+      \big(\|\vect{e}_1\| + \|\vect{e}_2\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= 2 \sigma_{max}(\mat{Q}_i) \text{ sup }\limits_{\vect{e}_i \in \mathcal{E}_i}
+      \big(\|\vect{e}_i\|\big)\|\vect{e}_1 - \vect{e}_2\| \\[2.5ex]
+    &= 2 \sigma_{max}(\mat{Q}_i)\overline{\varepsilon}_i \|\vect{e}_1 - \vect{e}_2\|
+\end{align}

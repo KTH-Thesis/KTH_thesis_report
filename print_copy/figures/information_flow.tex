@@ -1,0 +1,74 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, %fill=blue!20,
+    text width=7.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, %fill=blue!20,
+    text width=10em, text centered, minimum height=4em]
+\tikzstyle{block_rounded} = [rectangle, rounded corners, draw, %fill=blue!20,
+    text width=12em, text centered, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse, %fill=red!20,
+    node distance=3cm, minimum height=4em, minimum width=4em]
+
+\begin{tikzpicture}[node distance = 2cm, auto]
+
+    % Place nodes
+
+    \node [block, node distance=1.5cm] (system_m) {Agent $m \in \mathcal{R}_i(t_k)$};
+    \node [block, below of=system_m, node distance=2.5cm] (system_n) {Agent $n \in \mathcal{R}_i(t_k)$};
+
+    % invisible node
+    \node[right of=system_n, node distance=4.5cm] (right_of_n){};
+
+    \node [block_rounded, below of=right_of_n, node distance=2.5cm] (latest_plans) {Latest predictions (current timestep $t_k$)};
+    \node [block, below of=latest_plans, node distance=2.5cm] (agent_i) {Agent $i$};
+    \node [block_rounded, below of=agent_i, node distance=2.5cm] (latest_plans_) {Latest predictions \\ (previous timestep $t_{k-1}$)};
+
+    % invisible node
+    \node[left of=latest_plans_, node distance=4.5cm] (left_of_i){};
+
+    \node [block, below of=left_of_i, node distance=2.5cm] (system_p) {Agent $p \in \mathcal{R}_i(t_k)$};
+    \node [block, below of=system_p, node distance=2.5cm] (system_q) {Agent $q \in \mathcal{R}_i(t_k)$};
+
+    \node [above of=system_m, node distance=1.5cm] (dots_0) {$\vdots$};
+    \node [below of=system_q, node distance=1.5cm] (dots_1) {$\vdots$};
+
+
+    % invisible nodes
+    \node[inner sep=0,minimum size=0,right of=system_m, node distance=5.5cm] (sm) {};
+    \node[inner sep=0,minimum size=0,right of=system_n, node distance=4.5cm] (sn) {};
+    \node[inner sep=0,minimum size=0,right of=system_p, node distance=4.5cm] (sp) {};
+    \node[inner sep=0,minimum size=0,right of=system_q, node distance=5.5cm] (sq) {};
+
+    % paths
+    \path[line]           (system_m) -- (sm);
+    \path[line]           (system_n) -- (sn);
+    \path[line]           (sm) -- (latest_plans.38);
+    \path[line]           (sn) -- (latest_plans);
+
+    \path[line]           (system_p) -- (sp);
+    \path[line]           (system_q) -- (sq);
+    \path[line]           (sp) -- (latest_plans_);
+    \path[line]           (sq) -- (latest_plans_.-38);
+
+    \path[line,dashed]    (latest_plans) -- (agent_i);
+    \path[line,dashed]    (latest_plans.-38) -- (agent_i.38);
+
+    \path[line,dashed]    (latest_plans_) -- (agent_i);
+    \path[line,dashed]    (latest_plans_.38) -- (agent_i.-38);
+
+    %\path [line]        (decide)  -- node {NO}(stop);
+    %\path [line]        (decide)  -- node {YES}(solve_1);
+    %\path [line]        (solve_1) -- node {}(solve_2);
+    %\path [line,dashed] (solve_2) -- node {}(solve_N);
+    %\path [line]        (solve_1_) -- node {}(solve_2_);
+    %\path [line,dashed] (solve_2_) -- node {}(solve_N_);
+
+    %\path [line] (solve_N) -- (sN);
+    %\path [line] (sN) -- (s1_);
+    %\path [line] (s1_) -- (solve_1_);
+
+    %\path [line] (solve_N_) -- (sN_);
+    %\path [line] (sN_) -- (s1_inv);
+    %\path [line] (s1_inv) -- (solve_1_inv);
+
+\end{tikzpicture}

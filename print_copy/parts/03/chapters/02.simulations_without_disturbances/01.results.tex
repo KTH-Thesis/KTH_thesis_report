@@ -1,0 +1,106 @@
+\section{Simulation results}
+
+The initial configurations of the three agents are
+$\vect{z}_1$ $=$ $[-6, 3.5, 0]^{\top}$,
+$\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$ and
+$\vect{z}_3$ $=$ $[-6, 4.7, 0]^{\top}$.
+Their desired configurations in steady-state are
+$\vect{z}_{1,des}$ $=$ $[6, 3.5, 0]^{\top}$,
+$\vect{z}_{2,des}$ $=$ $[6, 2.3, 0]^{\top}$ and
+$\vect{z}_{3,des}$ $=$ $[6, 4.7, 0]^{\top}$.
+Obstacles $o_1$ and $o_2$ are placed between the two at $[0, 2.0]^{\top}$
+and $[0, 5.5]^{\top}$ respectively. The penalty
+matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
+$\mat{Q} = 0.5 (I_3 + 0.05\dagger_3)$, $\mat{R} = 0.005 I_2$ and
+$\mat{P} = 0.5 (I_3 + 0.05\dagger_3)$, where $\dagger_N$ is a $N \times N$
+matrix whose elements are chosen at random between the values $0.0$ and $1.0$.
+The sampling time is $h = 0.1$ sec, the time-horizon is $T_p = 0.5$ sec, and
+the total execution time given was $3$ sec.
+
+Frames of the evolution of the trajectories of the three agents in the $x-y$
+plane are depicted in figure \eqref{fig:d_OFF_res_trajectory_3_2}. Here, the
+compound system avoids the pitfall of coming to a dead-end by having agent 1
+act as a kind of mediator between the agents at the extremes as regards their
+trajectories: a too strict terminal penalty matrix $\mat{P}$, or an insufficient
+time-horizon length in relation to the maximum allowed input values, or a
+strongly diagonal structure for the penalty matrix $\mat{Q}$ could result in
+a situation where agent 1 is trapped between the two obstacles, with agents 2
+and 3 following behind him, halted by the insufficient space between the two
+obstacles, and the geometry of the compound system resembling an isosceles
+triangle.
+
+Once agent 3 clears the narrow, it is held up by agent 1, since their
+maximum allowed distance is tightly constrained. Agent 1 in turn has to make
+sure that its distance to agent 2 is within the allowed bounds as well. Figure
+\eqref{fig:d_OFF_res_3_2_distance_agents_13} shows the evolution of the
+distance between agents 1 and 3 through time, and their abiding by the
+maximum-allowed-distance-between-agents constraint. The minimum and maximum
+allowed distances between the two agents are portrayed in the
+colour \textcolor{cyan}{cyan}.
+
+Figure \eqref{fig:d_OFF_res_3_2_distance_obstacle_2_agents} shows the
+evolution of the distance between all agents and obstacle $o_2$ respectively,
+and, most crucially, it illustrates the fact that all agents avoid colliding
+with it. Figure \eqref{fig:d_OFF_res_3_2_inputs_agent_1} shows the input signals
+directing agent 1 through time. The minimum allowed distance between the agents
+and the obstacle, as well as the minimum and maximum allowed input sizes are
+portrayed in the colour \textcolor{cyan}{cyan}.
+
+Figure \eqref{fig:d_OFF_res_3_2_errors_agent_1} depicts the evolution of the
+error states of agent 1 through time. As the three error states converge to zero,
+the agent is stabilized at its desired 3D configuration.
+
+
+\begin{figure}[H]
+  \scalebox{0.9}{\input{./figures/06.without_disturbance/3_2/01.trajectories/trajectory_d_OFF_3_2.tex}}
+  \caption{The trajectories of the three agents in the $x-y$ plane. Agent 1 is with
+    blue, agent 2 with red and agent 3 with yellow. A faint green line connects
+    agents deemed neighbours. The obstacles are black. Mark O denotes
+    equilibrium configurations. Mark X marks desired configurations.}
+  \label{fig:d_OFF_res_trajectory_3_2}
+\end{figure}
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/06.without_disturbance/3_2/02.errors/errors_agent_1.tex}}
+      \caption{The evolution of the error states of agent 1 over time.}
+      \label{fig:d_OFF_res_3_2_errors_agent_1}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/06.without_disturbance/3_2/03.distances/distance_agents_13.tex}}
+      \caption{The distance between agents 1 and 3 over time. The maximum allowed
+        distance has a value of $2.1$ and the minimum allowed distance a value
+        of $1.1$.}
+  \label{fig:d_OFF_res_3_2_distance_agents_13}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/06.without_disturbance/3_2/03.distances/distance_obstacle_2_agents.tex}}
+      \caption{The distance between each agent and obstacle 2 over time. The
+        minimum allowed distance has a value of $1.6$.}
+      \label{fig:d_OFF_res_3_2_distance_obstacle_2_agents}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/06.without_disturbance/3_2/04.inputs/inputs_agent_1.tex}}
+      \caption{The inputs signals directing agent 1 over time. Their value is
+        constrained between $-10$ and $10$.}
+      \label{fig:d_OFF_res_3_2_inputs_agent_1}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}

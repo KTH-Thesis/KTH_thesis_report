@@ -1,0 +1,46 @@
+\section{Notation}
+
+The set of positive integers is denoted by $\mathbb{N}$. The real $n$-coordinate
+space, $n\in\mathbb{N}$, is denoted by $\mathbb{R}^n$;
+$\mathbb{R}^n_{\geq 0}$ and $\mathbb{R}^n_{> 0}$ are the sets of real
+$n$-vectors with all elements nonnegative and positive, respectively. Given a
+set $S$, we denote by $\lvert S\lvert$ its cardinality. The notation
+$\|\vect{x}\|$ is used for the Euclidean norm of a vector
+$\vect{x} \in \mathbb{R}^n$; $\|\vect{x}\|_P$ denotes the $\mat{P}$-norm of
+$\vect{x}$. Given matrix $\mat{A}$, $\lambda_{\text{min}}(\mat{A})$
+and $\lambda_{\text{max}}(\mat{A})$
+denote the minimum and maximum eigenvalues of $\mat{A}$, respectively.
+Its minimum and maximum singular values are denoted by
+$\sigma_{\text{min}}(\mat{A})$ and $\sigma_{\text{max}}(\mat{A})$ respectively.
+Given two sets $A$ and $B$, the operation $A \oplus B$ denotes the Minkowski
+addition, defined by
+$A \oplus B = \{\vect{a} + \vect{b},\ \vect{a} \in A, \vect{b} \in B\}$. Similarly,
+the Minkowski $-$ or Pontryagin difference is defined by
+$A \ominus B = \{\vect{a} - \vect{b},\ \vect{a} \in A, \vect{b} \in B\}$.
+$\mat{I_n} \in \mathbb{R}^{n \times n}$ and
+$\mat{0}_{m \times n} \in \mathbb{R}^{m \times n}$
+are the unit matrix and the $m \times n$ matrix with all entries zeros
+respectively. The notation
+$\mathcal{B}(\vect{c},r) \overset{\Delta}{=} \{\vect{x} \in \mathbb{R}^3: \|\vect{x}-\vect{c}\| \leq r\}$
+is reserved for the 3D sphere of radius $r \in \mathbb{R}_{\ge 0}$ and center
+located at $\vect{c}\in\mathbb{R}^{3}$.
+
+The vector expressing the coordinates of the origin of frame $\{j\}$ in
+frame $\{i\}$ is denoted by $\vect{p}_{j \triangleright i}$. When this vector is
+expressed in 3D space in a third frame, frame $\{k\}$, it is denoted by
+$\vect{p}_{j \triangleright i}^{k}$.
+%Given $\vect{a}\in\mathbb{R}^3$, $\mat{S}(\vect{a})$ is the skew-symmetric
+%matrix defined according to $\mat{S}(\vect{a})\vect{b} = \vect{a}\times \vect{b}$.
+The angular velocity of frame $\{j\}$ with respect to frame $\{i\}$, expressed
+in frame $\{k\}$ coordinates, is denoted by
+$\vect{\omega}^k_{j \triangleright i}\in \mathbb{R}^{3}$.
+We further denote by $\vect{q}_{j \triangleright i} \in \mathbb{T}^3$
+the Euler angles representing the orientation of frame $\{j\}$ with respect to
+frame $\{i\}$, where $\mathbb{T}^3$ is the $3$D torus.
+We also use the notation $\mathbb{M} = \mathbb{R}^3\times \mathbb{T}^3$.
+For notational brevity, when a coordinate frame corresponds to the inertial frame
+of reference $\{\mathcal{O}\}$, we will omit its explicit notation
+(e.g., $\vect{p}_i = \vect{p}_{i \triangleright \mathcal{O}} = \vect{p}^\mathcal{O}_{i \triangleright \mathcal{O}}$, and
+$\vect{\omega}_i = \vect{\omega}_{i \triangleright \mathcal{O}} = \vect{\omega}^\mathcal{O}_{i \triangleright \mathcal{O}}$).
+%All vector and matrix differentiations are derived with respect to the inertial
+%frame $\{\mathcal{O}\}$ unless stated otherwise.

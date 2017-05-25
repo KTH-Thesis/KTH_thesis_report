@@ -1,0 +1,73 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,1.00000,1.00000}%
+\definecolor{mycolor2}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.133in,
+height=3.26in,
+at={(0.693in,0.44in)},
+scale only axis,
+xmin=0,
+xmax=30,
+xmajorgrids,
+ymin=1,
+ymax=3.5,
+ymajorgrids,
+xlabel={time [iterations]},
+ylabel={distance},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+legend style={legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+0	1.1\\
+30	1.1\\
+};
+\addlegendentry{$\text{d}_{\text{min}}$};
+
+\addplot [color=mycolor2,solid]
+  table[row sep=crcr]{%
+1	2.4\\
+2	2.33399582920287\\
+3	2.43977600452047\\
+4	2.78255922746974\\
+5	3.09754496041724\\
+6	3.03168110004216\\
+7	2.86883374850722\\
+8	2.47368788811249\\
+9	2.79905487605537\\
+10	3.01379006458806\\
+11	3.20187359968216\\
+12	3.18719387378932\\
+13	3.17160998984414\\
+14	3.13195447560489\\
+15	3.07506241378697\\
+16	2.53542360623611\\
+17	1.96685293835893\\
+18	1.88744942730434\\
+19	2.26437165992224\\
+20	2.40156380744231\\
+21	2.40331647868062\\
+22	2.40042360548688\\
+23	2.40001009192517\\
+24	2.39999827632433\\
+25	2.40000099029416\\
+26	2.40000113965613\\
+27	2.40000114347837\\
+28	2.40000114863557\\
+29	2.4000011496078\\
+30	2.40000115664096\\
+};
+\addlegendentry{$\text{d}_{\text{23,a}}$};
+
+\end{axis}
+\end{tikzpicture}%

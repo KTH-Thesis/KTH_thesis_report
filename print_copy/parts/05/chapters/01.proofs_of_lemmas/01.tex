@@ -1,0 +1,29 @@
+\section{Proof of lemma \getrefnumber{lemma:F_i_bounded_K_class}}
+\label{proof:lemma:F_i_bounded_K_class}
+
+  Let $\lambda_{min}(\mat{Q}_i, \mat{R}_i)$ denote the smallest eigenvalue
+  between those of matrices $\mat{Q}_i$ and $\mat{R}_i$, and let
+  $\lambda_{max}(\mat{Q}_i, \mat{R}_i)$ denote the largest. Then
+  \begin{align}
+    \lambda_{min}(\mat{Q}_i, \mat{R}_i)\|\vect{e}_i(t)\|^2 &\leq
+    \lambda_{min}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
+        \vect{e}_i(t) \\
+        \vect{u}_i(t)
+      \end{bmatrix}\Bigg\|^2  \\[2.5ex]
+      &\leq F_i \big(\vect{e}_i(t), \vect{u}_i(t)\big) \\[2.5ex]
+      &\leq \lambda_{max}(\mat{Q}_i, \mat{R}_i) \Bigg\| \begin{bmatrix}
+        \vect{e}_i(t) \\
+        \vect{u}_i(t)
+      \end{bmatrix}\Bigg\|^2 \leq
+    \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i(t)\|^2
+  \end{align}
+
+  Matrices $\mat{Q}_i, \mat{R}_i$ are positive definite, hence the functions
+  $\alpha_1 \big(\|\vect{e}_i\|\big) = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i\|^2$ and
+  $\alpha_2 \big(\|\vect{e}_i\|\big)= \lambda_{max}(\mat{Q}_i, \mat{R}_i) \|\vect{e}_i\|^2$ are
+  class $\mathcal{K}_{\infty}$ functions according to definition \eqref{def:k_class}.
+  Therefore, $F_i$ is lower- and upper-bounded by class $\mathcal{K}_{\infty}$
+  functions:
+  \begin{align}
+    \alpha_1\big(\|\vect{e}_i\|\big) \leq F_i\big(\vect{e}_i, \vect{u}_i\big) \leq \alpha_2\big(\| \vect{e}_i \|\big)
+  \end{align}

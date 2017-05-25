@@ -1,0 +1,47 @@
+The purpose to be saught in this chapter is the steering of each agent
+$i \in \mathcal{V}$ into a desired configuration in 12D space while conforming to
+the requirements posed by the problem. Here, the real system and its model are
+\textit{not} equivalent: we consider that additive disturbances act on the real
+system. At first, the model of the perturbed system \eqref{eq:system} will
+be formalized. Next, the error model and \textit{its} constraints will be
+expressed. We will then pose the optimization problem to be solved periodically:
+it will equip us with the optimum feasible input that steers the system towards
+achieving its intended configuration regardless of the introduced uncertainty,
+provided that it is bounded by a certain value. This will lead to the proof
+of this statement, i.e. that the compound closed-loop system of agents
+$i \in \mathcal{V}$ is stable under the proposed control regime, provided
+that the disturbance is bounded.
+
+%-------------------------------------------------------------------------------
+\section{The perturbed model}
+
+In the following, we assume that the real system is
+subject to bounded additive disturbances $\vect{\delta}_i$ such that
+$\vect{\delta}_i \in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3$, where
+$\Delta_i$ is a compact set containing the origin.
+The real system is described by:
+\begin{align}
+  \dot{\vect{z}}_i(t) &= f_i^R \big(\vect{z}_i (t), \vect{u}_i (t)\big) \label{eq:perturbed_system} \\[2.5ex]
+                      &= f_i \big(\vect{z}_i (t), \vect{u}_i (t)\big) + \vect{\delta}_i(t) \\[2.5ex]
+  \vect{z}_i(0) &= \vect{z}_{i,0} \\[2.5ex]
+  \vect{z}_i (t) & \subset \mathbb{R}^{9} \times \mathbb{T}^3 \\[2.5ex]
+  \vect{u}_i (t) & \subset \mathbb{R}^6 \\[2.5ex]
+  \vect{\delta}_i(t) &\in \Delta_i \subset \mathbb{R}^9 \times \mathbb{T}^3,\ t \in \mathbb{R}_{\geq 0}\\[2.5ex]
+  \text{sup}\limits_{t \in \mathbb{R}_{\geq 0}} \|\vect{\delta}_i(t)\| &\leq \overline{\delta}_i
+\end{align}
+where state $\vect{z}_i$ is directly measurable as per assumption
+\eqref{ass:measurements_access}.
+
+The constraint set $\mathcal{Z}_{i,t} \subset \mathbb{R}^{9} \times \mathbb{T}^3$
+is unchanged: it is the set that captures all the state constraints of
+the system's dynamics posed by the problem \eqref{problem},
+at $t \in \mathbb{R}_{\geq 0}$. We include it again here for reference
+purposes.
+\begin{align}
+  \mathcal{Z}_{i,t} = \big\{\vect{z}_i(t) \in \mathbb{R}^{9}\times \mathbb{T}^3 : \
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \label{constraint:p_1_2}\\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
+      & \|\vect{p}_W - \vect{p}_i(t)\| < \overline{d}_{i,W}, \\[2.5ex]
+      & - \frac{\pi}{2} < \theta_i(t) < \frac{\pi}{2} \label{constraint:p_5_2}\big\}
+\end{align}

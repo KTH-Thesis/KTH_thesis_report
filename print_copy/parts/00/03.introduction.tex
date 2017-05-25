@@ -1,0 +1,97 @@
+Research into decentralized control of interacting systems has been well
+underway for the past three decades by academic, industrial or commercial,
+civilian or military parties. Decentralized Control schemes and strategies are
+now used in such areas as those concerned with controlling the trajectory and
+formation of mobile agents, the area of jurisdiction of an air traffic
+controller\cite{4459797}, or in the field of micro-robotics
+\cite{iswarm}\cite{micron}. Focus has been given on research regarding unmanned
+autonomous vehicles $-$ as in unmanned ground,
+underground and air vehicles, better known as UGV's, UUV's and
+UAV's \cite{1429425}\cite{Dunbar2006549}\cite{4389042}\cite{1470732}.
+In principle, all above areas are concerned with controlling a network of
+mobile agents under certain conditions, such as avoiding collisions with their
+environment or with one-another, and with the actuation forces applied to each
+agent having to satisfy certain constraints.
+
+The nature of such problems is suitable for approach by the strategy of
+Model Predictive / Receding Horizon - Control since it can directly incorporate
+the consideration of such limitations, while being able to handle linear and
+non-linear, continuous-time or discrete-time underlying systems $-$ see
+\cite{FINDEISEN2003190}\cite{262032}\cite{grune2016nonlinear}, and the thorough
+elementary review \cite{Mayne2000789}. In principle, under this method, each
+agent solves a finite horizon optimal control problem (FHOCP) on-line given
+information on its configuration and that of its neighbours and, in general,
+information pertaining to its environment. The optimization problem is posed in
+a way such that all relevant and necessary constraints are explicitly
+included. In decentralized approaches, the dynamics of each system may not be
+directly influencing the dynamics of other neighbouring systems (as a direct
+source of uncertainty for instance), but may only do so indirectly, as
+information on their state is incorporated in the cost function used, or in the
+constraints considered (such as in the case of maintaining a set distance
+between agents), or in both.
+
+The literature on approaching the problem of decentralized stabilization of a
+compound system of neighbouring agents is large and evolving by branching out.
+In \cite{1470732} (\cite{00207170600867123}), the authors consider agents modeled
+as discs whose sensing range is not unlimited, and whose dynamics are in
+continuous time and are described by the single (double) integrator. In this case,
+all agents are assigned a desired configuration that need not be known to
+any other agent than the one assigned to. The problem is approached by
+designing and utilizing decentralized navigation functions \cite{Lav06}.
+However, this method is problematic in that, in practice, it requires
+preposterously large actuation forces (up to $10^5$), it may easily give rise to
+numerical instability, and it requires harsh assumptions on the initial
+conditions of the problem (for instance, when an agent needs to bypass an
+obstacle and the problem is symmetric, the method will direct it onto the
+obstacle instead of making it overtake it). In \cite{Gustavi2010133}, the
+assignation regime is altered to a leader-follower configuration, leading to the
+added benefit of limiting the overall required sensor load, as resources are freed
+by having only leading/anchor agents being able to discern global positions or
+relative positions to landmarks.  In this case the dynamics of both leaders and
+followers are based on the Laplacian consensus equation, and they directly
+include the state of neighbouring agents.
+
+In \cite{Dunbar2006549}, what is demonstrated in detail is a decentralized
+multi-agent MPC stabilization approach that couples agents chosen as neighbours
+during the solution of their optimization problems in the running cost but not
+through their constraints. An interesting compatibility constraint is introduced
+in order to keep a degree of consistency between an agent's states predicted by
+its neighbours and their real values. Plant-model mismatch or uncertainties are
+omitted.  By contrast, in \cite{1383977} and \cite{1429425}, robust centralized
+and decentralized control laws are designed for UAV's. In order to attenuate
+disturbances, they use a tightening of constraints regime that, in general
+contrast to this work, propagates among agents, instead of through each of them.
+This work extends that of \cite{1185106} in the multi-agent dimension,
+and it translates the constraints' tightening regime in the face of disturbances
+in the continuous-time case. \\[0.5ex]
+
+This work considers the stabilization of a network of multiple non-point agents
+whose dynamics are in continuous time and non-linear, whose sensing
+capabilities are not unlimited, in the absence and in the presence of additive
+bounded disturbances. In both cases, it designs control regimes which under
+sufficient conditions stabilize the compound multi-agent system.
+The problem is approached through the MPC framework in a
+decentralized manner in that each agent solves its own FHOCP, having
+availability of information on the current and planned actions of all agents
+within its sensing range. Agents needed to maintain connectivity with one-another
+are termed neighbours, and their determined interactivity ranges are explicitly
+defined through the constraints of the optimization problems that each of them
+solve.
+
+This document is structured as follows:
+Chapter \ref{chapter:notation_reliminaries} introduces the notation used
+henceforth, and auxiliary prerequisites of the rest of the work.
+Chapter \ref{chapter:prob_formulation} poses its motivating problem.
+Part \ref{part:advocated_solutions} is composed of the detailed feasibility
+and stability guarantee proofs for the cases of absent and present
+disturbances.
+Part \ref{part:simulations} verifies the reality of the designed control regimes
+through simulations on four discrete scenarios, in ascending order of
+difficulty.
+Part \ref{chapter:conclusions_future_work} concludes this work and poses
+relevant future directions of it.
+Appendix \ref{chapter:proofs_of_lemmas} is composed of proofs of various lemmas
+that this work introduces.
+Appendices \ref{chapter:simulation_figures_without_disturbances} and
+\ref{chapter:simulation_figures_with_disturbances} include the complete
+collection of results derived from the all determined simulations.

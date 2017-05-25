@@ -1,0 +1,116 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,1.00000,1.00000}%
+\definecolor{mycolor2}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor3}{rgb}{0.85000,0.32500,0.09800}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.133in,
+height=3.26in,
+at={(0.693in,0.44in)},
+scale only axis,
+xmin=1,
+xmax=30,
+xmajorgrids,
+ymin=-11,
+ymax=11,
+ymajorgrids,
+xlabel={time [iterations]},
+ylabel={component magnitude},
+axis background/.style={fill=white},
+axis x line*=bottom,
+axis y line*=left,
+legend style={at={(0.711,0.626)},anchor=south west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+0	-10\\
+30	-10\\
+};
+\addlegendentry{$\text{u}_{\text{max}}$};
+
+\addplot [color=mycolor1,solid]
+  table[row sep=crcr]{%
+0	10\\
+30	10\\
+};
+\addlegendentry{$\text{u}_{\text{min}}$};
+
+\addplot [color=mycolor2,solid]
+  table[row sep=crcr]{%
+1	10\\
+2	10.0002392315268\\
+3	10\\
+4	10\\
+5	7.16450842385731\\
+6	1.55495615570192\\
+7	2.43832329277864\\
+8	3.51795940743551\\
+9	7.56941704267642\\
+10	10\\
+11	10\\
+12	10\\
+13	10\\
+14	10\\
+15	10\\
+16	10\\
+17	6.82268063379982\\
+18	10\\
+19	3.51837632911962\\
+20	0.0901484721492271\\
+21	-0.422941956120491\\
+22	-0.25639751678959\\
+23	-0.0976963820316616\\
+24	-0.0245746121853205\\
+25	-0.00231245268934231\\
+26	0.000514626297207931\\
+27	0.000193078586038118\\
+28	0.000117515392481582\\
+29	0.00037629896111213\\
+30	1.35562937325825e-05\\
+};
+\addlegendentry{$\text{u}_{\text{2,1}}$};
+
+\addplot [color=mycolor3,solid]
+  table[row sep=crcr]{%
+1	3.7812695257274\\
+2	-4.51629751480452\\
+3	-0.359622690210924\\
+4	-1.78209478743166\\
+5	10\\
+6	10\\
+7	7.12509424333898\\
+8	-10\\
+9	2.1135221999599\\
+10	-10\\
+11	-6.46490414361842\\
+12	-1.95530062393673\\
+13	-0.484975365564568\\
+14	-0.910927528647797\\
+15	-1.11824926685626\\
+16	-1.31914856674924\\
+17	-2.44039654973962\\
+18	1.93727164684507\\
+19	3.89104676395104\\
+20	1.7818183723041\\
+21	0.607644181792721\\
+22	0.135381673960384\\
+23	0.00275740504511387\\
+24	-0.0148465380596306\\
+25	-0.00773898543778512\\
+26	-0.00205290737621252\\
+27	-0.00086491064955737\\
+28	-0.000312944612193545\\
+29	-0.000183499971910083\\
+30	-0.000222306017977059\\
+};
+\addlegendentry{$\text{u}_{\text{2,2}}$};
+
+\end{axis}
+\end{tikzpicture}%

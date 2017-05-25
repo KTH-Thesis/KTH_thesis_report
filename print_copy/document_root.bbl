@@ -1,0 +1,114 @@
+\begin{thebibliography}{10}
+
+\bibitem{4459797}
+E.~Franco, L.~Magni, T.~Parisini, M.~M. Polycarpou, and D.~M. Raimondo,
+  ``Cooperative constrained control of distributed agents with nonlinear
+  dynamics and delayed information exchange: A stabilizing receding-horizon
+  approach,'' {\em IEEE Transactions on Automatic Control}, vol.~53,
+  pp.~324--338, Feb 2008.
+
+\bibitem{iswarm}
+``Project iswarm, http://microrobotics.ira.uka.de,''
+
+\bibitem{micron}
+``Project micron, http://wwwipr.ira.uka.de/micron,''
+
+\bibitem{1429425}
+A.~Richards and J.~How, ``Decentralized model predictive control of cooperating
+  uavs,'' in {\em 2004 43rd IEEE Conference on Decision and Control (CDC) (IEEE
+  Cat. No.04CH37601)}, vol.~4, pp.~4286--4291 Vol.4, Dec 2004.
+
+\bibitem{Dunbar2006549}
+W.~B. Dunbar and R.~M. Murray, ``Distributed receding horizon control for
+  multi-vehicle formation stabilization,'' {\em Automatica}, vol.~42, no.~4,
+  pp.~549 -- 558, 2006.
+
+\bibitem{4389042}
+T.~Keviczky, F.~Borrelli, K.~Fregene, D.~Godbole, and G.~J. Balas,
+  ``Decentralized receding horizon control and coordination of autonomous
+  vehicle formations,'' {\em IEEE Transactions on Control Systems Technology},
+  vol.~16, pp.~19--33, Jan 2008.
+
+\bibitem{1470732}
+D.~V. Dimarogonas and K.~J. Kyriakopoulos, ``Decentralized stabilization and
+  collision avoidance of multiple air vehicles with limited sensing
+  capabilities,'' in {\em Proceedings of the 2005, American Control Conference,
+  2005.}, pp.~4667--4672 vol. 7, June 2005.
+
+\bibitem{FINDEISEN2003190}
+R.~Findeisen, L.~Imsland, F.~Allgower, and B.~A. Foss, ``State and output
+  feedback nonlinear model predictive control: An overview,'' {\em European
+  Journal of Control}, vol.~9, no.~2, pp.~190 -- 206, 2003.
+
+\bibitem{262032}
+H.~Michalska and D.~Q. Mayne, ``Robust receding horizon control of constrained
+  nonlinear systems,'' {\em IEEE Transactions on Automatic Control}, vol.~38,
+  pp.~1623--1633, Nov 1993.
+
+\bibitem{grune2016nonlinear}
+L.~Gr{\"u}ne and J.~Pannek, {\em Nonlinear Model Predictive Control: Theory and
+  Algorithms}.
+\newblock Communications and Control Engineering, Springer International
+  Publishing, 2016.
+
+\bibitem{Mayne2000789}
+D.~Mayne, J.~Rawlings, C.~Rao, and P.~Scokaert, ``Constrained model predictive
+  control: Stability and optimality,'' {\em Automatica}, vol.~36, no.~6,
+  pp.~789 -- 814, 2000.
+
+\bibitem{00207170600867123}
+D.~V. Dimarogonas and K.~J. Kyriakopoulos, ``A feedback control scheme for
+  multiple independent dynamic non-point agents,'' {\em International Journal
+  of Control}, vol.~79, no.~12, pp.~1613--1623, 2006.
+
+\bibitem{Lav06}
+S.~M. LaValle, {\em Planning Algorithms}.
+\newblock Cambridge, U.K.: Cambridge University Press, 2006.
+\newblock Available at http://planning.cs.uiuc.edu/.
+
+\bibitem{Gustavi2010133}
+T.~Gustavi, D.~V. Dimarogonas, M.~Egerstedt, and X.~Hu, ``Sufficient conditions
+  for connectivity maintenance and rendezvous in leader–follower networks,''
+  {\em Automatica}, vol.~46, no.~1, pp.~133 -- 139, 2010.
+
+\bibitem{1383977}
+A.~Richards and J.~How, ``A decentralized algorithm for robust constrained
+  model predictive control,'' in {\em Proceedings of the 2004 American Control
+  Conference}, vol.~5, pp.~4261--4266 vol.5, June 2004.
+
+\bibitem{1185106}
+D.~L. Marruedo, T.~Alamo, and E.~F. Camacho, ``Input-to-state stable mpc for
+  constrained discrete-time nonlinear systems with bounded additive
+  uncertainties,'' in {\em Proceedings of the 41st IEEE Conference on Decision
+  and Control, 2002.}, vol.~4, pp.~4619--4624 vol.4, Dec 2002.
+
+\bibitem{khalil_nonlinear_systems}
+H.~Khalil, {\em {N}oninear {S}ystems}.
+\newblock Prentice-Hall, New Jersey, 1996.
+
+\bibitem{Fontes2007}
+F.~A. C.~C. Fontes, L.~Magni, and E.~Gyurkovics, {\em Sampled-Data Model
+  Predictive Control for Nonlinear Time-Varying Systems: Stability and
+  Robustness}, pp.~115--129.
+\newblock Berlin, Heidelberg: Springer Berlin Heidelberg, 2007.
+
+\bibitem{marquez2003nonlinear}
+H.~M{\'a}rquez, {\em Nonlinear Control Systems: Analysis and Design}.
+\newblock Wiley, 2003.
+
+\bibitem{ISS_SKATOLINI}
+L.~Magni, D.~M. Raimondo, and R.~Scattolini, ``Input-to-state stability for
+  nonlinear model predictive control,'' in {\em Proceedings of the 45th IEEE
+  Conference on Decision and Control}, pp.~4836--4841, Dec 2006.
+
+\bibitem{kolmanovsky}
+I.~Kolmanovsky and E.~G. Gilbert, ``Theory and computation of disturbance
+  invariant sets for discrete-time linear systems,'' {\em Mathematical Problems
+  in Engineering}, vol.~4, no.~4, pp.~317--367, 1998.
+
+\bibitem{schneider_2013}
+R.~Schneider, {\em Minkowski addition}, pp.~139--207.
+\newblock Encyclopedia of Mathematics and its Applications, Cambridge
+  University Press, 2013.
+
+\end{thebibliography}

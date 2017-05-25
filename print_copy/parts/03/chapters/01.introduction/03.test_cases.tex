@@ -1,0 +1,107 @@
+\section{Simulation scenarios}
+
+The simulations were carried out under four different agents-obstacles
+configurations:
+
+\begin{enumerate}
+  \item Two agents avoid one obstacle on their way to their
+    steady-state configurations, without colliding with each other and without
+    being separated by the obstacle (we demand that their distance is always
+    smaller than the obstacle's diameter for the aim of cooperation).
+  \item Two agents pass through the space between two obstacles
+    on their way to their steady-state configurations $-$ again, the maximum
+    allowed distance between the two agents is smaller than the diameter
+    of the obstacle with the smallest radius.
+  \item Three agents avoid one obstacle on their way to their
+    steady-state configurations, without colliding with each other and without
+    being separated by the obstacle. In this case, two agents are
+    (independently) neighbours of the third, that is, the third agent should
+    maintain connectivity and avoid collision with both of the other two,
+    but the latter will only have to avoid colliding with each other.
+  \item Three agents pass through the space between two obstacles
+    on their way to their steady-state configurations. The conditions of this
+    scenario assume those of points 2 and 3.
+\end{enumerate}
+
+The four configurations are depicted in figures \eqref{fig:test_case_2_1},
+\eqref{fig:test_case_2_2}, \eqref{fig:test_case_3_1} and
+\eqref{fig:test_case_3_2}. Agent 1 is depicted in blue, agent 2 in
+red and agent 3 in yellow. The obstacles are depicted in black. Mark X
+denotes the desired position of an agent and its colour signifies the agent
+to be stabilized in that position.
+
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/05.test_cases/conf_2_1.tex}}
+      \caption{Test case one: two agents and one obstacle.}
+      \label{fig:test_case_2_1}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/05.test_cases/conf_2_2.tex}}
+      \caption{Test case two: two agents and two obstacles.}
+      \label{fig:test_case_2_2}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/05.test_cases/conf_3_1.tex}}
+      \caption{Test case three: three agents and one obstacle.}
+      \label{fig:test_case_3_1}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.7}{\input{./figures/05.test_cases/conf_3_2.tex}}
+      \caption{Test case four: three agents and two obstacles.}
+      \label{fig:test_case_3_2}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}\\[2.5ex]
+
+All configurations are as follows: the radius of all agents
+$i,j \in \mathcal{V}$ is $r_i = 0.5$; the radius of all obstacles is
+$r_{\ell} = 1.0$; the sensing range of all agents has a radius of
+$d_i = 4r_i + \epsilon = 2.0 + \epsilon$; the minimum distance between agents
+is $\underline{d}_{ij,a} = 2r_i + \epsilon = 1.0 + \epsilon$, and the minimum
+distance between agents and obstacles is
+$\underline{d}_{i\ell,o} = r_i + r_{\ell} + \epsilon = 1.5 + \epsilon$.
+$\epsilon$ was set to $\epsilon = 0.1$ in the disturbance-free cases and
+$\epsilon = 0.01$ in the cases where disturbances are present.
+
+In the case of two agents, $\mathcal{V} = \{1,2\}$,
+the neighbouring sets are $\mathcal{N}_1 = \{2\}$
+and $\mathcal{N}_2 = \{1\}$, while in the case of three agents,
+$\mathcal{V} = \{1,2,3\}$, $\mathcal{N}_1 = \{2,3\}$,
+$\mathcal{N}_2 = \{1\}$ and $\mathcal{N}_3 = \{1\}$.
+
+Under the above configuration regime, all agents are constrained in bypassing
+the obstacle(s) from the same side, as they are prohibited from overtaking it
+(them) from different sides by the requirement that their sensing range be
+lower than the sum of the diameter of one obstacle and the radii of any two
+agents.\\[2.5ex]
+
+All simulations exhibit the translation of the visited theory into practice:
+in all test scenarios, all agents are successfully stabilized at, or about
+their desired configurations, without their constraints being violated.
+Therefore, the next two chapters, instead of featuring all simulation results,
+will feature an anthology of the results pertaining to the most challenging task
+of those among the ones considered $-$ that of three agents having to negotiate
+bypassing two obstacles while maintaining appropriate connectivity and avoiding
+collisions. A comprehensive collection of all simulation results is featured in
+appendices \ref{chapter:simulation_figures_without_disturbances} and
+\ref{chapter:simulation_figures_with_disturbances}. The individual initial
+and terminal configurations of each agent, the positions of the obstacles and
+various other parameters are reported in the appropriate sections.

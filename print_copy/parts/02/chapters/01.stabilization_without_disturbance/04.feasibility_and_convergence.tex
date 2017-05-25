@@ -1,0 +1,504 @@
+%-------------------------------------------------------------------------------
+\section{Stabilization: Feasibility and Convergence}
+
+Under these considerations, we can now state the theorem that relates to
+the guaranteeing of the stability of the compound system of agents
+$i \in \mathcal{V}$, when each of them is assigned a desired
+position which results in feasible displacements:\\[2.5ex]
+
+\begin{bw_box}
+\begin{theorem}
+
+  Suppose that
+
+  \begin{enumerate}
+    \item the terminal region $\Omega_i \subseteq \mathcal{E}_{i,s}$ is
+      closed with $\vect{0} \in \Omega_i$ $\forall s \in \mathbb{R}_{\geq 0}$
+    \item a solution to the optimal control problem \eqref{position_based_cost}
+      is feasible at time $t=0$, that is, assumptions
+      \eqref{ass:measurements_access}, \eqref{ass:initial_conditions}, and
+      \eqref{ass:intra_environmental_arrangement} hold at time $t=0$
+    \item assumptions \eqref{ass:g_i_Lipschitz}, \eqref{ass:access_to_predicted_info_n},
+      and \eqref{ass:existence_of_solutions_without_disturbance} hold
+    \item there exists an admissible control input
+      $h_i(\vect{e}_i) : [t_k + T_p, t_{k+1} + T_p] \to \mathcal{U}_i$
+      such that for all $\vect{e}_i \in \Omega_i$ and
+      $\forall \tau \in [t_k + T_p, t_{k+1} + T_p]$:
+
+      \begin{enumerate}
+        \item $\vect{e}_i(\tau) \in \Omega_i$
+        \item $\dfrac{\partial V_i}{\partial \vect{e}_i} g_i\big(\vect{e}_i(\tau),
+        h_i\big(\vect{e}_i(\tau)\big)
+          + F_i\big(\vect{e}_i(\tau), h_i\big(\vect{e}_i(\tau)\big)\big) \leq 0$
+      \end{enumerate}
+
+  \end{enumerate}
+
+  then the closed loop system \eqref{eq:without_disturbances_closed_loop} under
+  the control input \eqref{eq:position_based_optimal_u} converges to the set
+  $\Omega_i$ when $t \to \infty$.
+
+\end{theorem}
+\end{bw_box}
+
+\textbf{Proof}. The proof of the above theorem consists of two parts:
+in the first, recursive feasibility is established, that is, initial
+feasibility is shown to imply subsequent feasibility; in the second part, and
+based on the first , it is shown that the error state $\vect{e}_i(t)$ converges
+to the terminal set $\Omega_i$.\\[2.5ex]
+
+\textbf{Feasibility analysis}
+Consider a sampling instant $t_k$ for which a
+solution $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to
+\eqref{position_based_cost} exists.
+%In between $t_k$ and $t_k + h$,
+%where $h$ is the sampling time, the optimal control signal
+%$\vect{u}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ is applied to the open-loop
+%system.
+Suppose now a time instant $t_{k+1}$ such that\footnote{It is not strictly
+necessary that $t_{k+1} = t_k + h$ here, however it is necessary for the
+following that $t_{k+1} - t_k \leq h$} $t_k < t_{k+1} < t_k + T_p$, and consider
+that the optimal control signal calculated at $t_k$ is comprised of the
+following two portions:
+
+\begin{equation}
+  \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big) = \left\{
+      \begin{array}{ll}
+        \overline{\vect{u}}_i^{\star}\big(\tau_1;\ \vect{e}_i(t_k)\big), & \tau_1 \in [t_k, t_{k+1}] \\[2.5ex]
+        \overline{\vect{u}}_i^{\star}\big(\tau_2;\ \vect{e}_i(t_k)\big), & \tau_2 \in [t_{k+1}, t_k + T_p]
+      \end{array}
+      \right.
+  \label{eq:optimal_input_portions_without_disturbances}
+\end{equation}
+
+Both portions are admissible since the calculated optimal control input is
+admissible, and hence they both conform to the input constraints.
+As for the resulting predicted states, they satisfy the state constraints, and,
+crucially: $\overline{\vect{e}}_i\big(t_k + T_p;\ \overline{\vect{u}}_i^{\star}(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$.
+Furthermore, according to assumption (3) of the theorem, there exists an
+admissible (and certainly not guaranteed optimal) input $h_i(\vect{e}_i)$ that
+renders $\Omega_i$ invariant over $[t_k + T_p, t_{k+1} + T_p]$.
+
+Given the above facts, we can construct an admissible input
+$\widetilde{\vect{u}}_i(\cdot)$  starting at time $t_{k+1}$ by sewing together
+the second portion of \eqref{eq:optimal_input_portions_without_disturbances}
+and the input $h_i(\vect{e}_i)$:
+
+\begin{equation}
+  \widetilde{\vect{u}}_i(\tau) = \left\{
+      \begin{array}{ll}
+        \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big), & \tau \in [t_{k+1}, t_k + T_p] \\[2.5ex]
+        h_i\big(\vect{e}_i(\tau)\big), & \tau \in (t_k + T_p, t_{k+1} + T_p]\\[1ex]
+      \end{array}
+      \right.
+\label{eq:optimal_input_t_plus_one_without_disturbances}
+\end{equation}
+
+The control input $\widetilde{\vect{u}}_i(\cdot)$ is admissible as a
+composition of admissible control inputs. This means that feasibility of a
+solution to the optimization problem at time $t_k$ implies feasibility at
+time $t_{k+1} > t_k$, and, thus, since at time $t=0$ a solution is assumed to
+be feasible, a solution to the optimal control problem is feasible for all
+$t \geq 0$.\\[2.5ex]
+
+\textbf{Convergence analysis}
+The second part of the proof involves demonstrating the convergence of the
+state $\vect{e}_i$ to the terminal set $\Omega_i$. In order for this
+to be proved, it must be shown that a proper value function decreases along
+closed-loop trajectories starting at some initial time $t_k$. We consider the
+\textit{optimal} cost $J_i^{\star}\big(\vect{e}_i(t)\big)$ as a candidate
+Lyapunov function:
+$$J_i^{\star}\big(\vect{e}_i(t)\big) \triangleq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
+and, in particular, our goal is to show that that this cost decreases over
+consecutive sampling instants $t_{k+1} = t_k + h$, i.e.
+$J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq 0$.\\[2.5ex]
+
+In order not to wreak notational havoc, let us define the following terms:
+\begin{gg_box}
+\begin{itemize}
+  \item $\vect{u}_{0,i}(\tau) \triangleq \overline{\vect{u}}_i^{\star}\big(\tau;\ \vect{e}_i(t_k)\big)$
+    as the \textit{optimal} input that results from the solution to problem
+    \eqref{problem:opt_without_disturbances} based on the measurement of state
+    $\vect{e}_i(t_k)$, applied at time $\tau \geq t_k$
+  \item $\vect{e}_{0,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$
+    as the \textit{predicted} state at time $\tau \geq t_k$, that is,
+    the state that results from the application of the above input
+    $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$ to the
+    state $\vect{e}_i(t_k)$, at time $\tau$
+  \item $\vect{u}_{1,i}(\tau) \triangleq \widetilde{\vect{u}}_i(\tau)$
+    as the \textit{admissible} input at $\tau \geq t_{k+1}$
+    (see eq. \eqref{eq:optimal_input_t_plus_one_without_disturbances})
+  \item $\vect{e}_{1,i}(\tau) \triangleq \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big)$
+    as the \textit{predicted} state at time $\tau \geq t_{k+1}$, that is,
+    the state that results from the application of the above input
+    $\widetilde{\vect{u}}_i(\cdot)$ to the state
+    $\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)$, at time $\tau$
+\end{itemize}
+\end{gg_box}
+
+\begin{bw_box}
+  \begin{remark}
+  \label{remark:predicted_actual_equations_without_disturbance}
+    Given that no model mismatch or disturbances exist, for
+    the predicted and actual states at time
+    $\tau_1 \geq \tau_0 \in \mathbb{R}_{\geq 0}$ it holds that:
+    \begin{align}
+      \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\vect{e}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds \\[2.5ex]
+      \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) &=
+        \vect{e}_i(\tau_0) + \int_{\tau_0}^{\tau_1} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(\tau_0)), \vect{u}_i(s)\big) ds
+    \end{align}
+  \end{remark}
+\end{bw_box}
+
+Before beginning to prove convergence, it is worth noting that while the cost
+$$J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)$$
+is optimal (in the sense that it is based on the optimal input, which provides
+its minimum realization), a cost that is based on a plainly admissible
+(and thus, without loss of generality, sub-optimal) input
+$\vect{u}_i \not= \overline{\vect{u}}_i^{\star}$ will result in a configuration where
+\begin{equation}
+J_i \Big(\vect{e}_i(t), \vect{u}_i\big(\cdot;\ \vect{e}_i(t)\big)\Big)
+\geq J_i \Big(\vect{e}_i(t), \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t)\big)\Big)
+\end{equation}
+
+Let us now begin our investigation on the difference between the cost
+that results from the application of the feasible input $\vect{u}_{1,i}$,
+which we shall denote by $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$,
+and the optimal cost $J_i^{\star}\big(\vect{e}_i(t_k)\big)$. We remind
+ourselves that
+$J_i \big(\vect{e}_i(t), \overline{\vect{u}}_i (\cdot)\big)$ $=$
+$\int_{t}^{t + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds$ $+$
+$V_i \big(\overline{\vect{e}}_i (t + T_p)\big)$:
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) =\
+   & V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big) + \int_{t_{k+1}}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds \\[2.5ex]
+  -&V_i \big(\vect{e}_{0,i} (t_k + T_p)\big) - \int_{t_k}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
+\end{align}
+Considering that $t_k < t_{k+1} < t_k + T_p < t_{k+1} + T_p$, we break down the
+two integrals above in between these intervals:
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &= \\[2.5ex]
+    V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
+    &+ \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\[2.5ex]
+    -V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
+    &- \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    - \int_{t_{k+1}}^{t_k + T_p} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+\label{eq:convergence_4_integrals}
+\end{align}
+
+\begin{gg_box}
+
+Since no model mismatch or disturbances are present, consulting with remark
+\eqref{remark:predicted_actual_equations_without_disturbance} and substituting
+for $\tau_0 = t_k$ and $\tau_1 = t_{k+1}$ yields:
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds \\[2.5ex]
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) &=
+    \vect{e}_i(t_k) + \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds
+\end{align}
+Subtracting the second expression from the first, we get
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ &\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) -
+  \overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \\[2.5ex]
+  &=\int_{t_k}^{t_{k+1}} g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds -
+    \int_{t_k}^{t_{k+1}} g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) ds\\[2.5ex]
+  &=\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
+  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \\[2.5ex]
+\end{align}
+Taking norms on either side yields
+\begin{align}
+  \bigg\|\vect{e}_i\big(t_{k+1};\ &\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\[2.5ex]
+  &=\bigg\|\int_{t_k}^{t_{k+1}} \bigg( g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
+  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg) ds \bigg\|\\[2.5ex]
+  &\leq \int_{t_k}^{t_{k+1}} \bigg\| g_i\big(\vect{e}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big)
+  - g_i\big(\overline{\vect{e}}_i(s;\ \vect{e}_i(t_k)), \overline{\vect{u}}_i^{\star}(s)\big) \bigg\| ds\\[2.5ex]
+  &\leq L_{g_i}\int_{t_k}^{t_{k+1}} \bigg\|
+    \vect{e}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds
+\end{align}
+since $g_i$ is Lipschitz continuous in $\mathcal{E}_{i,s}$ with Lipschitz constant
+$L_{g_i}$. Reformulation yields
+\begin{align}
+  \bigg\|\vect{e}_i\big(t_k&+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_k+h;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| \\[2.5ex]
+  &\leq L_{g_i}\int_{0}^{h} \bigg\|
+    \vect{e}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_k + s;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| ds
+\end{align}
+By applying the Gr\"{o}nwall-Bellman inequality we obtain zero as an
+upper bound for the norm of the difference between the two states. Since
+any norm cannot be negative, we conclude that
+\begin{align}
+  \bigg\|\vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    -\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big) \bigg\| = 0
+\end{align}
+which means that
+\begin{align}
+  \vect{e}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+    =\overline{\vect{e}}_i\big(t_{k+1};\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+\end{align}
+
+In between times $t_{k+1}$ and $t_k + T_p$, the constructed admissible input
+$\widetilde{\vect{u}}_i(\cdot)$ is equal to the optimal
+input $\overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big)$
+(see eq. \ref{eq:optimal_input_t_plus_one_without_disturbances}), which means
+that $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$ in the interval
+$\tau \in [t_{k+1}, t_k + T_p]$. Since the initial conditions at $t=t_{k+1}$ are
+equal and the control laws are also equal, so will the predicted states over the
+same interval:
+\begin{align}
+  \overline{\vect{e}}_i\big(\tau;\ \widetilde{\vect{u}}_i(\cdot), \vect{e}_i(t_{k+1})\big) =
+  \overline{\vect{e}}_i\big(\tau;\ \overline{\vect{u}}_i^{\star}(\cdot), \overline{\vect{e}}_i(t_{k+1})\big), \ \tau \in [t_{k+1}, t_k + T_p]
+  \label{eq:equal_predicted_without_disturbance}
+\end{align}
+Using our notation then, in the same interval $[[t_{k+1}, t_k + T_p]$:
+$\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$. Coupled with the fact that
+in the same interval $\vect{u}_{1,i}(\tau) = \vect{u}_{0,i}(\tau)$, the following
+equality holds over $[t_{k+1}, t_k + T_p]$:
+\begin{align}
+  F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) =
+  F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big),\ s \in [t_{k+1}, t_k + T_p]
+\end{align}
+Integrating this equality over the interval where it is valid yields
+\begin{align}
+  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) ds =
+  \int_{t_{k+1}}^{t_k + T_p}F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
+\end{align}
+\end{gg_box}
+This means that these two integrals with ends over the interval
+$[t_{k+1}, t_k + T_p]$ featured in the right-hand side of eq.
+\eqref{eq:convergence_4_integrals} vanish, and thus the cost difference becomes
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) &=
+    V_i \big(\vect{e}_{1,i} (t_{k+1} + T_p)\big)
+    +\int_{t_k + T_p}^{t_{k+1} + T_p} F_i \big(\vect{e}_{1,i}(s), \vect{u}_{1,i} (s)\big) d s \\[2.5ex]
+    &-V_i \big(\vect{e}_{0,i} (t_k + T_p)\big)
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+\label{eq:convergence_2_integrals}
+\end{align}
+
+During the course of arriving at the above result, we have concluded that,
+in the absence of disturbances, the remark \eqref{eq:error_now_to_predicted_error}
+holds.\\[1ex]
+
+\begin{bw_box}
+  \begin{remark}
+  \label{eq:error_now_to_predicted_error}
+    In the absence of disturbances, the following equality holds over
+    the entire horizon $t \in [t_k, t_k + T_p]$:
+    \begin{align}
+      \vect{e}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)
+        =\overline{\vect{e}}_i\big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k)\big)\\[1ex]
+    \end{align}
+  \end{remark}
+\end{bw_box}
+
+\begin{gg_box}
+  We turn our attention to the first integral in the above expression, and we
+  note that $[t_{k+1} + T_p, t_k + T_p]$, is exactly the
+  the interval where assumption (3b) of the theorem holds. Hence,
+  we integrate the expression found in the assumption over the
+  interval $[t_k + T_p, t_{k+1} + T_p]$, for the controls and states applicable
+  in it:
+  \begin{align}
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \Bigg(\dfrac{\partial V_i}{\partial \vect{e}_{1,i}} g_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)
+    + F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big)\Bigg) ds &\leq 0 \\[2.5ex]
+    \int_{t_k + T_p}^{t_{k+1} + T_p} \dfrac{d}{ds} V_i\big(\vect{e}_{1,i}(s)\big) d s
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big) - V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq 0 \\[2.5ex]
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+  \end{align}
+
+  The left-hand side expression is the same as the first two terms in the
+  right-hand side of equality \eqref{eq:convergence_2_integrals}. We can
+  introduce the third one by subtracting it from both sides:
+  \begin{align}
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    &+ \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\[2.5ex]
+    &\leq V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\[2.5ex]
+    &\leq \Big|V_i\big(\vect{e}_{1,i}(t_k + T_p)\big)
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)\Big|
+  \end{align}
+  since $x \leq |x|, \forall x \in \mathbb{R}$.
+
+  By revisiting lemma \eqref{lemma:V_Lipschitz_e_0}, the above inequality
+  becomes
+  \begin{align}
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \\[2.5ex]
+    \leq L_{V_i} \big\|\vect{e}_{1,i}(t_k + T_p) - \vect{e}_{0,i}(t_k + T_p)\big\|
+  \end{align}
+
+  However, as we witnessed in \eqref{eq:equal_predicted_without_disturbance},
+  in the interval $[t_{k+1}, t_k + T_p]$:
+  $\vect{e}_{1,i}(\cdot) = \vect{e}_{0,i}(\cdot)$, hence the right-hand
+  side of the inequality equals zero:
+  \begin{align}
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big) \leq 0
+  \end{align}
+
+  By subtracting the fourth term needed to complete the right-hand side
+  expression of \eqref{eq:convergence_2_integrals}, i.e.
+  $\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s$
+  from both sides we get
+  \begin{align}
+    V_i\big(\vect{e}_{1,i}(t_{k+1} + T_p)\big)
+    + \int_{t_k + T_p}^{t_{k+1} + T_p} F_i\big(\vect{e}_{1,i}(s), \vect{u}_{1,i}(s)\big) ds& \\[2.5ex]
+    - V_i\big(\vect{e}_{0,i}(t_k + T_p)\big)
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+    &\leq -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) d s
+  \end{align}
+
+  The left-hand side of this inequality is now equal to the cost difference
+  $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)$.
+\end{gg_box}
+Hence, the cost difference becomes bounded by
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) ds
+\end{align}
+\begin{gg_box}
+  $F_i$ is a positive-definite function as a sum of a positive-definite
+  $\|\vect{u}_i\|^2_{\mat{R}_i}$ and a positive semi-definite function
+  $\|\vect{e}_i\|^2_{\mat{Q}_i}$. If we denote by
+  $m_i = \lambda_{min}(\mat{Q}_i, \mat{R}_i) \geq 0$ the minimum eigenvalue
+  between those of matrices $\mat{R}_i, \mat{Q}_i$, this means that
+  \begin{align}
+    F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) \geq m_i \|\vect{e}_{0,i}(s)\|^2
+  \end{align}
+
+  By integrating the above between our interval of interest $[t_k, t_{k+1}]$ we get
+  \begin{align}
+    \int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\geq \int_{t_k}^{t_{k+1}} m_i \|\vect{e}_{0,i}(s)\|^2 ds \\[2.5ex]
+    \text{or}\\[2.5ex]
+    -\int_{t_k}^{t_{k+1}} F_i \big(\vect{e}_{0,i}(s), \vect{u}_{0,i} (s)\big) &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+\end{gg_box}
+
+This means that the cost difference is upper-bounded by a class $\mathcal{K}$
+function
+\begin{align}
+  \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big)
+  &\leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+\end{align}
+and, since the cost $\overline{J}_i\big(\vect{e}_i(t_{k+1})\big)$ is (in general)
+sub-optimal: $J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - \overline{J}_i\big(\vect{e}_i(t_{k+1})\big) \leq 0$:
+\begin{align}
+ J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq -m_i \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+ \label{eq:J_opt_between_consecutive_k}
+\end{align}
+With this milestone result established, we need to trace the time $t_k$ back
+to $t_0 = 0$ in order to prove that the closed-loop system is stable at all
+times $t \in \mathbb{R}_{\geq 0}$.\\[1ex]
+
+\begin{gg_box}
+  The integral of $\|\vect{e}_{0,i}(\tau)\|^2$ over the interval $[t_0, t_{k+1}]$,
+  $t_0 < t_k < t_{k+1}$ can be decomposed into the addition of two integrals
+  with limits ranging from (a) $t_0$ to $t_k$ and (b) $t_k$ to $t_{k+1}$:
+  \begin{align}
+    \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds = \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds + \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  By rearranging terms, this means that
+  \begin{align}
+    \int_{t_k}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds = \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds - \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  making the optimal cost difference between the consecutive sampling times
+  $t_k$ and $t_{k+1}$ in \eqref{eq:J_opt_between_consecutive_k}
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k+1})\big) - J_i^{\star}\big(\vect{e}_i(t_k)\big) \leq
+      -m_i \int_{t_0}^{t_{k+1}} \|\vect{e}_{0,i}(s)\|^2 ds +m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  Similarly, the optimal cost difference between the sampling times $t_{k-1}$
+  and $t_{k}$ is
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_{k-1})\big) \leq
+      -m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds +m_i \int_{t_0}^{t_{k-1}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+  and we can apply this rationale all the way back to the cost difference
+  between $t_0$ and $t_1$. Summing all the inequalities between the pairs of
+  consecutive sampling times $(t_0, t_1)$, $(t_1, t_2)$, $\dots$,
+  $(t_{k-1}, t_k)$, we get
+  \begin{align}
+    J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(t_0)\big) \leq
+      -m_i \int_{t_0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds
+  \end{align}
+\end{gg_box}
+
+Hence, for $t_0 = 0$
+\begin{align}
+  J_i^{\star}\big(\vect{e}_i(t_{k})\big) - J_i^{\star}\big(\vect{e}_i(0)\big) \leq
+    -m_i \int_{0}^{t_{k}} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+\label{eq:J_opt_between_k_and_0}
+\end{align}
+which implies that the value function $J_i^{\star}\big(\vect{e}_i(t_{k})\big)$
+in non-increasing for all sampling times:
+\begin{align}
+  J_i^{\star}\big(\vect{e}_i(t_{k})\big) \leq J_i^{\star}\big(\vect{e}_i(0)\big),\ \forall t_k \in \mathbb{R}_{\geq0}
+\end{align}
+Let us now define the function $\Xi_i\big(\vect{e}_i(t)\big)$:
+\begin{align}
+  \Xi_i\big(\vect{e}(t)\big) \triangleq J_i^{\star}\big(\vect{e}_i(\tau)\big),\ t \in \mathbb{R}_{\geq0}
+\end{align}
+where $\tau = max\{t_k : t_k \leq t\}$ $-$ i.e. the immediately previous to
+$t$ sampling time. Then the above inequality reforms into
+\begin{align}
+  \Xi_i\big(\vect{e}(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big),\ t \in \mathbb{R}_{\geq0}
+\end{align}
+
+Since $\Xi_i\big(\vect{e}_i(0)\big)$
+is bounded (as composition of bounded parts), this implies
+that $\Xi_i\big(\vect{e}(t)\big)$ is also bounded. The signals
+$\vect{e}_i(t) \in \mathcal{E}_{i,s}$ and $\vect{u}_i(t) \in \mathcal{U}_i$
+are also bounded. According to \eqref{eq:position_based_error_model}, this
+means that $\dot{\vect{e}}_i(t)$ is bounded as well. From inequality
+\eqref{eq:J_opt_between_k_and_0} we then have
+\begin{align}
+  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big)
+    -m_i \int_{0}^{\tau} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0
+\end{align}
+which, due to the fact that $\tau \leq t$, is equivalent to
+\begin{align}
+  \Xi_i\big(\vect{e}_i(t)\big) \leq \Xi_i\big(\vect{e}_i(0)\big) -m_i \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq 0,\ t \in \mathbb{R}_{\geq 0}
+\end{align}
+Solving for the integral we get
+\begin{align}
+  \int_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds \leq
+    \dfrac{1}{m_i}\Big(\Xi_i\big(\vect{e}_i(0)\big) - \Xi_i\big(\vect{e}_i(t)\big)\Big),\ t \in \mathbb{R}_{\geq 0}
+\end{align}
+Both $\Xi_i\big(\vect{e}_i(0)\big)$ and $\Xi_i\big(\vect{e}_i(t)\big)$
+are bounded, and therefore so is their difference, which means that the
+integral $\int\limits_{0}^{t} \|\vect{e}_{0,i}(s)\|^2 ds$ and its limit when
+$t \to \infty$ are bounded as well. Lemma \eqref{lemma:barbalat} assures us
+that under these conditions for the error and its dynamics, which are
+fulfilled in our case, the error
+\begin{align}
+  \lim\limits_{t \to \infty}\|\vect{e}_{0,i}(t)\| &= 0 \Leftrightarrow \\[2.5ex]
+  \lim\limits_{t \to \infty}
+  \Big\| \overline{\vect{e}}_i\Big(t;\ \overline{\vect{u}}_i^{\star}\big(\cdot;\ \vect{e}_i(t_k)\big), \vect{e}_i(t_k) \Big) \Big\| &= 0,\
+\forall t_k \in \mathbb{R}_{\geq 0}
+\end{align}
+which, given remark \eqref{eq:error_now_to_predicted_error},
+and dropping the initial condition, means that
+$$\lim\limits_{t \to \infty}\|\vect{e}_i(t)\| = 0$$
+which implies that
+$$\lim\limits_{t \to \infty}\vect{e}_i(t) \in \Omega_i$$
+Therefore, the closed-loop trajectory of the error state $\vect{e}_i$ converges
+to the terminal set $\Omega_i$ as $t \to \infty$.
+
+In turn, this means that the system \eqref{eq:original_z_system} converges
+to $\vect{z}_{i,des}$ while simultaneously conforming to
+all constraints $\mathcal{Z}_{i,t}$, as $t \to \infty$. This conclusion holds
+for all $i \in \mathcal{V}$, and hence, the compound system of agents
+$\mathcal{V}$ is stable in $\mathcal{Z}_{i,t}$.
+\qedsymbol

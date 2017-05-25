@@ -1,0 +1,32 @@
+\section{Process \& information flow}
+
+The designed procedure flow can be either concurrent or sequential, meaning
+that agents can solve their individual FHOCP's and apply the control inputs
+either at the same time as everyone else, or one by one. The conceptual
+design itself is procedure-flow agnostic, and hence it can accommodate both
+without loss of feasibility or successful stabilization. For lack of a stable
+and usable multi-threaded \texttt{MATLAB} framework, the simulations where
+carried out under the latter approach: each agent solves its own FHOCP and
+applies the corresponding admissible control input in a round robin way,
+considering the current and planned (open-loop state predictions) configurations
+of all agents within its sensing range. Figures \eqref{fig:process_flow}
+and \eqref{fig:information_flow} depict the sequential procedural and
+informational regimes.\\[2ex]
+
+\begin{figure}[ht]\centering
+  \scalebox{0.9}{\input{./figures/procedure_flow.tex}}
+  \caption{The procedure is approached sequentially. Notice that the
+    figure implies that recursive feasibility is established if the initial
+    configuration is itself feasible.}
+  \label{fig:process_flow}
+\end{figure}
+
+\begin{figure}[ht]\centering
+  \scalebox{0.9}{\input{./figures/information_flow.tex}}
+  \caption{The flow of information to agent $i$ regarding his perception of
+    agents within its sensing range $\mathcal{R}_i$ at arbitrary FHOCP
+    solution time $t_k$. Agents $m,n \in \mathcal{R}_i(t_k)$ have solved their
+    FHOCP; agent $i$ is next; agents $p,q \in \mathcal{R}_i(t_k)$ have not
+    solved their FHOCP yet.}
+  \label{fig:information_flow}
+\end{figure}

@@ -1,0 +1,115 @@
+%-------------------------------------------------------------------------------
+\section{Objective}
+\label{sec:objective}
+
+Given the aforementioned structure of the system, the objective to be
+pursued is the \textit{stabilization of all agents} $i \in \mathcal{V}$ starting
+from an initial configuration abiding by assumption
+\eqref{ass:initial_conditions} to a desired feasible configuration
+$\vect{x}_{i,des}, \vect{v}_{i,des}$, while
+satisfying all communication constraints, i.e. sustaining connectivity between
+neighbouring agents, and avoiding collisions between agents, obstacles, and the
+workspace boundary. The concept of a \textit{desired feasible configuration}
+or \textit{feasible steady-state configuration} is given in definition
+\eqref{definition:feasible_steady_state_conf}.\\[1ex]
+
+\begin{bw_box}
+\begin{definition} (\textit{Feasible Steady-state Configuration})
+\label{definition:feasible_steady_state_conf}
+
+The desired steady-state configuration $\vect{x}_{i,des}$ of agents
+$\forall i \in \mathcal{V}, j \in \mathcal{N}_i$ is \textit{feasible} if and
+only if
+\begin{enumerate}
+  \item it is a collision-free configuration according to definition
+    \eqref{definition:collision_free_conf}
+  \item it does not result in violation of the communication constraints
+    between neighbouring agents $i,j$, i.e. the following inequalities hold
+    true simultaneously:
+    \begin{align}
+      \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_i \\[2.5ex]
+      \|\vect{p}_{i,des} - \vect{p}_{j,des}\| < d_j \\[2.5ex]
+    \end{align}
+\end{enumerate}
+
+\end{definition}
+\end{bw_box}
+
+At this point we must address an issue that refers to the feasibility of the
+problem's solution and relates to the avoidance of collisions from an
+intra-environmental perspective. Namely, we demand that a solution be feasible
+if and only if the agent with the largest radius is able to pass through the
+spaces demarcated by (a) the two least distant obstacles, and (b) the obstacle
+closest to the boundary of the workspace and the boundary of the workspace
+itself. To this end, we formalize the relevant notions in definition
+\eqref{def:intra_environmental_arrangement}.\\[1ex]
+
+\begin{bw_box}
+\begin{definition} (\textit{Intra-environmental Arrangement})
+\label{def:intra_environmental_arrangement}
+
+  Let us define $\underline{d}_{\ell'\ell}$
+  \begin{align}
+    \underline{d}_{\ell'\ell} &\triangleq \min\{\| \vect{p}_{\ell} - \vect{p}_{\ell'}\| + r_{\ell} + r_{\ell'} :
+      \ell,\ell' \in \mathcal{L}, \ell \neq \ell' \},
+  \end{align}
+  as the distance between the two least distant obstacles in the workspace,
+  $\underline{d}_{\ell,W}$
+  \begin{align}
+    \underline{d}_{\ell,W} & \triangleq \min\{r_W - (\|\vect{p}_W - \vect{p}_{\ell}\| + r_{\ell}) : \ell \in \mathcal{L}\},
+  \end{align}
+  as the distance between the least distant obstacle from the boundary of the
+  workspace and the boundary itself, and $D$
+  \begin{equation}
+    D \triangleq \min\{\underline{d}_{\ell'\ell}, \underline{d}_{\ell,W}\}
+  \end{equation}
+  as the least of these two distances.
+\end{definition}
+\end{bw_box}
+Given these notions, we can state an assumption on the feasibility of a
+solution to the problem that this work addresses:\\[1ex]
+
+\begin{gg_box}
+  \begin{assumption}(\textit{Intra-environmental Arrangement of Obstacles})
+  \label{ass:intra_environmental_arrangement}
+
+    All obstacles $\ell \in \mathcal{L}$ are situated inside the workspace $W$
+    in such a way that
+
+  \begin{equation}
+    D > 2 r_i,\ i \in \mathcal{V} : r_i = max\{r_j\}\ \forall j \in \mathcal{V}
+  \label{eq:geometric_constraint}
+  \end{equation}
+  where $D$ is defined in Definition \eqref{def:intra_environmental_arrangement}.
+\end{assumption}
+\end{gg_box}
+
+The designed desirable control scheme should provide feasible control
+inputs $\vect{u}_i$
+per agent $i \in \mathcal{V}$, that is, inputs that abide by the input
+constraints $\mathcal{U}_i$:\\[1ex]
+
+\begin{bw_box}
+  \begin{definition} (\textit{Feasible Control Input})
+    \label{definition:feasible_control_input}
+    The control input $\vect{u}_i (\cdot)$ is called feasible when it abides
+    by its respective constraint:
+  \begin{align}
+    \vect{u}_i(t) \in \mathcal{U}_i = \{ \vect{u}_i(t) \in \mathbb{R}^6 : \|\vect{u}_i (t)\| \leq \overline{u}_i\}
+  \end{align}
+
+\end{definition}
+\end{bw_box}
+
+Overall then, the objective of each agent $i$ is for
+$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$.
+If we design feasible control inputs $\vect{u}_i \in \mathcal{U}_i$,
+$\forall i \in \mathcal{V}$ such that the signal
+$\lim\limits_{t \to \infty} \vect{x}_i(t) = \vect{x}_{i,des}$ with
+dynamics given in \eqref{eq:system}, constrained under
+assumptions \eqref{ass:measurements_access}, \eqref{ass:initial_conditions},
+and \eqref{ass:intra_environmental_arrangement} satisfies
+$\lim\limits_{t \to \infty} \|\vect{x}_i(t) - \vect{x}_{i,des}\| = 0$,
+while all system related signals remain bounded in their respective regions,
+$-$ if all of the above are achieved, then problem \eqref{problem} has been
+solved.

@@ -1,0 +1,170 @@
+\section{Test case three: three agents $-$ one obstacle}
+
+In this case the initial configurations of the three agents are
+$\vect{z}_1$ $=$ $[-6, 3.5, 0]^{\top}$,
+$\vect{z}_2$ $=$ $[-6, 2.3, 0]^{\top}$ and
+$\vect{z}_3$ $=$ $[-6, 4.7, 0]^{\top}$.
+Their desired configurations in steady-state are
+$\vect{z}_{1,des}$ $=$ $[6, 3.5, 0]^{\top}$,
+$\vect{z}_{2,des}$ $=$ $[6, 2.3, 0]^{\top}$ and
+$\vect{z}_{3,des}$ $=$ $[6, 4.7, 0]^{\top}$.
+Obstacle $o_1$ is placed between the two at $[0, 3.5]^{\top}$. The penalty
+matrices $\mat{Q}$, $\mat{R}$, $\mat{P}$ were set to
+$\mat{Q} = 0.5 (I_3 + \dagger_3)$, $\mat{R} = 0.005 I_2$ and
+$\mat{P} = 0.5 (I_3 + \dagger_3)$, where $\dagger_N$ is a $N \times N$ matrix
+whose elements are chosen at random between the values $0.0$ and $1.0$.
+The related constants concerned with the execution
+of this simulation are as follows: $L_{g_i} = 12.7758$, $L_{V_i} = 0.1401$,
+$\varepsilon_{\Psi_i} = 0.4809$ and $\varepsilon_{\Omega_i} = 0.0105$ for
+all $i \in \mathcal{V}$.
+
+Subsections \ref{subsection:d_ON_errors_3_1} and
+\ref{subsection:d_ON_inputs_3_1} illustrate the evolution of the error states
+and the input signals of the three agents respectively. Subsection
+\ref{subsection:d_ON_distances_3_1} features the figures relating to the
+evolution of the distance between the three agents along with that between
+them and the obstacle. Subsection \ref{subsection:d_ON_V_3_1}
+features the evolution of the quadratic function
+$\vect{e}^{\top} \mat{P} \vect{e}$ through time for all three agents.
+
+%-------------------------------------------------------------------------------
+\subsection{State errors}
+\label{subsection:d_ON_errors_3_1}
+
+\begin{figure}[H]\centering
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_1/02.errors/errors_agent_1.tex}}
+  \caption{The evolution of the error states of agent 1 over time.}
+  \label{fig:d_ON_3_1_errors_agent_1}
+\end{figure}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/02.errors/errors_agent_2.tex}}
+      \caption{The evolution of the error states of agent 2 over time.}
+      \label{fig:d_ON_3_1_errors_agent_2}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/02.errors/errors_agent_3.tex}}
+      \caption{The evolution of the error states of agent 3 over time.}
+      \label{fig:d_ON_3_1_errors_agent_3}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Distances between actors}
+\label{subsection:d_ON_distances_3_1}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_agents_12.tex}}
+      \caption{The distance between agents 1 and 2 over time. The maximum allowed
+        distance has a value of $2.01$ and the minimum allowed distance a value
+        of $1.01$.}
+      \label{fig:d_ON_3_1_distance_agents_12}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_agents_13.tex}}
+      \caption{The distance between agents 1 and 3 over time. The maximum allowed
+        distance has a value of $2.01$ and the minimum allowed distance a value
+        of $1.01$.}
+      \label{fig:d_ON_3_1_distance_agents_13}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_agents_23.tex}}
+      \caption{The distance between agents 2 and 3 over time. The
+        minimum allowed distance a value of $1.01$.}
+      \label{fig:d_ON_3_1_distance_agents_23}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/03.distances/distance_obstacle_agents.tex}}
+      \caption{The distance between each agent and the obstacle over time. The
+        minimum allowed distance has a value of $1.51$.}
+      \label{fig:d_ON_3_1_distance_obstacle_agents}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+
+%-------------------------------------------------------------------------------
+\subsection{Input signals}
+\label{subsection:d_ON_inputs_3_1}
+
+\begin{figure}[H]\centering
+  \scalebox{0.7}{\input{./figures/07.with_disturbances/3_1/04.inputs/inputs_agent_1.tex}}
+  \caption{The inputs signals directing agent 1 over time. Their value is
+    constrained between $-10$ and $10$.}
+  \label{fig:d_ON_3_1_inputs_agent_1}
+\end{figure}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/04.inputs/inputs_agent_2.tex}}
+      \caption{The inputs signals directing agent 2 over time. Their value is
+        constrained between $-10$ and $10$.}
+      \label{fig:d_ON_3_1_inputs_agent_2}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/04.inputs/inputs_agent_3.tex}}
+      \caption{The inputs signals directing agent 3 over time. Their value is
+        constrained between $-10$ and $10$.}
+      \label{fig:d_ON_3_1_inputs_agent_3}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}
+
+
+%-------------------------------------------------------------------------------
+\subsection{Energy of the system}
+\label{subsection:d_ON_V_3_1}
+
+\noindent\makebox[\linewidth][c]{%
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/05.V/V.tex}}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time.}
+      \label{}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{figure}[H]
+      \scalebox{0.6}{\input{./figures/07.with_disturbances/3_1/05.V/V_zoom.tex}}
+      \caption{The $\mat{P}-$norms of the errors of the three agents through time,
+        focused. The colour cyan is used to illustrate the threshold
+        $\varepsilon_{\Omega}$.}
+      \label{}
+    \end{figure}
+  \end{minipage}
+\end{minipage}
+}

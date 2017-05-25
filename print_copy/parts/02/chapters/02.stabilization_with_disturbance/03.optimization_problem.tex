@@ -1,0 +1,318 @@
+%-------------------------------------------------------------------------------
+\section{The optimization problem}
+Consider a sequence of sampling times $\{t_k\}_{k \geq 0}$, with a constant
+sampling time $h$, $0 < h < T_p$, where $T_p$ is the finite time-horizon, such
+that $t_{k+1} = t_k + h$. In sampling data NMPC, a finite-horizon open-loop
+optimal control problem (FHOCP) is solved at discrete sampling time instants
+$t_k$ based on the then-current state error measurement $\vect{e}_i(t_k)$. The
+solution is an optimal control signal $\overline{\vect{u}}_i^{\star}(t)$,
+computed over $t \in [t_k, t_k+T_p]$. This signal is applied to the open-loop
+system in between sampling times $t_k$ and $t_k + h$.
+
+At a generic time $t_k$ then, agent $i$ solves the following optimization
+problem:
+\begin{problem}
+\label{problem:opt_with_disturbances}
+\begin{align}
+  \text{Find }& \\[2.5ex]
+              &\overline{\vect{u}}_i^{\star} (\cdot;\ \vect{e}_i(t_k)) \triangleq \text{argmin }\limits_{\overline{\vect{u}}_i (\cdot)}\
+    J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \label{position_based_cost_2} \\[2.5ex]
+    \text{where}& \\[2.5ex]
+    &J_i \big(\vect{e}_i(t_k), \overline{\vect{u}}_i (\cdot) \big) \triangleq
+      \int_{t_k}^{t_k + T_p} F_i \big(\overline{\vect{e}}_i(s), \overline{\vect{u}}_i (s)\big) ds +
+      V_i \big(\overline{\vect{e}}_i (t_k + T_p)\big)  \\[2.5ex]
+  \text{subject to:} & \nonumber \\[2.5ex]
+                     & \dot{\overline{\vect{e}}}_i(s) = g_i \big(\overline{\vect{e}}_i (s), \overline{\vect{u}}_i (s)\big) \label{eq:internal_error_model_2},
+                       \quad \overline{\vect{e}}_i (t_k) = \vect{e}_i (t_k) \\[2.5ex]
+                     & \overline{\vect{u}}_i(s) \in \mathcal{U}_i,
+                       \quad \overline{\vect{e}}_i (s) \in \mathcal{E}_{i, s - t_k},
+                       \quad s \in [t_k, t_k + T_p]\\[2.5ex]
+                     & \overline{\vect{e}}_i (t_k + T_p) \in \Omega_i
+\end{align}
+\end{problem}
+The notation $\overline{\cdot}$ is used to distinguish predicted states which
+are internal to the controller, as opposed to their actual values, because,
+even in the nominal case, the predicted values will not be equal to the
+actual closed-loop values. This means
+that $\overline{\vect{e}}_i(\cdot)$ is the solution to
+\eqref{eq:internal_error_model_2} driven by the control input
+$\overline{\vect{u}}_i(\cdot) : [t_k, t_k + T_p] \to \mathcal{U}_i$ with
+initial condition $\vect{e}_i(t_k)$.
+
+The applied input signal is a portion of the optimal solution to an
+optimization problem where information on the states of the neighbouring agents
+of agent $i$ are taken into account only in the constraints considered in the
+optimization problem. These constraints pertain to the set of its neighbours
+$\mathcal{N}_i$ and, in total, to the set of all agents within its sensing
+range $\mathcal{R}_i$. Regarding these, we assume assumption
+\eqref{ass:access_to_predicted_info_n}, i.e. at time $t_k$ when agent $i$
+solves the optimization problem, he has access to the measurements of the states
+and the values of the predicted states for all agents within its sensing range.
+Naturally, the inter-agent and intra-horizon constraint regime adopted is
+identical\footnote{In what follows, we will drop the subscript $t$ from
+$\mathcal{E}_{i,t}$ to avoid confusion with the restricted constraint set
+notation and for notational economy. The reader should be able to discern that
+the set $\mathcal{E}_i$ is time-varying without it being explicitly expressed as
+such. The form of the set is deduced from context.} to the one used in the case
+without disturbances acting on the system (see figure
+\eqref{fig:constraint_regime_horizon} and the discussion preceding it).
+
+\begin{figure}[ht!]
+  \centering
+  \input{figures/restricted_constraint_sets.tex}
+  \caption{The nominal constraint set $\mathcal{E}_i$ in bold and the
+    consecutive restricted constraint sets $\mathcal{E}_i \ominus \mathcal{B}_{i, s-t_k}$,
+    $s \in [t_k, t_k + T_p]$, dashed.}
+  \label{fig:tightening_high_level}
+\end{figure}
+
+While in the disturbance-free case the constraint set is $\mathcal{E}_i$,
+due to the existence of disturbances here, the constraint set is replaced in
+problem \eqref{problem:opt_with_disturbances} by
+\begin{align}
+  \mathcal{E}_{i, s-t_k} \equiv \mathcal{E}_i \ominus \mathcal{B}_{i,s-t_k}
+\label{eq:restricted_constraint_set}
+\end{align}
+where
+\begin{align}
+  \mathcal{B}_{i,s-t} \equiv \big\{ \vect{e}_i \in \mathbb{R}^9 \times \mathbb{T}^3 :
+    \|\vect{e}_i(s)\| \leq \dfrac{\overline{\delta}_i}{L_{g_i}}\big( e^{L_{g_i}(s - t)} - 1\big),\ \forall s \in [t, t + T_p] \big\}
+\label{eq:b_restricted_constraint_set}
+\end{align}
+
+The reason for this substitution lies in the following. Consider that there
+are no disturbances affecting the states of the plant; the state evolution of
+the plant and its model considered in the solution to the optimization problem
+both abide by the state constraints since the two models are identical. Consider
+now that there are disturbances affecting the states of the plant $-$
+disturbances that are unknown to the model considered in the solution to the
+optimization problem. If the state constraint set was left unchanged during the
+solution of the optimization problem, the applied input to the plant, coupled
+with the uncertainty affecting the states of the plant could, without loss of
+generality\footnote{Receding Horizon Control is inherently robust
+under certain considerations, see \cite{Fontes2007} for more.}, force the states
+of the plant to escape their intended bounds.
+
+If the state constraint set considered in the solution of the optimization
+problem \eqref{problem:opt_with_disturbances} is equal to
+\eqref{eq:restricted_constraint_set}, then the state of the real system,
+the plant, is guaranteed to abide by the original state constraint set
+$\mathcal{E}_i$. We formalize this statement in property
+\eqref{property:restricted_constraint_set}.\\[1ex]
+
+\begin{bw_box}
+  \begin{property}
+  \label{property:restricted_constraint_set}
+
+  For every $s \in [t, t + T_p]$
+  \begin{align}
+    \overline{\vect{e}}_i\big( s;\ \vect{u}_i(\cdot,\ \vect{e}_i(t)), \vect{e}_i(t) \big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,s-t}
+    \Rightarrow
+    \vect{e}_i(s) \in \mathcal{E}_i
+  \end{align}
+  where $\mathcal{B}_{i,s-t}$ is given by \eqref{eq:b_restricted_constraint_set}.
+\end{property}
+\end{bw_box}
+
+
+
+\begin{bw_box}
+  \begin{assumption}
+  \label{ass:psi}
+  The terminal set $\Omega_i \subseteq \Psi_i$ is a subset of an admissible and
+  positively invariant set $\Psi_i$ as per definition
+  \eqref{def:positively_invariant}, where $\Psi_i$ is defined as
+  \begin{align}
+    \Psi_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+      \leq \varepsilon_{\Psi_i} \big\},\ \varepsilon_{\Psi_i} > 0
+  \end{align}
+  \end{assumption}
+\end{bw_box}
+
+\begin{bw_box}
+  \begin{assumption}
+  The set $\Psi_i$ belongs to the set $\Phi_i$, $\Psi_i \subseteq \Phi_i$,
+  which is the set of states within $\mathcal{E}_{i,T_p}$ for which there is an
+  admissible control input whose form is of linear feedback with regard to the
+  state\footnote{This is equivalent to requiring that $\mathcal{i,T_p} \neq \varnothing$}:
+  \begin{align}
+    \exists \Phi_i \triangleq \big\{\overline{\vect{e}}_i \in \mathcal{E}_{i,T_p} : h_i(\overline{\vect{e}}_i) \in \mathcal{U}_i \big\}
+  \end{align}
+  \label{ass:phi_psi}
+  \end{assumption}
+\end{bw_box}
+
+\begin{bw_box}
+  \begin{remark}
+    The existence of the linear state-feedback control law $h_i$ is ensured if
+    the linearisation of system \eqref{eq:position_based_error_model_with_disturbance}
+    is stabilizable \cite{262032}\cite{FINDEISEN2003190}.
+    \label{remark:aux_control_stabilizability}
+  \end{remark}
+\end{bw_box}
+
+
+\begin{bw_box}
+  \begin{assumption}
+  \label{ass:psi_omega}
+  The admissible and positively invariant set $\Psi_i$ is such that
+  \begin{align}
+    %\forall \vect{e}_i \in \Psi_i \Rightarrow g_i(\vect{e}_i, h_i(\vect{e}_i)) \in \Omega_i \subseteq \Psi_i
+  \forall \vect{e}_i(t) \in \Psi_i \Rightarrow \overline{\vect{e}}_i\big(t+\tau;\ h_i(\vect{e}_i(t)), \vect{e}_i(t)\big) \in \Omega_i \subseteq \Psi_i
+  \end{align}
+  for some $\tau \in [0,h]$
+  \end{assumption}
+\end{bw_box}
+
+\begin{bw_box}
+  \begin{assumption}
+  \label{ass:omega}
+  The terminal set $\Omega_i$ is closed, includes the origin, and is defined by
+  \begin{align}
+    \Omega_i \triangleq \big\{\vect{e}_i \in \mathcal{E}_i : V_i(\vect{e}_i)
+      \leq \varepsilon_{\Omega_i}\big\}\ \text{, where } \varepsilon_{\Omega_i} \in (0, \varepsilon_{\Psi_i})
+  \end{align}
+  \end{assumption}
+\end{bw_box}
+
+\begin{figure}[ht!]
+  \centering
+  \input{figures/terminal_set_restricted.tex}
+  \caption{The hierarchy of sets
+  $\Omega_i \subseteq \Psi_i \subseteq \Phi_i \subseteq \mathcal{E}_{i,T_p}$,
+  in bold, dash-dotted, dash-dotted, and dashed, respectively.
+  For every state in $\Phi_i$ there is a linear state feedback control
+  $h_i(\vect{e}_i)$ which, when applied to a state
+  $\vect{e}_i \in \Psi_i$, causes the trajectory of the state of the system to
+  fall into the terminal set $\Omega_i$.}
+  \label{fig:tightening_low_level}
+\end{figure}
+
+\begin{bw_box}
+  \begin{remark}
+    It may be the case that the length of the time-horizon $T_p$ is large enough
+    that $\mathcal{E}_{i,T_p} \subset \Phi_i$ instead of the desired opposite.
+    The length of the time-horizon should hence be designed so that the above
+    violation does not occur.
+    \label{remark:E_T_P_limit}
+  \end{remark}
+\end{bw_box}
+
+
+
+Functions
+$F_i : \mathcal{E}_i \times \mathcal{U}_i \to \mathbb{R}_{\geq 0}$ and
+$V_i: \Psi_i \to \mathbb{R}_{\geq 0}$ are defined by \eqref{eq:F_i_def}
+and \eqref{eq:V_i_def} respectively, as in the disturbance-free case.
+Matrices $\mat{R}_i \in \mathbb{R}^{6 \times 6}$,
+$\mat{Q}_i, \mat{P}_i \in \mathbb{R}^{12 \times 12}$ are positive definite.
+Consequently, lemmas \eqref{lemma:F_i_bounded_K_class},
+\eqref{lemma:F_Lipschitz}, \eqref{lemma:V_Lipschitz_e_0} and
+\eqref{lemma:V_i_lower_upper_bounded} hold true here, as in the
+disturbance-free case: the running costs $F_i$ are Lipschitz continuous in
+$\mathcal{E}_i \times \mathcal{U}_i$ with Lipschitz constant $L_{F_i}$ and
+they are lower- and upper-bounded by class $\mathcal{K}_{\infty}$ functions;
+the terminal penalty functions $V_i$ are Lipschitz continuous in $\Psi_i$
+with Lipschitz constant $L_{V_i}$, and they are lower- and upper-bounded
+by class $\mathcal{K}_{\infty}$ functions.
+
+
+The solution to the optimal control problem \eqref{position_based_cost_2}
+at time $t_k$ is an optimal control input, denoted by
+$\overline{\vect{u}}_i^{\star}(\cdot;\ \vect{e}_i(t_k))$, which
+is applied to the open-loop system until the next sampling instant $t_k + h$,
+with $h \in (0,T_p)$.
+\begin{align}
+  %\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h) \nonumber \\[2.5ex]
+  \vect{u}_i(t) = \overline{\vect{u}}_i^{\star}\big(t;\ \vect{e}_i(t_k)\big),\  t \in [t_k, t_k + h]
+ \label{eq:position_based_optimal_u_2}
+\end{align}
+At time $t_{k+1}$ a new finite horizon optimal control problem is solved in the
+same manner, leading to a receding horizon approach.
+
+The control input $\vect{u}_i(\cdot)$ is of feedback form,
+since it is recalculated at each sampling instant based on the then-current
+state. The solution to equation \eqref{eq:position_based_error_model_with_disturbance}, starting at time
+$t_1$, from an initial condition $\vect{e}_i(t_1) = \overline{\vect{e}}_i(t_1)$,
+by application of the control input $\vect{u}_i : [t_1, t_2] \to \mathcal{U}_i$
+is denoted by
+\begin{align}
+  \vect{e}_i\big(t;\ \vect{u}_i(\cdot), \vect{e}_i(t_1)\big),\ t \in [t_1, t_2]
+\end{align}
+
+As before, the \textit{predicted} state of the system
+\eqref{eq:position_based_error_model_with_disturbance}
+at time $t_k + \tau$, based on the measurement of the state at time
+$t_k$, $\vect{e}_i(t_k)$, by application of the control input
+$\vect{u}_i\big(t;\ \vect{e}_i(t_k)\big)$, for the time period $t \in [t_k, t_k + \tau]$
+is denoted by
+\begin{align}
+  \overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \label{eq:position_based_predicted_error_0_2}
+\end{align}
+
+On the existence of solutions to
+\eqref{eq:position_based_error_model_with_disturbance} we assume the following:\\[1ex]
+\begin{bw_box}
+\begin{assumption}
+  The system \eqref{eq:position_based_error_model_with_disturbance} has a
+  \textit{continuous solution} for any $\vect{e}_i(0) \in \mathcal{E}_i$,
+  any \textit{piecewise continuous} input
+  $\vect{u}_i(\cdot) :[0,T_p] \to \mathcal{U}_i$, and any
+  \textit{exogenous disturbance} $\vect{\delta}_i(\cdot) : [0,T_p] \to \Delta_i$.
+
+  \label{ass:existence_of_solutions_with_disturbance}
+\end{assumption}
+\end{bw_box}
+
+
+In contrast to the disturbance-free case where the predicted state coincided
+with the state of the actual system, due to the existence of disturbances
+this equality is void.\\[1ex]
+
+\begin{bw_box}
+\begin{remark}
+  The following holds true here because \textit{there are} disturbances
+  acting on the system.
+  \begin{align}
+    \overline{\vect{e}}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big) \not=
+    \vect{e}_i\big(\tau_1;\ \vect{u}_i(\cdot), \vect{e}_i(\tau_0)\big)
+    \label{eq:error_now_to_predicted_error_2}
+  \end{align}
+\end{remark}
+\end{bw_box}
+
+The closed-loop system for which stability is to be guaranteed is
+\begin{align}
+  \vect{e}_i(\tau) = g_i^R\big(\vect{e}_i(\tau), \overline{\vect{u}}_i^{\star}(\tau)\big),\ \tau \geq t_0 = 0
+  \label{eq:with_disturbances_closed_loop}
+\end{align}
+where $\overline{\vect{u}}_i^{\star}(\tau) = \overline{\vect{u}}_i^{\star}(\tau;\ \vect{e}_i(t_k))$,
+$\tau \in [t_k, t_k + h)$.
+
+We can now give the definition of an \textit{admissible input} for the FHOCP
+\eqref{problem:opt_with_disturbances}:\\[1ex]
+
+\begin{bw_box}
+  \begin{definition} (\textit{Admissible input for the FHOCP
+    \eqref{problem:opt_with_disturbances}})
+  \label{definition:admissible_input_with_disturbance}
+
+  A control input $\vect{u}_i : [t_k, t_k + T_p] \to \mathbb{R}^6$ for a state
+  $\vect{e}_i(t_k)$ is called \textit{admissible} for the problem
+  \eqref{problem:opt_with_disturbances} if all the following hold:
+
+  \begin{enumerate}
+    \item $\vect{u}_i(\cdot)$ is piecewise continuous
+    \item $\vect{u}_i(\tau) \in \mathcal{U}_i,\ \forall \tau \in [t_k, t_k + T_p]$
+    \item $\overline{\vect{e}}_i\big(t_k + \tau;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \mathcal{E}_i \ominus \mathcal{B}_{i,\tau},\ \forall \tau \in [0, T_p]$
+    \item $\overline{\vect{e}}_i\big(t_k + T_p;\ \vect{u}_i(\cdot), \vect{e}_i(t_k)\big) \in \Omega_i$
+  \end{enumerate}
+
+  In other words, $\vect{u}_i$ is admissible if it conforms to the constraints
+  on the input and its application yields states that conform to the
+  prescribed state constraints of problem \eqref{problem:opt_with_disturbances}
+  along the entire horizon $[t_k, t_k + T_p]$, and the terminal predicted
+  state conforms to the terminal constraint.
+
+\end{definition}
+\end{bw_box}

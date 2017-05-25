@@ -1,0 +1,90 @@
+\section{The problem reformed}
+
+Considering the conditions of the motivational problem as stated by problem
+\eqref{sec:problem_statement}, the reformed problem assumes the following form:
+
+\begin{problem}
+Assuming that
+\begin{itemize}
+  \item all agents $i \in \mathcal{V}$ have access to their own and their
+    neighbours' state and input vectors
+
+  \item all agents $i \in \mathcal{V}$ have a (upper-bounded) sensing range
+   $d_i$ such that
+   $$d_i > \text{max}\{r_i + r_j: \forall i,j \in \mathcal{V}, i \neq j\}$$
+
+  \item at time $t=0$ the sets $\mathcal{N}_i$ are known for all
+    $i \in \mathcal{V}$ and $\sum\limits_i |\mathcal{N}_i| > 0$
+
+  \item at time $t=0$ all agents are in a collision-free configuration with
+    each other and the obstacles $\ell \in \mathcal{L}$
+
+  \item All obstacles $\ell \in \mathcal{L}$ are situated
+    in such a way that the distance between the two least distant obstacles
+    is larger than the diameter of the agent with the largest diameter
+
+\end{itemize}
+
+the problem lies in procuring feasible controls for each agent $i \in \mathcal{V}$
+such that for all agents and for all obstacles $\ell \in \mathcal{L}$ the
+following hold
+\begin{enumerate}
+  \item Position and orientation configuration is achieved in steady-state
+    $\vect{z}_{i,des}$
+    $$\lim_{t \to \infty} \|\vect{z}_i(t) - \vect{z}_{i,des}\| = 0$$
+
+  \item Inter-agent collision is avoided
+    $$\|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a}(t) > \underline{d}_{ij,a},
+    \forall j \in \mathcal{V} \backslash \{i\}$$
+    where $\vect{p}(t) = [x(t), y(t)]^{\top}$
+
+  \item Inter-agent connectivity loss between neighbouring agents is avoided
+    $$ \|\vect{p}_i(t) - \vect{p}_j(t)\| = d_{ij,a} (t) < d_i,
+    \forall j \in \mathcal{N}_i, \forall i : |\mathcal{N}_i| \not= 0$$
+
+  \item Agent-with-obstacle collision is avoided
+    $$ \|\vect{p}_i(t) - \vect{p}_{\ell}(t)\| = d_{i\ell,o} (t) > \underline{d}_{i\ell,o},
+    \forall \ell \in \mathcal{L}$$
+
+  \item The control laws $\vect{u}_i(t)$ abide by their respective input constraints
+    $$\vect{u}_i(t) \in \mathcal{U}_i$$
+\end{enumerate}
+
+for appropriate choice of constants
+$r_i,\vect{z}_{i,des},\underline{d}_{ij,a}, d_i,\underline{d}_{i\ell,o}$ and
+neighbour sets $\mathcal{N}_i$, where $i \in \mathcal{V}$.
+\end{problem}
+
+From the above we conclude that the constraint set $\mathcal{Z}_i$ for
+agent $i \in \mathcal{V}$ is
+\begin{align}
+  \mathcal{Z}_{i,t} = \big\{\vect{z}_i(t) \in X \times Y \times \Theta : \
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| > \underline{d}_{ij,a}, \forall j \in \mathcal{R}_i(t), \\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_j(t)\| < d_i, \forall j \in \mathcal{N}_i, \\[2.5ex]
+      & \|\vect{p}_i(t) - \vect{p}_{\ell}\| > \underline{d}_{i\ell,o}, \forall \ell \in \mathcal{L}, \\[2.5ex]
+      & - \pi < \theta_i(t) \leq \pi \big\}
+\end{align}
+and the constraint set that corresponds to each agent for all
+$i \in \mathcal{V}$  is given by the Minkowski difference
+\begin{align}
+  \mathcal{E}_{i,t} = \mathcal{Z}_{i,t} \ominus \vect{z}_{i,des}
+  \label{eq:error_constraint_set_unicycle}
+\end{align}
+
+In the case of additive disturbances being considered, when each agent solves
+its own FHOCP, its constraint set $\mathcal{E}_i$ is replaced by a
+restricted constraint set that follows the same structure as
+\eqref{eq:restricted_constraint_set}. Furthermore, through the fact that
+remark \eqref{remark:aux_control_stabilizability} holds for the unicycle's
+error model, i.e. the model is stabilizable $-$ the existence of the
+local linear feedback control law $h$ that steers the trajectory of the
+states of the system into $\Omega$ is ensured\footnote{The proof can be found
+in appendix \eqref{proof:stabilizability_unicycle}}.
+
+The content of chapters \ref{chapter:simulations_without_disturbances} and
+\ref{chapter:simulations_with_disturbances} will demonstrate that agents
+$i \in \mathcal{V}$ can be stabilized when disturbances are absent, as
+demonstrated in chapter \ref{chapter:stabilization_without_disturbance}, and,
+in the case where disturbances are present, that the $\mat{P}-$weighted
+quadratic error measure about the equilibrium does not exceed a certain ceiling,
+as demonstrated in chapter \ref{chapter:stabilization_with_disturbance}.
